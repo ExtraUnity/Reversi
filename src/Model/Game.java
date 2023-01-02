@@ -11,6 +11,7 @@ public class Game {
         int gametime;
     }
 
+    GameState gamestate = GameState.Playing;
     final Thread modelMainThread;
 
     Game() {
@@ -25,6 +26,14 @@ public class Game {
     }
 
     void run_game() {
-
+        while (gamestate == GameState.Playing) {
+            //Game loop
+        }
     }
+}
+
+enum GameState {
+    Playing,
+    WhiteWinner,
+    BLackWinner
 }
