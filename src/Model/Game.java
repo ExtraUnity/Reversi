@@ -1,14 +1,13 @@
 package Model;
 
+import MsgPass.ModelMsg.CellPressedMsg;
+import MsgPass.ModelMsg.WindowClosedMsg;
+
 public class Game {
     public enum GameMode {
         Classic,
         AIGame,
         Multiplayer
-    }
-
-    public class GameOptions {
-        int gametime;
     }
 
     GameState gamestate = GameState.Playing;
@@ -26,14 +25,24 @@ public class Game {
     }
 
     void run_game() {
+        System.out.println(getClass().getSimpleName() + " loop started");
         while (gamestate == GameState.Playing) {
-            //Game loop
+            // Game loop
+            var modelMsg = Model.readModelMsg();
+            System.out.println("Received " + modelMsg.getClass().getName());
+            if (modelMsg instanceof CellPressedMsg) {
+                CellPressedMsg msg = (CellPressedMsg) modelMsg;
+                System.out.println(msg.pos);
+            } else if (modelMsg instanceof WindowClosedMsg) {
+                gamestate = GameState.Exited;
+            }
         }
     }
 }
 
 enum GameState {
     Playing,
+    Exited,
     WhiteWinner,
-    BLackWinner
+    BlackWinner
 }

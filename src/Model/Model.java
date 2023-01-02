@@ -3,13 +3,14 @@ package Model;
 import java.util.concurrent.LinkedTransferQueue;
 
 import MsgPass.ControllerMsg.ControllerMsg;
+import MsgPass.ModelMsg.ModelMsg;
 
 public class Model {
     private static volatile Game game;
-    private static volatile LinkedTransferQueue<ControllerMsg> modelqueue;
-    private static volatile LinkedTransferQueue<ControllerMsg> controllerqueue;
+    private static volatile LinkedTransferQueue<ModelMsg> modelqueue = new LinkedTransferQueue<>();
+    private static volatile LinkedTransferQueue<ControllerMsg> controllerqueue = new LinkedTransferQueue<>();
 
-    public static void startGame(Game.GameMode gamemode, Game.GameOptions options) {
+    public static void startGame(Game.GameMode gamemode, GameOptions options) {
         if (game == null) {
             switch (gamemode) {
                 case Classic:
@@ -25,7 +26,7 @@ public class Model {
         }
     }
 
-    public static synchronized void sendModelMsg(ControllerMsg event) {
+    public static synchronized void sendModelMsg(ModelMsg event) {
         modelqueue.put(event);
     }
 
@@ -33,11 +34,19 @@ public class Model {
         controllerqueue.put(event);
     }
 
-    public static synchronized ControllerMsg readModelMsg() {
-        return modelqueue.poll();
+    public static synchronized ModelMsg readModelMsg() {
+        try {
+            return modelqueue.take();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static synchronized ControllerMsg readControllerMsg() {
-        return controllerqueue.poll();
+        try {
+            return controllerqueue.take();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
