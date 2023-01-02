@@ -21,7 +21,7 @@
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-19",
-            "path": "./jre-19/jdk-19+fx-19",
+            "path": "./jdk-19+fx-19",
             "default": true
         }
     ]
