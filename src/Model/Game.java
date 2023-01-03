@@ -39,7 +39,7 @@ public class Game {
 
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
-                handleCellClick(msg.pos);
+                handleTileClick(msg.pos);
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.Exited;
@@ -52,7 +52,7 @@ public class Game {
 
     private TileColor nextturn = TileColor.BLACK;
 
-    void handleCellClick(TilePosition pos) {
+    void handleTileClick(TilePosition pos) {
         /*
          * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
          * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
