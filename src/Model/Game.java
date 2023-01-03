@@ -20,10 +20,13 @@ public class Game {
     TileColor[][] board = new TileColor[8][8];
 
     Game() {
+
+        // THIS SHOULDN'T NEED TO BE DONE BOTH HERE AND IN Gui.java!!
         board[3][3] = TileColor.WHITE;
         board[4][4] = TileColor.WHITE;
         board[3][4] = TileColor.BLACK;
         board[4][3] = TileColor.BLACK;
+
         var game = this;
         modelMainThread = new Thread(new Runnable() {
             @Override

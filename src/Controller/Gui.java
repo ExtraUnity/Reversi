@@ -80,6 +80,7 @@ public class Gui extends Application {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Tile tile = new Tile(i, j);
+                // THIS SHOULDN'T NEED TO BE DONE BOTH HERE AND IN Game.java!!
                 if ((i == 3 && j == 3) || (i == 4 && j == 4)) {
                     tile.setImage(white_tile);
                 } else if ((i == 3 && j == 4) || (i == 4 && j == 3)) {
