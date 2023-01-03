@@ -1,8 +1,10 @@
 package Controller;
 
+import Controller.Gui.Tile;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
+import Shared.TilePosition;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 
 public class Controller {
@@ -47,11 +49,18 @@ public class Controller {
 
             if (controllerMsg instanceof UpdateBoardMsg) {
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                System.out.println(msg);
+                updateBoard(msg);
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.Closing;
             }
+        }
+    }
+
+    private void updateBoard(UpdateBoardMsg msg) {
+        for (TilePosition position : msg.tilePositions) {
+            Tile tile = (Tile) Gui.board.getChildren().get(position.x * 8 + position.y);
+            tile.setTilecolor(msg.color);
         }
     }
 }
