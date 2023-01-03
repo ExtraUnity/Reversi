@@ -79,10 +79,10 @@ public class Gui extends Application {
         TileColor tilecolor = null;
 
         // init af tiles
-        InputStream white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
-        Image white_tile = new Image(white_tile_src);
-        InputStream black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.jpg");
-        Image black_tile = new Image(black_tile_src);
+        static private InputStream white_tile_src;
+        static private Image white_tile;
+        static private InputStream black_tile_src;
+        static private Image black_tile;
 
         public Tile(int x, int y) {
             position = new TilePosition(x, y);
@@ -91,19 +91,34 @@ public class Gui extends Application {
             });
         }
 
+        private Image getWhiteImage() {
+            if (white_tile == null) {
+                white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
+                white_tile = new Image(white_tile_src);
+            }
+            return white_tile;
+        }
+
+        private Image getBlackImage() {
+            if (black_tile == null) {
+                black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.jpg");
+                black_tile = new Image(black_tile_src);
+            }
+            return black_tile;
+        }
+
         public void setTilecolor(TileColor tilecolor) {
             this.tilecolor = tilecolor;
             System.out.println("Settings tile " + position + " to " + tilecolor);
             switch (tilecolor) {
                 case WHITE:
-                    setImage(white_tile);
+                    setImage(getWhiteImage());
                     break;
                 case BLACK:
-                    setImage(black_tile);
+                    setImage(getBlackImage());
                     break;
 
             }
         }
     }
-
 }
