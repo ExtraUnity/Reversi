@@ -1,7 +1,11 @@
 package Model;
 
+import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
+import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.CellPressedMsg;
-import MsgPass.ModelMsg.WindowClosedMsg;
+import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Shared.CellColor;
+import Shared.CellPosition;
 
 public class Game {
     public enum GameMode {
@@ -29,12 +33,18 @@ public class Game {
         while (gamestate == GameState.Playing) {
             // Game loop
             var modelMsg = Model.readModelMsg();
-            System.out.println("Received " + modelMsg.getClass().getName());
+            System.out.println("Game Received " + modelMsg.getClass().getName());
+
             if (modelMsg instanceof CellPressedMsg) {
                 CellPressedMsg msg = (CellPressedMsg) modelMsg;
                 System.out.println(msg.pos);
-            } else if (modelMsg instanceof WindowClosedMsg) {
+                Model.sendControllerMsg(new UpdateBoardMsg(CellColor.Black, new CellPosition[] { msg.pos }));
+
+            } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.Exited;
+                
+                Model.sendControllerMsg(new ControllerWindowClosedMsg());
+
             }
         }
     }

@@ -13,4 +13,12 @@ public class UpdateBoardMsg extends ControllerMsg {
         this.color = color;
         this.cellPositions = cellPositions;
     }
+    @Override
+    public String toString() {
+        var str =  "Color: " + color + " [ ";
+        for (CellPosition cellPosition : cellPositions) {
+            str += cellPosition + ", ";
+        }
+        return str + " ]";
+    }
 }

@@ -26,15 +26,15 @@ public class Model {
         }
     }
 
-    public static synchronized void sendModelMsg(ModelMsg event) {
-        modelqueue.put(event);
+    public static void sendModelMsg(ModelMsg event) {
+        modelqueue.add(event);
     }
 
-    public static synchronized void sendControllerMsg(ControllerMsg event) {
-        controllerqueue.put(event);
+    public static void sendControllerMsg(ControllerMsg event) {
+        controllerqueue.add(event);
     }
 
-    public static synchronized ModelMsg readModelMsg() {
+    public static ModelMsg readModelMsg() {
         try {
             return modelqueue.take();
         } catch (InterruptedException e) {
@@ -42,7 +42,7 @@ public class Model {
         }
     }
 
-    public static synchronized ControllerMsg readControllerMsg() {
+    public static ControllerMsg readControllerMsg() {
         try {
             return controllerqueue.take();
         } catch (InterruptedException e) {
