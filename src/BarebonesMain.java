@@ -13,7 +13,4 @@ public class BarebonesMain {
         Model.sendModelMsg(new CellPressedMsg(new CellPosition(2, 4)));
 
     }
-    static void testPositions() {
-        
-    }
 }
