@@ -1,10 +1,10 @@
 package Shared;
 
-public enum CellColor {
+public enum TileColor {
     WHITE,
     BLACK;
 
-    public CellColor switchColor() {
+    public TileColor switchColor() {
         switch (this) {
             case WHITE:
                 return BLACK;

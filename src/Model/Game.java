@@ -2,10 +2,10 @@ package Model;
 
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
-import MsgPass.ModelMsg.CellPressedMsg;
+import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
-import Shared.CellColor;
-import Shared.CellPosition;
+import Shared.TileColor;
+import Shared.TilePosition;
 
 public class Game {
     public enum GameMode {
@@ -17,7 +17,7 @@ public class Game {
     GameState gamestate = GameState.Playing;
     final Thread modelMainThread;
 
-    CellColor[][] board = new CellColor[8][8];
+    TileColor[][] board = new TileColor[8][8];
 
     Game() {
         var game = this;
@@ -37,8 +37,8 @@ public class Game {
             var modelMsg = Model.readModelMsg();
             System.out.println("Game Received " + modelMsg.getClass().getName());
 
-            if (modelMsg instanceof CellPressedMsg) {
-                CellPressedMsg msg = (CellPressedMsg) modelMsg;
+            if (modelMsg instanceof TilePressedMsg) {
+                TilePressedMsg msg = (TilePressedMsg) modelMsg;
                 handleCellClick(msg.pos);
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
@@ -50,9 +50,9 @@ public class Game {
         }
     }
 
-    private CellColor nextturn = CellColor.BLACK;
+    private TileColor nextturn = TileColor.BLACK;
 
-    void handleCellClick(CellPosition pos) {
+    void handleCellClick(TilePosition pos) {
         /*
          * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
          * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
@@ -63,7 +63,7 @@ public class Game {
         board[pos.x][pos.y] = thiscolor;
         nextturn = thiscolor.switchColor();
 
-        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new CellPosition[] { pos }));
+        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new TilePosition[] { pos }));
     }
 }
 

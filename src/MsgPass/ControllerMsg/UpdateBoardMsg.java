@@ -1,22 +1,22 @@
 package MsgPass.ControllerMsg;
 
-import Shared.CellColor;
-import Shared.CellPosition;
+import Shared.TileColor;
+import Shared.TilePosition;
 
 public class UpdateBoardMsg extends ControllerMsg {
     // Indeholder koordinater på de celler som skal ændres, og den farve det skal
     // ændres til.
-    public final CellColor color;
-    public final CellPosition[] cellPositions;
+    public final TileColor color;
+    public final TilePosition[] cellPositions;
 
-    public UpdateBoardMsg(CellColor color, CellPosition[] cellPositions) {
+    public UpdateBoardMsg(TileColor color, TilePosition[] cellPositions) {
         this.color = color;
         this.cellPositions = cellPositions;
     }
     @Override
     public String toString() {
         var str =  "Color: " + color + " [ ";
-        for (CellPosition cellPosition : cellPositions) {
+        for (TilePosition cellPosition : cellPositions) {
             str += cellPosition + ", ";
         }
         return str + " ]";

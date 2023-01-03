@@ -2,6 +2,10 @@ package Controller;
 
 import java.io.InputStream;
 
+import Model.Model;
+import MsgPass.ModelMsg.TilePressedMsg;
+import Shared.TileColor;
+import Shared.TilePosition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,9 +17,23 @@ import javafx.stage.Stage;
 
 public class Gui extends Application {
 
+    static Thread guiMainThread;
+
     static void initGui() {
+        guiMainThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runGui();
+            }
+        });
+        guiMainThread.start();
+    }
+
+    static void runGui() {
         launch(new String[] {});
     }
+
+    static GridPane board;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -33,7 +51,7 @@ public class Gui extends Application {
         root.getChildren().add(panel_manager);
 
         // init af gridpane
-        GridPane board = initBoard();
+        board = initBoard();
         panel_manager.setCenter(board);
 
     }
@@ -57,11 +75,8 @@ public class Gui extends Application {
     }
 
     class Tile extends ImageView {
-        private int positionX;
-        private int positionY;
-
-        // OBS! må ikke være her, men lige nu virker det. C:
-        int turn;
+        private TilePosition position;
+        TileColor tilecolor = null;
 
         // init af tiles
         InputStream white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
@@ -70,20 +85,24 @@ public class Gui extends Application {
         Image black_tile = new Image(black_tile_src);
 
         public Tile(int x, int y) {
-            this.positionX = x;
-            this.positionY = y;
+            position = new TilePosition(x, y);
             setOnMouseClicked(e -> {
-                System.out.println("x: " + positionX + " y: " + positionY);
-                if (turn % 2 == 0) {
-                    setImage(white_tile);
-                    turn++;
-                    System.out.println(turn);
-                } else {
-                    setImage(black_tile);
-                    turn++;
-                    System.out.println(turn);
-                }
+                Model.sendModelMsg(new TilePressedMsg(position));
             });
+        }
+
+        public void setTilecolor(TileColor tilecolor) {
+            this.tilecolor = tilecolor;
+            System.out.println("Settings tile " + position + " to " + tilecolor);
+            switch (tilecolor) {
+                case WHITE:
+                    setImage(white_tile);
+                    break;
+                case BLACK:
+                    setImage(black_tile);
+                    break;
+
+            }
         }
     }
 
