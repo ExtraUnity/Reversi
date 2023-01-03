@@ -4,7 +4,7 @@ import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.CellPressedMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
-import Shared.CellState;
+import Shared.CellColor;
 import Shared.CellPosition;
 
 public class Game {
@@ -17,7 +17,7 @@ public class Game {
     GameState gamestate = GameState.Playing;
     final Thread modelMainThread;
 
-    CellState[][] board = new CellState[8][8];
+    CellColor[][] board = new CellColor[8][8];
 
     Game() {
         var game = this;
@@ -50,15 +50,23 @@ public class Game {
         }
     }
 
-    private CellState nextturn = CellState.Black;
+    private CellColor nextturn = CellColor.Black;
 
     void handleCellClick(CellPosition pos) {
+        /*
+         * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om det er et
+         * lovligt træk og hvis det er håndterer den alt logikken som vender andre brikker.
+         * Derefter sender den en besked til Controlleren om hvilke brikker der er blevet vendt
+         */
         var thiscolor = nextturn;
         board[pos.x][pos.y] = thiscolor;
-        if (nextturn == CellState.Black) {
-            nextturn = CellState.White;
-        } else {
-            nextturn = CellState.Black;
+        switch (thiscolor) {
+            case White:
+                nextturn = CellColor.Black;
+                break;
+            case Black:
+                nextturn = CellColor.White;
+                break;
         }
 
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new CellPosition[] { pos }));
