@@ -1,8 +1,15 @@
 package Controller;
 
+import java.io.InputStream;
+import java.util.stream.IntStream;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Gui extends Application {
@@ -13,14 +20,31 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println("peter pedal");
+
         // initialisering af grundpanel
         stage.setTitle("Reversi");
-        BorderPane root = new BorderPane();
+        StackPane root = new StackPane();
         stage.setScene(new Scene(root,500,500));
         stage.show();
         stage.setMinHeight(400);
         stage.setMinWidth(400);
+
+        // init af borderpane
+        BorderPane panel_manager = new BorderPane();
+        root.getChildren().add(panel_manager);
+
+        // init af gridpane
+        GridPane board = new GridPane();
+        panel_manager.setCenter(board);
+        board.setConstraints(board, 8, 8);
+
+        // init af imageview test
+        ImageView imv = new ImageView();
+        InputStream inStream = getClass().getResourceAsStream("/Assets/stoneTileEmpty.jpg");
+        Image pic = new Image(inStream);
+        imv.setImage(pic);
+        board.setRowIndex(imv, 0);
+        board.setColumnIndex(imv, 0);
     }
     
 }
