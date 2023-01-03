@@ -5,11 +5,13 @@ import java.util.stream.IntStream;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Gui extends Application {
@@ -43,8 +45,8 @@ public class Gui extends Application {
         InputStream inStream = getClass().getResourceAsStream("/Assets/stoneTileEmpty.jpg");
         Image pic = new Image(inStream);
         imv.setImage(pic);
-        board.setRowIndex(imv, 0);
-        board.setColumnIndex(imv, 0);
+        TextField txt = new TextField();
+        board.add(imv, 0, 0);
     }
     
 }
