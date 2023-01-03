@@ -52,13 +52,14 @@ public class Game {
 
     private TileColor nextturn = TileColor.BLACK;
 
+    /**
+     * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
+    * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
+    * andre brikker. Derefter sender den en besked til Controlleren om hvilke
+    * brikker der er blevet vendt
+    */
     void handleTileClick(TilePosition pos) {
-        /*
-         * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
-         * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
-         * andre brikker. Derefter sender den en besked til Controlleren om hvilke
-         * brikker der er blevet vendt
-         */
+        
         var thiscolor = nextturn;
         board[pos.x][pos.y] = thiscolor;
         nextturn = thiscolor.switchColor();
