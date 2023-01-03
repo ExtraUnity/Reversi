@@ -7,7 +7,7 @@ import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 
 public class Controller {
     static private Controller controller;
-    
+
     @SuppressWarnings("unused")
     static private Gui gui = new Gui();
     static private Thread controllerMainThread;
@@ -23,7 +23,7 @@ public class Controller {
 
     public static void initController() {
         if (controller == null) {
-            Gui.launch(new String[] {});
+            Gui.initGui();
             controller = new Controller();
             controllerMainThread = new Thread(new Runnable() {
                 @Override
