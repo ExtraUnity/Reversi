@@ -7,6 +7,8 @@ import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 
 public class Controller {
     static private Controller controller;
+    
+    @SuppressWarnings("unused")
     static private Gui gui = new Gui();
     static private Thread controllerMainThread;
     private ControllerState state = ControllerState.Running;
@@ -21,6 +23,7 @@ public class Controller {
 
     public static void initController() {
         if (controller == null) {
+            Gui.launch(new String[] {});
             controller = new Controller();
             controllerMainThread = new Thread(new Runnable() {
                 @Override
@@ -38,7 +41,7 @@ public class Controller {
     private void run_controller() {
         System.out.println("Controller loop started");
         while (controller.state == ControllerState.Running) {
-            
+
             ControllerMsg controllerMsg = Model.readControllerMsg();
             System.out.println("Controller Received " + controllerMsg.getClass().getName());
 
