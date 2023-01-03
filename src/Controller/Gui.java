@@ -17,6 +17,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
+
 public class Gui extends Application {
 
     static void initGui() {
@@ -50,10 +52,6 @@ public class Gui extends Application {
         // init af tiles
         InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.jpg");
         Image empty_tile = new Image(empty_tile_src);
-        InputStream white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
-        Image white_tile = new Image(white_tile_src);
-        InputStream black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.jpg");
-        Image black_tile = new Image(black_tile_src);
 
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
@@ -69,12 +67,28 @@ public class Gui extends Application {
     class Tile extends ImageView {
         private int positionX;
         private int positionY;
+        int turn;
+
+        // init af tiles
+        InputStream white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
+        Image white_tile = new Image(white_tile_src);
+        InputStream black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.jpg");
+        Image black_tile = new Image(black_tile_src);
 
         public Tile(int x, int y) {
             this.positionX = x;
             this.positionY = y;
             setOnMouseClicked(e -> {
-                System.out.println("x: " + positionX + "y: " + positionY);
+                System.out.println("x: " + positionX + " y: " + positionY);
+                if (turn % 2 == 0) {
+                    setImage(white_tile);
+                    turn++;
+                    System.out.println(turn);
+                } else {
+                    setImage(black_tile);
+                    turn++;
+                    System.out.println(turn);
+                }
             });
         }
     }
