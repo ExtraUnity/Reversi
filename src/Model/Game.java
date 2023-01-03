@@ -1,9 +1,10 @@
 package Model;
 
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
+import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.CellPressedMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
-import Shared.CellColor;
+import Shared.CellState;
 import Shared.CellPosition;
 
 public class Game {
@@ -16,7 +17,7 @@ public class Game {
     GameState gamestate = GameState.Playing;
     final Thread modelMainThread;
 
-    CellColor[][] board = new CellColor[8][8];
+    CellState[][] board = new CellState[8][8];
 
     Game() {
         var game = this;
@@ -48,8 +49,19 @@ public class Game {
             }
         }
     }
-    void handleCellClick(CellPosition pos) {
 
+    private CellState nextturn = CellState.Black;
+
+    void handleCellClick(CellPosition pos) {
+        var thiscolor = nextturn;
+        board[pos.x][pos.y] = thiscolor;
+        if (nextturn == CellState.Black) {
+            nextturn = CellState.White;
+        } else {
+            nextturn = CellState.Black;
+        }
+
+        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new CellPosition[] { pos }));
     }
 }
 
