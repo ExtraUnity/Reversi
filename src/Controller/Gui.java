@@ -38,12 +38,11 @@ public class Gui extends Application {
         // init af gridpane
         GridPane board = new GridPane();
         panel_manager.setCenter(board);
-        board.setConstraints(board, 8, 8);
 
         // init af imageview 
         InputStream inStream = getClass().getResourceAsStream("/Assets/stoneTileEmpty.jpg");
         Image pic = new Image(inStream);
-
+        
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
