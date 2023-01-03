@@ -3,10 +3,12 @@ package Controller;
 import java.io.InputStream;
 
 import Model.Model;
+import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class Gui extends Application {
 
@@ -40,7 +43,14 @@ public class Gui extends Application {
 
         // init af grundpanel
         stage.setTitle("Reversi");
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                Model.sendModelMsg(new ModelWindowClosedMsg());
+            }
+        });
         StackPane root = new StackPane();
+
         stage.setScene(new Scene(root, 800, 800));
         stage.show();
         stage.setMinHeight(400);
