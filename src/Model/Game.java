@@ -54,20 +54,20 @@ public class Game {
 
     /**
      * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
-    * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
-    * andre brikker. Derefter sender den en besked til Controlleren om hvilke
-    * brikker der er blevet vendt
-    */
+     * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
+     * andre brikker. Derefter sender den en besked til Controlleren om hvilke
+     * brikker der er blevet vendt
+     */
     void handleTileClick(TilePosition pos) {
-        
+
         var thiscolor = nextturn;
         board[pos.x][pos.y] = thiscolor;
         switch (thiscolor) {
             case WHITE:
-                nextturn = CellColor.BLACK;
+                nextturn = TileColor.BLACK;
                 break;
             case BLACK:
-                nextturn = CellColor.WHITE;
+                nextturn = TileColor.WHITE;
                 break;
         }
 

@@ -13,12 +13,12 @@ public class Model {
     public static void startGame(Game.GameMode gamemode, GameOptions options) {
         if (game == null) {
             switch (gamemode) {
-                case Classic:
+                case CLASSIC:
                     game = new ClassicGame();
                     break;
-                case AIGame:
+                case AI_GAME:
                     throw new UnsupportedOperationException("Not yet implemented");
-                case Multiplayer:
+                case MULTIPLAYER:
                     throw new UnsupportedOperationException("Not yet implemented");
             }
         } else {
