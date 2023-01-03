@@ -93,7 +93,7 @@ public class Game {
         boolean checkHorizontal = checkVertexLegal(pos, color, Vertex.HORIZONTAL);
         boolean checkVertical = checkVertexLegal(pos, color, Vertex.VERTICAL);
         boolean checkDiagonal = checkVertexLegal(pos, color, Vertex.DIAGONAL);
-        System.out.println(checkHorizontal + " " + checkVertical + " " + checkDiagonal);
+
         if (!checkHorizontal && !checkVertical && !checkDiagonal) {
             System.out.println("Move doesn't follow rules");
             return false;
