@@ -50,24 +50,18 @@ public class Game {
         }
     }
 
-    private CellColor nextturn = CellColor.Black;
+    private CellColor nextturn = CellColor.BLACK;
 
     void handleCellClick(CellPosition pos) {
         /*
-         * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om det er et
-         * lovligt træk og hvis det er håndterer den alt logikken som vender andre brikker.
-         * Derefter sender den en besked til Controlleren om hvilke brikker der er blevet vendt
+         * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
+         * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
+         * andre brikker. Derefter sender den en besked til Controlleren om hvilke
+         * brikker der er blevet vendt
          */
         var thiscolor = nextturn;
         board[pos.x][pos.y] = thiscolor;
-        switch (thiscolor) {
-            case White:
-                nextturn = CellColor.Black;
-                break;
-            case Black:
-                nextturn = CellColor.White;
-                break;
-        }
+        nextturn = thiscolor.switchColor();
 
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new CellPosition[] { pos }));
     }
