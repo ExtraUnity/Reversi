@@ -93,11 +93,12 @@ public class Game {
         boolean checkHorizontal = checkVertexLegal(pos, color, Vertex.HORIZONTAL);
         boolean checkVertical = checkVertexLegal(pos, color, Vertex.VERTICAL);
         boolean checkDiagonal = checkVertexLegal(pos, color, Vertex.DIAGONAL);
-
+        System.out.println(checkHorizontal + " " + checkVertical + " " + checkDiagonal);
         if (!checkHorizontal && !checkVertical && !checkDiagonal) {
             System.out.println("Move doesn't follow rules");
             return false;
         }
+
         return true;
     }
 
@@ -107,24 +108,44 @@ public class Game {
         boolean foundOpposingColor = false;
         board[pos.x][pos.y] = color;
 
-        // Start from left and check if there is a series of:
-        // a black tile
-        // x number of white tiles
-        // finally a new black tile
-        // and the opposite for the other players turn.
-        for (int x = 0; x < board.length; x++) {
+        /*
+         * Start from left/top and check if there is a series of:
+         * a black tile
+         * x number of white tiles
+         * finally a new black tile
+         * and the opposite for the other players turn.
+         */
+        //
+        for (int i = 0; i + (direction == Vertex.DIAGONAL ? Math.max(pos.x, pos.y) : 0) < board.length; i++) {
 
-            TileColor currentColor = board[x][pos.y];
+            TileColor currentColor;
+            // choose which tile to look at next based on the direction
+            switch (direction) {
+                case DIAGONAL:
+                    currentColor = board[pos.x + i][pos.y + i];
+                    break;
+                case HORIZONTAL:
+                    currentColor = board[i][pos.y];
+                    break;
+                case VERTICAL:
+                    currentColor = board[pos.x][i];
+                    break;
+                default:
+                    currentColor = null;
+                    break;
+
+            }
+
             if (currentColor == color) {
-                foundColor = true;
+                if (foundColor && foundOpposingColor) {
+                    return true;
+                } else {
+                    foundColor = true;
+                }
             } else if (currentColor == opposingColor && foundColor) {
                 foundOpposingColor = true;
             } else if (foundColor) {
                 break;
-            }
-
-            if (foundColor && foundOpposingColor) {
-                return true;
             }
         }
         board[pos.x][pos.y] = null;
