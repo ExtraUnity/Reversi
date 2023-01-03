@@ -1,23 +1,15 @@
 package Controller;
 
 import java.io.InputStream;
-import java.util.stream.IntStream;
-
-import javax.sql.rowset.spi.SyncResolver;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
 
 public class Gui extends Application {
 
@@ -67,6 +59,8 @@ public class Gui extends Application {
     class Tile extends ImageView {
         private int positionX;
         private int positionY;
+
+        // OBS! må ikke være her, men lige nu virker det. C:
         int turn;
 
         // init af tiles
