@@ -9,12 +9,12 @@ import Shared.CellPosition;
 
 public class Game {
     public enum GameMode {
-        Classic,
-        AIGame,
-        Multiplayer
+        CLASSIC,
+        AI_GAME,
+        MULTIPLAYER
     }
 
-    GameState gamestate = GameState.Playing;
+    GameState gamestate = GameState.PLAYING;
     final Thread modelMainThread;
 
     CellColor[][] board = new CellColor[8][8];
@@ -32,7 +32,7 @@ public class Game {
 
     void run_game() {
         System.out.println(getClass().getSimpleName() + " loop started");
-        while (gamestate == GameState.Playing) {
+        while (gamestate == GameState.PLAYING) {
             // Game loop
             var modelMsg = Model.readModelMsg();
             System.out.println("Game Received " + modelMsg.getClass().getName());
@@ -42,7 +42,7 @@ public class Game {
                 handleCellClick(msg.pos);
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
-                gamestate = GameState.Exited;
+                gamestate = GameState.EXITED;
 
                 Model.sendControllerMsg(new ControllerWindowClosedMsg());
 
@@ -61,15 +61,22 @@ public class Game {
          */
         var thiscolor = nextturn;
         board[pos.x][pos.y] = thiscolor;
-        nextturn = thiscolor.switchColor();
+        switch (thiscolor) {
+            case WHITE:
+                nextturn = CellColor.BLACK;
+                break;
+            case BLACK:
+                nextturn = CellColor.WHITE;
+                break;
+        }
 
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new CellPosition[] { pos }));
     }
 }
 
 enum GameState {
-    Playing,
-    Exited,
-    WhiteWinner,
-    BlackWinner
+    PLAYING,
+    EXITED,
+    WHITE_WINNER,
+    BLACK_WINNER
 }
