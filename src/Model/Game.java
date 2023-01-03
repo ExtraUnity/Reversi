@@ -90,9 +90,9 @@ public class Game {
         }
 
         // check if any vertices comply with the rules
-        boolean checkHorizontal = checkHorizontalLegal(pos, color);
-        boolean checkVertical = checkVerticalLegal(pos, color);
-        boolean checkDiagonal = checkDiagonalLegal(pos, color);
+        boolean checkHorizontal = checkVertexLegal(pos, color, Vertex.HORIZONTAL);
+        boolean checkVertical = checkVertexLegal(pos, color, Vertex.VERTICAL);
+        boolean checkDiagonal = checkVertexLegal(pos, color, Vertex.DIAGONAL);
 
         if (!checkHorizontal && !checkVertical && !checkDiagonal) {
             System.out.println("Move doesn't follow rules");
@@ -101,7 +101,7 @@ public class Game {
         return true;
     }
 
-    boolean checkHorizontalLegal(TilePosition pos, TileColor color) {
+    boolean checkVertexLegal(TilePosition pos, TileColor color, Vertex direction) {
         TileColor opposingColor = (color == TileColor.WHITE) ? TileColor.BLACK : TileColor.WHITE;
         boolean foundColor = false;
         boolean foundOpposingColor = false;
@@ -132,16 +132,6 @@ public class Game {
         return false;
     }
 
-    boolean checkVerticalLegal(TilePosition pos, TileColor color) {
-
-        return false;
-    }
-
-    boolean checkDiagonalLegal(TilePosition pos, TileColor color) {
-
-        return false;
-    }
-
 }
 
 enum GameState {
@@ -149,4 +139,10 @@ enum GameState {
     EXITED,
     WHITE_WINNER,
     BLACK_WINNER
+}
+
+enum Vertex {
+    HORIZONTAL,
+    VERTICAL,
+    DIAGONAL;
 }
