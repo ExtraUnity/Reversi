@@ -66,6 +66,14 @@ public class Gui extends Application {
         board = initBoard();
         panel_manager.getChildren().add(board);
 
+        // init af pas-knap
+        InputStream passButtonSrc = getClass().getResourceAsStream("/Assets/passButton.png");
+        PassButton passButton = new PassButton(0, 0, passButtonSrc);
+        panel_manager.getChildren().add(passButton);
+
+        AnchorPane.setLeftAnchor(passButton, (double) passButton.getPosition().x);
+        AnchorPane.setTopAnchor(passButton, (double) passButton.getPosition().y);
+
         AnchorPane.setLeftAnchor(board, getScreenWidth() / 2 - fitTileSize() * 4);
         AnchorPane.setTopAnchor(board, getScreenHeight() / 2 - fitTileSize() * 4 - 22);
 
@@ -94,6 +102,10 @@ public class Gui extends Application {
 
     public static double fitTileSize() {
         return getScreenHeight() / 11;
+    }
+
+    public static double fitPassSize() {
+        return getScreenWidth() / 10;
     }
 
     public static double getScreenHeight() {
