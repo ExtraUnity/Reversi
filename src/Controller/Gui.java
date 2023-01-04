@@ -8,6 +8,7 @@ import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -35,6 +36,8 @@ public class Gui extends Application {
     static void runGui() {
         launch(new String[] {});
     }
+
+    protected Button restart = new Button("Genstart");
 
     static GridPane board;
 
@@ -66,8 +69,12 @@ public class Gui extends Application {
         board = initBoard();
         panel_manager.getChildren().add(board);
 
+        // kobler spilbrættet på det tomme spil canvas
         AnchorPane.setLeftAnchor(board, getScreenWidth() / 2 - fitTileSize() * 4);
         AnchorPane.setTopAnchor(board, getScreenHeight() / 2 - fitTileSize() * 4 - 22);
+
+        // restart knap
+        panel_manager.getChildren().add(restart);
 
         Model.sendModelMsg(new GameReadyMsg());
     }
