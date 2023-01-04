@@ -13,7 +13,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import java.awt.Dimension;
 import javafx.stage.WindowEvent;
+import Shared.ButtonPosition;
+import java.awt.*;
+import java.awt.event.*;
 
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -53,10 +57,12 @@ public class Gui extends Application {
         stage.setMaximized(true);
 
         StackPane root = new StackPane();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
         stage.setMinHeight(400);
         stage.setMinWidth(400);
+        System.out.println(scene.getHeight() + " " + scene.getWindow().getHeight());
 
         // init af Anchorpane
         AnchorPane panel_manager = new AnchorPane();
@@ -66,16 +72,22 @@ public class Gui extends Application {
         board = initBoard();
         panel_manager.getChildren().add(board);
 
+        double boardPosX = getScreenWidth() / 2 - fitTileSize() * 4;
+        double boardPosY = getScreenHeight() / 2 - fitTileSize() * 4 - 22;
+        AnchorPane.setLeftAnchor(board, boardPosX);
+        AnchorPane.setTopAnchor(board, boardPosY);
+
         // init af pas-knap
         InputStream passButtonSrc = getClass().getResourceAsStream("/Assets/passButton.png");
-        PassButton passButton = new PassButton(0, 0, passButtonSrc);
+        double boardEndY = boardPosY + fitTileSize() * 8;
+        ButtonPosition passButtonSize = fitPassSize();
+        double passButtonX = boardPosX + fitTileSize() * 1.5;
+        double passButtonY = boardEndY + (scene.getHeight() - boardEndY) / 2 - passButtonSize.y / 2;
+        PassButton passButton = new PassButton(passButtonX, passButtonY, passButtonSize, passButtonSrc);
         panel_manager.getChildren().add(passButton);
 
         AnchorPane.setLeftAnchor(passButton, (double) passButton.getPosition().x);
         AnchorPane.setTopAnchor(passButton, (double) passButton.getPosition().y);
-
-        AnchorPane.setLeftAnchor(board, getScreenWidth() / 2 - fitTileSize() * 4);
-        AnchorPane.setTopAnchor(board, getScreenHeight() / 2 - fitTileSize() * 4 - 22);
 
         Model.sendModelMsg(new GameReadyMsg());
     }
@@ -104,8 +116,8 @@ public class Gui extends Application {
         return getScreenHeight() / 11;
     }
 
-    public static double fitPassSize() {
-        return getScreenWidth() / 10;
+    public static ButtonPosition fitPassSize() {
+        return new ButtonPosition(getScreenWidth() / 10, getScreenWidth() / 10 * 120 / 272);
     }
 
     public static double getScreenHeight() {
