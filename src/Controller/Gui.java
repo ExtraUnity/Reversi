@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+
 public class Gui extends Application {
 
     static Thread guiMainThread;
@@ -72,7 +73,7 @@ public class Gui extends Application {
         GridPane board = new GridPane();
 
         // init af tiles
-        InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.jpg");
+        InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
         Image empty_tile = new Image(empty_tile_src);
 
         // init af spilbræt
@@ -105,7 +106,7 @@ public class Gui extends Application {
 
         private Image getWhiteImage() {
             if (white_tile == null) {
-                white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
+                white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
                 white_tile = new Image(white_tile_src);
             }
             return white_tile;
@@ -113,7 +114,7 @@ public class Gui extends Application {
 
         private Image getBlackImage() {
             if (black_tile == null) {
-                black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.jpg");
+                black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.png");
                 black_tile = new Image(black_tile_src);
             }
             return black_tile;
