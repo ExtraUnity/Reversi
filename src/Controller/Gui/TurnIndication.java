@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Gui;
 
 import java.io.InputStream;
 
@@ -19,7 +19,7 @@ public class TurnIndication extends ImageView {
     //get player 
     private Image getPlayer(PlayerCharacter character) {
         if (player == null) {
-            player_src = getClass().getResourceAsStream(character);
+            player_src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
             player = new Image(player_src, 100, 0, true, false);
         }
         return player;
@@ -28,7 +28,7 @@ public class TurnIndication extends ImageView {
     //get player turn
     private Image getPlayerTurn(PlayerCharacter character) {
         if (playerTurn == null) {
-            playerTurn_src = getClass().getResourceAsStream(character);
+            playerTurn_src = getClass().getResourceAsStream("/Assets/characters/" + character + "turn.png");
             playerTurn = new Image(playerTurn_src, 100, 0, true, false);
         }
         return playerTurn;
