@@ -2,12 +2,11 @@ package Controller;
 
 import java.io.InputStream;
 import Model.Model;
-import MsgPass.ModelMsg.GameReadyMsg;
+import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -36,6 +35,8 @@ public class Gui extends Application {
     }
 
     static GridPane board;
+    static StackPane root;
+    static AnchorPane panel_manager;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -51,7 +52,7 @@ public class Gui extends Application {
 
         stage.setMaximized(true);
 
-        StackPane root = new StackPane();
+        root = new StackPane();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -59,13 +60,12 @@ public class Gui extends Application {
         stage.setMinWidth(400);
         System.out.println(scene.getHeight() + " " + scene.getWindow().getHeight());
 
-        // init af Anchorpane
-        AnchorPane panel_manager = new AnchorPane();
+        // init af borderpane
+        panel_manager = new AnchorPane();
         root.getChildren().add(panel_manager);
 
-        // init af spilbræt
-        board = initBoard();
-        panel_manager.getChildren().add(board);
+        // tile.setImage(empty_tile);tile.setImage(empty_tile);init af spilbræt
+        initBoard();
 
         double boardPosX = getScreenWidth() / 2 - fitTileSize() * 4;
         double boardPosY = getScreenHeight() / 2 - fitTileSize() * 4 - 22;
@@ -84,27 +84,29 @@ public class Gui extends Application {
         AnchorPane.setLeftAnchor(passButton, (double) passButton.getPosition().x);
         AnchorPane.setTopAnchor(passButton, (double) passButton.getPosition().y);
 
-        Model.sendModelMsg(new GameReadyMsg());
+        // init restart knap
+        panel_manager.getChildren().add(new RestartBtn());
+
+        Model.sendModelMsg(new GuiReadyMsg());
     }
 
-    private GridPane initBoard() {
-        GridPane board = new GridPane();
+    static void initBoard() {
+        if (board != null) {
+            panel_manager.getChildren().remove(board);
+        }
+        board = new GridPane();
+        panel_manager.getChildren().add(board);
 
-        // init af tiles
-        InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
-        Image empty_tile = new Image(empty_tile_src, fitTileSize(), 0, true, false);
 
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Tile tile = new Tile(i, j);
 
-                tile.setImage(empty_tile);
-
                 board.add(tile, i, j);
             }
         }
-        return board;
+        
     }
 
     public static double fitTileSize() {
