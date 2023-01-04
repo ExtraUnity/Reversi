@@ -61,7 +61,6 @@ public class Controller {
             Tile tile  = (Tile) tile_;
             tile.resetLegalMove();
         }
-
         for (TilePosition position : msg.tilePositions) {
             Tile tile = (Tile) Gui.board.getChildren().get(position.x * 8 + position.y);
             tile.setTilecolor(msg.color);
