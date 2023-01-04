@@ -3,6 +3,7 @@ package Controller;
 import java.io.InputStream;
 
 import Model.Model;
+import MsgPass.ModelMsg.GameReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
@@ -63,7 +64,7 @@ public class Gui extends Application {
         // init af gridpane
         board = initBoard();
         panel_manager.setCenter(board);
-
+        Model.sendModelMsg(new GameReadyMsg());
     }
 
     private GridPane initBoard() {
@@ -71,23 +72,15 @@ public class Gui extends Application {
 
         // init af tiles
         InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.jpg");
-        InputStream white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.jpg");
-        InputStream black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.jpg");
         Image empty_tile = new Image(empty_tile_src);
-        Image white_tile = new Image(white_tile_src);
-        Image black_tile = new Image(black_tile_src);
+
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Tile tile = new Tile(i, j);
-                // THIS SHOULDN'T NEED TO BE DONE BOTH HERE AND IN Game.java!!
-                if ((i == 3 && j == 3) || (i == 4 && j == 4)) {
-                    tile.setImage(white_tile);
-                } else if ((i == 3 && j == 4) || (i == 4 && j == 3)) {
-                    tile.setImage(black_tile);
-                } else {
-                    tile.setImage(empty_tile);
-                }
+
+                tile.setImage(empty_tile);
+
                 board.add(tile, i, j);
             }
         }

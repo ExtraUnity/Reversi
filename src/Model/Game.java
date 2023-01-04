@@ -3,6 +3,7 @@ package Model;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
+import MsgPass.ModelMsg.GameReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
@@ -20,12 +21,15 @@ public class Game {
     TileColor[][] board = new TileColor[8][8];
 
     Game() {
+        // Wait until GUI is ready before starting game.
+        boolean ready = false;
 
-        // THIS SHOULDN'T NEED TO BE DONE BOTH HERE AND IN Gui.java!!
-        board[3][3] = TileColor.WHITE;
-        board[4][4] = TileColor.WHITE;
-        board[3][4] = TileColor.BLACK;
-        board[4][3] = TileColor.BLACK;
+        while (!ready) {
+            var initMsg = Model.readModelMsg();
+            if (initMsg instanceof GameReadyMsg) {
+                ready = true;
+            }
+        }
 
         var game = this;
         modelMainThread = new Thread(new Runnable() {
@@ -35,6 +39,11 @@ public class Game {
             }
         });
         modelMainThread.start();
+
+        Model.sendModelMsg(new TilePressedMsg(new TilePosition(3, 3)));
+        Model.sendModelMsg(new TilePressedMsg(new TilePosition(3, 4)));
+        Model.sendModelMsg(new TilePressedMsg(new TilePosition(4, 4)));
+        Model.sendModelMsg(new TilePressedMsg(new TilePosition(4, 3)));
     }
 
     void run_game() {
@@ -58,6 +67,11 @@ public class Game {
     }
 
     private TileColor nextturn = TileColor.BLACK;
+    private int turns = 0;
+
+    private boolean followRules() {
+        return turns > 4;
+    }
 
     /**
      * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
@@ -67,7 +81,7 @@ public class Game {
      */
     void handleTileClick(TilePosition pos) {
         var thiscolor = nextturn;
-        if (!legalMove(pos, thiscolor)) {
+        if (followRules() && !legalMove(pos, thiscolor)) {
             return;
         }
 
@@ -81,6 +95,7 @@ public class Game {
                 break;
         }
 
+        turns++;
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, new TilePosition[] { pos }));
     }
 
