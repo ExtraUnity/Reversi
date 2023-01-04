@@ -50,6 +50,10 @@ public class Gui extends Application {
         return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
     }
 
+    public static BotMenu getBotMenu() {
+        return (BotMenu) ((BorderPane) guiRoot.getCenter()).getBottom();
+    }
+
     public static void makeBoard() {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
@@ -73,14 +77,13 @@ public class Gui extends Application {
         stackRoot.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
 
         Scene scene = new Scene(stackRoot);
-        
+
         stage.setScene(scene);
         stage.show();
 
         stage.setMinWidth(400);
         stage.setMinHeight(400);
 
-        
         makeLeftMenu();
         makeRightMenu();
         makeCenter();
