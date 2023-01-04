@@ -2,11 +2,8 @@ package Controller;
 
 import java.io.InputStream;
 
-import org.xml.sax.InputSource;
-
 import Model.Model;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
-import MsgPass.ModelMsg.TilePressedMsg;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
