@@ -11,10 +11,16 @@ public class UpdateBoardMsg extends ControllerMsg {
     public final TilePosition[] tilePositions;
     public final LegalMove[] legalMoves;
 
-    public UpdateBoardMsg(TileColor color, TilePosition[] tilePositions, LegalMove[] legalMoves) {
+    public final int whitePoints;
+    public final int blackPoints;
+
+    public UpdateBoardMsg(TileColor color, TilePosition[] tilePositions, LegalMove[] legalMoves, int whitePoints,
+            int blackPoints) {
         this.color = color;
         this.tilePositions = tilePositions;
         this.legalMoves = legalMoves;
+        this.whitePoints = whitePoints;
+        this.blackPoints = blackPoints;
     }
 
     @Override

@@ -103,7 +103,12 @@ public class Game {
         turns++;
         nextturn = nextturn.switchColor();
         var legalMoves = getAllLegalMoves();
-        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves));
+
+        int whitePoints = getPoints(TileColor.WHITE);
+        int blackPoints = getPoints(TileColor.BLACK);
+
+        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
+                whitePoints, blackPoints));
 
     }
 
@@ -175,15 +180,21 @@ public class Game {
         return allFlipped;
     }
 
+    /**
+     * Finds all legal moves and returns an array of them :=)
+     */
     LegalMove[] getAllLegalMoves() {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
-                var pos = new TilePosition(x, y);
-                int flipped = flippedFromMove(pos, nextturn);
-                if (flipped > 0) {
-                    legalMoves.add(new LegalMove(pos, flipped));
+                if (board[x][y] == null) {
+                    var pos = new TilePosition(x, y);
+                    int flipped = flippedFromMove(pos, nextturn);
+                    if (flipped > 0) {
+                        legalMoves.add(new LegalMove(pos, flipped));
+                    }
                 }
+
             }
         }
         return legalMoves.toArray(new LegalMove[0]);
@@ -192,6 +203,22 @@ public class Game {
     int flippedFromMove(TilePosition pos, TileColor color) {
         return getAllFlipped(pos, color).size();
     }
+
+    /**
+     * finder hvor mange point en givet farve har. Dette er en pure funktion.
+     */
+    int getPoints(TileColor color) {
+        int points = 0;
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                if (board[x][y] != null && board[x][y].equals(color)) {
+                    points += 1;
+                }
+            }
+        }
+        return points;
+    }
+
 }
 
 enum GameState {
