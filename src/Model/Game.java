@@ -72,7 +72,7 @@ public class Game {
     private int turns = 0;
 
     private boolean followRules() {
-        return turns > 4;
+        return turns > 3;
     }
 
     /**
@@ -173,79 +173,6 @@ public class Game {
         return allFlipped;
 
     }
-
-    boolean legalMove(TilePosition pos, TileColor color) {
-
-        // check if tile is already filled
-        if (board[pos.x][pos.y] != null) {
-            System.out.println("Tile not empty");
-            return false;
-        }
-
-        // check if any vertices comply with the rules
-        boolean checkHorizontal = checkVertexLegal(pos, color, Vertex.HORIZONTAL);
-        boolean checkVertical = checkVertexLegal(pos, color, Vertex.VERTICAL);
-        boolean checkDiagonal = checkVertexLegal(pos, color, Vertex.DIAGONAL);
-
-        if (!checkHorizontal && !checkVertical && !checkDiagonal) {
-            System.out.println("Move doesn't follow rules");
-            return false;
-        }
-
-        return true;
-    }
-
-    boolean checkVertexLegal(TilePosition pos, TileColor color, Vertex direction) {
-        TileColor opposingColor = (color == TileColor.WHITE) ? TileColor.BLACK : TileColor.WHITE;
-        boolean foundColor = false;
-        boolean foundOpposingColor = false;
-        board[pos.x][pos.y] = color;
-
-        /*
-         * Start from left/top and check if there is a series of:
-         * a black tile
-         * x number of white tiles
-         * finally a new black tile
-         * and the opposite for the other players turn.
-         */
-        //
-        for (int i = 0; i + (direction == Vertex.DIAGONAL ? Math.max(pos.x, pos.y) : 0) < board.length; i++) {
-
-            TileColor currentColor;
-            // choose which tile to look at next based on the direction
-            switch (direction) {
-                case DIAGONAL:
-                    currentColor = board[pos.x + i][pos.y + i];
-                    break;
-                case HORIZONTAL:
-                    currentColor = board[i][pos.y];
-                    break;
-                case VERTICAL:
-                    currentColor = board[pos.x][i];
-                    break;
-                default:
-                    currentColor = null;
-                    break;
-
-            }
-
-            if (currentColor == color) {
-                if (foundColor && foundOpposingColor) {
-                    return true;
-                } else {
-                    foundColor = true;
-                }
-            } else if (currentColor == opposingColor && foundColor) {
-                foundOpposingColor = true;
-            } else if (foundColor) {
-                break;
-            }
-        }
-        board[pos.x][pos.y] = null;
-
-        return false;
-    }
-
 }
 
 enum GameState {
@@ -253,10 +180,4 @@ enum GameState {
     EXITED,
     WHITE_WINNER,
     BLACK_WINNER
-}
-
-enum Vertex {
-    HORIZONTAL,
-    VERTICAL,
-    DIAGONAL;
 }
