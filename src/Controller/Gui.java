@@ -87,6 +87,8 @@ public class Gui extends Application {
         // init restart knap
         RestartBtn restartKnap = new RestartBtn();
         panel_manager.getChildren().add(restartKnap);
+        restartKnap.setX(800);
+        restartKnap.setY(900);
 
         Model.sendModelMsg(new GuiReadyMsg());
     }
