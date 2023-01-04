@@ -59,7 +59,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        // Gui.initBoard();
+                        Gui.makeBoard();
                         Model.sendModelMsg(new GuiReadyMsg());
                         System.out.println("NEW GUI READY");
                     }
