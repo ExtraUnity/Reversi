@@ -3,6 +3,7 @@ package Controller;
 import java.io.InputStream;
 
 import Model.Model;
+import MsgPass.ModelMsg.GameReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
@@ -66,7 +67,7 @@ public class Gui extends Application {
         // init af spilbræt
         board = initBoard();
         panel_manager.setCenter(board);
-
+        Model.sendModelMsg(new GameReadyMsg());
     }
 
     private GridPane initBoard() {
@@ -80,7 +81,9 @@ public class Gui extends Application {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Tile tile = new Tile(i, j);
+
                 tile.setImage(empty_tile);
+
                 board.add(tile, i, j);
             }
         }
