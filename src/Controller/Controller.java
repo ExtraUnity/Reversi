@@ -56,6 +56,11 @@ public class Controller {
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
+        for (var tile_ : Gui.board.getChildren()) {
+            Tile tile  = (Tile) tile_;
+            tile.resetLegalMove();
+        }
+
         for (TilePosition position : msg.tilePositions) {
             Tile tile = (Tile) Gui.board.getChildren().get(position.x * 8 + position.y);
             tile.setTilecolor(msg.color);
