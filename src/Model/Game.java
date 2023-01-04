@@ -9,6 +9,7 @@ import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
+import MsgPass.ModelMsg.PassMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 
@@ -59,9 +60,13 @@ public class Game {
             var modelMsg = Model.readModelMsg();
             System.out.println("Game Received " + modelMsg.getClass().getName());
 
+            // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
                 handleTileClick(msg.pos);
+
+            } else if (modelMsg instanceof PassMsg) {
+                nextturn = nextturn.switchColor();
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
@@ -196,11 +201,14 @@ public class Game {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
-                var pos = new TilePosition(x, y);
-                int flipped = flippedFromMove(pos, nextturn);
-                if (flipped > 0) {
-                    legalMoves.add(new LegalMove(pos, flipped));
+                if (board[x][y] == null) {
+                    var pos = new TilePosition(x, y);
+                    int flipped = flippedFromMove(pos, nextturn);
+                    if (flipped > 0) {
+                        legalMoves.add(new LegalMove(pos, flipped));
+                    }
                 }
+
             }
         }
         return legalMoves.toArray(new LegalMove[0]);
@@ -210,6 +218,9 @@ public class Game {
         return getAllFlipped(pos, color).size();
     }
 
+    /**
+     * finder hvor mange point en givet farve har. Dette er en pure funktion.
+     */
     int getPoints(TileColor color) {
         int points = 0;
         for (int x = 0; x < board.length; x++) {

@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import Shared.ButtonPosition;
 
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -56,22 +57,37 @@ public class Gui extends Application {
 
         stage.setMaximized(true);
 
-        root = new StackPane();
-        stage.setScene(new Scene(root));
+        StackPane root = new StackPane();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
         stage.setMinHeight(400);
         stage.setMinWidth(400);
+        System.out.println(scene.getHeight() + " " + scene.getWindow().getHeight());
 
         // init af borderpane
         panel_manager = new AnchorPane();
         root.getChildren().add(panel_manager);
 
-        // init af spilbræt
+        // tile.setImage(empty_tile);tile.setImage(empty_tile);init af spilbræt
         board = initBoard();
-        
-        // kobler spilbrættet på det tomme spil kanvas
-        AnchorPane.setLeftAnchor(board, getScreenWidth() / 2 - fitTileSize() * 4);
-        AnchorPane.setTopAnchor(board, getScreenHeight() / 2 - fitTileSize() * 4 - 22);
+
+        double boardPosX = getScreenWidth() / 2 - fitTileSize() * 4;
+        double boardPosY = getScreenHeight() / 2 - fitTileSize() * 4 - 22;
+        AnchorPane.setLeftAnchor(board, boardPosX);
+        AnchorPane.setTopAnchor(board, boardPosY);
+
+        // init af pas-knap
+        InputStream passButtonSrc = getClass().getResourceAsStream("/Assets/passButton.png");
+        double boardEndY = boardPosY + fitTileSize() * 8;
+        ButtonPosition passButtonSize = fitPassSize();
+        double passButtonX = boardPosX + fitTileSize() * 1.5;
+        double passButtonY = boardEndY + (scene.getHeight() - boardEndY) / 2 - passButtonSize.y / 2;
+        PassButton passButton = new PassButton(passButtonX, passButtonY, passButtonSize, passButtonSrc);
+        panel_manager.getChildren().add(passButton);
+
+        AnchorPane.setLeftAnchor(passButton, (double) passButton.getPosition().x);
+        AnchorPane.setTopAnchor(passButton, (double) passButton.getPosition().y);
 
         // init restart knap
         panel_manager.getChildren().add(new RestartBtn());
@@ -100,6 +116,10 @@ public class Gui extends Application {
 
     public static double fitTileSize() {
         return getScreenHeight() / 11;
+    }
+
+    public static ButtonPosition fitPassSize() {
+        return new ButtonPosition(getScreenWidth() / 10, getScreenWidth() / 10 * 120 / 272);
     }
 
     public static double getScreenHeight() {

@@ -25,11 +25,11 @@ public class Model {
     }
 
     public static void sendModelMsg(ModelMsg event) {
-        modelqueue.add(event);
+        modelqueue.put(event);
     }
 
     public static void sendControllerMsg(ControllerMsg event) {
-        controllerqueue.add(event);
+        controllerqueue.put(event);
     }
 
     public static ModelMsg readModelMsg() {
