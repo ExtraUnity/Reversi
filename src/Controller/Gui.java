@@ -98,7 +98,6 @@ public class Gui extends Application {
         board = new GridPane();
         panel_manager.getChildren().add(board);
 
-
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -107,7 +106,7 @@ public class Gui extends Application {
                 board.add(tile, i, j);
             }
         }
-        
+
     }
 
     public static double fitTileSize() {

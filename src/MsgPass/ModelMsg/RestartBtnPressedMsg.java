@@ -1,6 +1,4 @@
 package MsgPass.ModelMsg;
 
-import Model.Model;
-
-public class RestartBtnPressedMsg extends ModelMsg{
+public class RestartBtnPressedMsg extends ModelMsg {
 }
