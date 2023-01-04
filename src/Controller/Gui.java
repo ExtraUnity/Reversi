@@ -74,8 +74,7 @@ public class Gui extends Application {
         
         panel_manager.setLeftAnchor(board,getScreenWidth()/2-fitTileSize()*4);
         panel_manager.setTopAnchor(board,getScreenHeight()/2-fitTileSize()*4-22);
-
-        panel_manager.setCenter(board);
+        
         Model.sendModelMsg(new GameReadyMsg());
     }
 
