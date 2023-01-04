@@ -9,8 +9,6 @@ import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 public class Controller {
     static private Controller controller;
 
-    @SuppressWarnings("unused")
-    static private Gui gui = new Gui();
     static private Thread controllerMainThread;
     private ControllerState state = ControllerState.Running;
 
