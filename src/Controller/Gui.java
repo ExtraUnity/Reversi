@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.InputStream;
-
 import Model.Model;
 import MsgPass.ModelMsg.GameReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -14,7 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
@@ -57,7 +55,6 @@ public class Gui extends Application {
         stage.show();
         stage.setMinHeight(400);
         stage.setMinWidth(400);
-
         // init af borderpane
         AnchorPane panel_manager = new AnchorPane();
         root.getChildren().add(panel_manager);
