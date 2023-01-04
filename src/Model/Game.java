@@ -63,12 +63,12 @@ public class Game {
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
-                handleTileClick(msg.pos,false);
+                handleTileClick(msg.pos, false);
 
             } else if (modelMsg instanceof PassMsg) {
                 PassMsg msg = (PassMsg) modelMsg;
-                handleTileClick(msg.pos,true);
-                
+                handleTileClick(msg.pos, true);
+
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
 
@@ -97,7 +97,7 @@ public class Game {
      * brikker der er blevet vendt. Denne funktion er IKKE pure
      */
     void handleTileClick(TilePosition pos, boolean passingTurn) {
-        
+
         if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null && !passingTurn) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
             return;
@@ -117,13 +117,14 @@ public class Game {
         }
 
         turns++;
-        nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves();
+        var nextTurnTemp = nextturn.switchColor();
+        var legalMoves = getAllLegalMoves(nextTurnTemp);
 
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
-        if(passingTurn) {
+        if (passingTurn) {
             flippedTiles = new ArrayList<TilePosition>();
+
         }
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints));
@@ -201,7 +202,7 @@ public class Game {
     /**
      * Finds all legal moves and returns an array of them :=)
      */
-    public LegalMove[] getAllLegalMoves() {
+    public LegalMove[] getAllLegalMoves(TileColor nextturn) {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
