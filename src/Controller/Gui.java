@@ -13,11 +13,15 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 
 
 public class Gui extends Application {
@@ -61,11 +65,16 @@ public class Gui extends Application {
         stage.setMinWidth(400);
 
         // init af borderpane
-        BorderPane panel_manager = new BorderPane();
+        AnchorPane panel_manager = new AnchorPane();
         root.getChildren().add(panel_manager);
 
         // init af spilbræt
         board = initBoard();
+        panel_manager.getChildren().add(board);
+        
+        panel_manager.setLeftAnchor(board,getScreenWidth()/2-fitTileSize()*4);
+        panel_manager.setTopAnchor(board,getScreenHeight()/2-fitTileSize()*4-22);
+
         panel_manager.setCenter(board);
         Model.sendModelMsg(new GameReadyMsg());
     }
@@ -75,7 +84,7 @@ public class Gui extends Application {
 
         // init af tiles
         InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
-        Image empty_tile = new Image(empty_tile_src);
+        Image empty_tile = new Image(empty_tile_src,fitTileSize(),0,true,false);
 
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
@@ -110,7 +119,8 @@ public class Gui extends Application {
         private Image getWhiteImage() {
             if (white_tile == null) {
                 white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
-                white_tile = new Image(white_tile_src);
+                white_tile = new Image(white_tile_src,fitTileSize(),0,true,false);
+               
             }
             return white_tile;
         }
@@ -118,10 +128,11 @@ public class Gui extends Application {
         private Image getBlackImage() {
             if (black_tile == null) {
                 black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.png");
-                black_tile = new Image(black_tile_src);
+                black_tile = new Image(black_tile_src,fitTileSize(),0,true,false);
             }
             return black_tile;
         }
+
 
         public void setTilecolor(TileColor tilecolor) {
             this.tilecolor = tilecolor;
@@ -136,5 +147,17 @@ public class Gui extends Application {
 
             }
         }
+    }
+    public double fitTileSize(){
+        return getScreenHeight()/11;
+    }
+
+    public double getScreenHeight(){
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        return screenBounds.getHeight();
+    }
+    public double getScreenWidth(){
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        return screenBounds.getWidth();
     }
 }
