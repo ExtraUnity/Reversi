@@ -3,9 +3,10 @@ package Model;
 import java.util.ArrayList;
 
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
+import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
-import MsgPass.ModelMsg.GameReadyMsg;
+import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import Shared.TileColor;
@@ -29,8 +30,9 @@ public class Game {
         boolean ready = false;
         this.options = options;
         while (!ready) {
+            System.out.println("Game waiting for Gui ready msg");
             var initMsg = Model.readModelMsg();
-            if (initMsg instanceof GameReadyMsg) {
+            if (initMsg instanceof GuiReadyMsg) {
                 ready = true;
             }
         }
@@ -69,8 +71,10 @@ public class Game {
             } else if (modelMsg instanceof RestartBtnPressedMsg) {
                 gamestate = GameState.EXITED;
                 Model.startGame(GameMode.CLASSIC, options);
+                Model.sendControllerMsg(new ResetBoardMsg());
             }
         }
+        System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
     private TileColor nextturn = TileColor.BLACK;

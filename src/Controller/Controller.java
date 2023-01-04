@@ -5,6 +5,7 @@ import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import Shared.TilePosition;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
+import MsgPass.ControllerMsg.ResetBoardMsg;
 
 public class Controller {
     static private Controller controller;
@@ -50,6 +51,8 @@ public class Controller {
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.Closing;
+            } else if (controllerMsg instanceof ResetBoardMsg) {
+                Gui.initBoard();
             }
         }
     }

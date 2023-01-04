@@ -3,7 +3,7 @@ package Controller;
 import java.io.InputStream;
 
 import Model.Model;
-import MsgPass.ModelMsg.GameReadyMsg;
+import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -39,6 +39,8 @@ public class Gui extends Application {
     }
 
     static GridPane board;
+    static StackPane root;
+    static AnchorPane panel_manager;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -54,18 +56,18 @@ public class Gui extends Application {
 
         stage.setMaximized(true);
 
-        StackPane root = new StackPane();
+        root = new StackPane();
         stage.setScene(new Scene(root));
         stage.show();
         stage.setMinHeight(400);
         stage.setMinWidth(400);
 
         // init af borderpane
-        AnchorPane panel_manager = new AnchorPane();
+        panel_manager = new AnchorPane();
         root.getChildren().add(panel_manager);
 
         // init af spilbræt
-        board = initBoard(root,panel_manager);
+        board = initBoard();
         
         // kobler spilbrættet på det tomme spil kanvas
         AnchorPane.setLeftAnchor(board, getScreenWidth() / 2 - fitTileSize() * 4);
@@ -74,26 +76,21 @@ public class Gui extends Application {
         // init restart knap
         panel_manager.getChildren().add(new RestartBtn());
 
-        Model.sendModelMsg(new GameReadyMsg());
+        Model.sendModelMsg(new GuiReadyMsg());
     }
 
-    private GridPane initBoard(Pane root, Pane panel_manager) {
+    static GridPane initBoard() {
         if (board != null) {
             root.getChildren().remove(board);
         }
         GridPane board = new GridPane();
         panel_manager.getChildren().add(board);
 
-        // init af tiles
-        InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
-        Image empty_tile = new Image(empty_tile_src, fitTileSize(), 0, true, false);
 
         // init af spilbræt
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Tile tile = new Tile(i, j);
-
-                tile.setImage(empty_tile);
 
                 board.add(tile, i, j);
             }
