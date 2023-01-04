@@ -32,13 +32,13 @@ public class SideMenu extends VBox {
 class RightMenu extends SideMenu {
     RightMenu() {
         setAlignment(Pos.BOTTOM_CENTER);
-        getChildren().add(new TurnIndication(PlayerCharacter.GenghisKhan, true));
+        getChildren().add(new TurnIndication(PlayerCharacter.ClassicBlack, true));
     }
 }
 
 class LeftMenu extends SideMenu {
     LeftMenu() {
         setAlignment(Pos.TOP_CENTER);
-        getChildren().add(new TurnIndication(PlayerCharacter.Stalin, false));
+        getChildren().add(new TurnIndication(PlayerCharacter.ClassicWhite, false));
     }
 }

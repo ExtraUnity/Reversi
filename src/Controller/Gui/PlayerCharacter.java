@@ -2,5 +2,7 @@ package Controller.Gui;
 
 public enum PlayerCharacter {
     Stalin,
-    GenghisKhan
+    GenghisKhan,
+    ClassicBlack,
+    ClassicWhite
 }
