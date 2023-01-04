@@ -13,25 +13,38 @@ public class TurnIndication extends ImageView {
     static private Image playerTurn;
     
 
-    boolean isMyTurn = false;
+    boolean isMyTurn;
     PlayerCharacter character;
 
+    TurnIndication (PlayerCharacter character, boolean isMyTurn){
+        this.character = character;
+        this.isMyTurn = !isMyTurn;
+        switchTurn();
+    }
     //get player 
-    private Image getPlayer(PlayerCharacter character) {
+    private Image getPlayer() {
         if (player == null) {
             player_src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
-            player = new Image(player_src, 100, 0, true, false);
+            player = new Image(player_src, 300, 0, true, false);
         }
         return player;
     }
 
     //get player turn
-    private Image getPlayerTurn(PlayerCharacter character) {
+    private Image getPlayerTurn() {
         if (playerTurn == null) {
             playerTurn_src = getClass().getResourceAsStream("/Assets/characters/" + character + "turn.png");
-            playerTurn = new Image(playerTurn_src, 100, 0, true, false);
+            playerTurn = new Image(playerTurn_src, 300, 0, true, false);
         }
         return playerTurn;
     }
 
+    public void switchTurn (){
+        isMyTurn = !isMyTurn;
+        if(isMyTurn){
+            setImage(getPlayerTurn());
+        } else {
+            setImage(getPlayer());
+        }
+    }
 }
