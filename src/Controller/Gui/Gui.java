@@ -56,7 +56,7 @@ public class Gui extends Application {
     }
 
     private void makeRightMenu() {
-        guiRoot.setRight(new RightMenu());
+        guiRoot.setRight(new SideMenu());
     }
 
     @Override
