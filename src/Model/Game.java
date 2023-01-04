@@ -7,6 +7,7 @@ import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GameReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import MsgPass.ModelMsg.PassMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 
@@ -55,9 +56,13 @@ public class Game {
             var modelMsg = Model.readModelMsg();
             System.out.println("Game Received " + modelMsg.getClass().getName());
 
+            // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
                 handleTileClick(msg.pos);
+
+            } else if (modelMsg instanceof PassMsg) {
+                nextturn = nextturn.switchColor();
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
