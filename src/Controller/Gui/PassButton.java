@@ -8,13 +8,15 @@ import javafx.scene.image.ImageView;
 
 public class PassButton extends ImageView {
     private Image img;
+    private InputStream src;
+    private double size;
+    private boolean isAvailable;
 
     PassButton() {
-        InputStream src = getClass().getResourceAsStream("/Assets/passButton.png");
-        double size = Gui.fitTileSize() * 3;
+        this.src = getClass().getResourceAsStream("/Assets/notPassButton.png");
+        this.size = Gui.fitTileSize() * 3;
         this.img = new Image(src, size, 0, true, false);
 
-        
         setImage(img);
         setOnMouseClicked(e -> {
             Model.sendModelMsg(new PassMsg());
@@ -23,5 +25,14 @@ public class PassButton extends ImageView {
 
     public Image getImg() {
         return this.img;
+    }
+
+    public void setImage(String src) {
+        this.src = getClass().getResourceAsStream(src);
+        this.img = new Image(src, this.size, 0, true, false);
+    }
+
+    public boolean isAvailable() {
+        return this.isAvailable;
     }
 }
