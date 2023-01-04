@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -72,10 +71,9 @@ public class Gui extends Application {
         board = initBoard();
         panel_manager.getChildren().add(board);
         
-        panel_manager.setLeftAnchor(board,getScreenWidth()/2-fitTileSize()*4);
-        panel_manager.setTopAnchor(board,getScreenHeight()/2-fitTileSize()*4-22);
+        AnchorPane.setLeftAnchor(board,getScreenWidth()/2-fitTileSize()*4);
+        AnchorPane.setTopAnchor(board,getScreenHeight()/2-fitTileSize()*4-22);
 
-        panel_manager.setCenter(board);
         Model.sendModelMsg(new GameReadyMsg());
     }
 
