@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.concurrent.LinkedTransferQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ModelMsg.ModelMsg;
@@ -8,8 +8,8 @@ import MsgPass.ModelMsg.ModelMsg;
 public class Model {
     @SuppressWarnings("unused")
     private static volatile Game game;
-    private static volatile LinkedTransferQueue<ModelMsg> modelqueue = new LinkedTransferQueue<>();
-    private static volatile LinkedTransferQueue<ControllerMsg> controllerqueue = new LinkedTransferQueue<>();
+    private static volatile LinkedBlockingQueue<ModelMsg> modelqueue = new LinkedBlockingQueue<>();
+    private static volatile LinkedBlockingQueue<ControllerMsg> controllerqueue = new LinkedBlockingQueue<>();
 
     public static void startGame(Game.GameMode gamemode, GameOptions options) {
         switch (gamemode) {
@@ -25,11 +25,19 @@ public class Model {
     }
 
     public static void sendModelMsg(ModelMsg event) {
-        modelqueue.put(event);
+        try {
+            modelqueue.put(event);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void sendControllerMsg(ControllerMsg event) {
-        controllerqueue.put(event);
+        try {
+            controllerqueue.put(event);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ModelMsg readModelMsg() {
