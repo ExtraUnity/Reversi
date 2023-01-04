@@ -201,6 +201,9 @@ public class Game {
         return getAllFlipped(pos, color).size();
     }
 
+    /**
+     * finder hvor mange point en givet farve har. Dette er en pure funktion.
+     */
     int getPoints(TileColor color) {
         int points = 0;
         for (int x = 0; x < board.length; x++) {
