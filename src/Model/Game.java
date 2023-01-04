@@ -117,14 +117,13 @@ public class Game {
         }
 
         turns++;
-        var nextTurnTemp = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves(nextTurnTemp);
+        nextturn = nextturn.switchColor();
+        var legalMoves = getAllLegalMoves(nextturn);
 
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
         if (passingTurn) {
             flippedTiles = new ArrayList<TilePosition>();
-
         }
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints));
