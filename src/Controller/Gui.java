@@ -49,8 +49,10 @@ public class Gui extends Application {
                 Model.sendModelMsg(new ModelWindowClosedMsg());
             }
         });
-        StackPane root = new StackPane();
 
+        stage.setMaximized(true);
+
+        StackPane root = new StackPane();
         stage.setScene(new Scene(root, 800, 800));
         stage.show();
         stage.setMinHeight(400);
@@ -60,7 +62,7 @@ public class Gui extends Application {
         BorderPane panel_manager = new BorderPane();
         root.getChildren().add(panel_manager);
 
-        // init af gridpane
+        // init af spilbræt
         board = initBoard();
         panel_manager.setCenter(board);
 
