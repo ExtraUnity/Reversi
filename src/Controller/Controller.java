@@ -56,7 +56,7 @@ public class Controller {
                 Gui.initBoard();
                 Model.sendModelMsg(new GuiReadyMsg());
             }
-        }null
+        }
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
