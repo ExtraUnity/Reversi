@@ -10,7 +10,7 @@ public class PassButton extends ImageView {
     private Image img;
     private InputStream src;
     private double size;
-    private boolean isAvailable;
+    private boolean available;
 
     PassButton() {
         this.src = getClass().getResourceAsStream("/Assets/notPassButton.png");
@@ -30,9 +30,15 @@ public class PassButton extends ImageView {
     public void setImage(String src) {
         this.src = getClass().getResourceAsStream(src);
         this.img = new Image(src, this.size, 0, true, false);
+        setImage(img);
+        System.out.println("Setting image as " + src);
     }
 
-    public boolean isAvailable() {
-        return this.isAvailable;
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean getAvailable() {
+        return this.available;
     }
 }

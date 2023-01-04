@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.Gui.Gui;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
@@ -124,6 +125,9 @@ public class Game {
         int blackPoints = getPoints(TileColor.BLACK);
         if (passingTurn) {
             flippedTiles = new ArrayList<TilePosition>();
+            if (!Gui.getBotMenu().getPassButton().getAvailable()) {
+                nextturn = nextturn.switchColor();
+            }
         }
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints, passingTurn));
