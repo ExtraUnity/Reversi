@@ -56,6 +56,7 @@ public class Game {
             var modelMsg = Model.readModelMsg();
             System.out.println("Game Received " + modelMsg.getClass().getName());
 
+            // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
                 handleTileClick(msg.pos);
