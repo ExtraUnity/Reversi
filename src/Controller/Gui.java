@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -36,8 +37,6 @@ public class Gui extends Application {
     static void runGui() {
         launch(new String[] {});
     }
-
-    protected Button restart = new Button("Genstart");
 
     static GridPane board;
 
@@ -66,21 +65,24 @@ public class Gui extends Application {
         root.getChildren().add(panel_manager);
 
         // init af spilbræt
-        board = initBoard();
-        panel_manager.getChildren().add(board);
-
-        // kobler spilbrættet på det tomme spil canvas
+        board = initBoard(root,panel_manager);
+        
+        // kobler spilbrættet på det tomme spil kanvas
         AnchorPane.setLeftAnchor(board, getScreenWidth() / 2 - fitTileSize() * 4);
         AnchorPane.setTopAnchor(board, getScreenHeight() / 2 - fitTileSize() * 4 - 22);
 
-        // restart knap
-        panel_manager.getChildren().add(restart);
+        // init restart knap
+        panel_manager.getChildren().add(new RestartBtn());
 
         Model.sendModelMsg(new GameReadyMsg());
     }
 
-    private GridPane initBoard() {
+    private GridPane initBoard(Pane root, Pane panel_manager) {
+        if (board != null) {
+            root.getChildren().remove(board);
+        }
         GridPane board = new GridPane();
+        panel_manager.getChildren().add(board);
 
         // init af tiles
         InputStream empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");

@@ -7,6 +7,7 @@ import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GameReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 
@@ -17,15 +18,16 @@ public class Game {
         MULTIPLAYER
     }
 
+    final GameOptions options;
     GameState gamestate = GameState.PLAYING;
     final Thread modelMainThread;
 
     TileColor[][] board = new TileColor[8][8];
 
-    Game() {
+    Game(GameOptions options) {
         // Wait until GUI is ready before starting game.
         boolean ready = false;
-
+        this.options = options;
         while (!ready) {
             var initMsg = Model.readModelMsg();
             if (initMsg instanceof GameReadyMsg) {
@@ -64,6 +66,9 @@ public class Game {
 
                 Model.sendControllerMsg(new ControllerWindowClosedMsg());
 
+            } else if (modelMsg instanceof RestartBtnPressedMsg) {
+                gamestate = GameState.EXITED;
+                Model.startGame(GameMode.CLASSIC, options);
             }
         }
     }
