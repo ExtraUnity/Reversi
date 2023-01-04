@@ -13,11 +13,11 @@ public class Controller {
     @SuppressWarnings("unused")
     static private Gui gui = new Gui();
     static private Thread controllerMainThread;
-    private ControllerState state = ControllerState.Running;
+    private ControllerState state = ControllerState.RUNNING;
 
     private enum ControllerState {
-        Running,
-        Closing
+        RUNNING,
+        CLOSING;
     }
 
     private Controller() {
@@ -42,7 +42,7 @@ public class Controller {
 
     private void run_controller() {
         System.out.println("Controller loop started");
-        while (controller.state == ControllerState.Running) {
+        while (controller.state == ControllerState.RUNNING) {
 
             ControllerMsg controllerMsg = Model.readControllerMsg();
             System.out.println("Controller Received " + controllerMsg.getClass().getName());
@@ -52,7 +52,7 @@ public class Controller {
                 updateBoard(msg);
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
-                controller.state = ControllerState.Closing;
+                controller.state = ControllerState.CLOSING;
             }
         }
     }

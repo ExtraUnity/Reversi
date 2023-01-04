@@ -4,11 +4,7 @@ import java.io.InputStream;
 
 import Model.Model;
 import MsgPass.ModelMsg.PassMsg;
-import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.ButtonPosition;
-import Shared.TileColor;
-import Shared.TilePosition;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

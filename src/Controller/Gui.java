@@ -13,11 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import java.awt.Dimension;
 import javafx.stage.WindowEvent;
 import Shared.ButtonPosition;
-import java.awt.*;
-import java.awt.event.*;
 
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
