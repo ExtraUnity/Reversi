@@ -85,7 +85,8 @@ public class Gui extends Application {
         AnchorPane.setTopAnchor(passButton, (double) passButton.getPosition().y);
 
         // init restart knap
-        panel_manager.getChildren().add(new RestartBtn());
+        RestartBtn restartKnap = new RestartBtn();
+        panel_manager.getChildren().add(restartKnap);
 
         Model.sendModelMsg(new GuiReadyMsg());
     }
