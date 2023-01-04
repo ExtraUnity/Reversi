@@ -1,5 +1,7 @@
 package MsgPass.ModelMsg;
+
 import Shared.TilePosition;
+
 public class PassMsg extends ModelMsg {
     public TilePosition pos;
 

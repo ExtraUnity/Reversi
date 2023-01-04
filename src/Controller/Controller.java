@@ -1,12 +1,16 @@
 package Controller;
 
+import Controller.Gui.Gui;
+import Controller.Gui.Tile;
 import Model.LegalMove;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
-
+import MsgPass.ModelMsg.GuiReadyMsg;
 import Shared.TilePosition;
+import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
+import MsgPass.ControllerMsg.ResetBoardMsg;
 
 public class Controller {
     static private Controller controller;
@@ -49,24 +53,31 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
                 updateBoard(msg);
-
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
+            } else if (controllerMsg instanceof ResetBoardMsg) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Gui.initBoard();
+                        Model.sendModelMsg(new GuiReadyMsg());
+                        System.out.println("NEW GUI READY");
+                    }
+                });
             }
         }
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
-        for (var tile_ : Gui.board.getChildren()) {
-            Tile tile  = (Tile) tile_;
+        for (var tile : Gui.getBoard().getAllTiles()) {
             tile.resetLegalMove();
         }
         for (TilePosition position : msg.tilePositions) {
-            Tile tile = (Tile) Gui.board.getChildren().get(position.x * 8 + position.y);
+            Tile tile = Gui.getBoard().getTile(position);
             tile.setTilecolor(msg.color);
         }
-        for (LegalMove move:msg.legalMoves){
-            Tile tile = (Tile) Gui.board.getChildren().get(move.pos.x * 8 + move.pos.y);
+        for (LegalMove move : msg.legalMoves) {
+            Tile tile = Gui.getBoard().getTile(move.position);
             tile.setLegalImage();
         }
     }

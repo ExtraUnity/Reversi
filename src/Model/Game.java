@@ -3,10 +3,12 @@ package Model;
 import java.util.ArrayList;
 
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
+import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
-import MsgPass.ModelMsg.GameReadyMsg;
+import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import MsgPass.ModelMsg.PassMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
@@ -18,18 +20,20 @@ public class Game {
         MULTIPLAYER
     }
 
+    final GameOptions options;
     GameState gamestate = GameState.PLAYING;
     final Thread modelMainThread;
 
     TileColor[][] board = new TileColor[8][8];
 
-    Game() {
+    Game(GameOptions options) {
         // Wait until GUI is ready before starting game.
         boolean ready = false;
-
+        this.options = options;
         while (!ready) {
+            System.out.println("Game waiting for Gui ready msg");
             var initMsg = Model.readModelMsg();
-            if (initMsg instanceof GameReadyMsg) {
+            if (initMsg instanceof GuiReadyMsg) {
                 ready = true;
             }
         }
@@ -70,8 +74,13 @@ public class Game {
 
                 Model.sendControllerMsg(new ControllerWindowClosedMsg());
 
+            } else if (modelMsg instanceof RestartBtnPressedMsg) {
+                gamestate = GameState.EXITED;
+                Model.sendControllerMsg(new ResetBoardMsg());
+                Model.startGame(GameMode.CLASSIC, options);
             }
         }
+        System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
     private TileColor nextturn = TileColor.BLACK;

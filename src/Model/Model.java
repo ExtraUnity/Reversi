@@ -6,32 +6,30 @@ import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ModelMsg.ModelMsg;
 
 public class Model {
+    @SuppressWarnings("unused")
     private static volatile Game game;
     private static volatile LinkedTransferQueue<ModelMsg> modelqueue = new LinkedTransferQueue<>();
     private static volatile LinkedTransferQueue<ControllerMsg> controllerqueue = new LinkedTransferQueue<>();
 
     public static void startGame(Game.GameMode gamemode, GameOptions options) {
-        if (game == null) {
-            switch (gamemode) {
-                case CLASSIC:
-                    game = new ClassicGame();
-                    break;
-                case AI_GAME:
-                    throw new UnsupportedOperationException("Not yet implemented");
-                case MULTIPLAYER:
-                    throw new UnsupportedOperationException("Not yet implemented");
-            }
-        } else {
-            throw new RuntimeException("CANNOT START A NEW GAME. A GAME IS ALREADY BEING PLAYED");
+        switch (gamemode) {
+            case CLASSIC:
+                game = new ClassicGame(options);
+                break;
+            case AI_GAME:
+                throw new UnsupportedOperationException("Not yet implemented");
+            case MULTIPLAYER:
+                throw new UnsupportedOperationException("Not yet implemented");
         }
+
     }
 
     public static void sendModelMsg(ModelMsg event) {
-        modelqueue.add(event);
+        modelqueue.put(event);
     }
 
     public static void sendControllerMsg(ControllerMsg event) {
-        controllerqueue.add(event);
+        controllerqueue.put(event);
     }
 
     public static ModelMsg readModelMsg() {
