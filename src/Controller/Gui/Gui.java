@@ -6,8 +6,11 @@ import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.geometry.Rectangle2D;
@@ -56,7 +59,7 @@ public class Gui extends Application {
     }
 
     private void makeRightMenu() {
-        guiRoot.setRight(new SideMenu());
+        guiRoot.setRight(new RightMenu());
     }
 
     @Override
@@ -66,6 +69,8 @@ public class Gui extends Application {
         stackRoot = new StackPane();
         guiRoot = new BorderPane();
         stackRoot.getChildren().add(guiRoot);
+
+        stackRoot.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
 
         Scene scene = new Scene(stackRoot);
         
