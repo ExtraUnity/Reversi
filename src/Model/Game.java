@@ -75,8 +75,9 @@ public class Game {
 
             } else if (modelMsg instanceof RestartBtnPressedMsg) {
                 gamestate = GameState.EXITED;
-                Model.startGame(GameMode.CLASSIC, options);
                 Model.sendControllerMsg(new ResetBoardMsg());
+                Model.startGame(GameMode.CLASSIC, options);
+                System.out.println(gamestate);
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");

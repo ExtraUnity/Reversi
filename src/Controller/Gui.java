@@ -57,7 +57,7 @@ public class Gui extends Application {
 
         stage.setMaximized(true);
 
-        StackPane root = new StackPane();
+        root = new StackPane();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
