@@ -77,7 +77,6 @@ public class Game {
                 gamestate = GameState.EXITED;
                 Model.sendControllerMsg(new ResetBoardMsg());
                 Model.startGame(GameMode.CLASSIC, options);
-                System.out.println(gamestate);
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");

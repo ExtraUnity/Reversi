@@ -6,6 +6,7 @@ import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import Shared.TilePosition;
+import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 
@@ -53,15 +54,21 @@ public class Controller {
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
             } else if (controllerMsg instanceof ResetBoardMsg) {
-                Gui.initBoard();
-                Model.sendModelMsg(new GuiReadyMsg());
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Gui.initBoard();
+                        Model.sendModelMsg(new GuiReadyMsg());
+                        System.out.println("NEW GUI READY");
+                    }
+                });
             }
         }
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
         for (var tile_ : Gui.board.getChildren()) {
-            Tile tile  = (Tile) tile_;
+            Tile tile = (Tile) tile_;
             tile.resetLegalMove();
         }
 
@@ -69,7 +76,7 @@ public class Controller {
             Tile tile = (Tile) Gui.board.getChildren().get(position.x * 8 + position.y);
             tile.setTilecolor(msg.color);
         }
-        for (LegalMove move:msg.legalMoves){
+        for (LegalMove move : msg.legalMoves) {
             Tile tile = (Tile) Gui.board.getChildren().get(move.pos.x * 8 + move.pos.y);
             tile.setLegalImage();
         }

@@ -8,11 +8,8 @@ import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -70,7 +67,7 @@ public class Gui extends Application {
         root.getChildren().add(panel_manager);
 
         // tile.setImage(empty_tile);tile.setImage(empty_tile);init af spilbræt
-        board = initBoard();
+        initBoard();
 
         double boardPosX = getScreenWidth() / 2 - fitTileSize() * 4;
         double boardPosY = getScreenHeight() / 2 - fitTileSize() * 4 - 22;
@@ -95,11 +92,11 @@ public class Gui extends Application {
         Model.sendModelMsg(new GuiReadyMsg());
     }
 
-    static GridPane initBoard() {
+    static void initBoard() {
         if (board != null) {
-            root.getChildren().remove(board);
+            panel_manager.getChildren().remove(board);
         }
-        GridPane board = new GridPane();
+        board = new GridPane();
         panel_manager.getChildren().add(board);
 
 
@@ -111,7 +108,7 @@ public class Gui extends Application {
                 board.add(tile, i, j);
             }
         }
-        return board;
+        
     }
 
     public static double fitTileSize() {
