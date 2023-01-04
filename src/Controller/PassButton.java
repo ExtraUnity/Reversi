@@ -1,12 +1,13 @@
 package Controller;
 
 import java.io.InputStream;
-
+import Model.LegalMove;
 import Model.Model;
 import MsgPass.ModelMsg.PassMsg;
 import Shared.ButtonPosition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import Model.Game;
 
 public class PassButton extends ImageView {
     private ButtonPosition position;
