@@ -18,14 +18,27 @@ public class Tile extends ImageView {
     static private Image white_tile;
     static private InputStream black_tile_src;
     static private Image black_tile;
+    static private InputStream legal_tile_src;
+    static private Image legal_tile;
+    static private InputStream empty_tile_src;
+    static private Image empty_tile;
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
+        setImage(getEmptyImage());
         setOnMouseClicked(e -> {
             Model.sendModelMsg(new TilePressedMsg(position));
         });
     }
 
+    private Image getEmptyImage() {
+        if (empty_tile == null) {
+            empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
+            empty_tile = new Image(empty_tile_src, Gui.fitTileSize(), 0, true, false);
+
+        }
+        return empty_tile;
+    }
     private Image getWhiteImage() {
         if (white_tile == null) {
             white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
@@ -43,7 +56,30 @@ public class Tile extends ImageView {
         return black_tile;
     }
 
+    private Image getLegalImage(){
+        if (legal_tile == null) {
+            legal_tile_src = getClass().getResourceAsStream("/Assets/stoneTilePossibleMove.png");
+            legal_tile = new Image(legal_tile_src, Gui.fitTileSize(), 0, true, false);
+
+        }
+        return legal_tile;
+    }
+
+    private boolean isLegalMove = false;
+
+    public void setLegalImage(){
+        isLegalMove = true;
+        setImage(getLegalImage());
+    }
+    public void resetLegalMove(){
+        if (isLegalMove){
+            isLegalMove = false;
+            setImage(getEmptyImage());
+        }
+    }
+
     public void setTilecolor(TileColor tilecolor) {
+        isLegalMove = false;
         this.tilecolor = tilecolor;
         System.out.println("Settings tile " + position + " to " + tilecolor);
         switch (tilecolor) {
