@@ -37,6 +37,9 @@ public class Gui extends Application {
     static StackPane stackRoot;
     static BorderPane guiRoot;
 
+    /**
+     * Sets the content of the center box to board and top/bottom menu
+     */
     private void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
@@ -91,6 +94,11 @@ public class Gui extends Application {
         Model.sendModelMsg(new GuiReadyMsg());
     }
 
+    /**
+     * Sets up everthing that doesn't have to do with the scene.
+     * 
+     * @param stage
+     */
     void setupStageMeta(Stage stage) {
         stage.setTitle("Reversi");
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
