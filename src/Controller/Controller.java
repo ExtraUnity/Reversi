@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Gui.Gui;
 import Controller.Gui.Tile;
+import Controller.Gui.TurnIndication;
 import Model.LegalMove;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
@@ -51,17 +52,20 @@ public class Controller {
             System.out.println("Controller Received " + controllerMsg.getClass().getName());
 
             if (controllerMsg instanceof UpdateBoardMsg) {
+
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
                 updateBoard(msg);
+                TurnIndication.switchTurns();
+
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
             } else if (controllerMsg instanceof ResetBoardMsg) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        // Gui.initBoard();
+                        Gui.makeBoard();
+                        TurnIndication.resetTurns();
                         Model.sendModelMsg(new GuiReadyMsg());
-                        System.out.println("NEW GUI READY");
                     }
                 });
             }
@@ -72,7 +76,6 @@ public class Controller {
         for (var tile : Gui.getBoard().getAllTiles()) {
             tile.resetLegalMove();
         }
-
         for (TilePosition position : msg.tilePositions) {
             Tile tile = Gui.getBoard().getTile(position);
             tile.setTilecolor(msg.color);
