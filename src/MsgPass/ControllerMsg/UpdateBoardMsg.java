@@ -14,13 +14,16 @@ public class UpdateBoardMsg extends ControllerMsg {
     public final int whitePoints;
     public final int blackPoints;
 
+    public final boolean isPassing;
+
     public UpdateBoardMsg(TileColor color, TilePosition[] tilePositions, LegalMove[] legalMoves, int whitePoints,
-            int blackPoints) {
+            int blackPoints, boolean isPassing) {
         this.color = color;
         this.tilePositions = tilePositions;
         this.legalMoves = legalMoves;
         this.whitePoints = whitePoints;
         this.blackPoints = blackPoints;
+        this.isPassing = isPassing;
     }
 
     @Override

@@ -126,7 +126,7 @@ public class Game {
             flippedTiles = new ArrayList<TilePosition>();
         }
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
-                whitePoints, blackPoints));
+                whitePoints, blackPoints, passingTurn));
 
     }
 

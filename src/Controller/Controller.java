@@ -54,8 +54,10 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                updateBoard(msg);
-                TurnIndication.switchTurns();
+                if (!msg.isPassing || msg.legalMoves.length == 0) {
+                    updateBoard(msg);
+                    TurnIndication.switchTurns();
+                }
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
