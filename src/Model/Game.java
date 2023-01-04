@@ -187,11 +187,14 @@ public class Game {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
-                var pos = new TilePosition(x, y);
-                int flipped = flippedFromMove(pos, nextturn);
-                if (flipped > 0) {
-                    legalMoves.add(new LegalMove(pos, flipped));
+                if (board[x][y] == null) {
+                    var pos = new TilePosition(x, y);
+                    int flipped = flippedFromMove(pos, nextturn);
+                    if (flipped > 0) {
+                        legalMoves.add(new LegalMove(pos, flipped));
+                    }
                 }
+
             }
         }
         return legalMoves.toArray(new LegalMove[0]);
