@@ -79,7 +79,7 @@ public class Game {
      * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
      * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
      * andre brikker. Derefter sender den en besked til Controlleren om hvilke
-     * brikker der er blevet vendt
+     * brikker der er blevet vendt. Denne funktion er IKKE pure
      */
     void handleTileClick(TilePosition pos) {
         if (isColor(pos.x, pos.y) && board[pos.x][pos.y] == null) {
@@ -109,6 +109,10 @@ public class Game {
         return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] != null;
     }
 
+    /**
+     * Laver en liste af alle de tiles som skal flippes, i den retning som bliver
+     * givet af dx og dy. Denne funktion er pure
+     */
     ArrayList<TilePosition> flipable(TilePosition pos, int dx, int dy, TileColor placedColor) {
         var flipped = new ArrayList<TilePosition>();
         int x = pos.x + dx;
@@ -138,6 +142,10 @@ public class Game {
         }
     }
 
+    /**
+     * Finder alle de tiles som kan vendes ved et givet træk. Denne funktion er
+     * pure.
+     */
     ArrayList<TilePosition> flipTiles(TilePosition pos, TileColor placedColor) {
         // Flip all above
         var aboveFlipped = flipable(pos, 0, 1, placedColor);
