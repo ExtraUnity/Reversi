@@ -205,7 +205,7 @@ public class Game {
         int points = 0;
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
-                if (board[x][y].equals(color)) {
+                if (board[x][y] != null && board[x][y].equals(color)) {
                     points += 1;
                 }
             }
