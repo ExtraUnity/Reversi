@@ -58,7 +58,7 @@ public class Gui extends Application {
         stage.setMinHeight(400);
         stage.setMinWidth(400);
 
-        // init af borderpane
+        // init af Anchorpane
         AnchorPane panel_manager = new AnchorPane();
         root.getChildren().add(panel_manager);
 
