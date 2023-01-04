@@ -3,11 +3,11 @@ package Model;
 import Shared.TilePosition;
 
 public class LegalMove {
-    public final TilePosition pos;
+    public final TilePosition position;
     public final int flipped;
 
-    LegalMove(TilePosition pos, int flipped) {
-        this.pos = pos;
+    LegalMove(TilePosition position, int flipped) {
+        this.position = position;
         this.flipped = flipped;
     }
 }

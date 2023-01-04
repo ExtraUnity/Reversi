@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Gui;
 
 import java.io.InputStream;
 
