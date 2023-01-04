@@ -82,7 +82,7 @@ public class Game {
      * brikker der er blevet vendt. Denne funktion er IKKE pure
      */
     void handleTileClick(TilePosition pos) {
-        if (isColor(pos.x, pos.y) && board[pos.x][pos.y] == null) {
+        if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
             return;
         }
