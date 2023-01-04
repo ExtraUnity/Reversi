@@ -91,8 +91,19 @@ public class Controller {
             tile.setLegalImage();
         }
 
+        updatePassButton(msg.legalMoves.length);
+    }
+
+    /**
+     * 
+     * @param legalMoves
+     *                   Uses the amount of legal moves update the pass button image
+     *                   using the rule:
+     *                   No legal moves -> Pass available
+     */
+    void updatePassButton(int legalMoves) {
         PassButton passButton = Gui.getBotMenu().getPassButton();
-        if (msg.legalMoves.length == 0) {
+        if (legalMoves == 0) {
             passButton.setImage("/Assets/passButton.png");
             passButton.setAvailable(true);
         } else {
