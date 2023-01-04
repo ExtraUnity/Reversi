@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.LegalMove;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
@@ -58,6 +59,10 @@ public class Controller {
         for (TilePosition position : msg.tilePositions) {
             Tile tile = (Tile) Gui.board.getChildren().get(position.x * 8 + position.y);
             tile.setTilecolor(msg.color);
+        }
+        for (LegalMove move:msg.legalMoves){
+            Tile tile = (Tile) Gui.board.getChildren().get(move.pos.x * 8 + move.pos.y);
+            tile.setLegalImage();
         }
     }
 }
