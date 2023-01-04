@@ -9,10 +9,10 @@ import javafx.scene.image.ImageView;
 
 public class RestartBtn extends ImageView {
 
-    InputStream btnAssetSrc = getClass().getResourceAsStream("/Assets/btnAssetSrc.png");
-    Image btnAsset = new Image(btnAssetSrc);
-
     public RestartBtn() {
+        InputStream btnAssetSrc = getClass().getResourceAsStream("/Assets/btnAssetSrc.png");
+        double size = Gui.fitTileSize() * 1;
+        Image btnAsset = new Image(btnAssetSrc, size, 0, true, false);
         setImage(btnAsset);
         setOnMouseClicked(e -> {
             Model.sendModelMsg(new RestartBtnPressedMsg());
