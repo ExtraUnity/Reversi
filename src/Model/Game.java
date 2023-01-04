@@ -70,7 +70,7 @@ public class Game {
     private int turns = 0;
 
     private boolean followRules() {
-        return turns > 4;
+        return turns > 3;
     }
 
     /**
@@ -108,11 +108,14 @@ public class Game {
         }
 
         // check if any vertices comply with the rules
+
         boolean checkHorizontal = checkVertexLegal(pos, color, Vertex.HORIZONTAL);
         boolean checkVertical = checkVertexLegal(pos, color, Vertex.VERTICAL);
-        boolean checkDiagonal = checkVertexLegal(pos, color, Vertex.DIAGONAL);
-
-        if (!checkHorizontal && !checkVertical && !checkDiagonal) {
+        System.out.println("Down");
+        boolean checkDiagonalDown = checkVertexLegal(pos, color, Vertex.DIAGONALDOWN);
+        System.out.println("Up");
+        boolean checkDiagonalUp = checkVertexLegal(pos, color, Vertex.DIAGONALUP);
+        if (!checkHorizontal && !checkVertical && !checkDiagonalDown && !checkDiagonalUp) {
             System.out.println("Move doesn't follow rules");
             return false;
         }
@@ -134,14 +137,23 @@ public class Game {
          * and the opposite for the other players turn.
          */
         //
-        for (int i = 0; i + (direction == Vertex.DIAGONAL ? Math.max(pos.x, pos.y) : 0) < board.length; i++) {
+        for (int i = 0; i + boundsAdd(direction, pos) < board.length; i++) {
 
             TileColor currentColor;
             // choose which tile to look at next based on the direction
             switch (direction) {
-                case DIAGONAL:
-                    currentColor = board[pos.x + i][pos.y + i];
+                case DIAGONALDOWN:
+                    int min = Math.min(pos.x, pos.y);
+                    System.out.println(pos.x - min + i + " " + (pos.y - min + i));
+                    currentColor = board[pos.x - min + i][pos.y - min + i];
                     break;
+
+                case DIAGONALUP:
+                    min = Math.min(pos.x, board.length - pos.y);
+                    System.out.println(pos.x - min + i + " " + (pos.y + min - i));
+                    currentColor = board[pos.x - min + i][pos.y + min - i];
+                    break;
+
                 case HORIZONTAL:
                     currentColor = board[i][pos.y];
                     break;
@@ -171,6 +183,25 @@ public class Game {
         return false;
     }
 
+    private int boundsAdd(Vertex direction, TilePosition pos) {
+        int num;
+        switch (direction) {
+            case DIAGONALDOWN:
+                num = Math.max(pos.x, pos.y);
+                break;
+            case DIAGONALUP:
+                num = Math.max(pos.x, board.length - pos.y);
+                break;
+            case HORIZONTAL:
+            case VERTICAL:
+            case default:
+                num = 0;
+                break;
+
+        }
+
+        return num;
+    }
 }
 
 enum GameState {
@@ -183,5 +214,6 @@ enum GameState {
 enum Vertex {
     HORIZONTAL,
     VERTICAL,
-    DIAGONAL;
+    DIAGONALDOWN,
+    DIAGONALUP;
 }
