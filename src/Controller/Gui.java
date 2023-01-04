@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.InputStream;
-
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -14,7 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import Shared.ButtonPosition;
-
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
