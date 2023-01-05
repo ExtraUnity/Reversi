@@ -85,7 +85,7 @@ public class Gui extends Application {
         makeRightMenu();
         makeCenter();
 
-        Model.sendModelMsg(new GuiReadyMsg());
+        Model.sendGameMsg(new GuiReadyMsg());
     }
 
     void setupStageMeta(Stage stage) {
@@ -93,7 +93,7 @@ public class Gui extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
-                Model.sendModelMsg(new ModelWindowClosedMsg());
+                Model.sendGameMsg(new ModelWindowClosedMsg());
             }
         });
 

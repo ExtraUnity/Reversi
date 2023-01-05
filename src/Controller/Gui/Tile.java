@@ -27,7 +27,7 @@ public class Tile extends ImageView {
         position = new TilePosition(x, y);
         setImage(getEmptyImage());
         setOnMouseClicked(e -> {
-            Model.sendModelMsg(new TilePressedMsg(position));
+            Model.sendGameMsg(new TilePressedMsg(position));
         });
     }
 

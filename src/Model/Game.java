@@ -22,42 +22,36 @@ public class Game {
 
     final GameOptions options;
     GameState gamestate = GameState.PLAYING;
-    final Thread modelMainThread;
 
     TileColor[][] board = new TileColor[8][8];
 
     Game(GameOptions options) {
-        // Wait until GUI is ready before starting game.
-        boolean ready = false;
         this.options = options;
+    }
+
+    void startGame() {
+        boolean ready = false;
         while (!ready) {
             System.out.println("Game waiting for Gui ready msg");
-            var initMsg = Model.readModelMsg();
+            var initMsg = Model.readGameMsg();
             if (initMsg instanceof GuiReadyMsg) {
                 ready = true;
             }
         }
 
-        var game = this;
-        modelMainThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                game.run_game();
-            }
-        });
-        modelMainThread.start();
+        Model.sendGameMsg(new TilePressedMsg(new TilePosition(3, 3)));
+        Model.sendGameMsg(new TilePressedMsg(new TilePosition(3, 4)));
+        Model.sendGameMsg(new TilePressedMsg(new TilePosition(4, 4)));
+        Model.sendGameMsg(new TilePressedMsg(new TilePosition(4, 3)));
 
-        Model.sendModelMsg(new TilePressedMsg(new TilePosition(3, 3)));
-        Model.sendModelMsg(new TilePressedMsg(new TilePosition(3, 4)));
-        Model.sendModelMsg(new TilePressedMsg(new TilePosition(4, 4)));
-        Model.sendModelMsg(new TilePressedMsg(new TilePosition(4, 3)));
+        run_game();
     }
 
-    void run_game() {
+    private void run_game() {
         System.out.println(getClass().getSimpleName() + " loop started");
         while (gamestate == GameState.PLAYING) {
             // Game loop
-            var modelMsg = Model.readModelMsg();
+            var modelMsg = Model.readGameMsg();
             System.out.println("Game Received " + modelMsg.getClass().getName());
 
             // Håndter forskellige typer messages
@@ -71,8 +65,8 @@ public class Game {
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
-
                 Model.sendControllerMsg(new ControllerWindowClosedMsg());
+                Model.shutdownModel();
 
             } else if (modelMsg instanceof RestartBtnPressedMsg) {
                 gamestate = GameState.EXITED;
