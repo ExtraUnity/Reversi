@@ -89,7 +89,8 @@ public class Gui extends Application {
     public static void displayWinner(TileColor color) {
         VBox gameover = new VBox();
         gameover.setAlignment(Pos.CENTER);
-        // gameover.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+        // gameover.setBackground(new Background(new BackgroundFill(Color.ORANGE, null,
+        // null)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new RestartBtn());
@@ -111,10 +112,6 @@ public class Gui extends Application {
         stage.setScene(scene);
 
         buildGui();
-
-        makeLeftMenu();
-        makeRightMenu();
-        makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
         stage.show();
