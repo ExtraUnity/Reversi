@@ -61,12 +61,26 @@ public class Gui extends Application {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
 
-    private void makeLeftMenu() {
+    private static void makeLeftMenu() {
         guiRoot.setLeft(new LeftMenu());
     }
 
-    private void makeRightMenu() {
+    private static void makeRightMenu() {
         guiRoot.setRight(new RightMenu());
+
+    }
+
+    public static void buildGui() {
+
+        stackRoot.getChildren().clear();
+        guiRoot.getChildren().clear();
+        stackRoot.getChildren().add(guiRoot);
+
+        makeLeftMenu();
+        makeRightMenu();
+        makeCenter();
+
+        Model.sendGameMsg(new GuiReadyMsg());
     }
 
     @Override
@@ -83,15 +97,14 @@ public class Gui extends Application {
 
         stage.setScene(scene);
         stage.show();
-
-        stage.setMinWidth(400);
-        stage.setMinHeight(400);
+        buildGui();
 
         makeLeftMenu();
         makeRightMenu();
         makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
+        
     }
 
     /**
@@ -109,6 +122,8 @@ public class Gui extends Application {
         });
 
         stage.setMaximized(true);
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
     }
 
     public static double fitTileSize() {
