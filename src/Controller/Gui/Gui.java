@@ -64,12 +64,12 @@ public class Gui extends Application {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
 
-    private static void makeLeftMenu() {
-        guiRoot.setLeft(new LeftMenu());
+    private static void makeMenuLeft() {
+        guiRoot.setLeft(new MenuLeft());
     }
 
-    private static void makeRightMenu() {
-        guiRoot.setRight(new RightMenu());
+    private static void makeMenuRight() {
+        guiRoot.setRight(new MenuRight());
 
     }
 
@@ -79,8 +79,8 @@ public class Gui extends Application {
         guiRoot.getChildren().clear();
         stackRoot.getChildren().add(guiRoot);
 
-        makeLeftMenu();
-        makeRightMenu();
+        makeMenuLeft();
+        makeMenuRight();
         makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
