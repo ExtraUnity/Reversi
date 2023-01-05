@@ -11,9 +11,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
@@ -82,7 +84,13 @@ public class Gui extends Application {
     }
 
     public static void displayWinner(TileColor color) {
-        stackRoot.getChildren().add(new WinnerIndication(color));
+        VBox gameover = new VBox();
+        gameover.setAlignment(Pos.CENTER);
+        // gameover.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+        gameover.setPrefSize(getScreenWidth(), getScreenHeight());
+        gameover.getChildren().add(new WinnerIndication(color));
+        gameover.getChildren().add(new RestartBtn());
+        stackRoot.getChildren().add(gameover);
     }
 
     @Override

@@ -7,10 +7,10 @@ public class BotMenu extends BorderPane {
     BotMenu() {
 
         setLeft(new PassButton());
-        setRight(new RestartBtn());
+        // setRight(new RestartBtn());
 
         setMargin(getLeft(), new Insets(5, 20, 5, 20));
-        setMargin(getRight(), new Insets(5, 20, 5, 20));
+        // setMargin(getRight(), new Insets(5, 20, 5, 20));
 
     }
 
