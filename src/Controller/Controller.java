@@ -56,8 +56,8 @@ public class Controller {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
                 if (!msg.isPassing || msg.legalMoves.length == 0) {
-                    updateBoard(msg);
-                    TurnIndication.switchTurns();
+                updateBoard(msg);
+                TurnIndication.switchTurns();
                 } else if (msg.isPassing) {
                     System.out.println("not allowed to pass because you have " + msg.legalMoves.length + " moves");
                 }
@@ -110,6 +110,7 @@ public class Controller {
             passButton.setImage("/Assets/notPassButton.png");
             passButton.setAvailable(false);
         }
+        passButton.updatePressed();
         System.out.println("changing pic");
     }
 }
