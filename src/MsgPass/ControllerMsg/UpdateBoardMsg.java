@@ -26,6 +26,15 @@ public class UpdateBoardMsg extends ControllerMsg {
         this.isPassing = isPassing;
     }
 
+    public UpdateBoardMsg(TileColor color, LegalMove[] legalMoves, int whitePoints, int blackPoints) {
+        this.color = color;
+        this.tilePositions = new TilePosition[0];
+        this.legalMoves = legalMoves;
+        this.whitePoints = whitePoints;
+        this.blackPoints = blackPoints;
+        this.isPassing = true;
+    }
+
     @Override
     public String toString() {
         var str = "Color: " + color + " [ ";
