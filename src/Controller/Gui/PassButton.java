@@ -22,9 +22,6 @@ public class PassButton extends ImageView {
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
 
         setImage(img);
-        setOnMouseClicked(e -> {
-            Model.sendGameMsg(new PassMsg());
-        });
     }
 
     public Image getImg() {
@@ -50,10 +47,10 @@ public class PassButton extends ImageView {
         if (available) {
             setOnMousePressed(e -> {
                 setImage(imgPressed);
-                Model.sendGameMsg(new PassMsg());
             });
             setOnMouseReleased(e -> {
                 setImage(img);
+                Model.sendGameMsg(new PassMsg());
             });
         } else {
             setOnMousePressed(e -> {

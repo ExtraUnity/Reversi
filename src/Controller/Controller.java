@@ -111,6 +111,7 @@ public class Controller {
             passButton.setImage("/Assets/notPassButton.png");
             passButton.setAvailable(false);
         }
+        passButton.updatePressed();
         System.out.println("changing pic");
     }
 }
