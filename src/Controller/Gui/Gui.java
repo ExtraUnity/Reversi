@@ -40,6 +40,9 @@ public class Gui extends Application {
     static StackPane stackRoot;
     static BorderPane guiRoot;
 
+    /**
+     * Sets the content of the center box to board and top/bottom menu
+     */
     private static void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
@@ -91,6 +94,7 @@ public class Gui extends Application {
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new RestartBtn());
         stackRoot.getChildren().add(gameover);
+        Model.sendGameMsg(new GuiReadyMsg());
     }
 
     @Override
@@ -108,6 +112,11 @@ public class Gui extends Application {
 
         buildGui();
 
+        makeLeftMenu();
+        makeRightMenu();
+        makeCenter();
+
+        Model.sendGameMsg(new GuiReadyMsg());
         stage.show();
     }
 

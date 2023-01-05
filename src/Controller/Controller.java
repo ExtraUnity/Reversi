@@ -70,6 +70,7 @@ public class Controller {
                     public void run() {
                         Gui.buildGui();
                     }
+
                 });
             } else if (controllerMsg instanceof WinnerMsg) {
                 WinnerMsg msg = (WinnerMsg) controllerMsg;
