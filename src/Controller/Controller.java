@@ -55,12 +55,18 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
-                    updateBoard(msg);
-                    TurnIndication.switchTurns();
-                } else if (msg.isPassing) {
-                    System.out.println("not allowed to pass because you have " + msg.legalMoves.length + " moves");
-                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
+                            updateBoard(msg);
+                            TurnIndication.switchTurns();
+                        } else if (msg.isPassing) {
+                            System.out.println(
+                                    "not allowed to pass because you have " + msg.legalMoves.length + " moves");
+                        }
+                    }
+                });
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
@@ -79,7 +85,6 @@ public class Controller {
                     public void run() {
                         Gui.displayWinner(msg.winner);
                     }
-
                 });
 
             }
