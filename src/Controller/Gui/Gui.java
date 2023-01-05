@@ -46,7 +46,7 @@ public class Gui extends Application {
     private static void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
-        centerBox.setTop(new TopMenu());
+        centerBox.setTop(new MenuTop());
         centerBox.setBottom(new MenuBottom());
         guiRoot.setCenter(centerBox);
         makeBoard();

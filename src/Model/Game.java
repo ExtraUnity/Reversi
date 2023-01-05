@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 import Controller.Gui.Gui;
-import Controller.Gui.PassButton;
+import Controller.Gui.ButtonPass;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
@@ -94,8 +94,8 @@ public class Game {
      * Derefter sender den besked til controlleren om de ting, der skal ændres.
      */
     void handlePassClick() {
-        PassButton passbutton = Gui.getMenuBottom().getPassButton();
-        if (!passbutton.getAvailable()) {
+        ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
+        if (!ButtonPass.getAvailable()) {
             return;
         }
         var thiscolor = nextturn;

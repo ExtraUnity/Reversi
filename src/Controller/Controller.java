@@ -1,7 +1,7 @@
 package Controller;
 
 import Controller.Gui.Gui;
-import Controller.Gui.PassButton;
+import Controller.Gui.ButtonPass;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
 import Model.LegalMove;
@@ -55,7 +55,7 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                if (!msg.isPassing || Gui.getMenuBottom().getPassButton().getAvailable()) {
+                if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
                     updateBoard(msg);
                     TurnIndication.switchTurns();
                 } else if (msg.isPassing) {
@@ -101,7 +101,7 @@ public class Controller {
         }
         System.out.println("The next player has " + msg.legalMoves.length + " moves");
 
-        updatePassButton(msg.legalMoves.length);
+        updateButtonPass(msg.legalMoves.length);
     }
 
     /**
@@ -111,16 +111,16 @@ public class Controller {
      *                   using the rule:
      *                   No legal moves -> Pass available
      */
-    void updatePassButton(int legalMoves) {
-        PassButton passButton = Gui.getMenuBottom().getPassButton();
+    void updateButtonPass(int legalMoves) {
+        ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
         if (legalMoves == 0) {
-            passButton.setImage("/Assets/passButton.png");
-            passButton.setAvailable(true);
+            ButtonPass.setImage("/Assets/ButtonPass.png");
+            ButtonPass.setAvailable(true);
         } else {
-            passButton.setImage("/Assets/notPassButton.png");
-            passButton.setAvailable(false);
+            ButtonPass.setImage("/Assets/ButtonPassGrey.png");
+            ButtonPass.setAvailable(false);
         }
-        passButton.updatePressed();
+        ButtonPass.updatePressed();
         System.out.println("changing pic");
     }
 }
