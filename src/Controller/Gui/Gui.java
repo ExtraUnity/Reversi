@@ -102,7 +102,7 @@ public class Gui extends Application {
         makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
-        
+
         stage.show();
     }
 
