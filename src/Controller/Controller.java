@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.Gui.Gui;
+import Controller.Gui.PassButton;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
 import Model.LegalMove;
@@ -54,8 +55,12 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                updateBoard(msg);
-                TurnIndication.switchTurns();
+                if (!msg.isPassing || msg.legalMoves.length == 0) {
+                    updateBoard(msg);
+                    TurnIndication.switchTurns();
+                } else if (msg.isPassing) {
+                    System.out.println("not allowed to pass because you have " + msg.legalMoves.length + " moves");
+                }
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
@@ -73,6 +78,7 @@ public class Controller {
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
+
         for (var tile : Gui.getBoard().getAllTiles()) {
             tile.resetLegalMove();
         }
@@ -84,5 +90,26 @@ public class Controller {
             Tile tile = Gui.getBoard().getTile(move.position);
             tile.setLegalImage();
         }
+
+        updatePassButton(msg.legalMoves.length);
+    }
+
+    /**
+     * 
+     * @param legalMoves
+     *                   Uses the amount of legal moves update the pass button image
+     *                   using the rule:
+     *                   No legal moves -> Pass available
+     */
+    void updatePassButton(int legalMoves) {
+        PassButton passButton = Gui.getBotMenu().getPassButton();
+        if (legalMoves == 0) {
+            passButton.setImage("/Assets/passButton.png");
+            passButton.setAvailable(true);
+        } else {
+            passButton.setImage("/Assets/notPassButton.png");
+            passButton.setAvailable(false);
+        }
+        System.out.println("changing pic");
     }
 }

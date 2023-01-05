@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.Gui.Gui;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
@@ -63,12 +64,12 @@ public class Game {
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
-                handleTileClick(msg.pos,false);
+                handleTileClick(msg.pos, false);
 
             } else if (modelMsg instanceof PassMsg) {
                 PassMsg msg = (PassMsg) modelMsg;
-                handleTileClick(msg.pos,true);
-                
+                handleTileClick(msg.pos, true);
+
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
 
@@ -97,7 +98,7 @@ public class Game {
      * brikker der er blevet vendt. Denne funktion er IKKE pure
      */
     void handleTileClick(TilePosition pos, boolean passingTurn) {
-        
+
         if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null && !passingTurn) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
             return;
@@ -118,15 +119,18 @@ public class Game {
 
         turns++;
         nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves();
+        var legalMoves = getAllLegalMoves(nextturn);
 
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
-        if(passingTurn) {
+        if (passingTurn) {
             flippedTiles = new ArrayList<TilePosition>();
+            if (!Gui.getBotMenu().getPassButton().getAvailable()) {
+                nextturn = nextturn.switchColor();
+            }
         }
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
-                whitePoints, blackPoints));
+                whitePoints, blackPoints, passingTurn));
 
     }
 
@@ -201,7 +205,7 @@ public class Game {
     /**
      * Finds all legal moves and returns an array of them :=)
      */
-    public LegalMove[] getAllLegalMoves() {
+    public LegalMove[] getAllLegalMoves(TileColor nextturn) {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {

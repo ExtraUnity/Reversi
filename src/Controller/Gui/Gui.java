@@ -37,6 +37,9 @@ public class Gui extends Application {
     static StackPane stackRoot;
     static BorderPane guiRoot;
 
+    /**
+     * Sets the content of the center box to board and top/bottom menu
+     */
     private void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
@@ -48,6 +51,10 @@ public class Gui extends Application {
 
     public static Board getBoard() {
         return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
+    }
+
+    public static BotMenu getBotMenu() {
+        return (BotMenu) ((BorderPane) guiRoot.getCenter()).getBottom();
     }
 
     public static void makeBoard() {
@@ -73,14 +80,13 @@ public class Gui extends Application {
         stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         Scene scene = new Scene(stackRoot);
-        
+
         stage.setScene(scene);
         stage.show();
 
         stage.setMinWidth(400);
         stage.setMinHeight(400);
 
-        
         makeLeftMenu();
         makeRightMenu();
         makeCenter();
@@ -88,6 +94,11 @@ public class Gui extends Application {
         Model.sendModelMsg(new GuiReadyMsg());
     }
 
+    /**
+     * Sets up everthing that doesn't have to do with the scene.
+     * 
+     * @param stage
+     */
     void setupStageMeta(Stage stage) {
         stage.setTitle("Reversi");
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

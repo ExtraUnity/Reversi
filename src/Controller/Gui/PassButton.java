@@ -8,16 +8,46 @@ import javafx.scene.image.ImageView;
 
 public class PassButton extends ImageView {
     private Image img;
+    private InputStream src;
+    private double size;
+    private boolean available;
     private Image imgPressed;
 
     PassButton() {
-        InputStream src = getClass().getResourceAsStream("/Assets/passButton.png");
-        this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
+        this.src = getClass().getResourceAsStream("/Assets/notPassButton.png");
+        this.size = Gui.fitTileSize();
+        this.img = new Image(src, 0, size, true, false);
         
         InputStream src2 = getClass().getResourceAsStream("/Assets/passButtonPressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
 
+
         setImage(img);
+
+
+    }
+
+    public Image getImg() {
+        return this.img;
+    }
+
+    public void setImage(String src) {
+        this.src = getClass().getResourceAsStream(src);
+        this.img = new Image(src, 0, this.size, true, false);
+        setImage(img);
+        System.out.println("Setting image as " + src);
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean getAvailable() {
+        return this.available;
+    }
+
+    public void updatePressed(){
+        if(available){
         setOnMousePressed(e -> {
             setImage(imgPressed);
             Model.sendModelMsg(new PassMsg());
@@ -25,9 +55,9 @@ public class PassButton extends ImageView {
         setOnMouseReleased(e -> {
             setImage(img);
         });
+    } else {
+        setOnMousePressed(e -> {});
+        setOnMouseReleased(e -> {});
     }
-
-    public Image getImg() {
-        return this.img;
     }
 }
