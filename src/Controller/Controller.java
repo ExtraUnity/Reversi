@@ -69,7 +69,7 @@ public class Controller {
                     public void run() {
                         Gui.buildGui();
                     }
-                    
+
                 });
             }
         }
