@@ -15,7 +15,7 @@ public class RestartBtn extends ImageView {
         Image btnAsset = new Image(btnAssetSrc, size, 0, true, false);
         setImage(btnAsset);
         setOnMouseClicked(e -> {
-            Model.sendModelMsg(new RestartBtnPressedMsg());
+            Model.sendGameMsg(new RestartBtnPressedMsg());
         });
     }
 }
