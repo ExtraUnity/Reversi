@@ -2,13 +2,14 @@ package Controller;
 
 import Controller.Gui.Gui;
 import Controller.Gui.PointCounter;
+import Controller.Gui.ButtonPass;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
 import Model.LegalMove;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
-import MsgPass.ModelMsg.GuiReadyMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
@@ -53,14 +54,13 @@ public class Controller {
             System.out.println("Controller Received " + controllerMsg.getClass().getName());
 
             if (controllerMsg instanceof UpdateBoardMsg) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                        updateBoard(msg);
-                        TurnIndication.switchTurns();
-                    }
-                });
+                UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
+                if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
+                    updateBoard(msg);
+                    TurnIndication.switchTurns();
+                } else if (msg.isPassing) {
+                    System.out.println("not allowed to pass because you have " + msg.legalMoves.length + " moves");
+                }
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
@@ -68,16 +68,26 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.makeBoard();
-                        TurnIndication.resetTurns();
-                        Model.sendGameMsg(new GuiReadyMsg());
+                        Gui.buildGui();
                     }
+
                 });
+            } else if (controllerMsg instanceof WinnerMsg) {
+                WinnerMsg msg = (WinnerMsg) controllerMsg;
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Gui.displayWinner(msg.winner);
+                    }
+
+                });
+
             }
         }
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
+
         for (var tile : Gui.getBoard().getAllTiles()) {
             tile.resetLegalMove();
         }
@@ -91,5 +101,28 @@ public class Controller {
         }
         PointCounter.setBlackPoints(msg.blackPoints);
         PointCounter.setWhitePoints(msg.whitePoints);
+        System.out.println("The next player has " + msg.legalMoves.length + " moves");
+
+        updateButtonPass(msg.legalMoves.length);
+    }
+
+    /**
+     * 
+     * @param legalMoves
+     *                   Uses the amount of legal moves update the pass button image
+     *                   using the rule:
+     *                   No legal moves -> Pass available
+     */
+    void updateButtonPass(int legalMoves) {
+        ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
+        if (legalMoves == 0) {
+            ButtonPass.setImage("/Assets/ButtonPass.png");
+            ButtonPass.setAvailable(true);
+        } else {
+            ButtonPass.setImage("/Assets/ButtonPassGrey.png");
+            ButtonPass.setAvailable(false);
+        }
+        ButtonPass.updatePressed();
+        System.out.println("changing pic");
     }
 }

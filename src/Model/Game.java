@@ -2,9 +2,12 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.Gui.Gui;
+import Controller.Gui.ButtonPass;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -57,11 +60,10 @@ public class Game {
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
-                handleTileClick(msg.pos, false);
+                handleTileClick(msg.pos);
 
             } else if (modelMsg instanceof PassMsg) {
-                PassMsg msg = (PassMsg) modelMsg;
-                handleTileClick(msg.pos, true);
+                handlePassClick();
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
@@ -85,21 +87,53 @@ public class Game {
     }
 
     /**
+     * Denne funktion håndterer når pass knappen bliver trykket på. Den tjekker om
+     * brugeren
+     * må melde pas, og hvis de må, så udregner den de mulige træk for modstanderen,
+     * samt skifter farven.
+     * Derefter sender den besked til controlleren om de ting, der skal ændres.
+     */
+    void handlePassClick() {
+        ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
+        if (!ButtonPass.getAvailable()) {
+            return;
+        }
+        var thiscolor = nextturn;
+        nextturn.switchColor();
+        TilePosition noTile = new TilePosition(0, 0);
+
+        for (var t_pos : getAllFlipped(noTile, thiscolor)) {
+            board[t_pos.x][t_pos.y] = thiscolor;
+        }
+        turns++;
+        nextturn = nextturn.switchColor();
+        var legalMoves = getAllLegalMoves(nextturn);
+        System.out.println("Legal moves: " + legalMoves.length);
+        // flippedTiles = new ArrayList<TilePosition>();
+        int whitePoints = getPoints(TileColor.WHITE);
+        int blackPoints = getPoints(TileColor.BLACK);
+
+        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints));
+        checkWinner(whitePoints, blackPoints);
+        noLegalsLastTurn = true;
+    }
+
+    /**
      * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
      * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
      * andre brikker. Derefter sender den en besked til Controlleren om hvilke
      * brikker der er blevet vendt. Denne funktion er IKKE pure
      */
-    void handleTileClick(TilePosition pos, boolean passingTurn) {
+    void handleTileClick(TilePosition pos) {
 
-        if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null && !passingTurn) {
+        if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
             return;
         }
 
         var thiscolor = nextturn;
         var flippedTiles = getAllFlipped(pos, thiscolor);
-        if (followRules() && flippedTiles.size() == 0 && !passingTurn) {
+        if (followRules() && flippedTiles.size() == 0) {
             System.out.println("Illegal move at " + pos + ". No flips");
             return;
         }
@@ -112,16 +146,44 @@ public class Game {
 
         turns++;
         nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves();
+        var legalMoves = getAllLegalMoves(nextturn);
 
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
-        if (passingTurn) {
-            flippedTiles = new ArrayList<TilePosition>();
-        }
+        System.out.println("Legal moves: " + legalMoves.length);
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
-                whitePoints, blackPoints));
+                whitePoints, blackPoints, false));
 
+        noLegalsLastTurn = false;
+        checkWinner(whitePoints, blackPoints);
+    }
+
+    boolean noLegalsLastTurn = false;
+
+    void checkWinner(int whitePoints, int blackPoints) {
+        if (noLegalsLastTurn || allTilesPlaced()) {
+            // Send gameover beskrev hvor vinderen er den med flest point
+            System.out.println("Game over");
+            if (whitePoints > blackPoints) {
+                Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+            } else {
+                Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+            }
+        }
+    }
+
+    boolean allTilesPlaced() {
+        System.out.println("Checking if all tiles are placed");
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                if (board[x][y] == null) {
+                    System.out.println("No disk placed at " + x + "," + y);
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     boolean isColor(int x, int y) {
@@ -195,7 +257,7 @@ public class Game {
     /**
      * Finds all legal moves and returns an array of them :=)
      */
-    public LegalMove[] getAllLegalMoves() {
+    public LegalMove[] getAllLegalMoves(TileColor nextturn) {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {

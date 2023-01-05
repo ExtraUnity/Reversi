@@ -3,6 +3,7 @@ package Controller.Gui;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -10,9 +11,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
@@ -37,11 +40,14 @@ public class Gui extends Application {
     static StackPane stackRoot;
     static BorderPane guiRoot;
 
-    private void makeCenter() {
+    /**
+     * Sets the content of the center box to board and top/bottom menu
+     */
+    private static void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
-        centerBox.setTop(new TopMenu());
-        centerBox.setBottom(new BotMenu());
+        centerBox.setTop(new MenuTop());
+        centerBox.setBottom(new MenuBottom());
         guiRoot.setCenter(centerBox);
         makeBoard();
     }
@@ -50,16 +56,46 @@ public class Gui extends Application {
         return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
     }
 
+    public static MenuBottom getMenuBottom() {
+        return (MenuBottom) ((BorderPane) guiRoot.getCenter()).getBottom();
+    }
+
     public static void makeBoard() {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
 
-    private void makeLeftMenu() {
-        guiRoot.setLeft(new LeftMenu());
+    private static void makeMenuLeft() {
+        guiRoot.setLeft(new MenuLeft());
     }
 
-    private void makeRightMenu() {
-        guiRoot.setRight(new RightMenu());
+    private static void makeMenuRight() {
+        guiRoot.setRight(new MenuRight());
+
+    }
+
+    public static void buildGui() {
+
+        stackRoot.getChildren().clear();
+        guiRoot.getChildren().clear();
+        stackRoot.getChildren().add(guiRoot);
+
+        makeMenuLeft();
+        makeMenuRight();
+        makeCenter();
+
+        Model.sendGameMsg(new GuiReadyMsg());
+    }
+
+    public static void displayWinner(TileColor color) {
+        VBox gameover = new VBox();
+        gameover.setAlignment(Pos.CENTER);
+        // gameover.setBackground(new Background(new BackgroundFill(Color.ORANGE, null,
+        // null)));
+        gameover.setPrefSize(getScreenWidth(), getScreenHeight());
+        gameover.getChildren().add(new WinnerIndication(color));
+        gameover.getChildren().add(new ButtonRestart());
+        stackRoot.getChildren().add(gameover);
+        Model.sendGameMsg(new GuiReadyMsg());
     }
 
     @Override
@@ -70,24 +106,22 @@ public class Gui extends Application {
         guiRoot = new BorderPane();
         stackRoot.getChildren().add(guiRoot);
 
-        stackRoot.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+        stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         Scene scene = new Scene(stackRoot);
-        
         stage.setScene(scene);
-        stage.show();
 
-        stage.setMinWidth(400);
-        stage.setMinHeight(400);
-
-        
-        makeLeftMenu();
-        makeRightMenu();
-        makeCenter();
+        buildGui();
 
         Model.sendGameMsg(new GuiReadyMsg());
+        stage.show();
     }
 
+    /**
+     * Sets up everthing that doesn't have to do with the scene.
+     * 
+     * @param stage
+     */
     void setupStageMeta(Stage stage) {
         stage.setTitle("Reversi");
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -98,6 +132,8 @@ public class Gui extends Application {
         });
 
         stage.setMaximized(true);
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
     }
 
     public static double fitTileSize() {

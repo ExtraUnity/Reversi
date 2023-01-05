@@ -3,8 +3,8 @@ package Controller.Gui;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 
-public class TopMenu extends Pane {
-    TopMenu() {
+public class MenuTop extends Pane {
+    MenuTop() {
         Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
             updateSize();
         });
