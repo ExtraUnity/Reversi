@@ -79,7 +79,7 @@ public class Game {
         System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
-    private TileColor nextturn = TileColor.BLACK;
+    private static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
     private boolean followRules() {
@@ -289,6 +289,14 @@ public class Game {
             }
         }
         return points;
+    }
+
+    public static TileColor getNextTurn(){
+        return nextturn;
+    }
+
+    public static void setNextTurn(TileColor color) {
+        nextturn = color;
     }
 
 }
