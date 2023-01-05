@@ -39,7 +39,7 @@ public class TurnIndication extends ImageView {
     private Image getPlayer() {
         if (player == null) {
             player_src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
-            player = new Image(player_src, 300, 0, true, false);
+            player = new Image(player_src, Gui.fitTileSize()*4, 0, true, false);
         }
         return player;
     }
@@ -48,7 +48,7 @@ public class TurnIndication extends ImageView {
     private Image getPlayerTurn() {
         if (playerTurn == null) {
             playerTurn_src = getClass().getResourceAsStream("/Assets/characters/" + character + "Turn.png");
-            playerTurn = new Image(playerTurn_src, 300, 0, true, false);
+            playerTurn = new Image(playerTurn_src, Gui.fitTileSize()*4, 0, true, false);
         }
         return playerTurn;
     }
