@@ -122,7 +122,16 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints));
 
+        if (legalMoves.length == 0) {
+            if (noLegalsLastTurn) {
+                //Send gameover beskrev hvor vinderen er den med flest point
+            }
+            noLegalsLastTurn = true;
+        }
+
     }
+
+    boolean noLegalsLastTurn = false;
 
     boolean isColor(int x, int y) {
         return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] != null;

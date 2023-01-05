@@ -62,6 +62,10 @@ public class Gui extends Application {
         guiRoot.setRight(new RightMenu());
     }
 
+    public static void displayWinner() {
+        stackRoot.getChildren().add();
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         setupStageMeta(stage);
@@ -73,14 +77,13 @@ public class Gui extends Application {
         stackRoot.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
 
         Scene scene = new Scene(stackRoot);
-        
+
         stage.setScene(scene);
         stage.show();
 
         stage.setMinWidth(400);
         stage.setMinHeight(400);
 
-        
         makeLeftMenu();
         makeRightMenu();
         makeCenter();
