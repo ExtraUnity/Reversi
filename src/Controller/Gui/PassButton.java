@@ -19,7 +19,7 @@ public class PassButton extends ImageView {
 
         setImage(img);
         setOnMouseClicked(e -> {
-            Model.sendModelMsg(new PassMsg());
+            Model.sendGameMsg(new PassMsg());
         });
     }
 

@@ -70,7 +70,7 @@ public class Controller {
                     public void run() {
                         Gui.makeBoard();
                         TurnIndication.resetTurns();
-                        Model.sendModelMsg(new GuiReadyMsg());
+                        Model.sendGameMsg(new GuiReadyMsg());
                     }
                 });
             }
