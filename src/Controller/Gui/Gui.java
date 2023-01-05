@@ -95,7 +95,6 @@ public class Gui extends Application {
         Scene scene = new Scene(stackRoot);
 
         stage.setScene(scene);
-        stage.show();
         buildGui();
 
         makeLeftMenu();
@@ -104,6 +103,7 @@ public class Gui extends Application {
 
         Model.sendGameMsg(new GuiReadyMsg());
         
+        stage.show();
     }
 
     /**
