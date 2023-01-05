@@ -124,7 +124,7 @@ public class Game {
                 whitePoints, blackPoints));
 
         if (legalMoves.length == 0 || allTilesPlaced()) {
-            if (noLegalsLastTurn) {
+            if (noLegalsLastTurn || allTilesPlaced()) {
                 // Send gameover beskrev hvor vinderen er den med flest point
                 if (whitePoints > blackPoints) {
                     Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
@@ -133,6 +133,8 @@ public class Game {
                 }
             }
             noLegalsLastTurn = true;
+        } else {
+            noLegalsLastTurn = false;
         }
 
     }
