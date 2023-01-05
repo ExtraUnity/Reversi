@@ -1,8 +1,10 @@
 package Controller.Gui;
 
 import Model.Model;
+import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -62,8 +64,8 @@ public class Gui extends Application {
         guiRoot.setRight(new RightMenu());
     }
 
-    public static void displayWinner() {
-        stackRoot.getChildren().add();
+    public static void displayWinner(TileColor color) {
+        stackRoot.getChildren().add(new WinnerIndication(color));
     }
 
     @Override

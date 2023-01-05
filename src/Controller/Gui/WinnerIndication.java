@@ -1,17 +1,26 @@
 package Controller.Gui;
 
+import java.io.InputStream;
+
 import Model.Model;
-import MsgPass.ModelMsg.WinnerMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import Shared.TileColor;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class WinnerIndication extends ImageView {
+    static private InputStream winnerSrc;
+    static private Image winner;
 
     public WinnerIndication(TileColor color) {
         if (color == TileColor.BLACK) {
-            Model.sendGameMsg(new WinnerMsg(TileColor.BLACK));
+            winnerSrc = getClass().getResourceAsStream("/Assets/sortVinder.png");
+            winner = new Image(winnerSrc);
+            setImage(winner);
         } else {
-            Model.sendGameMsg(new WinnerMsg(TileColor.WHITE));
+            winnerSrc = getClass().getResourceAsStream("/Assets/hvidVinder.png");
+            winner = new Image(winnerSrc);
+            setImage(winner);
         }
     }
 }

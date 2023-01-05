@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -122,9 +123,14 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints));
 
-        if (legalMoves.length == 0) {
+        if (legalMoves.length == 0 || allTilesPlaced()) {
             if (noLegalsLastTurn) {
-                //Send gameover beskrev hvor vinderen er den med flest point
+                // Send gameover beskrev hvor vinderen er den med flest point
+                if (whitePoints > blackPoints) {
+                    Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+                } else {
+                    Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+                }
             }
             noLegalsLastTurn = true;
         }
@@ -132,6 +138,18 @@ public class Game {
     }
 
     boolean noLegalsLastTurn = false;
+
+    boolean allTilesPlaced() {
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                if (board[x][y] != null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 
     boolean isColor(int x, int y) {
         return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] != null;
