@@ -8,14 +8,24 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class RestartBtn extends ImageView {
+    private Image img;
+    private Image imgPressed;
 
     public RestartBtn() {
-        InputStream btnAssetSrc = getClass().getResourceAsStream("/Assets/btnAssetSrc.png");
-        double size = Gui.fitTileSize() * 1;
-        Image btnAsset = new Image(btnAssetSrc, size, 0, true, false);
-        setImage(btnAsset);
-        setOnMouseClicked(e -> {
+
+        InputStream src = getClass().getResourceAsStream("/Assets/restartButton.png");
+        this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
+        
+        InputStream src2 = getClass().getResourceAsStream("/Assets/restartButtonPressed.png");
+        this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
+
+        setImage(img);
+        setOnMousePressed(e -> {
+            setImage(imgPressed);
             Model.sendModelMsg(new RestartBtnPressedMsg());
+        });
+        setOnMouseReleased(e -> {
+            setImage(img);
         });
     }
 }

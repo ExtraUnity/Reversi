@@ -17,8 +17,6 @@ public class PassButton extends ImageView {
         InputStream src2 = getClass().getResourceAsStream("/Assets/passButtonPressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
 
-
-        
         setImage(img);
         setOnMousePressed(e -> {
             setImage(imgPressed);

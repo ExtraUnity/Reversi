@@ -70,7 +70,7 @@ public class Gui extends Application {
         guiRoot = new BorderPane();
         stackRoot.getChildren().add(guiRoot);
 
-        stackRoot.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+        stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         Scene scene = new Scene(stackRoot);
         

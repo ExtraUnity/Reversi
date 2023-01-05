@@ -13,7 +13,7 @@ public class SideMenu extends VBox {
         Gui.stackRoot.widthProperty().addListener((obs, oldVal, newVal) -> {
             updateSize();
         });
-        setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID,null,null)));
+        //setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID,null,null)));
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
