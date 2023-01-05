@@ -12,11 +12,11 @@ public class Button extends ImageView {
     private Buttons type;
 
     public Button(Buttons button) {
-        InputStream src = getClass().getResourceAsStream("/Assets/" + button.name().toLowerCase() + "Button.png");
+        InputStream src = getClass().getResourceAsStream("/Assets/Button" + button.name().toLowerCase() + ".png");
         this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
         this.type = button;
         InputStream src2 = getClass()
-                .getResourceAsStream("/Assets/" + button.name().toLowerCase() + "ButtonPressed.png");
+                .getResourceAsStream("/Assets/Button" + button.name().toLowerCase() + "Pressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
         setImage(img);
 
