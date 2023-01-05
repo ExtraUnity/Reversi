@@ -64,9 +64,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.makeBoard();
-                        TurnIndication.resetTurns();
-                        Model.sendGameMsg(new GuiReadyMsg());
+                        Gui.buildGui();
                     }
                 });
             } else if (controllerMsg instanceof WinnerMsg) {
