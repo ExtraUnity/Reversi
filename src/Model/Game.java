@@ -7,6 +7,7 @@ import Controller.Gui.PassButton;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -150,6 +151,37 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints, false));
 
+        if (legalMoves.length == 0 || allTilesPlaced()) {
+            if (noLegalsLastTurn || allTilesPlaced()) {
+                // Send gameover beskrev hvor vinderen er den med flest point
+                System.out.println("Game over");
+                if (whitePoints > blackPoints) {
+                    Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+                } else {
+                    Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+                }
+            }
+            noLegalsLastTurn = true;
+        } else {
+            noLegalsLastTurn = false;
+        }
+
+    }
+
+    boolean noLegalsLastTurn = false;
+
+    boolean allTilesPlaced() {
+        System.out.println("Checking if all tiles are placed");
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                if (board[x][y] == null) {
+                    System.out.println("No disk placed at " + x + "," + y);
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     boolean isColor(int x, int y) {

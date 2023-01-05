@@ -3,6 +3,7 @@ package Controller.Gui;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -10,9 +11,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
@@ -79,6 +82,18 @@ public class Gui extends Application {
         makeLeftMenu();
         makeRightMenu();
         makeCenter();
+
+        Model.sendGameMsg(new GuiReadyMsg());
+    }
+
+    public static void displayWinner(TileColor color) {
+        VBox gameover = new VBox();
+        gameover.setAlignment(Pos.CENTER);
+        // gameover.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+        gameover.setPrefSize(getScreenWidth(), getScreenHeight());
+        gameover.getChildren().add(new WinnerIndication(color));
+        gameover.getChildren().add(new RestartBtn());
+        stackRoot.getChildren().add(gameover);
         Model.sendGameMsg(new GuiReadyMsg());
     }
 
@@ -93,8 +108,8 @@ public class Gui extends Application {
         stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         Scene scene = new Scene(stackRoot);
-
         stage.setScene(scene);
+
         buildGui();
 
         makeLeftMenu();
@@ -102,7 +117,6 @@ public class Gui extends Application {
         makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
-
         stage.show();
     }
 

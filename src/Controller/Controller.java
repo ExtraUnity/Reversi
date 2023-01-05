@@ -8,6 +8,7 @@ import Model.LegalMove;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
@@ -71,6 +72,16 @@ public class Controller {
                     }
 
                 });
+            } else if (controllerMsg instanceof WinnerMsg) {
+                WinnerMsg msg = (WinnerMsg) controllerMsg;
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Gui.displayWinner(msg.winner);
+                    }
+
+                });
+
             }
         }
     }
