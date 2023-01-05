@@ -3,8 +3,8 @@ package Controller.Gui;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 
-public class BotMenu extends BorderPane {
-    BotMenu() {
+public class MenuBottom extends BorderPane {
+    MenuBottom() {
 
         setLeft(new PassButton());
         // setRight(new RestartBtn());

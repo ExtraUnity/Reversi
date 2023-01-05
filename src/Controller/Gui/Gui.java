@@ -47,7 +47,7 @@ public class Gui extends Application {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
         centerBox.setTop(new TopMenu());
-        centerBox.setBottom(new BotMenu());
+        centerBox.setBottom(new MenuBottom());
         guiRoot.setCenter(centerBox);
         makeBoard();
     }
@@ -56,8 +56,8 @@ public class Gui extends Application {
         return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
     }
 
-    public static BotMenu getBotMenu() {
-        return (BotMenu) ((BorderPane) guiRoot.getCenter()).getBottom();
+    public static MenuBottom getMenuBottom() {
+        return (MenuBottom) ((BorderPane) guiRoot.getCenter()).getBottom();
     }
 
     public static void makeBoard() {

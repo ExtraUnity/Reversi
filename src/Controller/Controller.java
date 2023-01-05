@@ -55,7 +55,7 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                if (!msg.isPassing || Gui.getBotMenu().getPassButton().getAvailable()) {
+                if (!msg.isPassing || Gui.getMenuBottom().getPassButton().getAvailable()) {
                     updateBoard(msg);
                     TurnIndication.switchTurns();
                 } else if (msg.isPassing) {
@@ -112,7 +112,7 @@ public class Controller {
      *                   No legal moves -> Pass available
      */
     void updatePassButton(int legalMoves) {
-        PassButton passButton = Gui.getBotMenu().getPassButton();
+        PassButton passButton = Gui.getMenuBottom().getPassButton();
         if (legalMoves == 0) {
             passButton.setImage("/Assets/passButton.png");
             passButton.setAvailable(true);
