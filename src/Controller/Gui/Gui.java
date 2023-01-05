@@ -93,7 +93,7 @@ public class Gui extends Application {
         // null)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
-        gameover.getChildren().add(new RestartBtn());
+        gameover.getChildren().add(new ButtonRestart());
         stackRoot.getChildren().add(gameover);
         Model.sendGameMsg(new GuiReadyMsg());
     }
