@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.Gui.Gui;
+import Controller.Gui.PointCounter;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
 import Model.LegalMove;
@@ -52,10 +53,14 @@ public class Controller {
             System.out.println("Controller Received " + controllerMsg.getClass().getName());
 
             if (controllerMsg instanceof UpdateBoardMsg) {
-
-                UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                updateBoard(msg);
-                TurnIndication.switchTurns();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
+                        updateBoard(msg);
+                        TurnIndication.switchTurns();
+                    }
+                });
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
@@ -84,5 +89,7 @@ public class Controller {
             Tile tile = Gui.getBoard().getTile(move.position);
             tile.setLegalImage();
         }
+        PointCounter.setBlackPoints(msg.blackPoints);
+        PointCounter.setWhitePoints(msg.whitePoints);
     }
 }
