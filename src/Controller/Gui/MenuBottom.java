@@ -3,10 +3,10 @@ package Controller.Gui;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 
-public class BotMenu extends BorderPane {
-    BotMenu() {
+public class MenuBottom extends BorderPane {
+    MenuBottom() {
 
-        setLeft(new PassButton());
+        setLeft(new ButtonPass());
         // setRight(new RestartBtn());
 
         setMargin(getLeft(), new Insets(5, 20, 5, 20));
@@ -14,9 +14,9 @@ public class BotMenu extends BorderPane {
 
     }
 
-    public PassButton getPassButton() {
+    public ButtonPass getButtonPass() {
         try {
-            return (PassButton) this.getLeft();
+            return (ButtonPass) this.getLeft();
         } catch (Exception e) {
             return null;
         }

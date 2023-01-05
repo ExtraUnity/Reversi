@@ -46,8 +46,8 @@ public class Gui extends Application {
     private static void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
-        centerBox.setTop(new TopMenu());
-        centerBox.setBottom(new BotMenu());
+        centerBox.setTop(new MenuTop());
+        centerBox.setBottom(new MenuBottom());
         guiRoot.setCenter(centerBox);
         makeBoard();
     }
@@ -56,20 +56,20 @@ public class Gui extends Application {
         return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
     }
 
-    public static BotMenu getBotMenu() {
-        return (BotMenu) ((BorderPane) guiRoot.getCenter()).getBottom();
+    public static MenuBottom getMenuBottom() {
+        return (MenuBottom) ((BorderPane) guiRoot.getCenter()).getBottom();
     }
 
     public static void makeBoard() {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
 
-    private static void makeLeftMenu() {
-        guiRoot.setLeft(new LeftMenu());
+    private static void makeMenuLeft() {
+        guiRoot.setLeft(new MenuLeft());
     }
 
-    private static void makeRightMenu() {
-        guiRoot.setRight(new RightMenu());
+    private static void makeMenuRight() {
+        guiRoot.setRight(new MenuRight());
 
     }
 
@@ -79,8 +79,8 @@ public class Gui extends Application {
         guiRoot.getChildren().clear();
         stackRoot.getChildren().add(guiRoot);
 
-        makeLeftMenu();
-        makeRightMenu();
+        makeMenuLeft();
+        makeMenuRight();
         makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
@@ -93,7 +93,7 @@ public class Gui extends Application {
         // null)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
-        gameover.getChildren().add(new RestartBtn());
+        gameover.getChildren().add(new ButtonRestart());
         stackRoot.getChildren().add(gameover);
         Model.sendGameMsg(new GuiReadyMsg());
     }

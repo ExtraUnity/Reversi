@@ -4,9 +4,8 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
-
-public class SideMenu extends VBox {
-    SideMenu() {
+public class MenuSide extends VBox {
+    MenuSide() {
         Gui.stackRoot.widthProperty().addListener((obs, oldVal, newVal) -> {
             updateSize();
         });
@@ -17,24 +16,25 @@ public class SideMenu extends VBox {
             }
         });
     }
+
     void updateSize() {
         double windowWidth = Gui.stackRoot.getWidth();
-            double width = windowWidth / 2 - 8 * Gui.fitTileSize() / 2;
-            setFillWidth(true);
-            setPrefWidth(width);
+        double width = windowWidth / 2 - 8 * Gui.fitTileSize() / 2;
+        setFillWidth(true);
+        setPrefWidth(width);
     }
 }
 
-class RightMenu extends SideMenu {
-    RightMenu() {
+class MenuRight extends MenuSide {
+    MenuRight() {
         setAlignment(Pos.BOTTOM_CENTER);
-        getChildren().add(new TurnIndication(PlayerCharacter.ClassicBlack, true));
+        getChildren().add(new TurnIndication(PlayerCharacter.Black, true));
     }
 }
 
-class LeftMenu extends SideMenu {
-    LeftMenu() {
+class MenuLeft extends MenuSide {
+    MenuLeft() {
         setAlignment(Pos.TOP_CENTER);
-        getChildren().add(new TurnIndication(PlayerCharacter.ClassicWhite, false));
+        getChildren().add(new TurnIndication(PlayerCharacter.White, false));
     }
 }
