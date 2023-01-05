@@ -15,14 +15,14 @@ public class RestartBtn extends ImageView {
 
         InputStream src = getClass().getResourceAsStream("/Assets/restartButton.png");
         this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
-        
+
         InputStream src2 = getClass().getResourceAsStream("/Assets/restartButtonPressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
 
         setImage(img);
         setOnMousePressed(e -> {
             setImage(imgPressed);
-            Model.sendModelMsg(new RestartBtnPressedMsg());
+            Model.sendGameMsg(new RestartBtnPressedMsg());
         });
         setOnMouseReleased(e -> {
             setImage(img);

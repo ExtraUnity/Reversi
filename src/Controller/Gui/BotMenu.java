@@ -13,10 +13,11 @@ public class BotMenu extends BorderPane {
         setLeft(new PassButton());
         setRight(new RestartBtn());
 
-        setMargin(getLeft(), new Insets(5,20,5,20));
-        setMargin(getRight(), new Insets(5,20,5,20));
-        //setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, null)));
-        //setWidth(8 * Gui.fitTileSize() / 11);
+        setMargin(getLeft(), new Insets(5, 20, 5, 20));
+        setMargin(getRight(), new Insets(5, 20, 5, 20));
+        // setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+        // null, null)));
+        // setWidth(8 * Gui.fitTileSize() / 11);
 
     }
 

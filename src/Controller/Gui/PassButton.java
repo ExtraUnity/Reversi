@@ -17,14 +17,14 @@ public class PassButton extends ImageView {
         this.src = getClass().getResourceAsStream("/Assets/notPassButton.png");
         this.size = Gui.fitTileSize();
         this.img = new Image(src, 0, size, true, false);
-        
+
         InputStream src2 = getClass().getResourceAsStream("/Assets/passButtonPressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
 
-
         setImage(img);
-
-
+        setOnMouseClicked(e -> {
+            Model.sendGameMsg(new PassMsg());
+        });
     }
 
     public Image getImg() {
@@ -46,18 +46,20 @@ public class PassButton extends ImageView {
         return this.available;
     }
 
-    public void updatePressed(){
-        if(available){
-        setOnMousePressed(e -> {
-            setImage(imgPressed);
-            Model.sendModelMsg(new PassMsg());
-        });
-        setOnMouseReleased(e -> {
-            setImage(img);
-        });
-    } else {
-        setOnMousePressed(e -> {});
-        setOnMouseReleased(e -> {});
-    }
+    public void updatePressed() {
+        if (available) {
+            setOnMousePressed(e -> {
+                setImage(imgPressed);
+                Model.sendGameMsg(new PassMsg());
+            });
+            setOnMouseReleased(e -> {
+                setImage(img);
+            });
+        } else {
+            setOnMousePressed(e -> {
+            });
+            setOnMouseReleased(e -> {
+            });
+        }
     }
 }
