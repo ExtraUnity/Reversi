@@ -94,7 +94,7 @@ public class Game {
      * Derefter sender den besked til controlleren om de ting, der skal ændres.
      */
     void handlePassClick() {
-        PassButton passbutton = Gui.getBotMenu().getPassButton();
+        PassButton passbutton = Gui.getMenuBottom().getPassButton();
         if (!passbutton.getAvailable()) {
             return;
         }
