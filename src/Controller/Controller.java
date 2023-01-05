@@ -55,7 +55,7 @@ public class Controller {
             if (controllerMsg instanceof UpdateBoardMsg) {
 
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                if (!msg.isPassing || msg.legalMoves.length == 0) {
+                if (!msg.isPassing || Gui.getBotMenu().getPassButton().getAvailable()) {
                     updateBoard(msg);
                     TurnIndication.switchTurns();
                 } else if (msg.isPassing) {
@@ -90,6 +90,7 @@ public class Controller {
             Tile tile = Gui.getBoard().getTile(move.position);
             tile.setLegalImage();
         }
+        System.out.println("The next player has " + msg.legalMoves.length + " moves");
 
         updatePassButton(msg.legalMoves.length);
     }
