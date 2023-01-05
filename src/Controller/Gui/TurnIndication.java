@@ -15,12 +15,6 @@ public class TurnIndication extends ImageView {
     private static TurnIndication whitePlayer;
     private static TurnIndication blackPlayer;
 
-    public static void resetTurns() {
-        whitePlayer.isMyTurn = true;
-        blackPlayer.isMyTurn = false;
-        switchTurns();
-    }
-
     public static void switchTurns() {
         whitePlayer.switchTurn();
         blackPlayer.switchTurn();
