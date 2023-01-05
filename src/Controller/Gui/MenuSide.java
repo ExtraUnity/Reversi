@@ -28,13 +28,13 @@ public class MenuSide extends VBox {
 class MenuRight extends MenuSide {
     MenuRight() {
         setAlignment(Pos.BOTTOM_CENTER);
-        getChildren().add(new TurnIndication(PlayerCharacter.ClassicBlack, true));
+        getChildren().add(new TurnIndication(PlayerCharacter.Black, true));
     }
 }
 
 class MenuLeft extends MenuSide {
     MenuLeft() {
         setAlignment(Pos.TOP_CENTER);
-        getChildren().add(new TurnIndication(PlayerCharacter.ClassicWhite, false));
+        getChildren().add(new TurnIndication(PlayerCharacter.White, false));
     }
 }
