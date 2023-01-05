@@ -58,6 +58,6 @@ public class PassButton extends ImageView {
     } else {
         setOnMousePressed(e -> {});
         setOnMouseReleased(e -> {});
-    }
+        }
     }
 }
