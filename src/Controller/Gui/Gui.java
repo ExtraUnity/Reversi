@@ -3,6 +3,7 @@ package Controller.Gui;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -37,10 +38,7 @@ public class Gui extends Application {
     static StackPane stackRoot;
     static BorderPane guiRoot;
 
-    /**
-     * Sets the content of the center box to board and top/bottom menu
-     */
-    private void makeCenter() {
+    private static void makeCenter() {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
         centerBox.setTop(new TopMenu());
@@ -61,12 +59,30 @@ public class Gui extends Application {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
 
-    private void makeLeftMenu() {
+    private static void makeLeftMenu() {
         guiRoot.setLeft(new LeftMenu());
     }
 
-    private void makeRightMenu() {
+    private static void makeRightMenu() {
         guiRoot.setRight(new RightMenu());
+
+    }
+
+    public static void buildGui() {
+
+        stackRoot.getChildren().clear();
+        guiRoot.getChildren().clear();
+        stackRoot.getChildren().add(guiRoot);
+
+        makeLeftMenu();
+        makeRightMenu();
+        makeCenter();
+
+        Model.sendGameMsg(new GuiReadyMsg());
+    }
+
+    public static void displayWinner(TileColor color) {
+        stackRoot.getChildren().add(new WinnerIndication(color));
     }
 
     @Override
@@ -80,18 +96,11 @@ public class Gui extends Application {
         stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         Scene scene = new Scene(stackRoot);
-
         stage.setScene(scene);
+
+        buildGui();
+
         stage.show();
-
-        stage.setMinWidth(400);
-        stage.setMinHeight(400);
-
-        makeLeftMenu();
-        makeRightMenu();
-        makeCenter();
-
-        Model.sendGameMsg(new GuiReadyMsg());
     }
 
     /**
@@ -109,6 +118,8 @@ public class Gui extends Application {
         });
 
         stage.setMaximized(true);
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
     }
 
     public static double fitTileSize() {

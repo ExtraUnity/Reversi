@@ -8,7 +8,7 @@ import Model.LegalMove;
 import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
-import MsgPass.ModelMsg.GuiReadyMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
@@ -68,11 +68,19 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.makeBoard();
-                        TurnIndication.resetTurns();
-                        Model.sendGameMsg(new GuiReadyMsg());
+                        Gui.buildGui();
                     }
                 });
+            } else if (controllerMsg instanceof WinnerMsg) {
+                WinnerMsg msg = (WinnerMsg) controllerMsg;
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Gui.displayWinner(msg.winner);
+                    }
+
+                });
+
             }
         }
     }
