@@ -45,10 +45,10 @@ public class Gui extends Application {
     /**
      * Sets the content of the center box to board and top/bottom menu
      */
-    private static void makeCenter() {
+    private static void makeCenter(GameOptions gameOptions) {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
-        centerBox.setTop(new MenuTop());
+        centerBox.setTop(new MenuTop(gameOptions));
         centerBox.setBottom(new MenuBottom());
         guiRoot.setCenter(centerBox);
         makeBoard();
@@ -94,7 +94,7 @@ public class Gui extends Application {
 
         makeMenuLeft(gameOptions);
         makeMenuRight(gameOptions);
-        makeCenter();
+        makeCenter(gameOptions);
 
         Model.sendGameMsg(new GuiReadyMsg());
     }

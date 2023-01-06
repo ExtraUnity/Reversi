@@ -1,5 +1,4 @@
-import java.util.Random;
-
+import java.time.Instant;
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
@@ -13,7 +12,7 @@ public class BarebonesMain {
         Controller.initController();
 
         TileColor startPlayer;
-        if (new Random().nextBoolean()) {
+        if (Instant.now().getEpochSecond() % 2 == 0) {
             startPlayer = TileColor.BLACK;
         } else {
             startPlayer = TileColor.WHITE;
