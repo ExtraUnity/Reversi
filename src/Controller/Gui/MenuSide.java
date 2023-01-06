@@ -1,6 +1,7 @@
 package Controller.Gui;
 
 import Shared.TileColor;
+import Model.GameOptions;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Border;
@@ -32,19 +33,24 @@ public class MenuSide extends BorderPane {
 }
 
 class MenuRight extends MenuSide {
-    MenuRight() {
-        setTop(new PointCounter(TileColor.BLACK));
-        setMargin(getTop(), new Insets(5));
+    MenuRight(GameOptions gameOptions) {
+        if (gameOptions.countPoints) {
+            setTop(new PointCounter(TileColor.BLACK));
+            setMargin(getTop(), new Insets(5));
+        }
+
         setBottom(new TurnIndication(PlayerCharacter.Black, true));
 
     }
 }
 
 class MenuLeft extends MenuSide {
-    MenuLeft() {
-        // setAlignment(Pos.TOP_CENTER);
+    MenuLeft(GameOptions gameOptions) {
+        if (gameOptions.countPoints) {
+            setCenter(new PointCounter(TileColor.BLACK));
+            setMargin(getCenter(), new Insets(5));
+        }
         setTop(new TurnIndication(PlayerCharacter.White, false));
-        setCenter(new PointCounter(TileColor.WHITE));
-        setMargin(getCenter(), new Insets(5));
+
     }
 }

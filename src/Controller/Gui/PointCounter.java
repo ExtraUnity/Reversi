@@ -27,11 +27,16 @@ public class PointCounter extends FlowPane {
     }
 
     public static void setWhitePoints(int points) {
-        white.setPoints(points);
+        if (white != null) {
+            white.setPoints(points);
+        }
+
     }
 
     public static void setBlackPoints(int points) {
-        black.setPoints(points);
+        if (black != null) {
+            black.setPoints(points);
+        }
     }
 
     void setPoints(int points) {
