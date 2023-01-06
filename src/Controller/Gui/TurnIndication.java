@@ -12,8 +12,12 @@ public class TurnIndication extends ImageView {
     private InputStream playerTurn_src;
     private Image playerTurn;
 
+    private InputStream turn_src;
+    private Image turn;
+
     private static TurnIndication whitePlayer;
     private static TurnIndication blackPlayer;
+
 
     public static void switchTurns() {
         whitePlayer.switchTurn();
@@ -34,6 +38,9 @@ public class TurnIndication extends ImageView {
 
         switchTurn();
     }
+    TurnIndication() {
+        switchColorTurn();
+    }
 
     // get player
     private Image getPlayer() {
@@ -52,6 +59,35 @@ public class TurnIndication extends ImageView {
         }
         return playerTurn;
     }
+
+
+
+
+    public Image turnWhite(){
+        if (turn == null) {
+            turn_src = getClass().getResourceAsStream("/Assets/characters/TurnWhite.png");
+            turn = new Image(turn_src, Gui.fitTileSize() * 4, 0, true, false);
+         } 
+     return turn;
+    }
+    public Image turnBlack(){
+        if (turn == null) {
+            turn_src = getClass().getResourceAsStream("/Assets/characters/TurnBlack.png");
+            turn = new Image(turn_src, Gui.fitTileSize() * 4, 0, true, false);
+         } 
+     return turn;
+    }
+    
+    public void switchColorTurn(){
+        if (isMyTurn) {
+            setImage(turnBlack());
+        } else {
+            setImage(turnWhite());
+        }
+    }
+
+
+
 
     public void switchTurn() {
         isMyTurn = !isMyTurn;
