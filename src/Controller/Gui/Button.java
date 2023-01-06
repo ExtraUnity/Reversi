@@ -36,6 +36,7 @@ public class Button extends ImageView {
                 setImage(imgPressed);
                 if(Game.getNextTurn() == TileColor.WHITE){
                     Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+                    
                 }else{
                     Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
                  }
