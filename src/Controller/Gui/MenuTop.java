@@ -1,11 +1,20 @@
 package Controller.Gui;
 
-import javafx.application.Platform;
-import javafx.scene.layout.Pane;
+import java.io.InputStream;
 
-public class MenuTop extends Pane {
+import Shared.TileColor;
+import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+
+public class MenuTop extends BorderPane {
+    InputStream turn_src;
+    Image turn;
+
     MenuTop() {
+        setCenter(new TopTurnIndication(TileColor.WHITE));
         Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
+           
             updateSize();
         });
         Platform.runLater(new Runnable() {
@@ -22,4 +31,5 @@ public class MenuTop extends Pane {
         // setFillHeight(true);
         setPrefHeight(height);
     }
+
 }

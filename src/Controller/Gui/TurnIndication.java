@@ -2,6 +2,7 @@ package Controller.Gui;
 
 import java.io.InputStream;
 
+import Shared.TileColor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,9 +16,11 @@ public class TurnIndication extends ImageView {
     private static TurnIndication whitePlayer;
     private static TurnIndication blackPlayer;
 
+
     public static void switchTurns() {
         whitePlayer.switchTurn();
         blackPlayer.switchTurn();
+        TopTurnIndication.switchTurn();
     }
 
     boolean isMyTurn;
@@ -53,6 +56,7 @@ public class TurnIndication extends ImageView {
         return playerTurn;
     }
 
+
     public void switchTurn() {
         isMyTurn = !isMyTurn;
         if (isMyTurn) {
@@ -61,4 +65,47 @@ public class TurnIndication extends ImageView {
             setImage(getPlayer());
         }
     }
+}
+
+class TopTurnIndication extends ImageView{
+    private InputStream white_turn_src;
+    private Image white_turn;
+    private InputStream black_turn_src;
+    private Image black_turn;
+
+    private static TopTurnIndication instance;
+    TileColor currentTurn;
+
+    static void switchTurn() {
+        switch (instance.currentTurn) {
+            case WHITE:
+            instance.setImage(instance.turnWhite()); 
+                break;
+            case BLACK:
+            instance.setImage(instance.turnBlack());
+                break;
+        }
+        instance.currentTurn = instance.currentTurn.switchColor();
+    }
+
+    TopTurnIndication(TileColor startTurn) {
+        instance = this;
+        currentTurn = startTurn;
+    }
+
+    public Image turnWhite(){
+        if (white_turn == null) {
+            white_turn_src = getClass().getResourceAsStream("/Assets/TurnWhite.png");
+            white_turn = new Image(white_turn_src, Gui.fitTileSize() * 4, 0, true, false);
+         } 
+     return white_turn;
+    }
+    public Image turnBlack(){
+        if (black_turn == null) {
+            black_turn_src = getClass().getResourceAsStream("/Assets/TurnBlack.png");
+            black_turn = new Image(black_turn_src, Gui.fitTileSize() * 4, 0, true, false);
+         } 
+     return black_turn;
+    }
+
 }
