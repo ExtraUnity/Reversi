@@ -112,7 +112,10 @@ public class Game {
         // flippedTiles = new ArrayList<TilePosition>();
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
+
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints));
+        checkWinner(whitePoints, blackPoints);
+        noLegalsLastTurn = true;
     }
 
     /**
@@ -151,24 +154,23 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints, false));
 
-        if (legalMoves.length == 0 || allTilesPlaced()) {
-            if (noLegalsLastTurn || allTilesPlaced()) {
-                // Send gameover beskrev hvor vinderen er den med flest point
-                System.out.println("Game over");
-                if (whitePoints > blackPoints) {
-                    Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
-                } else {
-                    Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
-                }
-            }
-            noLegalsLastTurn = true;
-        } else {
-            noLegalsLastTurn = false;
-        }
-
+        noLegalsLastTurn = false;
+        checkWinner(whitePoints, blackPoints);
     }
 
     boolean noLegalsLastTurn = false;
+
+    void checkWinner(int whitePoints, int blackPoints) {
+        if (noLegalsLastTurn || allTilesPlaced()) {
+            // Send gameover beskrev hvor vinderen er den med flest point
+            System.out.println("Game over");
+            if (whitePoints > blackPoints) {
+                Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+            } else {
+                Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+            }
+        }
+    }
 
     boolean allTilesPlaced() {
         System.out.println("Checking if all tiles are placed");
