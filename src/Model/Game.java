@@ -29,6 +29,7 @@ public class Game {
 
     Game(GameOptions options) {
         this.options = options;
+        nextturn = options.startPlayer;
     }
 
     void startGame() {
