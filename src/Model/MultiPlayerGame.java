@@ -9,6 +9,7 @@ import Server.Server;
 public class MultiPlayerGame extends Game {
     private final Socket socket;
     private final String netId;
+    @SuppressWarnings("unused")
     private static volatile LinkedBlockingQueue<String> joinGameMsg = new LinkedBlockingQueue<>();
 
     MultiPlayerGame(GameOptions options) {

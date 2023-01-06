@@ -91,7 +91,7 @@ public class Server {
         }
         return new String(id_temp, Charset.forName("UTF-8"));
     }
-
+    @SuppressWarnings("unused")
     private static byte[] toServerMsg(Serializable msg) {
         try {
             ByteArrayOutputStream binWriter = new ByteArrayOutputStream();
