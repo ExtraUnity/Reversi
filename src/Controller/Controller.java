@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.Gui.Gui;
+import Model.Game;
 import Controller.Gui.ButtonPass;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
@@ -9,6 +10,7 @@ import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
+import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
@@ -74,6 +76,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
+                        Game.setNextTurn(TileColor.BLACK);
                         Gui.buildGui();
                     }
 
