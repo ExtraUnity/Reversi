@@ -18,7 +18,7 @@ public class PointCounter extends FlowPane {
         setVgap(10);
         if (color == TileColor.WHITE) {
             white = this;
-            
+
         } else {
             black = this;
         }
@@ -67,7 +67,7 @@ class Point extends ImageView {
     private Image getWhite() {
         if (white == null) {
             white_src = getClass().getResourceAsStream("/Assets/whitePiece.png");
-            white = new Image(white_src, Gui.fitTileSize(), 0, true, false);
+            white = new Image(white_src, Gui.fitTileSize() / 2, 0, true, false);
         }
         return white;
     }
@@ -75,7 +75,7 @@ class Point extends ImageView {
     private Image getBlack() {
         if (black == null) {
             black_src = getClass().getResourceAsStream("/Assets/blackPiece.png");
-            black = new Image(black_src, Gui.fitTileSize(), 0, true, false);
+            black = new Image(black_src, Gui.fitTileSize() / 2, 0, true, false);
         }
         return black;
     }
