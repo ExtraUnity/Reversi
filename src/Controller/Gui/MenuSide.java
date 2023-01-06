@@ -31,19 +31,19 @@ public class MenuSide extends BorderPane {
     }
 }
 
-class MenuRight extends SideMenu {
+class MenuRight extends MenuSide {
     MenuRight() {
         setTop(new PointCounter(TileColor.BLACK));
         setMargin(getTop(), new Insets(5));
-        setBottom(new TurnIndication(PlayerCharacter.GenghisKhan, true));
+        setBottom(new TurnIndication(PlayerCharacter.Black, true));
 
     }
 }
 
-class MenuLeft extends SideMenu {
+class MenuLeft extends MenuSide {
     MenuLeft() {
         // setAlignment(Pos.TOP_CENTER);
-        setTop(new TurnIndication(PlayerCharacter.Stalin, false));
+        setTop(new TurnIndication(PlayerCharacter.White, false));
         setCenter(new PointCounter(TileColor.WHITE));
         setMargin(getCenter(), new Insets(5));
     }
