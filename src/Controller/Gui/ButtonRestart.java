@@ -1,9 +1,7 @@
 package Controller.Gui;
 
-import java.io.InputStream;
 import Model.Model;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
-import javafx.scene.image.Image;
 
 public class ButtonRestart extends Button {
 
