@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+import Controller.Controller;
+import Model.GameOptions;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -64,23 +66,34 @@ public class Gui extends Application {
         ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
     }
 
-    private static void makeMenuLeft() {
-        guiRoot.setLeft(new MenuLeft());
+    private static void makeMenuLeft(GameOptions gameOptions) {
+        guiRoot.setLeft(new MenuLeft(gameOptions));
     }
 
-    private static void makeMenuRight() {
-        guiRoot.setRight(new MenuRight());
+    private static void makeMenuRight(GameOptions gameOptions) {
+        guiRoot.setRight(new MenuRight(gameOptions));
 
     }
 
-    public static void buildGui() {
+    static GameOptions prevGameOptions;
 
+    /**
+     * Hvis null bliver passeret som argument ville der blive brugt samme
+     * gameOptions som sidste game
+     */
+    public static void buildGui(GameOptions gameOptions) {
+        System.out.println("Gui received gameoptions " + gameOptions);
+        if (gameOptions != null) {
+            prevGameOptions = gameOptions;
+        } else {
+            gameOptions = prevGameOptions;
+        }
         stackRoot.getChildren().clear();
         guiRoot.getChildren().clear();
         stackRoot.getChildren().add(guiRoot);
 
-        makeMenuLeft();
-        makeMenuRight();
+        makeMenuLeft(gameOptions);
+        makeMenuRight(gameOptions);
         makeCenter();
 
         Model.sendGameMsg(new GuiReadyMsg());
@@ -95,7 +108,6 @@ public class Gui extends Application {
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new ButtonRestart());
         stackRoot.getChildren().add(gameover);
-        Model.sendGameMsg(new GuiReadyMsg());
     }
 
     @Override
@@ -111,10 +123,9 @@ public class Gui extends Application {
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
 
-        buildGui();
-
-        Model.sendGameMsg(new GuiReadyMsg());
         stage.show();
+        System.out.println("Gui ready to receive gamemode");
+        Controller.setGuiInitDone();
     }
 
     /**

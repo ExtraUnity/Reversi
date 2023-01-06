@@ -3,6 +3,7 @@ package Model;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import MsgPass.ControllerMsg.ControllerMsg;
+import MsgPass.ControllerMsg.StartGameMsg;
 import MsgPass.ModelMsg.ModelMsg;
 import MsgPass.ModelMsg.GameStateMsg;
 
@@ -39,6 +40,7 @@ public class Model {
                             default:
                                 throw new UnsupportedOperationException("Invalid gamemode");
                         }
+                        sendControllerMsg(new StartGameMsg(msg.gameOptions));
                         game.startGame();
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
