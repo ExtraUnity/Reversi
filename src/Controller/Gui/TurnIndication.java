@@ -84,6 +84,8 @@ class TopTurnIndication extends ImageView{
             case BLACK:
             instance.setImage(instance.turnBlack());
                 break;
+            default:
+                break;
         }
         instance.currentTurn = instance.currentTurn.switchColor();
     }
@@ -91,6 +93,7 @@ class TopTurnIndication extends ImageView{
     TopTurnIndication(TileColor startTurn) {
         instance = this;
         currentTurn = startTurn;
+        switchTurn();
     }
 
     public Image turnWhite(){

@@ -2,6 +2,7 @@ package Controller.Gui;
 
 import java.io.InputStream;
 
+import Model.GameOptions;
 import Shared.TileColor;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -11,8 +12,8 @@ public class MenuTop extends BorderPane {
     InputStream turn_src;
     Image turn;
 
-    MenuTop() {
-        setCenter(new TopTurnIndication(TileColor.WHITE));
+    MenuTop(GameOptions gameOptions) {
+        setCenter(new TopTurnIndication(gameOptions.startPlayer));
         Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
            
             updateSize();
