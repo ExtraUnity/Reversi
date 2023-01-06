@@ -3,7 +3,6 @@ package Controller.Gui;
 import java.io.InputStream;
 
 import Model.GameOptions;
-import Shared.TileColor;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -15,7 +14,7 @@ public class MenuTop extends BorderPane {
     MenuTop(GameOptions gameOptions) {
         setCenter(new TopTurnIndication(gameOptions.startPlayer));
         Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
-           
+
             updateSize();
         });
         Platform.runLater(new Runnable() {
