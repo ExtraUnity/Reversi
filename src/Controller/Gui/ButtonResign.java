@@ -3,7 +3,7 @@ package Controller.Gui;
 public class ButtonResign extends Button {
 
     public ButtonResign() {
-        super(Buttons.RESIGN);
+        super(Buttons.Resign);
     }
     
 }

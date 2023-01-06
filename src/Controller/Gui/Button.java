@@ -1,4 +1,5 @@
 package Controller.Gui;
+
 import Model.Game;
 import java.io.InputStream;
 import Model.Model;
@@ -33,17 +34,17 @@ public class Button extends ImageView {
                     Model.sendGameMsg(new RestartBtnPressedMsg());
                 });
                 break;
-            case RESIGN:
-            setOnMousePressed(e -> {
-                setImage(imgPressed);
-                if(Game.getNextTurn() == TileColor.WHITE){
-                    Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
-                    
-                }else{
-                    Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
-                 }
-            });
-            break;
+            case Resign:
+                setOnMousePressed(e -> {
+                    setImage(imgPressed);
+                    if (Game.getNextTurn() == TileColor.WHITE) {
+                        Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+
+                    } else {
+                        Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+                    }
+                });
+                break;
             default:
 
                 break;
