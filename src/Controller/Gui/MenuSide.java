@@ -39,7 +39,7 @@ class MenuRight extends MenuSide {
             setMargin(getTop(), new Insets(5));
         }
 
-        setBottom(new TurnIndication(PlayerCharacter.Black, true));
+        setBottom(new TurnIndication(PlayerCharacter.Black, gameOptions.startPlayer == TileColor.BLACK));
 
     }
 }
@@ -50,7 +50,7 @@ class MenuLeft extends MenuSide {
             setCenter(new PointCounter(TileColor.WHITE));
             setMargin(getCenter(), new Insets(5));
         }
-        setTop(new TurnIndication(PlayerCharacter.White, false));
+        setTop(new TurnIndication(PlayerCharacter.White, gameOptions.startPlayer == TileColor.WHITE));
 
     }
 }

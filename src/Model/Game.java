@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Controller.Gui.Gui;
 import Controller.Gui.ButtonPass;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
-import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
@@ -72,8 +71,9 @@ public class Game {
 
             } else if (modelMsg instanceof RestartBtnPressedMsg) {
                 gamestate = GameState.EXITED;
-                Model.sendControllerMsg(new ResetBoardMsg());
-                Model.startGame(GameMode.CLASSIC, options);
+                GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
+                        options.startPlayer.switchColor());
+                Model.startGame(GameMode.CLASSIC, newOptions);
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");
@@ -293,7 +293,7 @@ public class Game {
         return points;
     }
 
-    public static TileColor getNextTurn(){
+    public static TileColor getNextTurn() {
         return nextturn;
     }
 

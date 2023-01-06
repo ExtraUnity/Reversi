@@ -18,7 +18,6 @@ import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
-import MsgPass.ControllerMsg.ResetBoardMsg;
 import MsgPass.ControllerMsg.StartGameMsg;
 
 public class Controller {
@@ -99,15 +98,6 @@ public class Controller {
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
-            } else if (controllerMsg instanceof ResetBoardMsg) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Game.setNextTurn(TileColor.BLACK);
-                        Gui.buildGui(null);
-                    }
-
-                });
             } else if (controllerMsg instanceof WinnerMsg) {
                 WinnerMsg msg = (WinnerMsg) controllerMsg;
                 Platform.runLater(new Runnable() {

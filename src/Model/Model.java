@@ -18,11 +18,9 @@ public class Model {
         modelMainThread = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 while (true) {
                     try {
                         var msg = startGamequeue.take();
-
                         if (msg.exit) {
                             System.out.println("Model loop exited");
                             break;
