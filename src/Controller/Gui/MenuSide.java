@@ -47,7 +47,7 @@ class MenuRight extends MenuSide {
 class MenuLeft extends MenuSide {
     MenuLeft(GameOptions gameOptions) {
         if (gameOptions.countPoints) {
-            setCenter(new PointCounter(TileColor.BLACK));
+            setCenter(new PointCounter(TileColor.WHITE));
             setMargin(getCenter(), new Insets(5));
         }
         setTop(new TurnIndication(PlayerCharacter.White, false));

@@ -29,6 +29,7 @@ public class Controller {
     private static volatile LinkedBlockingQueue<Boolean> guiReadyQueue = new LinkedBlockingQueue<>();
 
     private static boolean guiInitDone = false;
+
     private static void waitUntilGuiInitDone() {
         if (guiInitDone) {
             return;

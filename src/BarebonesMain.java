@@ -8,6 +8,6 @@ public class BarebonesMain {
 
         Model.initModel();
         Controller.initController();
-        Model.startGame(GameMode.CLASSIC, new GameOptions(-1, false));
+        Model.startGame(GameMode.CLASSIC, new GameOptions(-1, true));
     }
 }
