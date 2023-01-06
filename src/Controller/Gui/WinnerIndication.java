@@ -10,14 +10,24 @@ public class WinnerIndication extends ImageView {
     static private Image winner;
 
     public WinnerIndication(TileColor color) {
-        if (color == TileColor.BLACK) {
-            winnerSrc = getClass().getResourceAsStream("/Assets/sortVinder.png");
-            winner = new Image(winnerSrc);
-            setImage(winner);
-        } else {
-            winnerSrc = getClass().getResourceAsStream("/Assets/hvidVinder.png");
-            winner = new Image(winnerSrc);
-            setImage(winner);
+        switch (color) {
+            case BLACK:
+                winnerSrc = getClass().getResourceAsStream("/Assets/sortVinder.png");
+                break;
+
+            case WHITE:
+                winnerSrc = getClass().getResourceAsStream("/Assets/hvidVinder.png");
+                break;
+
+            case EMPTY:
+                winnerSrc = getClass().getResourceAsStream("/Assets/draw.png");
+                break;
+            default:
+                winnerSrc = null;
+                break;
+
         }
+        winner = new Image(winnerSrc);
+        setImage(winner);
     }
 }

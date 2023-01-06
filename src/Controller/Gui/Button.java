@@ -46,14 +46,12 @@ public class Button extends ImageView {
                 });
                 break;
             default:
-
                 break;
 
         }
-
         setOnMouseReleased(e -> {
             setImage(img);
         });
-    }
 
+    }
 }

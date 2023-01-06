@@ -39,6 +39,7 @@ public class Tile extends ImageView {
         }
         return empty_tile;
     }
+
     private Image getWhiteImage() {
         if (white_tile == null) {
             white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
@@ -56,7 +57,7 @@ public class Tile extends ImageView {
         return black_tile;
     }
 
-    private Image getLegalImage(){
+    private Image getLegalImage() {
         if (legal_tile == null) {
             legal_tile_src = getClass().getResourceAsStream("/Assets/stoneTilePossibleMove.png");
             legal_tile = new Image(legal_tile_src, Gui.fitTileSize(), 0, true, false);
@@ -67,12 +68,13 @@ public class Tile extends ImageView {
 
     private boolean isLegalMove = false;
 
-    public void setLegalImage(){
+    public void setLegalImage() {
         isLegalMove = true;
         setImage(getLegalImage());
     }
-    public void resetLegalMove(){
-        if (isLegalMove){
+
+    public void resetLegalMove() {
+        if (isLegalMove) {
             isLegalMove = false;
             setImage(getEmptyImage());
         }
@@ -88,6 +90,9 @@ public class Tile extends ImageView {
                 break;
             case BLACK:
                 setImage(getBlackImage());
+                break;
+
+            case default:
                 break;
 
         }

@@ -164,10 +164,13 @@ public class Game {
         if (noLegalsLastTurn || allTilesPlaced()) {
             // Send gameover beskrev hvor vinderen er den med flest point
             System.out.println("Game over");
+            System.out.println("White has: " + whitePoints + " Black has: " + blackPoints);
             if (whitePoints > blackPoints) {
                 Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
-            } else {
+            } else if (blackPoints > whitePoints) {
                 Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+            } else {
+                Model.sendControllerMsg(new WinnerMsg(TileColor.EMPTY));
             }
         }
     }
