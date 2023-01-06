@@ -34,7 +34,7 @@ public class Model {
                             case AI_GAME:
                                 throw new UnsupportedOperationException("Not yet implemented");
                             case MULTIPLAYER:
-                                throw new UnsupportedOperationException("Not yet implemented");
+                                game = new MutliPlayerGame(msg.gameOptions);
                             default:
                                 throw new UnsupportedOperationException("Invalid gamemode");
                         }
