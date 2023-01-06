@@ -166,8 +166,10 @@ public class Game {
             System.out.println("Game over");
             if (whitePoints > blackPoints) {
                 Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
-            } else {
+            } else if (blackPoints > whitePoints) {
                 Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+            } else {
+                Model.sendControllerMsg(new WinnerMsg(TileColor.EMPTY));
             }
         }
     }
@@ -293,7 +295,7 @@ public class Game {
         return points;
     }
 
-    public static TileColor getNextTurn(){
+    public static TileColor getNextTurn() {
         return nextturn;
     }
 
