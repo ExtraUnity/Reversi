@@ -2,17 +2,19 @@ package Controller.Gui;
 
 import java.io.InputStream;
 
+import Shared.TileColor;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 
-public class MenuTop extends Pane {
+public class MenuTop extends BorderPane {
     InputStream turn_src;
     Image turn;
 
     MenuTop() {
+        setCenter(new TopTurnIndication(TileColor.WHITE));
         Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
-            getChildren().add(new TurnIndication());
+           
             updateSize();
         });
         Platform.runLater(new Runnable() {
