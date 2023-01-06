@@ -15,24 +15,26 @@ public class Button extends ImageView {
     private Buttons type;
 
     public Button(Buttons button) {
-        InputStream src = getClass().getResourceAsStream("/Assets/Button" + button.name().toLowerCase() + ".png");
+        var path = "/Assets/Button" + button.name() + ".png";
+        System.out.println(path);
+        InputStream src = getClass().getResourceAsStream(path);
         this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
         this.type = button;
         InputStream src2 = getClass()
-                .getResourceAsStream("/Assets/Button" + button.name().toLowerCase() + "Pressed.png");
+                .getResourceAsStream("/Assets/Button" + button.name() + "Pressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
         setImage(img);
 
         switch (type) {
-            case PASS:
+            case Pass:
                 break;
-            case RESTART:
+            case Restart:
                 setOnMousePressed(e -> {
                     setImage(imgPressed);
                     Model.sendGameMsg(new RestartBtnPressedMsg());
                 });
                 break;
-            case RESIGN:
+            case Resign:
                 setOnMousePressed(e -> {
                     setImage(imgPressed);
                     if (Game.getNextTurn() == TileColor.WHITE) {
@@ -47,10 +49,9 @@ public class Button extends ImageView {
                 break;
 
         }
-
         setOnMouseReleased(e -> {
             setImage(img);
         });
-    }
 
+    }
 }

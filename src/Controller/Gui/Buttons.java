@@ -1,7 +1,7 @@
 package Controller.Gui;
 
 public enum Buttons {
-    PASS,
-    RESTART,
-    RESIGN;
+    Pass,
+    Restart,
+    Resign
 }

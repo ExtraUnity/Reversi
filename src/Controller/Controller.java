@@ -1,7 +1,11 @@
 package Controller;
 
 import Controller.Gui.Gui;
+import Controller.Gui.PointCounter;
 import Model.Game;
+
+import java.util.concurrent.LinkedBlockingQueue;
+
 import Controller.Gui.ButtonPass;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
@@ -15,12 +19,36 @@ import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.ResetBoardMsg;
+import MsgPass.ControllerMsg.StartGameMsg;
 
 public class Controller {
     static private Controller controller;
 
     static private Thread controllerMainThread;
     private ControllerState state = ControllerState.RUNNING;
+    private static volatile LinkedBlockingQueue<Boolean> guiReadyQueue = new LinkedBlockingQueue<>();
+
+    private static boolean guiInitDone = false;
+
+    private static void waitUntilGuiInitDone() {
+        if (guiInitDone) {
+            return;
+        }
+        try {
+            guiReadyQueue.take();
+            guiInitDone = true;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void setGuiInitDone() {
+        try {
+            guiReadyQueue.put(true);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private enum ControllerState {
         RUNNING,
@@ -55,7 +83,6 @@ public class Controller {
             System.out.println("Controller Received " + controllerMsg.getClass().getName());
 
             if (controllerMsg instanceof UpdateBoardMsg) {
-
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
                 Platform.runLater(new Runnable() {
                     @Override
@@ -77,7 +104,7 @@ public class Controller {
                     @Override
                     public void run() {
                         Game.setNextTurn(TileColor.BLACK);
-                        Gui.buildGui();
+                        Gui.buildGui(null);
                     }
 
                 });
@@ -87,6 +114,15 @@ public class Controller {
                     @Override
                     public void run() {
                         Gui.displayWinner(msg.winner);
+                    }
+                });
+            } else if (controllerMsg instanceof StartGameMsg) {
+                StartGameMsg msg = (StartGameMsg) controllerMsg;
+                waitUntilGuiInitDone();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Gui.buildGui(msg.gameOptions);
                     }
                 });
 
@@ -107,6 +143,8 @@ public class Controller {
             Tile tile = Gui.getBoard().getTile(move.position);
             tile.setLegalImage();
         }
+        PointCounter.setBlackPoints(msg.blackPoints);
+        PointCounter.setWhitePoints(msg.whitePoints);
         System.out.println("The next player has " + msg.legalMoves.length + " moves");
 
         updateButtonPass(msg.legalMoves.length);

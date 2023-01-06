@@ -5,8 +5,9 @@ import Model.Game.GameMode;
 
 public class BarebonesMain {
     public static void main(String[] args) {
+
         Model.initModel();
         Controller.initController();
-        Model.startGame(GameMode.CLASSIC, new GameOptions(-1));
+        Model.startGame(GameMode.CLASSIC, new GameOptions(-1, false));
     }
 }
