@@ -2,7 +2,6 @@ package Controller;
 
 import Controller.Gui.Gui;
 import Controller.Gui.PointCounter;
-import Model.Game;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -14,7 +13,6 @@ import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
-import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
