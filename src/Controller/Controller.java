@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Gui.Gui;
 import Controller.Gui.PointCounter;
+import Model.Game;
 import Controller.Gui.ButtonPass;
 import Controller.Gui.Tile;
 import Controller.Gui.TurnIndication;
@@ -10,6 +11,7 @@ import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
+import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
@@ -55,12 +57,18 @@ public class Controller {
 
             if (controllerMsg instanceof UpdateBoardMsg) {
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
-                if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
-                    updateBoard(msg);
-                    TurnIndication.switchTurns();
-                } else if (msg.isPassing) {
-                    System.out.println("not allowed to pass because you have " + msg.legalMoves.length + " moves");
-                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
+                            updateBoard(msg);
+                            TurnIndication.switchTurns();
+                        } else if (msg.isPassing) {
+                            System.out.println(
+                                    "not allowed to pass because you have " + msg.legalMoves.length + " moves");
+                        }
+                    }
+                });
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
@@ -68,6 +76,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
+                        Game.setNextTurn(TileColor.BLACK);
                         Gui.buildGui();
                     }
 
@@ -79,7 +88,6 @@ public class Controller {
                     public void run() {
                         Gui.displayWinner(msg.winner);
                     }
-
                 });
 
             }

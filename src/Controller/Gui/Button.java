@@ -1,8 +1,11 @@
 package Controller.Gui;
 
+import Model.Game;
 import java.io.InputStream;
 import Model.Model;
+import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
+import Shared.TileColor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -12,21 +15,34 @@ public class Button extends ImageView {
     private Buttons type;
 
     public Button(Buttons button) {
-        InputStream src = getClass().getResourceAsStream("/Assets/Button" + button.name().toLowerCase() + ".png");
+        var path = "/Assets/Button" + button.name() + ".png";
+        System.out.println(path);
+        InputStream src = getClass().getResourceAsStream(path);
         this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
         this.type = button;
         InputStream src2 = getClass()
-                .getResourceAsStream("/Assets/Button" + button.name().toLowerCase() + "Pressed.png");
+                .getResourceAsStream("/Assets/Button" + button.name() + "Pressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
         setImage(img);
 
         switch (type) {
-            case PASS:
+            case Pass:
                 break;
-            case RESTART:
+            case Restart:
                 setOnMousePressed(e -> {
                     setImage(imgPressed);
                     Model.sendGameMsg(new RestartBtnPressedMsg());
+                });
+                break;
+            case Resign:
+                setOnMousePressed(e -> {
+                    setImage(imgPressed);
+                    if (Game.getNextTurn() == TileColor.WHITE) {
+                        Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+
+                    } else {
+                        Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+                    }
                 });
                 break;
             default:

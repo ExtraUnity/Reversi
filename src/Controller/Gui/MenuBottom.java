@@ -7,10 +7,10 @@ public class MenuBottom extends BorderPane {
     MenuBottom() {
 
         setLeft(new ButtonPass());
-        // setRight(new RestartBtn());
+        setRight(new ButtonResign());
 
         setMargin(getLeft(), new Insets(5, 20, 5, 20));
-        // setMargin(getRight(), new Insets(5, 20, 5, 20));
+        setMargin(getRight(), new Insets(5, 20, 5, 20));
 
     }
 
