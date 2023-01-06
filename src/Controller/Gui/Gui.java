@@ -9,8 +9,13 @@ import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -102,8 +107,7 @@ public class Gui extends Application {
     public static void displayWinner(TileColor color) {
         VBox gameover = new VBox();
         gameover.setAlignment(Pos.CENTER);
-        // gameover.setBackground(new Background(new BackgroundFill(Color.ORANGE, null,
-        // null)));
+        gameover.setBackground(new Background(new BackgroundImage(new Image("/Assets/BackgroundWin.png"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new ButtonRestart());
