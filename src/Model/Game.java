@@ -23,7 +23,7 @@ public class Game {
     }
 
     final GameOptions options;
-    GameState gamestate = GameState.PLAYING;
+    protected GameState gamestate = GameState.PLAYING;
 
     TileColor[][] board = new TileColor[8][8];
 

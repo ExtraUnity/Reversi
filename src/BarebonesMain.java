@@ -19,6 +19,6 @@ public class BarebonesMain {
             startPlayer = TileColor.WHITE;
         }
 
-        Model.startGame(GameMode.CLASSIC, new GameOptions(-1, false, startPlayer));
+        Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, false, startPlayer));
     }
 }

@@ -1,5 +1,7 @@
 package MsgPass.ControllerMsg;
 
-public abstract class ControllerMsg {
+import java.io.Serializable;
+
+public abstract class ControllerMsg implements Serializable {
 
 }
