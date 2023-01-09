@@ -8,6 +8,7 @@ import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import Shared.TileColor;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,8 +39,9 @@ public class Gui extends Application {
         launch(new String[] {});
     }
 
+    static Stage stage;
     static StackPane stackRoot;
-    static HBox startMenuRoot;
+    static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
 
     /**
@@ -108,15 +110,16 @@ public class Gui extends Application {
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new ButtonRestart());
+        gameover.getChildren().add(new ButtonExitGame());
         stackRoot.getChildren().add(gameover);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         setupStageMeta(stage);
-
+        Gui.stage = stage;
         stackRoot = new StackPane();
-        startMenuRoot = new HBox();
+        startMenuRoot = new VBox();
         gameGuiRoot = new BorderPane();
 
         stackRoot.getChildren().add(startMenuRoot);
@@ -138,15 +141,13 @@ public class Gui extends Application {
 
     public static void makeStartMenu() {
 
-        var classicButton = new ButtonClassic();
-        var aiButton = new ButtonAI();
-        var multiplayerButton = new ButtonMultiplayer();
+        var gameModeButtons = new MenuMainCenter();
+        var exitGameButtons = new MenuMainBottom();
 
-        startMenuRoot.getChildren().add(classicButton);
-        startMenuRoot.getChildren().add(aiButton);
-        startMenuRoot.getChildren().add(multiplayerButton);
+        startMenuRoot.getChildren().add(gameModeButtons);
+        startMenuRoot.getChildren().add(exitGameButtons);
         startMenuRoot.setAlignment(Pos.CENTER);
-        startMenuRoot.setSpacing(40);
+
     }
 
     /**
@@ -181,5 +182,15 @@ public class Gui extends Application {
     public static double getScreenWidth() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getWidth();
+    }
+
+    public static void close() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stage.close();
+            }
+        });
+        
     }
 }

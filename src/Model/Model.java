@@ -23,7 +23,7 @@ public class Model {
                     try {
                         var msg = startGamequeue.take();
                         if (msg.exit) {
-                            System.out.println("Model loop exited");
+                            System.out.println("Model loop exited. Sending close controller msg");
                             sendControllerMsg(new ControllerWindowClosedMsg());
                             break;
                         }
