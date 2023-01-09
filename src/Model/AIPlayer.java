@@ -34,10 +34,9 @@ public class AIPlayer {
         isMyTurn = state;
     }
 
-    public void update(TileColor[][] gameBoard, LegalMove[] legalMoves) {
+    public void updateBoard(TileColor[][] gameBoard, LegalMove[] legalMoves) {
         this.gameBoard = gameBoard;
         this.legalMoves = legalMoves;
-        this.bestMove = calculateBestMove();
     }
 
     public TilePosition calculateBestMove() {
@@ -50,4 +49,7 @@ public class AIPlayer {
         return this.bestMove;
     }
 
+    public void setBestMove() {
+        this.bestMove = calculateBestMove();
+    }
 }

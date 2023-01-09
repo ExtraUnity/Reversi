@@ -97,6 +97,7 @@ public class Game {
     void handlePassClick() {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
         if (!ButtonPass.getAvailable()) {
+            System.out.println("YOU SHALL NOT PASS!");
             return;
         }
         var thiscolor = nextturn;
