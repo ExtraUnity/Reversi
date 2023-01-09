@@ -114,7 +114,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.buildGui(msg.gameOptions);
+                        Gui.buildGameGui(msg.gameOptions);
                     }
                 });
 

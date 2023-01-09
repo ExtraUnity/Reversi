@@ -3,6 +3,7 @@ package Model;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import MsgPass.ControllerMsg.ControllerMsg;
+import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.StartGameMsg;
 import MsgPass.ModelMsg.ModelMsg;
 import MsgPass.ModelMsg.GameStateMsg;
@@ -23,6 +24,7 @@ public class Model {
                         var msg = startGamequeue.take();
                         if (msg.exit) {
                             System.out.println("Model loop exited");
+                            sendControllerMsg(new ControllerWindowClosedMsg());
                             break;
                         }
                         System.out.println("Model received start game msg");
