@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+import java.io.InputStream;
+
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
@@ -13,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -139,11 +142,14 @@ public class Gui extends Application {
         Controller.setGuiInitDone();
     }
 
+   
     public static void makeStartMenu() {
-
+    
         var gameModeButtons = new MenuMainCenter();
         var exitGameButtons = new MenuMainBottom();
+        var title = new Title();
 
+        startMenuRoot.getChildren().add(title);
         startMenuRoot.getChildren().add(gameModeButtons);
         startMenuRoot.getChildren().add(exitGameButtons);
         startMenuRoot.setAlignment(Pos.CENTER);
