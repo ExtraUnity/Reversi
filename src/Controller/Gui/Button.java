@@ -15,6 +15,7 @@ public class Button extends ImageView {
         InputStream src = getClass().getResourceAsStream(path);
         this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
         // this.type = button;
+
         InputStream src2 = getClass()
                 .getResourceAsStream("/Assets/Button" + button.name() + "Pressed.png");
         this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);

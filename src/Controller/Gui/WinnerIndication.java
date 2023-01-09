@@ -27,7 +27,7 @@ public class WinnerIndication extends ImageView {
                 break;
 
         }
-        winner = new Image(winnerSrc,0, Gui.fitTileSize(), true, false);
+        winner = new Image(winnerSrc, 0, Gui.fitTileSize() * 3, true, false);
         setImage(winner);
     }
 }
