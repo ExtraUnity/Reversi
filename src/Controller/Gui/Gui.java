@@ -3,13 +3,16 @@ package Controller.Gui;
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
+import Model.Game.GameMode;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -37,7 +40,8 @@ public class Gui extends Application {
     }
 
     static StackPane stackRoot;
-    static BorderPane guiRoot;
+    static HBox startMenuRoot;
+    static BorderPane gameGuiRoot;
 
     /**
      * Sets the content of the center box to board and top/bottom menu
@@ -47,28 +51,28 @@ public class Gui extends Application {
         centerBox.setPrefWidth(8 * fitTileSize());
         centerBox.setTop(new MenuTop(gameOptions));
         centerBox.setBottom(new MenuBottom());
-        guiRoot.setCenter(centerBox);
+        gameGuiRoot.setCenter(centerBox);
         makeBoard();
     }
 
     public static Board getBoard() {
-        return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
+        return (Board) ((BorderPane) gameGuiRoot.getCenter()).getCenter();
     }
 
     public static MenuBottom getMenuBottom() {
-        return (MenuBottom) ((BorderPane) guiRoot.getCenter()).getBottom();
+        return (MenuBottom) ((BorderPane) gameGuiRoot.getCenter()).getBottom();
     }
 
     public static void makeBoard() {
-        ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
+        ((BorderPane) gameGuiRoot.getCenter()).setCenter(new Board());
     }
 
     private static void makeMenuLeft(GameOptions gameOptions) {
-        guiRoot.setLeft(new MenuLeft(gameOptions));
+        gameGuiRoot.setLeft(new MenuLeft(gameOptions));
     }
 
     private static void makeMenuRight(GameOptions gameOptions) {
-        guiRoot.setRight(new MenuRight(gameOptions));
+        gameGuiRoot.setRight(new MenuRight(gameOptions));
 
     }
 
@@ -78,7 +82,7 @@ public class Gui extends Application {
      * Hvis null bliver passeret som argument ville der blive brugt samme
      * gameOptions som sidste game
      */
-    public static void buildGui(GameOptions gameOptions) {
+    public static void buildGameGui(GameOptions gameOptions) {
         System.out.println("Gui received gameoptions " + gameOptions);
         if (gameOptions != null) {
             prevGameOptions = gameOptions;
@@ -86,8 +90,8 @@ public class Gui extends Application {
             gameOptions = prevGameOptions;
         }
         stackRoot.getChildren().clear();
-        guiRoot.getChildren().clear();
-        stackRoot.getChildren().add(guiRoot);
+        gameGuiRoot.getChildren().clear();
+        stackRoot.getChildren().add(gameGuiRoot);
 
         makeMenuLeft(gameOptions);
         makeMenuRight(gameOptions);
@@ -113,17 +117,51 @@ public class Gui extends Application {
         setupStageMeta(stage);
 
         stackRoot = new StackPane();
-        guiRoot = new BorderPane();
-        stackRoot.getChildren().add(guiRoot);
+        startMenuRoot = new HBox();
+        gameGuiRoot = new BorderPane();
+
+        stackRoot.getChildren().add(startMenuRoot);
 
         stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
 
+        makeStartMenu();
+
         stage.show();
         System.out.println("Gui ready to receive gamemode");
         Controller.setGuiInitDone();
+    }
+
+    public static void makeStartMenu() {
+
+        var classicButton = new Button("Classic game mode");
+        classicButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent arg0) {
+                Model.startGame(GameMode.CLASSIC, new GameOptions(-1, false, TileColor.WHITE));
+            }
+        });
+        var aiButton = new Button("ai game mode");
+        aiButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent arg0) {
+                Model.startGame(GameMode.AI_GAME, new GameOptions(-1, false, TileColor.WHITE));
+            }
+        });
+        var multiplayerButton = new Button("Multiplayer game mode");
+        multiplayerButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent arg0) {
+                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, false, TileColor.WHITE));
+            }
+        });
+        startMenuRoot.getChildren().add(classicButton);
+        startMenuRoot.getChildren().add(aiButton);
+        startMenuRoot.getChildren().add(multiplayerButton);
+        startMenuRoot.setAlignment(Pos.CENTER);
+        startMenuRoot.setSpacing(40);
     }
 
     /**
@@ -137,6 +175,7 @@ public class Gui extends Application {
             @Override
             public void handle(WindowEvent e) {
                 Model.sendGameMsg(new ModelWindowClosedMsg());
+                Model.shutdownModel();
             }
         });
 
