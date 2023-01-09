@@ -80,7 +80,7 @@ public class Game {
         System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
-    private static TileColor nextturn = TileColor.BLACK;
+    private static TileColor nextturn;
     private int turns = 0;
 
     public boolean followRules() {
