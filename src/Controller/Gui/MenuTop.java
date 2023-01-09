@@ -14,7 +14,7 @@ public class MenuTop extends BorderPane {
     MenuTop(GameOptions gameOptions) {
         setCenter(new TopTurnIndication(gameOptions.startPlayer));
         Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
-           
+
             updateSize();
         });
         Platform.runLater(new Runnable() {

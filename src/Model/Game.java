@@ -14,7 +14,6 @@ import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import MsgPass.ModelMsg.PassMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
-import javafx.scene.media.AudioClip;
 
 public class Game {
     public enum GameMode {
@@ -84,7 +83,7 @@ public class Game {
     private static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
-    private boolean followRules() {
+    public boolean followRules() {
         return turns > 3;
     }
 
@@ -115,7 +114,7 @@ public class Game {
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
 
-        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints));
+        Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints, turns));
         checkWinner(whitePoints, blackPoints);
         noLegalsLastTurn = true;
     }
@@ -154,7 +153,7 @@ public class Game {
         int blackPoints = getPoints(TileColor.BLACK);
         System.out.println("Legal moves: " + legalMoves.length);
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
-                whitePoints, blackPoints, false));
+                whitePoints, blackPoints, false, turns));
 
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);

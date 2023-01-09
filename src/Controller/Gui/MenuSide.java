@@ -4,6 +4,7 @@ import Shared.TileColor;
 import Model.GameOptions;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 
 public class MenuSide extends BorderPane {
@@ -34,8 +35,8 @@ class MenuRight extends MenuSide {
             setMargin(getTop(), new Insets(5));
         }
 
-        setBottom(new TurnIndication(PlayerCharacter.GenghisKhan, gameOptions.startPlayer == TileColor.BLACK));
-
+        setBottom(new TurnIndication(PlayerCharacter.Black, gameOptions.startPlayer == TileColor.BLACK));
+        setAlignment(getBottom(), Pos.BOTTOM_CENTER);
     }
 }
 
@@ -45,7 +46,8 @@ class MenuLeft extends MenuSide {
             setCenter(new PointCounter(TileColor.WHITE));
             setMargin(getCenter(), new Insets(5));
         }
-        setTop(new TurnIndication(PlayerCharacter.Stalin, gameOptions.startPlayer == TileColor.WHITE));
+        setTop(new TurnIndication(PlayerCharacter.White, gameOptions.startPlayer == TileColor.WHITE));
+        setAlignment(getTop(), Pos.TOP_CENTER);
 
     }
 }

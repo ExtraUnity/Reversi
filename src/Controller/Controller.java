@@ -86,7 +86,7 @@ public class Controller {
                     @Override
                     public void run() {
                         if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
-                            if(!msg.isPassing) {
+                            if (!msg.isPassing && msg.turns > 4) {
                                 piecePlaySound();
                             }
                             updateBoard(msg);
@@ -124,7 +124,7 @@ public class Controller {
 
     private void piecePlaySound() {
         new AudioClip(
-            getClass().getResource("/Assets/sounds/DiskPlace.mp3").toExternalForm()).play();
+                getClass().getResource("/Assets/sounds/DiskPlace.mp3").toExternalForm()).play();
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
