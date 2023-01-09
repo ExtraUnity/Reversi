@@ -11,7 +11,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.geometry.Pos;
@@ -116,7 +115,10 @@ public class Gui extends Application {
         guiRoot = new BorderPane();
         stackRoot.getChildren().add(guiRoot);
 
-        stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
+        stackRoot.setBackground(
+                new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                        new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
 
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
