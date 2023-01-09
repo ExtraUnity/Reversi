@@ -44,6 +44,7 @@ public class Gui extends Application {
 
     static Stage stage;
     static StackPane stackRoot;
+    static VBox characterMenuRoot;
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
 
@@ -127,6 +128,11 @@ public class Gui extends Application {
 
         stackRoot.getChildren().add(startMenuRoot);
 
+
+        characterMenuRoot = new VBox();
+        stackRoot.getChildren().add(characterMenuRoot);
+
+
         stackRoot.setBackground(
                 new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -135,7 +141,9 @@ public class Gui extends Application {
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
 
-        makeStartMenu();
+        //makeStartMenu();
+
+        makeCharacterSelectionMenu();
 
         stage.show();
         System.out.println("Gui ready to receive gamemode");
@@ -144,16 +152,23 @@ public class Gui extends Application {
 
    
     public static void makeStartMenu() {
-    
         var gameModeButtons = new MenuMainCenter();
         var exitGameButtons = new MenuMainBottom();
         var title = new Title();
-
+    
         startMenuRoot.getChildren().add(title);
         startMenuRoot.getChildren().add(gameModeButtons);
         startMenuRoot.getChildren().add(exitGameButtons);
+        
         startMenuRoot.setAlignment(Pos.CENTER);
 
+    }
+
+    public static void makeCharacterSelectionMenu() {
+
+        var characterSel = new MenuCharacterSelection();
+        characterMenuRoot.getChildren().add(characterSel);
+        characterMenuRoot.setAlignment(Pos.CENTER);
     }
 
     /**
