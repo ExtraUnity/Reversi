@@ -4,6 +4,7 @@ import Controller.Gui.Gui;
 import Controller.Gui.PointCounter;
 
 import java.util.concurrent.LinkedBlockingQueue;
+import javafx.scene.media.AudioClip;
 
 import Controller.Gui.ButtonPass;
 import Controller.Gui.Tile;
@@ -85,6 +86,9 @@ public class Controller {
                     @Override
                     public void run() {
                         if (!msg.isPassing || Gui.getMenuBottom().getButtonPass().getAvailable()) {
+                            if (!msg.isPassing && msg.turns > 4) {
+                                piecePlaySound();
+                            }
                             updateBoard(msg);
                             TurnIndication.switchTurns();
                         } else if (msg.isPassing) {
@@ -110,12 +114,17 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.buildGui(msg.gameOptions);
+                        Gui.buildGameGui(msg.gameOptions);
                     }
                 });
 
             }
         }
+    }
+
+    private void piecePlaySound() {
+        new AudioClip(
+                getClass().getResource("/Assets/sounds/DiskPlace.mp3").toExternalForm()).play();
     }
 
     private void updateBoard(UpdateBoardMsg msg) {
