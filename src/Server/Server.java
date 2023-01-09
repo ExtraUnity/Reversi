@@ -68,6 +68,8 @@ public class Server {
                                 did_find_client = true;
                                 outStream.write(1);
                                 found_client.socket.getOutputStream().write(1);
+                                outStream.write(1);
+                                found_client.socket.getOutputStream().write(0);
 
                                 clients.remove(poll_client);
                                 clients.remove(found_client);

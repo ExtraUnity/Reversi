@@ -18,6 +18,7 @@ public class ServerConn {
     public final String netId;
     private boolean joined = false;
     private Thread socketReaderThread;
+    public static TileColor selfColor;
 
     private static ServerConn instance;
 
@@ -38,6 +39,15 @@ public class ServerConn {
                             System.out.println("JOIN SUCCESS: " + success);
                             if (success) {
                                 joined = true;
+
+                                var buffer_2 = new byte[1];
+                                socket.getInputStream().read(buffer_2);
+                                if (buffer_2[0] == 0) {
+                                    selfColor = TileColor.BLACK;
+                                } else {
+                                    selfColor = TileColor.WHITE;
+                                }
+                                System.out.println("My color is " + selfColor);
                                 socketReaderThread = new Thread(new Runnable() {
                                     @Override
                                     public void run() {

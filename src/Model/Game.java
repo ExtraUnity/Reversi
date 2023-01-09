@@ -41,11 +41,18 @@ public class Game {
                 ready = true;
             }
         }
-
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(3, 3)));
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(3, 4)));
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(4, 4)));
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(4, 3)));
+        var msg1 = new TilePressedMsg(new TilePosition(3, 3));
+        msg1.ignoreNet = true;
+        Model.sendGameMsg(msg1);
+        var msg2 = new TilePressedMsg(new TilePosition(3, 4));
+        msg2.ignoreNet = true;
+        Model.sendGameMsg(msg2);
+        var msg3 = new TilePressedMsg(new TilePosition(4, 4));
+        msg3.ignoreNet = true;
+        Model.sendGameMsg(msg3);
+        var msg4 = new TilePressedMsg(new TilePosition(4, 3));
+        msg4.ignoreNet = true;
+        Model.sendGameMsg(msg4);
 
         run_game();
     }
@@ -80,7 +87,7 @@ public class Game {
         System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
-    private static TileColor nextturn = TileColor.BLACK;
+    protected static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
     public boolean followRules() {
