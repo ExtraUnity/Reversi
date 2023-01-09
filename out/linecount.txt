@@ -1,0 +1,577 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2023-01-06 16:27:43
+count workspace : c:\Skole\IntroPro Projekt\Reversi
+total files : 565
+total code lines : 18914
+total comment lines : 1319
+total blank lines : 2988
+
+.gitignore, code is 2, comment is 0, blank is 0.
+bin\Assets\BackgroundGame.png, it is a binary file.
+bin\Assets\BackgroundWin.png, it is a binary file.
+bin\Assets\blackPiece.png, it is a binary file.
+bin\Assets\btnAssetSrc.png, it is a binary file.
+bin\Assets\Button.png, it is a binary file.
+bin\Assets\ButtonPass.png, it is a binary file.
+bin\Assets\ButtonPassGrey.png, it is a binary file.
+bin\Assets\ButtonPassPressed.png, it is a binary file.
+bin\Assets\ButtonResign.png, it is a binary file.
+bin\Assets\ButtonResignPressed.png, it is a binary file.
+bin\Assets\ButtonRestart.png, it is a binary file.
+bin\Assets\ButtonRestartPressed.png, it is a binary file.
+bin\Assets\characters\Black.png, it is a binary file.
+bin\Assets\characters\BlackTurn.png, it is a binary file.
+bin\Assets\characters\GenghisKhan.png, it is a binary file.
+bin\Assets\characters\GenghisKhanTurn.png, it is a binary file.
+bin\Assets\characters\Stalin.png, it is a binary file.
+bin\Assets\characters\StalinTurn.png, it is a binary file.
+bin\Assets\characters\White.png, it is a binary file.
+bin\Assets\characters\WhiteTurn.png, it is a binary file.
+bin\Assets\draw.png, it is a binary file.
+bin\Assets\hvidVinder.png, it is a binary file.
+bin\Assets\sortVinder.png, it is a binary file.
+bin\Assets\sounds\DiskPlace.mp3, it is a binary file.
+bin\Assets\stoneTileBlack.png, it is a binary file.
+bin\Assets\stoneTileEmpty.png, it is a binary file.
+bin\Assets\stoneTilePossibleMove.png, it is a binary file.
+bin\Assets\stoneTileWhite.png, it is a binary file.
+bin\Assets\TurnBlack.png, it is a binary file.
+bin\Assets\TurnWhite.png, it is a binary file.
+bin\Assets\whitePiece.png, it is a binary file.
+bin\BarebonesMain.class, it is a binary file.
+bin\Controller\Controller$1.class, it is a binary file.
+bin\Controller\Controller$2.class, it is a binary file.
+bin\Controller\Controller$3.class, it is a binary file.
+bin\Controller\Controller$4.class, it is a binary file.
+bin\Controller\Controller$ControllerState.class, it is a binary file.
+bin\Controller\Controller.class, it is a binary file.
+bin\Controller\Gui\Board.class, it is a binary file.
+bin\Controller\Gui\Button.class, it is a binary file.
+bin\Controller\Gui\ButtonPass.class, it is a binary file.
+bin\Controller\Gui\ButtonResign.class, it is a binary file.
+bin\Controller\Gui\ButtonRestart.class, it is a binary file.
+bin\Controller\Gui\Buttons.class, it is a binary file.
+bin\Controller\Gui\Gui$1.class, it is a binary file.
+bin\Controller\Gui\Gui$2.class, it is a binary file.
+bin\Controller\Gui\Gui.class, it is a binary file.
+bin\Controller\Gui\MenuBottom.class, it is a binary file.
+bin\Controller\Gui\MenuLeft.class, it is a binary file.
+bin\Controller\Gui\MenuRight.class, it is a binary file.
+bin\Controller\Gui\MenuSide$1.class, it is a binary file.
+bin\Controller\Gui\MenuSide.class, it is a binary file.
+bin\Controller\Gui\MenuTop$1.class, it is a binary file.
+bin\Controller\Gui\MenuTop.class, it is a binary file.
+bin\Controller\Gui\PlayerCharacter.class, it is a binary file.
+bin\Controller\Gui\Point.class, it is a binary file.
+bin\Controller\Gui\PointCounter.class, it is a binary file.
+bin\Controller\Gui\Tile.class, it is a binary file.
+bin\Controller\Gui\TopTurnIndication.class, it is a binary file.
+bin\Controller\Gui\TurnIndication.class, it is a binary file.
+bin\Controller\Gui\WinnerIndication.class, it is a binary file.
+bin\GameMain.class, it is a binary file.
+bin\Model\ClassicGame.class, it is a binary file.
+bin\Model\Game$GameMode.class, it is a binary file.
+bin\Model\Game.class, it is a binary file.
+bin\Model\GameOptions.class, it is a binary file.
+bin\Model\GameState.class, it is a binary file.
+bin\Model\LegalMove.class, it is a binary file.
+bin\Model\Model$1.class, it is a binary file.
+bin\Model\Model.class, it is a binary file.
+bin\MsgPass\ControllerMsg\ControllerMsg.class, it is a binary file.
+bin\MsgPass\ControllerMsg\ControllerWindowClosedMsg.class, it is a binary file.
+bin\MsgPass\ControllerMsg\StartGameMsg.class, it is a binary file.
+bin\MsgPass\ControllerMsg\UpdateBoardMsg.class, it is a binary file.
+bin\MsgPass\ControllerMsg\WinnerMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\GameStateMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\GuiReadyMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\ModelMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\ModelWindowClosedMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\PassMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\RestartBtnPressedMsg.class, it is a binary file.
+bin\MsgPass\ModelMsg\TilePressedMsg.class, it is a binary file.
+bin\Shared\ButtonPosition.class, it is a binary file.
+bin\Shared\TileColor.class, it is a binary file.
+bin\Shared\TilePosition.class, it is a binary file.
+Iterationer\Iteration-1.jar, it is a binary file.
+jdk-19+fx-19\.metadata\.lock, code is 0, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.log, code is 51, comment is 0, blank is 2.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.resources\.projects\.org.eclipse.egit.core.cmp\.location, it is a binary file.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.resources\.root\.indexes\history.version, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.resources\.root\.indexes\properties.index, it is a binary file.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.resources\.root\.indexes\properties.version, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.resources\.root\1.tree, it is a binary file.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources, it is a binary file.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.core.resources.prefs, code is 3, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.jdt.core.prefs, code is 8, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.jdt.launching.prefs, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.jdt.ui.prefs, code is 6, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.jsch.core.prefs, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.m2e.discovery.prefs, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.ui.ide.prefs, code is 4, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.ui.prefs, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.ui.workbench.prefs, code is 11, comment is 1, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.urischeme.prefs, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.e4.workbench\workbench.xmi, code is 460, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.egit.core\.org.eclipse.egit.core.cmp\.project, code is 11, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.egit.core\.org.eclipse.egit.core.cmp\.settings\org.eclipse.core.resources.prefs, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.core\assumedExternalFilesCache, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.core\externalFilesCache, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.core\javaLikeNames.txt, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.core\nonChainingJarsCache, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.core\variablesAndContainers.dat, it is a binary file.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.launching\.install.xml, code is 5, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.launching\libraryInfos.xml, code is 5, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.ui\dialog_settings.xml, code is 12, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.ui\OpenTypeHistory.xml, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.jdt.ui\QualifiedTypeNameHistory.xml, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.m2e.logback.configuration\0.log, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.m2e.logback.configuration\logback.1.16.3.20211002-1029.xml, code is 37, comment is 0, blank is 4.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.oomph.setup\workspace.setup, code is 6, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.tips.ide\dialog_settings.xml, code is 3, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.ui.intro\dialog_settings.xml, code is 4, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.ui.intro\introstate, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\.plugins\org.eclipse.ui.workbench\workingsets.xml, code is 6, comment is 0, blank is 0.
+jdk-19+fx-19\.metadata\version.ini, code is 3, comment is 0, blank is 0.
+jdk-19+fx-19\bin\api-ms-win-core-console-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-console-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-datetime-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-debug-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-errorhandling-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-file-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-file-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-file-l2-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-handle-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-heap-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-interlocked-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-libraryloader-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-localization-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-memory-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-namedpipe-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-processenvironment-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-processthreads-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-processthreads-l1-1-1.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-profile-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-rtlsupport-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-string-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-synch-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-synch-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-sysinfo-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-timezone-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-core-util-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-conio-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-convert-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-environment-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-filesystem-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-heap-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-locale-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-math-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-multibyte-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-private-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-process-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-runtime-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-stdio-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-string-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-time-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\api-ms-win-crt-utility-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\attach.dll, it is a binary file.
+jdk-19+fx-19\bin\awt.dll, it is a binary file.
+jdk-19+fx-19\bin\dt_shmem.dll, it is a binary file.
+jdk-19+fx-19\bin\dt_socket.dll, it is a binary file.
+jdk-19+fx-19\bin\extnet.dll, it is a binary file.
+jdk-19+fx-19\bin\fontmanager.dll, it is a binary file.
+jdk-19+fx-19\bin\freetype.dll, it is a binary file.
+jdk-19+fx-19\bin\instrument.dll, it is a binary file.
+jdk-19+fx-19\bin\j2gss.dll, it is a binary file.
+jdk-19+fx-19\bin\jar.exe, it is a binary file.
+jdk-19+fx-19\bin\jarsigner.exe, it is a binary file.
+jdk-19+fx-19\bin\java.dll, it is a binary file.
+jdk-19+fx-19\bin\java.exe, it is a binary file.
+jdk-19+fx-19\bin\javac.exe, it is a binary file.
+jdk-19+fx-19\bin\javadoc.exe, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-console-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-console-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-datetime-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-debug-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-errorhandling-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-file-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-file-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-file-l2-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-handle-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-heap-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-interlocked-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-libraryloader-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-localization-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-memory-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-namedpipe-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-processenvironment-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-processthreads-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-processthreads-l1-1-1.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-profile-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-rtlsupport-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-string-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-synch-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-synch-l1-2-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-sysinfo-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-timezone-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-core-util-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-conio-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-convert-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-environment-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-filesystem-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-heap-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-locale-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-math-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-multibyte-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-private-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-process-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-runtime-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-stdio-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-string-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-time-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\api-ms-win-crt-utility-l1-1-0.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\decora_sse.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\fxplugins.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\glass.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\glib-lite.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\gstreamer-lite.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\javafx_font.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\javafx_iio.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\jfxmedia.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\msvcp140.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\msvcp140_1.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\msvcp140_2.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\prism_common.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\prism_d3d.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\prism_sw.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\ucrtbase.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\vcruntime140.dll, it is a binary file.
+jdk-19+fx-19\bin\javafx\vcruntime140_1.dll, it is a binary file.
+jdk-19+fx-19\bin\javajpeg.dll, it is a binary file.
+jdk-19+fx-19\bin\javaw.exe, it is a binary file.
+jdk-19+fx-19\bin\jawt.dll, it is a binary file.
+jdk-19+fx-19\bin\jdb.exe, it is a binary file.
+jdk-19+fx-19\bin\jdwp.dll, it is a binary file.
+jdk-19+fx-19\bin\jimage.dll, it is a binary file.
+jdk-19+fx-19\bin\jli.dll, it is a binary file.
+jdk-19+fx-19\bin\jrunscript.exe, it is a binary file.
+jdk-19+fx-19\bin\jsound.dll, it is a binary file.
+jdk-19+fx-19\bin\jwebserver.exe, it is a binary file.
+jdk-19+fx-19\bin\keytool.exe, it is a binary file.
+jdk-19+fx-19\bin\kinit.exe, it is a binary file.
+jdk-19+fx-19\bin\klist.exe, it is a binary file.
+jdk-19+fx-19\bin\ktab.exe, it is a binary file.
+jdk-19+fx-19\bin\lcms.dll, it is a binary file.
+jdk-19+fx-19\bin\management.dll, it is a binary file.
+jdk-19+fx-19\bin\mlib_image.dll, it is a binary file.
+jdk-19+fx-19\bin\msvcp140.dll, it is a binary file.
+jdk-19+fx-19\bin\net.dll, it is a binary file.
+jdk-19+fx-19\bin\nio.dll, it is a binary file.
+jdk-19+fx-19\bin\prefs.dll, it is a binary file.
+jdk-19+fx-19\bin\rmi.dll, it is a binary file.
+jdk-19+fx-19\bin\rmiregistry.exe, it is a binary file.
+jdk-19+fx-19\bin\serialver.exe, it is a binary file.
+jdk-19+fx-19\bin\server\jvm.dll, it is a binary file.
+jdk-19+fx-19\bin\splashscreen.dll, it is a binary file.
+jdk-19+fx-19\bin\sspi_bridge.dll, it is a binary file.
+jdk-19+fx-19\bin\syslookup.dll, it is a binary file.
+jdk-19+fx-19\bin\ucrtbase.dll, it is a binary file.
+jdk-19+fx-19\bin\vcruntime140.dll, it is a binary file.
+jdk-19+fx-19\bin\vcruntime140_1.dll, it is a binary file.
+jdk-19+fx-19\bin\verify.dll, it is a binary file.
+jdk-19+fx-19\bin\w2k_lsa_auth.dll, it is a binary file.
+jdk-19+fx-19\bin\zip.dll, it is a binary file.
+jdk-19+fx-19\conf\logging.properties, code is 30, comment is 0, blank is 6.
+jdk-19+fx-19\conf\net.properties, code is 81, comment is 0, blank is 5.
+jdk-19+fx-19\conf\security\java.policy, code is 28, comment is 16, blank is 2.
+jdk-19+fx-19\conf\security\java.security, code is 483, comment is 14, blank is 19.
+jdk-19+fx-19\conf\security\policy\limited\default_local.policy, code is 11, comment is 2, blank is 1.
+jdk-19+fx-19\conf\security\policy\limited\default_US_export.policy, code is 3, comment is 2, blank is 1.
+jdk-19+fx-19\conf\security\policy\limited\exempt_local.policy, code is 5, comment is 5, blank is 3.
+jdk-19+fx-19\conf\security\policy\README.txt, code is 39, comment is 0, blank is 15.
+jdk-19+fx-19\conf\security\policy\unlimited\default_local.policy, code is 3, comment is 2, blank is 1.
+jdk-19+fx-19\conf\security\policy\unlimited\default_US_export.policy, code is 3, comment is 2, blank is 1.
+jdk-19+fx-19\conf\sound.properties, code is 39, comment is 0, blank is 0.
+jdk-19+fx-19\include\classfile_constants.h, code is 533, comment is 37, blank is 20.
+jdk-19+fx-19\include\jawt.h, code is 61, comment is 278, blank is 17.
+jdk-19+fx-19\include\jdwpTransport.h, code is 152, comment is 73, blank is 51.
+jdk-19+fx-19\include\jni.h, code is 1696, comment is 90, blank is 213.
+jdk-19+fx-19\include\jvmti.h, code is 1960, comment is 254, blank is 443.
+jdk-19+fx-19\include\jvmticmlr.h, code is 34, comment is 68, blank is 13.
+jdk-19+fx-19\include\sizecalc.h, code is 36, comment is 67, blank is 20.
+jdk-19+fx-19\include\win32\jawt_md.h, code is 20, comment is 33, blank is 6.
+jdk-19+fx-19\include\win32\jni_md.h, code is 11, comment is 25, blank is 4.
+jdk-19+fx-19\legal\java.base\aes.md, code is 28, comment is 0, blank is 8.
+jdk-19+fx-19\legal\java.base\asm.md, code is 28, comment is 0, blank is 8.
+jdk-19+fx-19\legal\java.base\c-libutl.md, code is 25, comment is 1, blank is 10.
+jdk-19+fx-19\legal\java.base\cldr.md, code is 84, comment is 8, blank is 17.
+jdk-19+fx-19\legal\java.base\COPYRIGHT, code is 60, comment is 0, blank is 8.
+jdk-19+fx-19\legal\java.base\icu.md, code is 375, comment is 79, blank is 38.
+jdk-19+fx-19\legal\java.base\LICENSE, code is 60, comment is 1, blank is 14.
+jdk-19+fx-19\legal\java.base\public_suffix.md, code is 208, comment is 3, blank is 52.
+jdk-19+fx-19\legal\java.base\unicode.md, code is 84, comment is 9, blank is 15.
+jdk-19+fx-19\legal\java.base\wepoll.md, code is 27, comment is 1, blank is 7.
+jdk-19+fx-19\legal\java.base\zlib.md, code is 20, comment is 0, blank is 7.
+jdk-19+fx-19\legal\java.compiler\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.compiler\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.datatransfer\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.datatransfer\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.desktop\colorimaging.md, code is 5, comment is 0, blank is 2.
+jdk-19+fx-19\legal\java.desktop\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.desktop\freetype.md, code is 100, comment is 31, blank is 44.
+jdk-19+fx-19\legal\java.desktop\giflib.md, code is 22, comment is 1, blank is 8.
+jdk-19+fx-19\legal\java.desktop\harfbuzz.md, code is 51, comment is 1, blank is 15.
+jdk-19+fx-19\legal\java.desktop\jpeg.md, code is 30, comment is 0, blank is 10.
+jdk-19+fx-19\legal\java.desktop\lcms.md, code is 21, comment is 0, blank is 6.
+jdk-19+fx-19\legal\java.desktop\libpng.md, code is 110, comment is 0, blank is 31.
+jdk-19+fx-19\legal\java.desktop\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.desktop\mesa3d.md, code is 22, comment is 0, blank is 7.
+jdk-19+fx-19\legal\java.instrument\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.instrument\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.logging\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.logging\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.management.rmi\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.management.rmi\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.management\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.management\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.naming\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.naming\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.net.http\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.net.http\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.prefs\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.prefs\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.rmi\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.rmi\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.scripting\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.scripting\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.se\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.se\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.security.jgss\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.security.jgss\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.security.sasl\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.security.sasl\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.sql.rowset\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.sql.rowset\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.sql\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.sql\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.transaction.xa\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.transaction.xa\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.xml.crypto\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.xml.crypto\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.xml.crypto\santuario.md, code is 168, comment is 3, blank is 36.
+jdk-19+fx-19\legal\java.xml\bcel.md, code is 164, comment is 2, blank is 34.
+jdk-19+fx-19\legal\java.xml\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.xml\dom.md, code is 50, comment is 1, blank is 14.
+jdk-19+fx-19\legal\java.xml\jcup.md, code is 26, comment is 0, blank is 5.
+jdk-19+fx-19\legal\java.xml\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\java.xml\xalan.md, code is 176, comment is 5, blank is 37.
+jdk-19+fx-19\legal\java.xml\xerces.md, code is 174, comment is 4, blank is 34.
+jdk-19+fx-19\legal\javafx.base\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+jdk-19+fx-19\legal\javafx.base\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+jdk-19+fx-19\legal\javafx.base\LICENSE, code is 125, comment is 0, blank is 28.
+jdk-19+fx-19\legal\javafx.controls\ADDITIONAL_LICENSE_INFO, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.controls\ASSEMBLY_EXCEPTION, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.controls\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.fxml\ADDITIONAL_LICENSE_INFO, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.fxml\ASSEMBLY_EXCEPTION, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.fxml\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.graphics\ADDITIONAL_LICENSE_INFO, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.graphics\ASSEMBLY_EXCEPTION, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.graphics\jpeg_fx.md, code is 27, comment is 8, blank is 7.
+jdk-19+fx-19\legal\javafx.graphics\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.graphics\mesa3d.md, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.media\ADDITIONAL_LICENSE_INFO, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.media\ASSEMBLY_EXCEPTION, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\javafx.media\directshow.md, code is 20, comment is 0, blank is 6.
+jdk-19+fx-19\legal\javafx.media\glib.md, code is 272, comment is 1, blank is 59.
+jdk-19+fx-19\legal\javafx.media\gstreamer.md, code is 272, comment is 1, blank is 57.
+jdk-19+fx-19\legal\javafx.media\libffi.md, code is 22, comment is 0, blank is 6.
+jdk-19+fx-19\legal\javafx.media\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.attach\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.attach\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.charsets\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.charsets\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.compiler\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.compiler\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.httpserver\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.httpserver\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.internal.jvmstat\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.internal.jvmstat\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.jartool\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.jartool\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.javadoc\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.javadoc\jquery.md, code is 54, comment is 3, blank is 18.
+jdk-19+fx-19\legal\jdk.javadoc\jqueryUI.md, code is 36, comment is 3, blank is 13.
+jdk-19+fx-19\legal\jdk.javadoc\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.jdi\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.jdi\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.jdwp.agent\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.jdwp.agent\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.localedata\cldr.md, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.localedata\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.localedata\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.localedata\thaidict.md, code is 24, comment is 0, blank is 7.
+jdk-19+fx-19\legal\jdk.naming.dns\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.naming.dns\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.net\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.net\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.unsupported\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.unsupported\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.xml.dom\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.xml.dom\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.zipfs\COPYRIGHT, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\legal\jdk.zipfs\LICENSE, code is 1, comment is 0, blank is 0.
+jdk-19+fx-19\lib\classlist, code is 1485, comment is 0, blank is 0.
+jdk-19+fx-19\lib\ct.sym, it is a binary file.
+jdk-19+fx-19\lib\fontconfig.bfc, it is a binary file.
+jdk-19+fx-19\lib\fontconfig.properties.src, code is 277, comment is 0, blank is 51.
+jdk-19+fx-19\lib\javafx-swt.jar, it is a binary file.
+jdk-19+fx-19\lib\javafx.properties, code is 3, comment is 0, blank is 0.
+jdk-19+fx-19\lib\jawt.lib, it is a binary file.
+jdk-19+fx-19\lib\jrt-fs.jar, it is a binary file.
+jdk-19+fx-19\lib\jvm.cfg, code is 2, comment is 0, blank is 0.
+jdk-19+fx-19\lib\jvm.lib, it is a binary file.
+jdk-19+fx-19\lib\modules, it is a binary file.
+jdk-19+fx-19\lib\psfont.properties.ja, code is 118, comment is 0, blank is 1.
+jdk-19+fx-19\lib\psfontj2d.properties, code is 95, comment is 0, blank is 1.
+jdk-19+fx-19\lib\security\blocked.certs, code is 39, comment is 0, blank is 0.
+jdk-19+fx-19\lib\security\cacerts, it is a binary file.
+jdk-19+fx-19\lib\security\default.policy, code is 198, comment is 15, blank is 31.
+jdk-19+fx-19\lib\security\public_suffix_list.dat, it is a binary file.
+jdk-19+fx-19\lib\tzdb.dat, it is a binary file.
+jdk-19+fx-19\lib\tzmappings, code is 506, comment is 0, blank is 0.
+jdk-19+fx-19\release, code is 2, comment is 0, blank is 0.
+lib\javafx-sdk-19\legal\javafx.base\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.base\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.base\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.controls\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.controls\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.controls\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.fxml\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.fxml\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.fxml\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.graphics\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.graphics\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.graphics\jpeg_fx.md, code is 27, comment is 8, blank is 7.
+lib\javafx-sdk-19\legal\javafx.graphics\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.graphics\mesa3d.md, code is 22, comment is 0, blank is 7.
+lib\javafx-sdk-19\legal\javafx.media\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.media\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.media\directshow.md, code is 20, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.media\glib.md, code is 272, comment is 1, blank is 59.
+lib\javafx-sdk-19\legal\javafx.media\gstreamer.md, code is 272, comment is 1, blank is 57.
+lib\javafx-sdk-19\legal\javafx.media\libffi.md, code is 22, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.media\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.swing\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.swing\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.swing\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.web\ADDITIONAL_LICENSE_INFO, code is 29, comment is 0, blank is 6.
+lib\javafx-sdk-19\legal\javafx.web\ASSEMBLY_EXCEPTION, code is 17, comment is 2, blank is 5.
+lib\javafx-sdk-19\legal\javafx.web\icu_web.md, code is 328, comment is 71, blank is 30.
+lib\javafx-sdk-19\legal\javafx.web\libxml2.md, code is 41, comment is 0, blank is 8.
+lib\javafx-sdk-19\legal\javafx.web\libxslt.md, code is 47, comment is 0, blank is 13.
+lib\javafx-sdk-19\legal\javafx.web\LICENSE, code is 125, comment is 0, blank is 28.
+lib\javafx-sdk-19\legal\javafx.web\webkit.md, code is 3636, comment is 13, blank is 627.
+lib\javafx-sdk-19\lib\javafx-swt.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.base.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.controls.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.fxml.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.graphics.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.media.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.properties, code is 3, comment is 0, blank is 0.
+lib\javafx-sdk-19\lib\javafx.swing.jar, it is a binary file.
+lib\javafx-sdk-19\lib\javafx.web.jar, it is a binary file.
+lib\javafx-sdk-19\lib\libavplugin-54.so, it is a binary file.
+lib\javafx-sdk-19\lib\libavplugin-56.so, it is a binary file.
+lib\javafx-sdk-19\lib\libavplugin-57.so, it is a binary file.
+lib\javafx-sdk-19\lib\libavplugin-ffmpeg-56.so, it is a binary file.
+lib\javafx-sdk-19\lib\libavplugin-ffmpeg-57.so, it is a binary file.
+lib\javafx-sdk-19\lib\libavplugin-ffmpeg-58.so, it is a binary file.
+lib\javafx-sdk-19\lib\libdecora_sse.so, it is a binary file.
+lib\javafx-sdk-19\lib\libfxplugins.so, it is a binary file.
+lib\javafx-sdk-19\lib\libglass.so, it is a binary file.
+lib\javafx-sdk-19\lib\libglassgtk2.so, it is a binary file.
+lib\javafx-sdk-19\lib\libglassgtk3.so, it is a binary file.
+lib\javafx-sdk-19\lib\libgstreamer-lite.so, it is a binary file.
+lib\javafx-sdk-19\lib\libjavafx_font.so, it is a binary file.
+lib\javafx-sdk-19\lib\libjavafx_font_freetype.so, it is a binary file.
+lib\javafx-sdk-19\lib\libjavafx_font_pango.so, it is a binary file.
+lib\javafx-sdk-19\lib\libjavafx_iio.so, it is a binary file.
+lib\javafx-sdk-19\lib\libjfxmedia.so, it is a binary file.
+lib\javafx-sdk-19\lib\libjfxwebkit.so, it is a binary file.
+lib\javafx-sdk-19\lib\libprism_common.so, it is a binary file.
+lib\javafx-sdk-19\lib\libprism_es2.so, it is a binary file.
+lib\javafx-sdk-19\lib\libprism_sw.so, it is a binary file.
+README.md, code is 2, comment is 0, blank is 1.
+src\Assets\BackgroundGame.png, it is a binary file.
+src\Assets\BackgroundWin.png, it is a binary file.
+src\Assets\blackPiece.png, it is a binary file.
+src\Assets\btnAssetSrc.png, it is a binary file.
+src\Assets\Button.png, it is a binary file.
+src\Assets\ButtonPass.png, it is a binary file.
+src\Assets\ButtonPassGrey.png, it is a binary file.
+src\Assets\ButtonPassPressed.png, it is a binary file.
+src\Assets\ButtonResign.png, it is a binary file.
+src\Assets\ButtonResignPressed.png, it is a binary file.
+src\Assets\ButtonRestart.png, it is a binary file.
+src\Assets\ButtonRestartPressed.png, it is a binary file.
+src\Assets\characters\Black.png, it is a binary file.
+src\Assets\characters\BlackTurn.png, it is a binary file.
+src\Assets\characters\GenghisKhan.png, it is a binary file.
+src\Assets\characters\GenghisKhanTurn.png, it is a binary file.
+src\Assets\characters\Stalin.png, it is a binary file.
+src\Assets\characters\StalinTurn.png, it is a binary file.
+src\Assets\characters\White.png, it is a binary file.
+src\Assets\characters\WhiteTurn.png, it is a binary file.
+src\Assets\draw.png, it is a binary file.
+src\Assets\hvidVinder.png, it is a binary file.
+src\Assets\sortVinder.png, it is a binary file.
+src\Assets\sounds\DiskPlace.mp3, it is a binary file.
+src\Assets\stoneTileBlack.png, it is a binary file.
+src\Assets\stoneTileEmpty.png, it is a binary file.
+src\Assets\stoneTilePossibleMove.png, it is a binary file.
+src\Assets\stoneTileWhite.png, it is a binary file.
+src\Assets\TurnBlack.png, it is a binary file.
+src\Assets\TurnWhite.png, it is a binary file.
+src\Assets\whitePiece.png, it is a binary file.
+src\BarebonesMain.java, code is 19, comment is 0, blank is 4.
+src\Controller\Controller.java, code is 140, comment is 7, blank is 22.
+src\Controller\Gui\Board.java, code is 26, comment is 0, blank is 5.
+src\Controller\Gui\Button.java, code is 18, comment is 0, blank is 5.
+src\Controller\Gui\ButtonPass.java, code is 52, comment is 0, blank is 10.
+src\Controller\Gui\ButtonResign.java, code is 21, comment is 0, blank is 5.
+src\Controller\Gui\ButtonRestart.java, code is 15, comment is 0, blank is 5.
+src\Controller\Gui\Buttons.java, code is 6, comment is 0, blank is 1.
+src\Controller\Gui\Gui.java, code is 127, comment is 12, blank is 28.
+src\Controller\Gui\MenuBottom.java, code is 18, comment is 0, blank is 6.
+src\Controller\Gui\MenuSide.java, code is 42, comment is 1, blank is 8.
+src\Controller\Gui\MenuTop.java, code is 28, comment is 1, blank is 7.
+src\Controller\Gui\PlayerCharacter.java, code is 7, comment is 0, blank is 1.
+src\Controller\Gui\PointCounter.java, code is 70, comment is 1, blank is 17.
+src\Controller\Gui\Tile.java, code is 81, comment is 1, blank is 18.
+src\Controller\Gui\TurnIndication.java, code is 92, comment is 2, blank is 20.
+src\Controller\Gui\WinnerIndication.java, code is 27, comment is 0, blank is 6.
+src\GameMain.java, code is 4, comment is 0, blank is 1.
+src\Model\ClassicGame.java, code is 6, comment is 0, blank is 3.
+src\Model\Game.java, code is 237, comment is 32, blank is 47.
+src\Model\GameOptions.java, code is 16, comment is 0, blank is 4.
+src\Model\LegalMove.java, code is 10, comment is 0, blank is 3.
+src\Model\Model.java, code is 88, comment is 0, blank is 12.
+src\MsgPass\ControllerMsg\ControllerMsg.java, code is 3, comment is 0, blank is 2.
+src\MsgPass\ControllerMsg\ControllerWindowClosedMsg.java, code is 3, comment is 0, blank is 2.
+src\MsgPass\ControllerMsg\StartGameMsg.java, code is 8, comment is 0, blank is 4.
+src\MsgPass\ControllerMsg\UpdateBoardMsg.java, code is 37, comment is 2, blank is 7.
+src\MsgPass\ControllerMsg\WinnerMsg.java, code is 8, comment is 0, blank is 4.
+src\MsgPass\ModelMsg\GameStateMsg.java, code is 20, comment is 0, blank is 4.
+src\MsgPass\ModelMsg\GuiReadyMsg.java, code is 3, comment is 0, blank is 1.
+src\MsgPass\ModelMsg\ModelMsg.java, code is 3, comment is 0, blank is 2.
+src\MsgPass\ModelMsg\ModelWindowClosedMsg.java, code is 3, comment is 0, blank is 2.
+src\MsgPass\ModelMsg\PassMsg.java, code is 8, comment is 0, blank is 3.
+src\MsgPass\ModelMsg\RestartBtnPressedMsg.java, code is 3, comment is 0, blank is 1.
+src\MsgPass\ModelMsg\TilePressedMsg.java, code is 8, comment is 0, blank is 3.
+src\Shared\ButtonPosition.java, code is 13, comment is 0, blank is 3.
+src\Shared\TileColor.java, code is 24, comment is 0, blank is 5.
+src\Shared\TilePosition.java, code is 16, comment is 0, blank is 3.
+===============================================================================

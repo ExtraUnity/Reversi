@@ -4,5 +4,6 @@ public enum PlayerCharacter {
     Stalin,
     GenghisKhan,
     Black,
-    White
+    White,
+    BarakObama
 }

@@ -122,7 +122,7 @@ public class Gui extends Application {
         guiRoot = new BorderPane();
         stackRoot.getChildren().add(guiRoot);
 
-        stackRoot.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
+        stackRoot.setBackground(new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,new BackgroundSize(1.0, 1.0, true, true, false, false))));
 
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
