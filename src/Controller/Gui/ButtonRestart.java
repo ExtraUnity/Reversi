@@ -6,7 +6,7 @@ import MsgPass.ModelMsg.RestartBtnPressedMsg;
 public class ButtonRestart extends Button {
 
     public ButtonRestart() {
-        super(Buttons.Restart);
+        super(Buttons.Restart,1);
         setOnMousePressed(e -> {
             setImage(imgPressed);
 

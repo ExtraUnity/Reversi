@@ -138,27 +138,10 @@ public class Gui extends Application {
 
     public static void makeStartMenu() {
 
-        var classicButton = new Button("Classic game mode");
-        classicButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                Model.startGame(GameMode.CLASSIC, new GameOptions(-1, false, TileColor.WHITE));
-            }
-        });
-        var aiButton = new Button("ai game mode");
-        aiButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                Model.startGame(GameMode.AI_GAME, new GameOptions(-1, false, TileColor.WHITE));
-            }
-        });
-        var multiplayerButton = new Button("Multiplayer game mode");
-        multiplayerButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, false, TileColor.WHITE));
-            }
-        });
+        var classicButton = new ButtonClassic();
+        var aiButton = new ButtonAI();
+        var multiplayerButton = new ButtonMultiplayer();
+
         startMenuRoot.getChildren().add(classicButton);
         startMenuRoot.getChildren().add(aiButton);
         startMenuRoot.getChildren().add(multiplayerButton);
