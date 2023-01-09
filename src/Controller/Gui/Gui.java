@@ -1,15 +1,22 @@
 package Controller.Gui;
 
+import java.io.InputStream;
+
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
+import Model.Game.GameMode;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import Shared.TileColor;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -35,8 +42,10 @@ public class Gui extends Application {
         launch(new String[] {});
     }
 
+    static Stage stage;
     static StackPane stackRoot;
-    static BorderPane guiRoot;
+    static VBox startMenuRoot;
+    static BorderPane gameGuiRoot;
 
     /**
      * Sets the content of the center box to board and top/bottom menu
@@ -46,28 +55,28 @@ public class Gui extends Application {
         centerBox.setPrefWidth(8 * fitTileSize());
         centerBox.setTop(new MenuTop(gameOptions));
         centerBox.setBottom(new MenuBottom());
-        guiRoot.setCenter(centerBox);
+        gameGuiRoot.setCenter(centerBox);
         makeBoard();
     }
 
     public static Board getBoard() {
-        return (Board) ((BorderPane) guiRoot.getCenter()).getCenter();
+        return (Board) ((BorderPane) gameGuiRoot.getCenter()).getCenter();
     }
 
     public static MenuBottom getMenuBottom() {
-        return (MenuBottom) ((BorderPane) guiRoot.getCenter()).getBottom();
+        return (MenuBottom) ((BorderPane) gameGuiRoot.getCenter()).getBottom();
     }
 
     public static void makeBoard() {
-        ((BorderPane) guiRoot.getCenter()).setCenter(new Board());
+        ((BorderPane) gameGuiRoot.getCenter()).setCenter(new Board());
     }
 
     private static void makeMenuLeft(GameOptions gameOptions) {
-        guiRoot.setLeft(new MenuLeft(gameOptions));
+        gameGuiRoot.setLeft(new MenuLeft(gameOptions));
     }
 
     private static void makeMenuRight(GameOptions gameOptions) {
-        guiRoot.setRight(new MenuRight(gameOptions));
+        gameGuiRoot.setRight(new MenuRight(gameOptions));
 
     }
 
@@ -77,7 +86,7 @@ public class Gui extends Application {
      * Hvis null bliver passeret som argument ville der blive brugt samme
      * gameOptions som sidste game
      */
-    public static void buildGui(GameOptions gameOptions) {
+    public static void buildGameGui(GameOptions gameOptions) {
         System.out.println("Gui received gameoptions " + gameOptions);
         if (gameOptions != null) {
             prevGameOptions = gameOptions;
@@ -85,8 +94,8 @@ public class Gui extends Application {
             gameOptions = prevGameOptions;
         }
         stackRoot.getChildren().clear();
-        guiRoot.getChildren().clear();
-        stackRoot.getChildren().add(guiRoot);
+        gameGuiRoot.getChildren().clear();
+        stackRoot.getChildren().add(gameGuiRoot);
 
         makeMenuLeft(gameOptions);
         makeMenuRight(gameOptions);
@@ -104,16 +113,19 @@ public class Gui extends Application {
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new ButtonRestart());
+        gameover.getChildren().add(new ButtonExitGame());
         stackRoot.getChildren().add(gameover);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         setupStageMeta(stage);
-
+        Gui.stage = stage;
         stackRoot = new StackPane();
-        guiRoot = new BorderPane();
-        stackRoot.getChildren().add(guiRoot);
+        startMenuRoot = new VBox();
+        gameGuiRoot = new BorderPane();
+
+        stackRoot.getChildren().add(startMenuRoot);
 
         stackRoot.setBackground(
                 new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
@@ -123,9 +135,25 @@ public class Gui extends Application {
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
 
+        makeStartMenu();
+
         stage.show();
         System.out.println("Gui ready to receive gamemode");
         Controller.setGuiInitDone();
+    }
+
+   
+    public static void makeStartMenu() {
+    
+        var gameModeButtons = new MenuMainCenter();
+        var exitGameButtons = new MenuMainBottom();
+        var title = new Title();
+
+        startMenuRoot.getChildren().add(title);
+        startMenuRoot.getChildren().add(gameModeButtons);
+        startMenuRoot.getChildren().add(exitGameButtons);
+        startMenuRoot.setAlignment(Pos.CENTER);
+
     }
 
     /**
@@ -139,6 +167,7 @@ public class Gui extends Application {
             @Override
             public void handle(WindowEvent e) {
                 Model.sendGameMsg(new ModelWindowClosedMsg());
+                Model.shutdownModel();
             }
         });
 
@@ -159,5 +188,15 @@ public class Gui extends Application {
     public static double getScreenWidth() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getWidth();
+    }
+
+    public static void close() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stage.close();
+            }
+        });
+        
     }
 }

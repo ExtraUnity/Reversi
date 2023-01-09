@@ -8,7 +8,7 @@ import Shared.TileColor;
 public class ButtonResign extends Button {
 
     public ButtonResign() {
-        super(Buttons.Resign);
+        super(Buttons.Resign,1);
         setOnMousePressed(e -> {
             setImage(imgPressed);
         });

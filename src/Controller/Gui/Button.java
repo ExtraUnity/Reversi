@@ -9,16 +9,16 @@ public class Button extends ImageView {
     protected Image imgPressed;
     // private Buttons type;
 
-    public Button(Buttons button) {
+    public Button(Buttons button, int i) {
         var path = "/Assets/Button" + button.name() + ".png";
         System.out.println(path);
         InputStream src = getClass().getResourceAsStream(path);
-        this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
+        this.img = new Image(src, 0, Gui.fitTileSize() * i, true, false);
         // this.type = button;
 
         InputStream src2 = getClass()
                 .getResourceAsStream("/Assets/Button" + button.name() + "Pressed.png");
-        this.imgPressed = new Image(src2, 0, Gui.fitTileSize(), true, false);
+        this.imgPressed = new Image(src2, 0, Gui.fitTileSize() * i, true, false);
         setImage(img);
 
     }
