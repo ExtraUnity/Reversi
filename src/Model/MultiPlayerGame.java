@@ -1,25 +1,35 @@
 package Model;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.util.concurrent.LinkedBlockingQueue;
-
-import Server.Server;
+import MsgPass.ModelMsg.PassMsg;
+import MsgPass.ModelMsg.TilePressedMsg;
+import Server.ServerConn;
+import Shared.TilePosition;
 
 public class MultiPlayerGame extends Game {
-    private final Socket socket;
-    private final String netId;
-    @SuppressWarnings("unused")
-    private static volatile LinkedBlockingQueue<String> joinGameMsg = new LinkedBlockingQueue<>();
 
     MultiPlayerGame(GameOptions options) {
         super(options);
-        try {
-            socket = new Socket("0.0.0.0", 4000);
-            netId = Server.getInitId(socket);
-            System.out.println("Received netId " + netId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    }
+
+    @Override
+    void handlePassClick(PassMsg msg) {
+        super.handlePassClick(msg);
+        if (!msg.netTransfer) {
+            var newmsg = new PassMsg();
+            newmsg.netTransfer = true;
+            ServerConn.sendModelMessage(newmsg);
         }
+
+    }
+
+    @Override
+    void handleTileClick(TilePosition pos, TilePressedMsg msg) {
+        super.handleTileClick(pos, msg);
+        if (!msg.netTransfer) {
+            var newmsg = new TilePressedMsg(pos);
+            newmsg.netTransfer = true;
+            ServerConn.sendModelMessage(newmsg);
+        }
+
     }
 }

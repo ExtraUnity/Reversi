@@ -1,14 +1,12 @@
 package Server;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -54,12 +52,20 @@ public class Server {
                     var poll_client = clients.get(i);
                     var inStream = poll_client.socket.getInputStream();
                     if (inStream.available() >= 6) {
+                        System.out.println(poll_client.id_str + " has bytes");
                         byte[] netIdBytes = new byte[6];
+                        var netIdStr = new String(netIdBytes);
                         inStream.read(netIdBytes);
+
+                        System.out.println(poll_client.id_str + " read " + new String(netIdBytes));
+
                         var outStream = poll_client.socket.getOutputStream();
+                        boolean did_find_client = false;
                         for (int j = 0; j < clients.size(); j++) {
                             var found_client = clients.get(j);
-                            if (found_client.id.equals(netIdBytes)) {
+                            System.out.println("Checking " + found_client.id_str);
+                            if (Arrays.equals(found_client.id, netIdBytes)) {
+                                did_find_client = true;
                                 outStream.write(1);
                                 found_client.socket.getOutputStream().write(1);
 
@@ -70,7 +76,10 @@ public class Server {
                                 break;
                             }
                         }
-                        outStream.write(0);
+                        if (!did_find_client) {
+                            outStream.write(0);
+                            System.out.println(poll_client.id_str + " failed to find " + netIdStr);
+                        }
                         break;
                     }
                 }
@@ -91,27 +100,12 @@ public class Server {
         }
         return new String(id_temp, Charset.forName("UTF-8"));
     }
-    @SuppressWarnings("unused")
-    private static byte[] toServerMsg(Serializable msg) {
-        try {
-            ByteArrayOutputStream binWriter = new ByteArrayOutputStream();
-            ObjectOutputStream objWriter = new ObjectOutputStream(binWriter);
-            objWriter.writeObject(msg);
-            byte[] msg_bin = binWriter.toByteArray();
-
-            ByteArrayOutputStream totalOut = new ByteArrayOutputStream();
-            totalOut.write(msg_bin.length);
-            totalOut.write(msg_bin);
-            return totalOut.toByteArray();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 
 class WaitingClient {
     final Socket socket;
     final byte[] id;
+    final String id_str;
 
     WaitingClient(Socket socket) {
         this.socket = socket;
@@ -126,6 +120,7 @@ class WaitingClient {
                 .toString();
         System.out.println("Generated netId " + generatedString);
         id = generatedString.getBytes();
+        id_str = generatedString;
     }
 }
 
@@ -136,6 +131,7 @@ class GameHost {
     GameHost(WaitingClient player1, WaitingClient player2) {
         socket1 = player1.socket;
         socket2 = player2.socket;
+        System.out.println("Spawned game between " + player1.id_str + " " + player2.id_str);
     }
 
     void spawn() {
@@ -152,19 +148,27 @@ class GameHost {
                         if (in1.available() >= 4) {
                             byte[] msgLenBytes = new byte[4];
                             in1.read(msgLenBytes);
+                            for (int i = 0; i < msgLenBytes.length; i++) {
+                                System.out.println(msgLenBytes[i]);
+                            }
                             ByteBuffer buffer = ByteBuffer.wrap(msgLenBytes);
                             int len = buffer.getInt();
                             byte[] message = new byte[len];
                             in1.read(message);
+                            out2.write(msgLenBytes);
                             out2.write(message);
                         }
                         if (in2.available() >= 4) {
                             byte[] msgLenBytes = new byte[4];
                             in2.read(msgLenBytes);
+                            for (int i = 0; i < msgLenBytes.length; i++) {
+                                System.out.println(msgLenBytes[i]);
+                            }
                             ByteBuffer buffer = ByteBuffer.wrap(msgLenBytes);
                             int len = buffer.getInt();
                             byte[] message = new byte[len];
                             in2.read(message);
+                            out1.write(msgLenBytes);
                             out1.write(message);
                         }
 

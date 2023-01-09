@@ -6,19 +6,23 @@ import Model.Model;
 import Model.Game.GameMode;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Server.ServerConn;
 import Shared.TileColor;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 
 public class Gui extends Application {
@@ -42,6 +46,7 @@ public class Gui extends Application {
     static StackPane stackRoot;
     static HBox startMenuRoot;
     static BorderPane gameGuiRoot;
+    static Stage stage;
 
     /**
      * Sets the content of the center box to board and top/bottom menu
@@ -115,6 +120,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         setupStageMeta(stage);
+        Gui.stage = stage;
 
         stackRoot = new StackPane();
         startMenuRoot = new HBox();
@@ -154,7 +160,27 @@ public class Gui extends Application {
         multiplayerButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
-                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, false, TileColor.WHITE));
+                final Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.initOwner(stage);
+                VBox dialogVbox = new VBox(20);
+
+                ServerConn conn = new ServerConn();
+
+                dialogVbox.getChildren().add(new Text("Your id: " + conn.netId));
+                var inputfield = new TextField();
+                dialogVbox.getChildren().add(inputfield);
+                var submitButton = new Button("Join");
+                submitButton.setOnMouseClicked(new EventHandler<javafx.event.Event>() {
+                    @Override
+                    public void handle(javafx.event.Event arg0) {
+                        conn.tryJoin(inputfield.getText());
+                    }
+                });
+                dialogVbox.getChildren().add(submitButton);
+                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                dialog.setScene(dialogScene);
+                dialog.show();
             }
         });
         startMenuRoot.getChildren().add(classicButton);

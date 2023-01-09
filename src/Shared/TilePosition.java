@@ -1,6 +1,8 @@
 package Shared;
 
-public class TilePosition {
+import java.io.Serializable;
+
+public class TilePosition implements Serializable {
     public final int x;
     public final int y;
 

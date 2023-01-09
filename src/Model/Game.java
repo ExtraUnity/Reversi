@@ -60,10 +60,10 @@ public class Game {
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
-                handleTileClick(msg.pos);
+                handleTileClick(msg.pos, msg);
 
             } else if (modelMsg instanceof PassMsg) {
-                handlePassClick();
+                handlePassClick((PassMsg) modelMsg);
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
@@ -94,7 +94,7 @@ public class Game {
      * samt skifter farven.
      * Derefter sender den besked til controlleren om de ting, der skal ændres.
      */
-    void handlePassClick() {
+    void handlePassClick(PassMsg msg) {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
         if (!ButtonPass.getAvailable()) {
             return;
@@ -125,7 +125,7 @@ public class Game {
      * andre brikker. Derefter sender den en besked til Controlleren om hvilke
      * brikker der er blevet vendt. Denne funktion er IKKE pure
      */
-    void handleTileClick(TilePosition pos) {
+    void handleTileClick(TilePosition pos, TilePressedMsg msg) {
 
         if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
