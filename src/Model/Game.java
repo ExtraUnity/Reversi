@@ -152,11 +152,17 @@ public class Game {
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
         System.out.println("Legal moves: " + legalMoves.length);
+
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints, false, turns));
-
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);
+        if (this instanceof AIGame && followRules()) {
+            handleAITurn(legalMoves);
+        }
+    }
+
+    void handleAITurn(LegalMove[] legalMoves) {
     }
 
     boolean noLegalsLastTurn = false;
