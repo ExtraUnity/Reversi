@@ -26,8 +26,8 @@ public class MenuMultiplayer extends BorderPane {
         VBox dialogVbox = new VBox(20);
         dialogVbox.getChildren().add(new Text("Your id: " + conn.netId));
         dialogVbox.getChildren().add(inputfield);
-        
 
+        setRight(dialogVbox);
         setCenter(new ButtonJoin(conn , inputfield));
     }
     
