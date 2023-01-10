@@ -1,6 +1,8 @@
 package Model;
 
 import MsgPass.ModelMsg.PassMsg;
+import MsgPass.ModelMsg.ResignMsg;
+import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Server.ServerConn;
 import Shared.TilePosition;
@@ -8,7 +10,7 @@ import Shared.TilePosition;
 public class MultiPlayerGame extends Game {
 
     MultiPlayerGame(GameOptions options) {
-        super(options);
+        super(options, GameMode.MULTIPLAYER);
     }
 
     @Override
@@ -23,6 +25,33 @@ public class MultiPlayerGame extends Game {
             ServerConn.sendModelMessage(newmsg);
         }
 
+    }
+
+    @Override
+    void handleResign(ResignMsg msg) {
+
+        if (!msg.ignoreNet) {
+            if (nextturn == ServerConn.selfColor) {
+                var newmsg = new ResignMsg();
+                newmsg.ignoreNet = true;
+                ServerConn.sendModelMessage(newmsg);
+            } else {
+                return;
+            }
+        }
+        super.handleResign(msg);
+
+    }
+
+    @Override
+    void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
+
+        if (!msg.ignoreNet) {
+            var newmsg = new RestartBtnPressedMsg();
+            newmsg.ignoreNet = true;
+            ServerConn.sendModelMessage(newmsg);
+        }
+        super.handleRestartBtnPressed(msg);
     }
 
     @Override

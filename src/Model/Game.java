@@ -12,23 +12,27 @@ import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import MsgPass.ModelMsg.PassMsg;
+import MsgPass.ModelMsg.ResignMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 
-public class Game {
+public abstract class Game {
     public enum GameMode {
         CLASSIC,
         AI_GAME,
         MULTIPLAYER
     }
 
+    final GameMode gameMode;
+
     final GameOptions options;
     protected GameState gamestate = GameState.PLAYING;
 
     TileColor[][] board = new TileColor[8][8];
 
-    Game(GameOptions options) {
+    Game(GameOptions options, GameMode gameMode) {
         this.options = options;
+        this.gameMode = gameMode;
         nextturn = options.startPlayer;
     }
 
@@ -78,13 +82,25 @@ public class Game {
                 Model.shutdownModel();
 
             } else if (modelMsg instanceof RestartBtnPressedMsg) {
-                gamestate = GameState.EXITED;
-                GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
-                        options.startPlayer.switchColor());
-                Model.startGame(GameMode.CLASSIC, newOptions);
+
+                handleRestartBtnPressed((RestartBtnPressedMsg) modelMsg);
+            } else if (modelMsg instanceof ResignMsg) {
+                handleResign((ResignMsg) modelMsg);
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");
+    }
+
+    void handleResign(ResignMsg msg) {
+        var winner = nextturn.switchColor();
+        Model.sendControllerMsg(new WinnerMsg(winner));
+    }
+
+    void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
+        gamestate = GameState.EXITED;
+        GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
+                options.startPlayer.switchColor());
+        Model.startGame(gameMode, newOptions);
     }
 
     protected static TileColor nextturn = TileColor.BLACK;

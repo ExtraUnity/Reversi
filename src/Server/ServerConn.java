@@ -25,7 +25,7 @@ public class ServerConn {
     public ServerConn() {
         instance = this;
         try {
-            socket = new Socket("77.213.215.246", 4000);
+            socket = new Socket("77.213.215.246", 80);
             netId = Server.getInitId(socket);
             System.out.println("Received netId " + netId);
             new Thread(new Runnable() {
