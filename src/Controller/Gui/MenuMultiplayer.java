@@ -1,34 +1,28 @@
 package Controller.Gui;
 
 import Server.ServerConn;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
 
 public class MenuMultiplayer extends BorderPane {
 
-    //bare indtil thors server er oppe igen.
-    /* 
-    public MenuMultiplayer(){
+    public MenuMultiplayer(ServerConn conn){
         VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("Your id: "));
+        TextField text = new TextField();
+        ButtonJoin join = new ButtonJoin(conn , text);   
 
-        setCenter(new ButtonJoin());
-    }
-     */
-    
-    public MenuMultiplayer(ServerConn conn, TextField inputfield){
-        //have the textfield that lets you enter in your game key
-        VBox dialogVbox = new VBox(20);
+        text.setMaxWidth(Gui.fitTileSize());
+        
         dialogVbox.getChildren().add(new Text("Your id: " + conn.netId));
-        dialogVbox.getChildren().add(inputfield);
+        dialogVbox.getChildren().add(text);
+        dialogVbox.getChildren().add(join);
+        
+        setCenter(dialogVbox);
 
-        setRight(dialogVbox);
-        setCenter(new ButtonJoin(conn , inputfield));
+        setMargin(getCenter(), new Insets(64, 0, 0, 0));
     }
     
     

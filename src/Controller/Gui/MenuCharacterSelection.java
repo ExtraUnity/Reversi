@@ -21,7 +21,6 @@ public class MenuCharacterSelection extends BorderPane{
             flowPane.getChildren().add(imgList.get(i));
             }
             flowPane.setAlignment(Pos.CENTER);
-    
             setCenter(flowPane);
 
     }

@@ -11,15 +11,12 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
-import javafx.stage.Modality;
 import javafx.stage.Screen;
 
 public class Gui extends Application {
@@ -129,9 +126,9 @@ public class Gui extends Application {
         stackRoot.getChildren().add(startMenuRoot);
 
         stackRoot.setBackground(
-                new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                        new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
+            new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), 
+            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+            new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
 
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
@@ -156,20 +153,17 @@ public class Gui extends Application {
     }
 
     
-    //public static void makeMultiplayerMenu() {
-    public static void makeMultiplayerMenu(ServerConn conn, TextField inputField) {
+    public static void makeMultiplayerMenu(ServerConn conn) {
         multiplayerMenuRoot = new VBox();
         stackRoot.getChildren().clear();
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
         stackRoot.setBackground(
-                new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                        new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
+            new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), 
+            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+            new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
 
-
-        var joinButton = new MenuMultiplayer(conn, inputField);
-        //var joinButton = new MenuMultiplayer();
+        var joinButton = new MenuMultiplayer(conn);
         var caracterSelect = new MenuCharacterSelection();
 
         multiplayerMenuRoot.getChildren().add(caracterSelect);
