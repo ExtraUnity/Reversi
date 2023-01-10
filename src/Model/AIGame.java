@@ -37,18 +37,24 @@ public class AIGame extends Game {
             return;
         }
 
-        aiPlayer.updateBoard(board, legalMoves);
+        aiPlayer.updateBoard(board, legalMoves); // updates with the newest board
+
+        // TEMPORARY
         try {
             Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
+        //
+
         aiPlayer.setMyTurn(false);
+
         if (legalMoves.length != 0) {
-            aiPlayer.setBestMove();
+            aiPlayer.setBestMove(); // Algorithm magic
             System.out.println("Best Move is: " + aiPlayer.getBestMove());
+
             handleTileClick(aiPlayer.getBestMove());
-        } else {
+        } else { // then pass
             System.out.println("I should pass...");
             handlePassClick();
         }

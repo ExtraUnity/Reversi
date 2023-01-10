@@ -80,23 +80,13 @@ public class AIPlayer {
                 continue;
             }
 
-            // checks whether current evaluation is better for AI than bestEvaluation
-            switch (AIGame.getNextTurn()) {
-                case BLACK:
-                    if (currentMoveEvaluation < bestEvaluation) {
-                        currentBestMove = legalMoves[i].position;
-                        bestEvaluation = currentMoveEvaluation;
-                    }
-                    break;
-                case WHITE:
-                    if (currentMoveEvaluation > bestEvaluation) {
-                        currentBestMove = legalMoves[i].position;
-                        bestEvaluation = currentMoveEvaluation;
-                    }
-                    break;
-                default:
-                    break;
-
+            /*
+             * Checks whether current evaluation is better for AI than bestEvaluation
+             * AI will always be black.
+             */
+            if (currentMoveEvaluation < bestEvaluation) {
+                currentBestMove = legalMoves[i].position;
+                bestEvaluation = currentMoveEvaluation;
             }
 
         }
