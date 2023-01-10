@@ -1,7 +1,6 @@
 package Model;
 
 import Shared.*;
-import java.util.Arrays;
 
 public class AIPlayer {
     private TileColor[][] gameBoard;
