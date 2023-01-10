@@ -1,9 +1,9 @@
 package Controller.Gui;
 
 public enum PlayerCharacter {
-    Stalin,
-    GenghisKhan,
     Black,
     White,
+    Stalin,
+    GenghisKhan,
     BarakObama
 }

@@ -128,10 +128,8 @@ public class Gui extends Application {
 
         stackRoot.getChildren().add(startMenuRoot);
 
-
-        characterMenuRoot = new VBox();
-        stackRoot.getChildren().add(characterMenuRoot);
-
+        //characterMenuRoot = new VBox();
+        //stackRoot.getChildren().add(characterMenuRoot);
 
         stackRoot.setBackground(
                 new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
@@ -141,9 +139,7 @@ public class Gui extends Application {
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
 
-        //makeStartMenu();
-
-        makeCharacterSelectionMenu();
+        makeStartMenu();
 
         stage.show();
         System.out.println("Gui ready to receive gamemode");
