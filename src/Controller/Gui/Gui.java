@@ -8,16 +8,20 @@ import Model.Model;
 import Model.Game.GameMode;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Server.ServerConn;
 import Shared.TileColor;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.geometry.Pos;
@@ -44,6 +48,7 @@ public class Gui extends Application {
 
     static Stage stage;
     static StackPane stackRoot;
+    static VBox characterMenuRoot;
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
 
@@ -127,6 +132,9 @@ public class Gui extends Application {
 
         stackRoot.getChildren().add(startMenuRoot);
 
+        //characterMenuRoot = new VBox();
+        //stackRoot.getChildren().add(characterMenuRoot);
+
         stackRoot.setBackground(
                 new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -144,16 +152,21 @@ public class Gui extends Application {
 
    
     public static void makeStartMenu() {
-    
         var gameModeButtons = new MenuMainCenter();
         var exitGameButtons = new MenuMainBottom();
         var title = new Title();
-
+    
         startMenuRoot.getChildren().add(title);
         startMenuRoot.getChildren().add(gameModeButtons);
         startMenuRoot.getChildren().add(exitGameButtons);
         startMenuRoot.setAlignment(Pos.CENTER);
+    }
 
+    public static void makeCharacterSelectionMenu() {
+
+        var characterSel = new MenuCharacterSelection();
+        characterMenuRoot.getChildren().add(characterSel);
+        characterMenuRoot.setAlignment(Pos.CENTER);
     }
 
     /**
