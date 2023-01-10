@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Server {
-    private static final int PORT = 5000;
+    private static final int PORT = 4000;
     private static final int POLLING_INTERVAL = 100;
 
     private static volatile LinkedBlockingQueue<WaitingClient> newConnections = new LinkedBlockingQueue<>();
