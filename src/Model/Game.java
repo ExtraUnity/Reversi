@@ -104,7 +104,7 @@ public class Game {
         nextturn.switchColor();
         TilePosition noTile = new TilePosition(0, 0);
 
-        for (var t_pos : getAllFlipped(noTile, thiscolor)) {
+        for (var t_pos : getAllFlipped(noTile, thiscolor, board)) {
             board[t_pos.x][t_pos.y] = thiscolor;
         }
         turns++;
@@ -128,13 +128,15 @@ public class Game {
      */
     void handleTileClick(TilePosition pos) {
 
-        if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null) {
+        if (isColor(pos.x, pos.y, board) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
             return;
         }
 
         var thiscolor = nextturn;
-        var flippedTiles = getAllFlipped(pos, thiscolor);
+        System.out.println(nextturn);
+        var flippedTiles = getAllFlipped(pos, thiscolor, board);
+        System.out.println(followRules() + " " + flippedTiles.size());
         if (followRules() && flippedTiles.size() == 0) {
             System.out.println("Illegal move at " + pos + ". No flips");
             return;
@@ -192,7 +194,7 @@ public class Game {
         return true;
     }
 
-    boolean isColor(int x, int y) {
+    static boolean isColor(int x, int y, TileColor[][] board) {
         return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] != null;
     }
 
@@ -200,13 +202,14 @@ public class Game {
      * Laver en liste af alle de tiles som skal flippes, i den retning som bliver
      * givet af dx og dy. Denne funktion er pure
      */
-    ArrayList<TilePosition> flipable(TilePosition pos, int dx, int dy, TileColor placedColor) {
+    static ArrayList<TilePosition> flipable(TilePosition pos, int dx, int dy, TileColor placedColor,
+            TileColor[][] board) {
         var flipped = new ArrayList<TilePosition>();
         int x = pos.x + dx;
         int y = pos.y + dy;
         boolean flipValid;
         while (true) {
-            if (!isColor(x, y)) {
+            if (!isColor(x, y, board)) {
                 flipValid = false;
                 break;
             }
@@ -230,18 +233,18 @@ public class Game {
      * Finder alle de tiles som kan vendes ved et givet træk. Denne funktion er
      * pure.
      */
-    ArrayList<TilePosition> getAllFlipped(TilePosition pos, TileColor placedColor) {
+    static ArrayList<TilePosition> getAllFlipped(TilePosition pos, TileColor placedColor, TileColor[][] board) {
         // Flip all above
-        var aboveFlipped = flipable(pos, 0, 1, placedColor);
-        var rightFlipped = flipable(pos, 1, 0, placedColor);
-        var belowFlipped = flipable(pos, 0, -1, placedColor);
-        var leftFlipped = flipable(pos, -1, 0, placedColor);
+        var aboveFlipped = flipable(pos, 0, 1, placedColor, board);
+        var rightFlipped = flipable(pos, 1, 0, placedColor, board);
+        var belowFlipped = flipable(pos, 0, -1, placedColor, board);
+        var leftFlipped = flipable(pos, -1, 0, placedColor, board);
 
-        var topRightFlipped = flipable(pos, 1, -1, placedColor);
-        var botRightFlipped = flipable(pos, 1, 1, placedColor);
+        var topRightFlipped = flipable(pos, 1, -1, placedColor, board);
+        var botRightFlipped = flipable(pos, 1, 1, placedColor, board);
 
-        var topLeftFlipped = flipable(pos, -1, -1, placedColor);
-        var botLeftFlipped = flipable(pos, -1, 1, placedColor);
+        var topLeftFlipped = flipable(pos, -1, -1, placedColor, board);
+        var botLeftFlipped = flipable(pos, -1, 1, placedColor, board);
 
         var allFlipped = new ArrayList<TilePosition>();
         allFlipped.addAll(aboveFlipped);
@@ -278,7 +281,7 @@ public class Game {
     }
 
     int flippedFromMove(TilePosition pos, TileColor color) {
-        return getAllFlipped(pos, color).size();
+        return getAllFlipped(pos, color, board).size();
     }
 
     /**
@@ -302,64 +305,6 @@ public class Game {
 
     public static void setNextTurn(TileColor color) {
         nextturn = color;
-    }
-
-    /**
-     * Returns a double representing the evaluation of the current game position.
-     * Returns a positive value for white winning and a negative value for black
-     * winning.
-     * A larger absolute number means a more decisive game.
-     * 
-     * @return
-     */
-    public static double evaluatePosition() {
-
-        return 0;
-    }
-
-    /**
-     * Returns the value of a tile in a given position. The tile is determined by
-     * the following grid:
-     * +4 -3 +2 +2 +2 +2 -3 +4
-     * -3 -4 -1 -1 -1 -1 -4 -3
-     * +2 -1 +1 +0 +0 +1 -1 +2
-     * +2 -1 +0 +1 +1 +0 -1 +2
-     * +2 -1 +0 +1 +1 +0 -1 +2
-     * +2 -1 +1 +0 +0 +1 -1 +2
-     * -3 -4 -1 -1 -1 -1 -4 -3
-     * +4 -3 +2 +2 +2 +2 -3 +4
-     * 
-     * @return
-     */
-    private static int tileValue(TilePosition pos) {
-        if (isCorner(pos)) {
-            return 4;
-        }
-        if (isMiddleEdge(pos)) {
-            return 2;
-        }
-        if (isMiddleDiagonal(pos)) {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    private static boolean isCorner(TilePosition pos) {
-        return (pos.x == 0 && (pos.y == 0 || pos.y == 7)) || pos.x == 7 && (pos.y == 0 || pos.y == 7);
-    }
-
-    private static boolean isMiddleEdge(TilePosition pos) {
-        return ((pos.x > 1 && pos.x < 6) && (pos.y == 0 || pos.y == 7))
-                || ((pos.y > 1 && pos.y < 6) && (pos.x == 0 || pos.x == 7));
-    }
-
-    private static boolean isMiddleDiagonal(TilePosition pos) {
-        return (pos.x == pos.y || (pos.x == 7 - pos.y)) && pos.x > 1 && pos.x < 6;
-    }
-
-    private static boolean isCenterRing(TilePosition pos) {
-
     }
 
 }
