@@ -1,9 +1,7 @@
 package Controller.Gui;
 
-import Model.Game;
 import Model.Model;
-import MsgPass.ControllerMsg.WinnerMsg;
-import Shared.TileColor;
+import MsgPass.ModelMsg.ResignMsg;
 
 public class ButtonResign extends Button {
 
@@ -13,14 +11,9 @@ public class ButtonResign extends Button {
             setImage(imgPressed);
         });
         setOnMouseReleased(e -> {
-            if (Game.getNextTurn() == TileColor.WHITE) {
-                Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
-
-            } else {
-                Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
-            }
+            Model.sendGameMsg(new ResignMsg());
             setImage(img);
         });
     }
-    
+
 }
