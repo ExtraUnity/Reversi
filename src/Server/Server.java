@@ -62,6 +62,9 @@ public class Server {
                         var outStream = poll_client.socket.getOutputStream();
                         boolean did_find_client = false;
                         for (int j = 0; j < clients.size(); j++) {
+                            if (i == j) {
+                                continue;
+                            }
                             var found_client = clients.get(j);
                             System.out.println("Checking " + found_client.id_str);
                             if (Arrays.equals(found_client.id, netIdBytes)) {
