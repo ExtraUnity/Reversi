@@ -156,8 +156,8 @@ public class Gui extends Application {
     }
 
     
-    public static void makeMultiplayerMenu() {
-    //public static void makeMultiplayerMenu(ServerConn conn, TextField inputField) {
+    //public static void makeMultiplayerMenu() {
+    public static void makeMultiplayerMenu(ServerConn conn, TextField inputField) {
         multiplayerMenuRoot = new VBox();
         stackRoot.getChildren().clear();
         stackRoot.getChildren().add(multiplayerMenuRoot);
@@ -168,8 +168,8 @@ public class Gui extends Application {
                         new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
 
 
-        //var joinButton = new MenuMultiplayer(conn, inputField);
-        var joinButton = new MenuMultiplayer();
+        var joinButton = new MenuMultiplayer(conn, inputField);
+        //var joinButton = new MenuMultiplayer();
         var caracterSelect = new MenuCharacterSelection();
 
         multiplayerMenuRoot.getChildren().add(caracterSelect);

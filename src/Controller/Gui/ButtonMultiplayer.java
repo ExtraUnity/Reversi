@@ -20,16 +20,16 @@ public class ButtonMultiplayer extends Button {
         });
         setOnMouseReleased(e -> {
 
-            /*
+            
             ServerConn conn = new ServerConn();
             TextField inputfield = new TextField();
             setImage(img);
             Gui.makeMultiplayerMenu(conn , inputfield);
-            */
-
+            
+            /* 
             setImage(img);
             Gui.makeMultiplayerMenu();
-            
+            */
             /*
             final Stage dialog = new Stage();
                 dialog.initModality(Modality.APPLICATION_MODAL);
