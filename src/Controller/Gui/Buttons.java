@@ -6,6 +6,7 @@ public enum Buttons {
     Resign,
     Classic,
     Multiplayer,
+    Join,
     ExitGame,
     AI;
 }

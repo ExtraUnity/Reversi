@@ -5,17 +5,21 @@ import Model.GameOptions;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
+import Server.ServerConn;
 import Shared.TileColor;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 
 public class Gui extends Application {
@@ -38,7 +42,7 @@ public class Gui extends Application {
 
     static Stage stage;
     static StackPane stackRoot;
-    static VBox characterMenuRoot;
+    static VBox multiplayerMenuRoot;
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
 
@@ -122,9 +126,6 @@ public class Gui extends Application {
 
         stackRoot.getChildren().add(startMenuRoot);
 
-        //characterMenuRoot = new VBox();
-        //stackRoot.getChildren().add(characterMenuRoot);
-
         stackRoot.setBackground(
                 new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -152,11 +153,26 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static void makeCharacterSelectionMenu() {
+    
+    public static void makeMultiplayerMenu() {
+    //public static void makeMultiplayerMenu(ServerConn conn, TextField inputField) {
+        multiplayerMenuRoot = new VBox();
+        stackRoot.getChildren().clear();
+        stackRoot.getChildren().add(multiplayerMenuRoot);
 
-        var characterSel = new MenuCharacterSelection();
-        characterMenuRoot.getChildren().add(characterSel);
-        characterMenuRoot.setAlignment(Pos.CENTER);
+        stackRoot.setBackground(
+                new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                        new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
+
+
+        //var joinButton = new MenuMultiplayer(conn, inputField);
+        var joinButton = new MenuMultiplayer();
+        var caracterSelect = new MenuCharacterSelection();
+
+        multiplayerMenuRoot.getChildren().add(caracterSelect);
+        multiplayerMenuRoot.getChildren().add(joinButton);
+        multiplayerMenuRoot.setAlignment(Pos.CENTER);
     }
 
     /**
