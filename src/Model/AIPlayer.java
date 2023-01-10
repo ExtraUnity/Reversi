@@ -7,6 +7,7 @@ public class AIPlayer {
     private LegalMove[] legalMoves;
     private boolean isMyTurn;
     private TilePosition bestMove;
+    private long timeUsed;
 
     AIPlayer(TileColor[][] gameBoard) {
         this.gameBoard = gameBoard;
@@ -43,14 +44,23 @@ public class AIPlayer {
      * algorithm
      *
      */
-    public TilePosition calculateBestMove() {
 
+    public TilePosition calculateMultiLayerMove() {
+        timeUsed = System.nanoTime();
+        return calculateBestMove();
+    }
+
+    public TilePosition calculateBestMove() {
+        if (System.nanoTime() - timeUsed > 1_000_000) {
+            return null;
+        }
         TilePosition currentBestMove = new TilePosition(0, 0);
         int bestEvaluation = 0;
 
         // Check for all legal moves
         for (int i = 0; i < legalMoves.length; i++) {
 
+            // Place the move on a temporary board
             TileColor[][] tempBoard = copyBoard();
             var flippedTiles = AIGame.getAllFlipped(legalMoves[i].position,
                     AIGame.getNextTurn(), tempBoard);
@@ -59,6 +69,7 @@ public class AIPlayer {
             for (var t_pos : flippedTiles) {
                 tempBoard[t_pos.x][t_pos.y] = AIGame.getNextTurn();
             }
+            //////////////////////////////////////
 
             // Evaluate the position after the current move has been made
             int currentMoveEvaluation = evaluatePosition(tempBoard);
@@ -113,7 +124,7 @@ public class AIPlayer {
     }
 
     public void setBestMove() {
-        this.bestMove = calculateBestMove();
+        this.bestMove = calculateMultiLayerMove();
     }
 
     /**

@@ -32,24 +32,25 @@ public class AIGame extends Game {
 
     @Override
     void handleAITurn(LegalMove[] legalMoves) {
+        if (!aiPlayer.isMyTurn()) {
+            aiPlayer.setMyTurn(true);
+            return;
+        }
+
         aiPlayer.updateBoard(board, legalMoves);
         try {
             Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
-        if (aiPlayer.isMyTurn()) {
-            aiPlayer.setMyTurn(false);
-            if (legalMoves.length != 0) {
-                aiPlayer.setBestMove();
-                System.out.println("Best Move is: " + aiPlayer.getBestMove());
-                handleTileClick(aiPlayer.getBestMove());
-            } else {
-                System.out.println("I should pass...");
-                handlePassClick();
-            }
+        aiPlayer.setMyTurn(false);
+        if (legalMoves.length != 0) {
+            aiPlayer.setBestMove();
+            System.out.println("Best Move is: " + aiPlayer.getBestMove());
+            handleTileClick(aiPlayer.getBestMove());
         } else {
-            aiPlayer.setMyTurn(true);
+            System.out.println("I should pass...");
+            handlePassClick();
         }
     }
 
