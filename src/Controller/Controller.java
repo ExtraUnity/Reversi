@@ -164,6 +164,5 @@ public class Controller {
             ButtonPass.setAvailable(false);
         }
         ButtonPass.updatePressed();
-        System.out.println("changing pic");
     }
 }

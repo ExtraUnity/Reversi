@@ -58,7 +58,6 @@ class Point extends ImageView {
     private static Image black;
 
     Point(TileColor color) {
-        System.out.println("POINT COLOR " + color);
         Image image;
         if (color == TileColor.WHITE) {
             image = getWhite();

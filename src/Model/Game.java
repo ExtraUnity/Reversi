@@ -118,6 +118,9 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints, turns));
         checkWinner(whitePoints, blackPoints);
         noLegalsLastTurn = true;
+        if (this instanceof AIGame && followRules()) {
+            handleAITurn(legalMoves);
+        }
     }
 
     /**
@@ -184,11 +187,9 @@ public class Game {
     }
 
     boolean allTilesPlaced() {
-        System.out.println("Checking if all tiles are placed");
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
                 if (board[x][y] == null) {
-                    System.out.println("No disk placed at " + x + "," + y);
                     return false;
                 }
             }
@@ -225,9 +226,6 @@ public class Game {
             }
         }
         if (flipValid) {
-            for (var flip_pos : flipped) {
-                System.out.println(pos + " dir " + dx + " " + dy + " flipped " + flip_pos);
-            }
             return flipped;
         } else {
             return new ArrayList<>();

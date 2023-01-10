@@ -13,7 +13,6 @@ public class AIGame extends Game {
 
     @Override
     void handleAITurn(LegalMove[] legalMoves) {
-        System.out.println("WOOP WOOP!");
         aiPlayer.updateBoard(board, legalMoves);
         try {
             Thread.sleep(1500);
