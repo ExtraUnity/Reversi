@@ -118,9 +118,6 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints, turns));
         checkWinner(whitePoints, blackPoints);
         noLegalsLastTurn = true;
-        if (this instanceof AIGame && followRules()) {
-            handleAITurn(legalMoves);
-        }
     }
 
     /**
@@ -161,9 +158,6 @@ public class Game {
                 whitePoints, blackPoints, false, turns));
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);
-        if (this instanceof AIGame && followRules()) {
-            handleAITurn(legalMoves);
-        }
     }
 
     void handleAITurn(LegalMove[] legalMoves) {
@@ -308,6 +302,64 @@ public class Game {
 
     public static void setNextTurn(TileColor color) {
         nextturn = color;
+    }
+
+    /**
+     * Returns a double representing the evaluation of the current game position.
+     * Returns a positive value for white winning and a negative value for black
+     * winning.
+     * A larger absolute number means a more decisive game.
+     * 
+     * @return
+     */
+    public static double evaluatePosition() {
+
+        return 0;
+    }
+
+    /**
+     * Returns the value of a tile in a given position. The tile is determined by
+     * the following grid:
+     * +4 -3 +2 +2 +2 +2 -3 +4
+     * -3 -4 -1 -1 -1 -1 -4 -3
+     * +2 -1 +1 +0 +0 +1 -1 +2
+     * +2 -1 +0 +1 +1 +0 -1 +2
+     * +2 -1 +0 +1 +1 +0 -1 +2
+     * +2 -1 +1 +0 +0 +1 -1 +2
+     * -3 -4 -1 -1 -1 -1 -4 -3
+     * +4 -3 +2 +2 +2 +2 -3 +4
+     * 
+     * @return
+     */
+    private static int tileValue(TilePosition pos) {
+        if (isCorner(pos)) {
+            return 4;
+        }
+        if (isMiddleEdge(pos)) {
+            return 2;
+        }
+        if (isMiddleDiagonal(pos)) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private static boolean isCorner(TilePosition pos) {
+        return (pos.x == 0 && (pos.y == 0 || pos.y == 7)) || pos.x == 7 && (pos.y == 0 || pos.y == 7);
+    }
+
+    private static boolean isMiddleEdge(TilePosition pos) {
+        return ((pos.x > 1 && pos.x < 6) && (pos.y == 0 || pos.y == 7))
+                || ((pos.y > 1 && pos.y < 6) && (pos.x == 0 || pos.x == 7));
+    }
+
+    private static boolean isMiddleDiagonal(TilePosition pos) {
+        return (pos.x == pos.y || (pos.x == 7 - pos.y)) && pos.x > 1 && pos.x < 6;
+    }
+
+    private static boolean isCenterRing(TilePosition pos) {
+
     }
 
 }
