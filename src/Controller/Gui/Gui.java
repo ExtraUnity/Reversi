@@ -71,11 +71,13 @@ public class Gui extends Application {
     }
 
     private static void makeMenuLeft(GameOptions gameOptions) {
-        gameGuiRoot.setLeft(new MenuLeft(gameOptions));
+        //hmmm skal character-delen laves i gameOption istedet?? eller skal det være en anden form for variable?
+        gameGuiRoot.setLeft(new MenuLeft(gameOptions, PlayerCharacter.White));
     }
 
     private static void makeMenuRight(GameOptions gameOptions) {
-        gameGuiRoot.setRight(new MenuRight(gameOptions));
+        //hmm
+        gameGuiRoot.setRight(new MenuRight(gameOptions, PlayerCharacter.Black));
 
     }
 

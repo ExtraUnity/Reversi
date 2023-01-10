@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+
+import Controller.Gui.PlayerCharacter;
 import Model.GameOptions;
 import Model.Model;
 import Model.Game.GameMode;
@@ -55,7 +57,7 @@ public class ServerConn {
                                     }
                                 });
                                 socketReaderThread.start();
-                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK));
+                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK,PlayerCharacter.Stalin,PlayerCharacter.BarakObama));
                                 return;
                             } else {
                                 System.out.println("JOIN FAILED");
