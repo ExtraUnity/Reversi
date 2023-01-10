@@ -1,10 +1,6 @@
 package Controller.Gui;
 
-import Model.GameOptions;
-import Model.Model;
-import Model.Game.GameMode;
 import Server.ServerConn;
-import Shared.TileColor;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
