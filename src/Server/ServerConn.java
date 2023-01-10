@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import Model.GameOptions;
 import Model.Model;
@@ -19,6 +20,7 @@ public class ServerConn {
     private boolean joined = false;
     private Thread socketReaderThread;
     public static TileColor selfColor;
+    final private Thread connThread;
 
     private static ServerConn instance;
 
@@ -28,7 +30,7 @@ public class ServerConn {
             socket = new Socket("77.213.215.246", 4000);
             netId = Server.getInitId(socket);
             System.out.println("Received netId " + netId);
-            new Thread(new Runnable() {
+            connThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -67,7 +69,8 @@ public class ServerConn {
                     }
 
                 }
-            }).start();
+            });
+            connThread.start();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -141,9 +144,23 @@ public class ServerConn {
                 System.out.println("Received msg " + msg);
                 Model.sendGameMsg(msg);
             }
-        } catch (Exception e) {
+        } catch (SocketException e) {
+            System.out.println("Socket closed: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Using incompatible versions of your game :(");
             e.printStackTrace();
         }
+    }
 
+    public static void shutdown() {
+        if (instance != null) {
+            try {
+                instance.socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

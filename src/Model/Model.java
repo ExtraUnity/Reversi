@@ -6,6 +6,7 @@ import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.StartGameMsg;
 import MsgPass.ModelMsg.ModelMsg;
+import Server.ServerConn;
 import MsgPass.ModelMsg.GameStateMsg;
 
 public class Model {
@@ -35,7 +36,7 @@ public class Model {
                                 break;
                             case AI_GAME:
                                 throw new UnsupportedOperationException("Not yet implemented");
-                                //break;
+                            // break;
                             case MULTIPLAYER:
                                 game = new MultiPlayerGame(msg.gameOptions);
                                 break;
@@ -48,6 +49,7 @@ public class Model {
                         throw new RuntimeException(e);
                     }
                 }
+                ServerConn.shutdown();
             }
         });
         modelMainThread.start();
