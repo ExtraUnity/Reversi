@@ -25,7 +25,7 @@ public class ServerConn {
     public static TileColor selfColor;
     final private Thread connThread;
     // Hvis der ikke bliver valgt noget bliver man bare til stalin (eller noget)
-    private PlayerCharacter selectedCharacter = null;
+    private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
 
     private static ServerConn instance;
 
@@ -60,11 +60,6 @@ public class ServerConn {
                                     selfColor = TileColor.WHITE;
                                 }
                                 System.out.println("My color is " + selfColor);
-                                if (selectedCharacter == null) {
-                                    System.out.println("Self character not selected. Falling back to tile color");
-                                    selectedCharacter = selfColor == TileColor.BLACK ? PlayerCharacter.Black
-                                            : PlayerCharacter.White;
-                                }
 
                                 sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
                                 // Bagefter læs hvad den anden er
