@@ -12,7 +12,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -153,8 +153,7 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static PlayerCharacter selectedCharacter =  PlayerCharacter.Black;
-    //protected static MenuDisplayCharacter displaySelected = new MenuDisplayCharacter(selectedCharacter);    
+    public static PlayerCharacter selectedCharacter =  PlayerCharacter.Black;  
 
     public static void makeMultiplayerMenu(ServerConn conn) {
         multiplayerMenuRoot = new VBox();
@@ -169,18 +168,9 @@ public class Gui extends Application {
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
         multiplayerMenuRoot.getChildren().add(displaySelected);
-        //multiplayerMenuRoot.setAlignment(Pos.CENTER);
+
     }
-    /* 
-    public static void makeMultiplayerMenu() {
-        multiplayerMenuRoot.getChildren().remove(displaySelected);
-        
-        displaySelected = new MenuDisplayCharacter(getSelectedCharacter());
- 
-        multiplayerMenuRoot.getChildren().add(displaySelected);
-        //multiplayerMenuRoot.setAlignment(Pos.CENTER);
-    }
-    */
+
 
     /**
      * Sets up everthing that doesn't have to do with the scene.
