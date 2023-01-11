@@ -40,17 +40,16 @@ public class AIPlayer {
         this.legalMoves = legalMoves;
     }
 
-    /**
-     * Calculates the best move in the current position using a simple heuristic
-     * algorithm
-     *
-     */
-
+    
     public TilePosition calculateMultiLayerMove() {
         return miniMax(gameBoard, legalMoves, 6, true,
                 legalMoves[0]).position;
     }
 
+    /**
+     * Calculates the best move in the current position using the minimax algorithm
+     *
+     */
     public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean maximizingPlayer,
             LegalMove madeMove) {
         if (depth == 0 || legalMoves.length == 0) {

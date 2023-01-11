@@ -1,0 +1,108 @@
+"filename", "language", "Java", "JSON", "Batch", "Java Properties", "Markdown", "comment", "blank", "total"
+"c:\Skole\IntroPro Projekt\Reversi\README.md", "Markdown", 0, 0, 0, 0, -2, 0, -1, -3
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.graphics\jpeg_fx.md", "Markdown", 0, 0, 0, 0, -42, 0, -10, -52
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.graphics\mesa3d.md", "Markdown", 0, 0, 0, 0, -99, 0, -36, -135
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\directshow.md", "Markdown", 0, 0, 0, 0, -20, 0, -7, -27
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\glib.md", "Markdown", 0, 0, 0, 0, -441, 0, -97, -538
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\gstreamer.md", "Markdown", 0, 0, 0, 0, -441, 0, -95, -536
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\libffi.md", "Markdown", 0, 0, 0, 0, -22, 0, -7, -29
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\icu_web.md", "Markdown", 0, 0, 0, 0, -391, 0, -31, -422
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\libxml2.md", "Markdown", 0, 0, 0, 0, -41, 0, -9, -50
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\libxslt.md", "Markdown", 0, 0, 0, 0, -47, 0, -14, -61
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\webkit.md", "Markdown", 0, 0, 0, 0, -5072, 0, -947, -6019
+"c:\Skole\IntroPro Projekt\Reversi\lib\javafx-sdk-19\lib\javafx.properties", "Java Properties", 0, 0, 0, -3, 0, 0, -1, -4
+"c:\Skole\IntroPro Projekt\Reversi\out\linecount.json", "JSON", 0, -3716, 0, 0, 0, 0, 0, -3716
+"c:\Skole\IntroPro Projekt\Reversi\src\BarebonesMain.java", "Java", -19, 0, 0, 0, 0, 0, -5, -24
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Controller.java", "Java", -140, 0, 0, 0, 0, -7, -23, -170
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\Board.java", "Java", -26, 0, 0, 0, 0, 0, -6, -32
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\Button.java", "Java", -18, 0, 0, 0, 0, 0, -6, -24
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\ButtonPass.java", "Java", -52, 0, 0, 0, 0, 0, -11, -63
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\ButtonResign.java", "Java", -21, 0, 0, 0, 0, 0, -6, -27
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\ButtonRestart.java", "Java", -15, 0, 0, 0, 0, 0, -6, -21
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\Buttons.java", "Java", -6, 0, 0, 0, 0, 0, -1, -7
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\Gui.java", "Java", -127, 0, 0, 0, 0, -12, -29, -168
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\MenuBottom.java", "Java", -18, 0, 0, 0, 0, 0, -7, -25
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\MenuSide.java", "Java", -42, 0, 0, 0, 0, -1, -8, -51
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\MenuTop.java", "Java", -28, 0, 0, 0, 0, -1, -8, -37
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\PlayerCharacter.java", "Java", -7, 0, 0, 0, 0, 0, -2, -9
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\PointCounter.java", "Java", -70, 0, 0, 0, 0, -1, -18, -89
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\Tile.java", "Java", -81, 0, 0, 0, 0, -1, -19, -101
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\TurnIndication.java", "Java", -92, 0, 0, 0, 0, -2, -20, -114
+"c:\Skole\IntroPro Projekt\Reversi\src\Controller\Gui\WinnerIndication.java", "Java", -27, 0, 0, 0, 0, 0, -7, -34
+"c:\Skole\IntroPro Projekt\Reversi\src\GameMain.java", "Java", -4, 0, 0, 0, 0, 0, -2, -6
+"c:\Skole\IntroPro Projekt\Reversi\src\Model\ClassicGame.java", "Java", -6, 0, 0, 0, 0, 0, -4, -10
+"c:\Skole\IntroPro Projekt\Reversi\src\Model\Game.java", "Java", -237, 0, 0, 0, 0, -32, -48, -317
+"c:\Skole\IntroPro Projekt\Reversi\src\Model\GameOptions.java", "Java", -16, 0, 0, 0, 0, 0, -4, -20
+"c:\Skole\IntroPro Projekt\Reversi\src\Model\LegalMove.java", "Java", -10, 0, 0, 0, 0, 0, -4, -14
+"c:\Skole\IntroPro Projekt\Reversi\src\Model\Model.java", "Java", -88, 0, 0, 0, 0, 0, -13, -101
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ControllerMsg\ControllerMsg.java", "Java", -3, 0, 0, 0, 0, 0, -3, -6
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ControllerMsg\ControllerWindowClosedMsg.java", "Java", -3, 0, 0, 0, 0, 0, -3, -6
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ControllerMsg\StartGameMsg.java", "Java", -8, 0, 0, 0, 0, 0, -5, -13
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ControllerMsg\UpdateBoardMsg.java", "Java", -37, 0, 0, 0, 0, -2, -8, -47
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ControllerMsg\WinnerMsg.java", "Java", -8, 0, 0, 0, 0, 0, -5, -13
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\GameStateMsg.java", "Java", -20, 0, 0, 0, 0, 0, -5, -25
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\GuiReadyMsg.java", "Java", -3, 0, 0, 0, 0, 0, -2, -5
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\ModelMsg.java", "Java", -3, 0, 0, 0, 0, 0, -3, -6
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\ModelWindowClosedMsg.java", "Java", -3, 0, 0, 0, 0, 0, -3, -6
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\PassMsg.java", "Java", -8, 0, 0, 0, 0, 0, -4, -12
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\RestartBtnPressedMsg.java", "Java", -3, 0, 0, 0, 0, 0, -2, -5
+"c:\Skole\IntroPro Projekt\Reversi\src\MsgPass\ModelMsg\TilePressedMsg.java", "Java", -8, 0, 0, 0, 0, 0, -4, -12
+"c:\Skole\IntroPro Projekt\Reversi\src\Shared\ButtonPosition.java", "Java", -13, 0, 0, 0, 0, 0, -4, -17
+"c:\Skole\IntroPro Projekt\Reversi\src\Shared\TileColor.java", "Java", -24, 0, 0, 0, 0, 0, -6, -30
+"c:\Skole\IntroPro Projekt\Reversi\src\Shared\TilePosition.java", "Java", -16, 0, 0, 0, 0, 0, -4, -20
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\Iterationer\Iteration_2\runWindows.bat", "Batch", 0, 0, 1, 0, 0, 0, 1, 2
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\README.md", "Markdown", 0, 0, 0, 0, 2, 0, 1, 3
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.graphics\jpeg_fx.md", "Markdown", 0, 0, 0, 0, 42, 0, 10, 52
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.graphics\mesa3d.md", "Markdown", 0, 0, 0, 0, 99, 0, 36, 135
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\directshow.md", "Markdown", 0, 0, 0, 0, 20, 0, 7, 27
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\glib.md", "Markdown", 0, 0, 0, 0, 441, 0, 97, 538
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\gstreamer.md", "Markdown", 0, 0, 0, 0, 441, 0, 95, 536
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.media\libffi.md", "Markdown", 0, 0, 0, 0, 22, 0, 7, 29
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\icu_web.md", "Markdown", 0, 0, 0, 0, 391, 0, 31, 422
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\libxml2.md", "Markdown", 0, 0, 0, 0, 41, 0, 9, 50
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\libxslt.md", "Markdown", 0, 0, 0, 0, 47, 0, 14, 61
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\legal\javafx.web\webkit.md", "Markdown", 0, 0, 0, 0, 5072, 0, 947, 6019
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\lib\javafx-sdk-19\lib\javafx.properties", "Java Properties", 0, 0, 0, 3, 0, 0, 1, 4
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\out\linecount - Kopi.json", "JSON", 0, 3716, 0, 0, 0, 0, 0, 3716
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\out\linecount.json", "JSON", 0, 3716, 0, 0, 0, 0, 0, 3716
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\BarebonesMain.java", "Java", 19, 0, 0, 0, 0, 0, 5, 24
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Controller.java", "Java", 137, 0, 0, 0, 0, 9, 23, 169
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\Board.java", "Java", 26, 0, 0, 0, 0, 0, 6, 32
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\Button.java", "Java", 18, 0, 0, 0, 0, 2, 6, 26
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\ButtonPass.java", "Java", 51, 0, 0, 0, 0, 0, 11, 62
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\ButtonResign.java", "Java", 21, 0, 0, 0, 0, 0, 6, 27
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\ButtonRestart.java", "Java", 15, 0, 0, 0, 0, 0, 6, 21
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\Buttons.java", "Java", 6, 0, 0, 0, 0, 0, 1, 7
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\Gui.java", "Java", 123, 0, 0, 0, 0, 12, 29, 164
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\MenuBottom.java", "Java", 18, 0, 0, 0, 0, 0, 7, 25
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\MenuSide.java", "Java", 45, 0, 0, 0, 0, 1, 7, 53
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\MenuTop.java", "Java", 27, 0, 0, 0, 0, 1, 8, 36
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\PlayerCharacter.java", "Java", 8, 0, 0, 0, 0, 0, 2, 10
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\PointCounter.java", "Java", 69, 0, 0, 0, 0, 1, 18, 88
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\Tile.java", "Java", 80, 0, 0, 0, 0, 1, 19, 100
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\TurnIndication.java", "Java", 92, 0, 0, 0, 0, 2, 20, 114
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Controller\Gui\WinnerIndication.java", "Java", 27, 0, 0, 0, 0, 0, 7, 34
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\GameMain.java", "Java", 4, 0, 0, 0, 0, 0, 2, 6
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\AIGame.java", "Java", 46, 0, 0, 0, 0, 3, 12, 61
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\AIPlayer.java", "Java", 153, 0, 0, 0, 0, 41, 35, 229
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\ClassicGame.java", "Java", 6, 0, 0, 0, 0, 0, 4, 10
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\Game.java", "Java", 236, 0, 0, 0, 0, 33, 47, 316
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\GameOptions.java", "Java", 16, 0, 0, 0, 0, 0, 4, 20
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\LegalMove.java", "Java", 28, 0, 0, 0, 0, 1, 8, 37
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Model\Model.java", "Java", 89, 0, 0, 0, 0, 0, 13, 102
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ControllerMsg\ControllerMsg.java", "Java", 3, 0, 0, 0, 0, 0, 3, 6
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ControllerMsg\ControllerWindowClosedMsg.java", "Java", 3, 0, 0, 0, 0, 0, 3, 6
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ControllerMsg\StartGameMsg.java", "Java", 8, 0, 0, 0, 0, 0, 5, 13
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ControllerMsg\UpdateBoardMsg.java", "Java", 40, 0, 0, 0, 0, 2, 8, 50
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ControllerMsg\WinnerMsg.java", "Java", 8, 0, 0, 0, 0, 0, 5, 13
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\GameStateMsg.java", "Java", 20, 0, 0, 0, 0, 0, 5, 25
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\GuiReadyMsg.java", "Java", 3, 0, 0, 0, 0, 0, 2, 5
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\ModelMsg.java", "Java", 3, 0, 0, 0, 0, 0, 3, 6
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\ModelWindowClosedMsg.java", "Java", 3, 0, 0, 0, 0, 0, 3, 6
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\PassMsg.java", "Java", 8, 0, 0, 0, 0, 0, 4, 12
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\RestartBtnPressedMsg.java", "Java", 3, 0, 0, 0, 0, 0, 2, 5
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\MsgPass\ModelMsg\TilePressedMsg.java", "Java", 8, 0, 0, 0, 0, 0, 4, 12
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Shared\ButtonPosition.java", "Java", 13, 0, 0, 0, 0, 0, 4, 17
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Shared\TileColor.java", "Java", 24, 0, 0, 0, 0, 0, 7, 31
+"c:\Users\privat\Desktop\Uni\02121 Intro til Software\januarprojekt\Reversi\src\Shared\TilePosition.java", "Java", 16, 0, 0, 0, 0, 0, 4, 20
+"Total", "-", 213, 3716, 1, 0, 0, 50, 51, 4031
