@@ -8,10 +8,11 @@ public class GameOptions {
     public final boolean countPoints;
     public final TileColor startPlayer;
 
-    public PlayerCharacter playerWhite;
-    public PlayerCharacter playerBlack;
+    public final PlayerCharacter playerWhite;
+    public final PlayerCharacter playerBlack;
 
-    public GameOptions(int gametime, boolean countPoints, TileColor startPlayer, PlayerCharacter playerWhite ,PlayerCharacter playerBlack) {
+    public GameOptions(int gametime, boolean countPoints, TileColor startPlayer, PlayerCharacter playerWhite,
+            PlayerCharacter playerBlack) {
         this.gametime = gametime;
         this.countPoints = countPoints;
         this.startPlayer = startPlayer;
