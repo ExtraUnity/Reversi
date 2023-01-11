@@ -49,28 +49,27 @@ public class AIPlayer {
 
     public TilePosition calculateMultiLayerMove() {
         timeUsed = System.nanoTime();
-        System.out.println("MINIMAX");
-        return miniMax(gameBoard, legalMoves, 5, AIGame.getNextTurn(),
+        return miniMax(gameBoard, legalMoves, 5, true,
                 legalMoves[0]).position;
     }
 
-    public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, TileColor maximizingPlayer,
+    public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean maximizingPlayer,
             LegalMove madeMove) {
         if (depth == 0 || legalMoves.length == 0) {
             madeMove.setEvaluation(evaluatePosition(board));
             return madeMove;
         }
 
-        if (maximizingPlayer == TileColor.BLACK) { // wants to minimize evaluation
+        if (maximizingPlayer) { // wants to minimize evaluation
             LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // every found evaluation should be
                                                                                      // better than this
             for (LegalMove move : legalMoves) {
                 TileColor[][] tempBoard = copyBoard(board);
-                tempBoard[move.position.x][move.position.y] = maximizingPlayer;
+                tempBoard[move.position.x][move.position.y] = TileColor.BLACK;
                 LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.WHITE, tempBoard), depth - 1,
-                        TileColor.WHITE, move);
+                        false, move);
                 if (eval.compareTo(minEval) < 0) {
-                    minEval = eval;
+                    minEval = move;
                 }
             }
             return minEval;
@@ -80,11 +79,11 @@ public class AIPlayer {
                                                                                   // better than this
         for (LegalMove move : legalMoves) {
             TileColor[][] tempBoard = copyBoard(board);
-            tempBoard[move.position.x][move.position.y] = maximizingPlayer;
+            tempBoard[move.position.x][move.position.y] = TileColor.WHITE;
             LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.BLACK, tempBoard), depth - 1,
-                    TileColor.BLACK, move);
+                    true, move);
             if (eval.compareTo(maxEval) > 0) {
-                maxEval = eval;
+                maxEval = move;
             }
         }
         return maxEval;
