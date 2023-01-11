@@ -74,8 +74,8 @@ public class Gui extends Application {
     }
 
     private static void makeMenuRight(GameOptions gameOptions) {
-        //hmm
-        gameGuiRoot.setRight(new MenuRight(gameOptions, PlayerCharacter.Black));
+        //hmm samme som oppe over
+        gameGuiRoot.setRight(new MenuRight(gameOptions, getSelectedCharacter()));
 
     }
 
@@ -153,7 +153,8 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static PlayerCharacter selectedCharacter =  PlayerCharacter.Black;  
+    public static PlayerCharacter blackPlayer =  PlayerCharacter.Black;  
+    public static PlayerCharacter whitePlayer =  PlayerCharacter.White;  
 
     public static void makeMultiplayerMenu(ServerConn conn) {
         multiplayerMenuRoot = new VBox();
@@ -163,12 +164,20 @@ public class Gui extends Application {
  
         var joinButton = new MenuMultiplayer(conn);
         var characterSelect = new MenuCharacterSelection(conn);
-        var displaySelected = new MenuDisplayCharacter(selectedCharacter);
+        var displaySelected = new MenuDisplayCharacter(blackPlayer);
  
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
         multiplayerMenuRoot.getChildren().add(displaySelected);
 
+    }
+
+    public static void setSelectedCharacter(PlayerCharacter character){
+        blackPlayer = character;
+    }
+
+    public static PlayerCharacter getSelectedCharacter(){
+        return blackPlayer;
     }
 
 
@@ -207,13 +216,6 @@ public class Gui extends Application {
     }
 
     
-    public static void setSelectedCharacter(PlayerCharacter character){
-        selectedCharacter = character;
-    }
-
-    public static PlayerCharacter getSelectedCharacter(){
-        return selectedCharacter;
-    }
 
     public static void close() {
         Platform.runLater(new Runnable() {
