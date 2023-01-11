@@ -7,8 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import java.util.ArrayList;
-import Model.Model;
-import MsgPass.ModelMsg.CharacterSelectedMsg;
+
 import Server.ServerConn;
 
 
@@ -33,9 +32,9 @@ public class MenuCharacterSelection extends BorderPane{
             ImageView image = new ImageView(new Image(name, 0, Gui.fitTileSize()*3, true, false));
             image.setOnMouseReleased(e -> {
                 System.out.println("pressed " + character);
-                Gui.setSelectedCharacter(character);
+                ServerConn.setLoadedCharacter(character);
+                Gui.setYourCharacter(character);
                 Gui.makeMultiplayerMenu(conn);
-                Model.sendGameMsg(new CharacterSelectedMsg(character));
             });
             img.add(image);
         }

@@ -69,13 +69,11 @@ public class Gui extends Application {
     }
 
     private static void makeMenuLeft(GameOptions gameOptions) {
-        //hmmm skal character-delen laves i gameOption istedet?? eller skal det være en anden form for variable?
-        gameGuiRoot.setLeft(new MenuLeft(gameOptions, PlayerCharacter.White));
+        gameGuiRoot.setLeft(new MenuLeft(gameOptions));
     }
 
     private static void makeMenuRight(GameOptions gameOptions) {
-        //hmm samme som oppe over
-        gameGuiRoot.setRight(new MenuRight(gameOptions, getSelectedCharacter()));
+        gameGuiRoot.setRight(new MenuRight(gameOptions));
 
     }
 
@@ -153,18 +151,16 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static PlayerCharacter blackPlayer =  PlayerCharacter.Black;  
-    public static PlayerCharacter whitePlayer =  PlayerCharacter.White;  
+    public static PlayerCharacter yourCharacter =  PlayerCharacter.Black;  
 
     public static void makeMultiplayerMenu(ServerConn conn) {
         multiplayerMenuRoot = new VBox();
         stackRoot.getChildren().clear();
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
- 
         var joinButton = new MenuMultiplayer(conn);
         var characterSelect = new MenuCharacterSelection(conn);
-        var displaySelected = new MenuDisplayCharacter(blackPlayer);
+        var displaySelected = new MenuDisplayCharacter(yourCharacter);
  
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
@@ -172,12 +168,8 @@ public class Gui extends Application {
 
     }
 
-    public static void setSelectedCharacter(PlayerCharacter character){
-        blackPlayer = character;
-    }
-
-    public static PlayerCharacter getSelectedCharacter(){
-        return blackPlayer;
+    public static void setYourCharacter(PlayerCharacter character){
+        yourCharacter = character;
     }
 
 

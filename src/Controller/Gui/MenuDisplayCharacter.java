@@ -16,9 +16,9 @@ public class MenuDisplayCharacter extends BorderPane{
     public MenuDisplayCharacter(PlayerCharacter character){
         this.character_src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
         this.character = new Image(character_src, Gui.fitTileSize() * 4, 0, true, false);
-        
+
         borderPane.getChildren().add(new ImageView(this.character));
-        System.out.println("here " + character);
+        System.out.println("displaying " + character);
         
         setLeft(borderPane);
         

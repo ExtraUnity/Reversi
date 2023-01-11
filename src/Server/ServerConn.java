@@ -194,6 +194,8 @@ public class ServerConn {
         }
     }
 
+
+    //her bestemmes den character man har i multiplayer
     static PlayerCharacter readCharacterMessage() throws IOException, ClassNotFoundException {
         var msgsizebuffer = new byte[4];
         instance.socket.getInputStream().read(msgsizebuffer);

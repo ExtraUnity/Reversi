@@ -29,24 +29,24 @@ public class MenuSide extends BorderPane {
 }
 
 class MenuRight extends MenuSide {
-    MenuRight(GameOptions gameOptions, PlayerCharacter character) {
+    MenuRight(GameOptions gameOptions) {
         if (gameOptions.countPoints) {
             setTop(new PointCounter(TileColor.BLACK));
             setMargin(getTop(), new Insets(5));
         }
 
-        setBottom(new TurnIndication(character, gameOptions.startPlayer == TileColor.BLACK));
+        setBottom(new TurnIndication(gameOptions.playerBlack, gameOptions.startPlayer == TileColor.BLACK));
         setAlignment(getBottom(), Pos.BOTTOM_CENTER);
     }
 }
 
 class MenuLeft extends MenuSide {
-    MenuLeft(GameOptions gameOptions, PlayerCharacter character) {
+    MenuLeft(GameOptions gameOptions) {
         if (gameOptions.countPoints) {
             setCenter(new PointCounter(TileColor.WHITE));
             setMargin(getCenter(), new Insets(5));
         }
-        setTop(new TurnIndication(character, gameOptions.startPlayer == TileColor.WHITE));
+        setTop(new TurnIndication(gameOptions.playerWhite, gameOptions.startPlayer == TileColor.WHITE));
         setAlignment(getTop(), Pos.TOP_CENTER);
 
     }
