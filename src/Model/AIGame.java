@@ -1,5 +1,7 @@
 package Model;
 
+import MsgPass.ModelMsg.PassMsg;
+import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 
@@ -15,16 +17,19 @@ public class AIGame extends Game {
     @Override
     void handleTileClick(TilePosition pos) {
         super.handleTileClick(pos);
-        if (followRules()) {
+        System.out.println("IM HERE!");
+        if (followRules() && getNextTurn() == TileColor.BLACK) {
+            System.out.println("AI will make a move now");
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
+            System.out.println("AI is done now!");
         }
     }
 
     @Override
     void handlePassClick() {
         super.handlePassClick();
-        if (followRules()) {
+        if (followRules() && getNextTurn() == TileColor.BLACK) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
         }
@@ -32,31 +37,27 @@ public class AIGame extends Game {
 
     @Override
     void handleAITurn(LegalMove[] legalMoves) {
-        if (!aiPlayer.isMyTurn()) {
-            aiPlayer.setMyTurn(true);
-            return;
-        }
+        System.out.println("AI's turn now!");
 
         aiPlayer.updateBoard(board, legalMoves); // updates with the newest board
 
         // TEMPORARY
         try {
-            // Thread.sleep(1500);
+            Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
         //
 
-        aiPlayer.setMyTurn(false);
-
         if (legalMoves.length != 0) {
             aiPlayer.setBestMove(); // Algorithm magic
             System.out.println("Best Move is: " + aiPlayer.getBestMove());
 
-            handleTileClick(aiPlayer.getBestMove());
+            Model.sendGameMsg(new TilePressedMsg(aiPlayer.getBestMove()));
+            // handleTileClick(aiPlayer.getBestMove());
         } else { // then pass
             System.out.println("I should pass...");
-            handlePassClick();
+            Model.sendGameMsg(new PassMsg());
         }
     }
 

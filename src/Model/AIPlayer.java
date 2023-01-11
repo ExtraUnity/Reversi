@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Arrays;
+
 import Shared.*;
 
 public class AIPlayer {
@@ -47,8 +49,9 @@ public class AIPlayer {
 
     public TilePosition calculateMultiLayerMove() {
         timeUsed = System.nanoTime();
+        System.out.println("MINIMAX");
         return miniMax(gameBoard, legalMoves, 5, AIGame.getNextTurn(),
-                new LegalMove(new TilePosition(0, 0), 0)).position;
+                legalMoves[0]).position;
     }
 
     public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, TileColor maximizingPlayer,
@@ -89,9 +92,6 @@ public class AIPlayer {
     }
 
     public TilePosition calculateBestMove(TileColor[][] board) {
-        if (System.nanoTime() - timeUsed > 1_000_000) { // Algorithm is allowed to use 1s for calculating.
-            return null;
-        }
         TilePosition currentBestMove = new TilePosition(0, 0);
         int bestEvaluation = 0;
 
@@ -111,7 +111,8 @@ public class AIPlayer {
 
             // Evaluate the position after the current move has been made
             int currentMoveEvaluation = evaluatePosition(tempBoard);
-            System.out.println("Move: " + legalMoves[i].position + "    Evaluation: " + currentMoveEvaluation);
+            System.out.println("Move: " + legalMoves[i].position + " Evaluation: " +
+                    currentMoveEvaluation);
             if (i == 0) { // sets the bestEvaluation to the first one checked
                 currentBestMove = legalMoves[i].position;
                 bestEvaluation = currentMoveEvaluation;
@@ -132,10 +133,9 @@ public class AIPlayer {
         System.out.println("My best move is: " + currentBestMove);
         return currentBestMove;
 
-        /*
-         * Arrays.sort(legalMoves);
-         * return legalMoves[legalMoves.length - 1].position;
-         */
+        // Arrays.sort(legalMoves);
+        // return legalMoves[legalMoves.length - 1].position;
+
     }
 
     public TilePosition getBestMove() {

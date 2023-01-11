@@ -25,6 +25,7 @@ public class LegalMove implements Comparable<LegalMove> {
 
     @Override
     public int compareTo(LegalMove other) {
-        return this.evaluation - other.evaluation;
+        // return this.evaluation - other.evaluation;
+        return this.flipped - other.flipped;
     }
 }
