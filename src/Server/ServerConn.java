@@ -120,11 +120,6 @@ public class ServerConn {
             totalOut.write(msg_len_bin);
 
             System.out.println("sending msg len " + msg_bin.length);
-            System.out.println("sending msg len bin ");
-            for (int i = 0; i < 4; i++) {
-                System.out.print(totalOut.toByteArray()[i] + " ");
-            }
-            System.out.println();
 
             totalOut.write(msg_bin);
             byte[] bytes = totalOut.toByteArray();
@@ -160,11 +155,6 @@ public class ServerConn {
                 ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
                 int len = buffer.getInt();
                 System.out.println("Received msg len " + len);
-                System.out.println("Received msg len bin ");
-                for (int i = 0; i < msgsizebuffer.length; i++) {
-                    System.out.print(msgsizebuffer[i] + " ");
-                }
-                System.out.println();
 
                 var msg_buffer = new byte[len];
                 socket.getInputStream().read(msg_buffer);
@@ -200,11 +190,6 @@ public class ServerConn {
         ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
         int len = buffer.getInt();
         System.out.println("Received msg len " + len);
-        System.out.println("Received msg len bin ");
-        for (int i = 0; i < msgsizebuffer.length; i++) {
-            System.out.print(msgsizebuffer[i] + " ");
-        }
-        System.out.println();
 
         var msg_buffer = new byte[len];
         instance.socket.getInputStream().read(msg_buffer);
