@@ -60,22 +60,17 @@ public class AIPlayer {
             return madeMove;
         }
 
-        if (maximizingPlayer) { // wants to minimize evaluation
+        // IMPLEMENT IF LEGALMOVES == 0
+
+        if (maximizingPlayer) { // wants to minimize evaluation - Black player
             LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // every found evaluation should
                                                                                      // be better than this
             for (LegalMove move : legalMoves) {
                 TileColor[][] tempBoard = copyBoard(board);
                 tempBoard[move.position.x][move.position.y] = TileColor.BLACK;
-                if (depth == 6) {
-                    System.out.println(
-                            "Number of legal moves: " + Game.getAllLegalMoves(TileColor.WHITE, tempBoard).length);
-                }
                 LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.WHITE, tempBoard), depth - 1,
                         false, move);
                 move.setEvaluation(eval.evaluation);
-                if (depth == 6) {
-                    System.out.println("Depth 6: " + move);
-                }
                 if (move.compareTo(minEval) < 0) {
                     minEval = move;
                 }
@@ -83,20 +78,15 @@ public class AIPlayer {
             return minEval;
         }
 
+        // White pieces
         LegalMove maxEval = new LegalMove(new TilePosition(0, 0), 0, -1_000_000); // every found evaluation should be
         // better than this
         for (LegalMove move : legalMoves) {
-            if (depth == 5) {
-                System.out.println("Depth 5: " + move);
-            }
             TileColor[][] tempBoard = copyBoard(board);
             tempBoard[move.position.x][move.position.y] = TileColor.WHITE;
             LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.BLACK, tempBoard), depth - 1,
                     true, move);
             move.setEvaluation(eval.evaluation);
-            if (depth == 5) {
-                System.out.println("Depth 5: " + move);
-            }
             if (move.compareTo(maxEval) > 0) {
                 maxEval = move;
             }
@@ -144,7 +134,6 @@ public class AIPlayer {
             }
 
         }
-        System.out.println("My best move is: " + currentBestMove);
         return currentBestMove;
 
         // Arrays.sort(legalMoves);

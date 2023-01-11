@@ -29,6 +29,7 @@ public class Game {
 
     Game(GameOptions options) {
         this.options = options;
+        board = new TileColor[8][8];
         nextturn = options.startPlayer;
     }
 
@@ -55,7 +56,7 @@ public class Game {
         while (gamestate == GameState.PLAYING) {
             // Game loop
             var modelMsg = Model.readGameMsg();
-            System.out.println("Game Received " + modelMsg.getClass().getName());
+            // System.out.println("Game Received " + modelMsg.getClass().getName());
 
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
@@ -134,9 +135,7 @@ public class Game {
         }
 
         var thiscolor = nextturn;
-        System.out.println(nextturn);
         var flippedTiles = getAllFlipped(pos, thiscolor, board);
-        System.out.println(followRules() + " " + flippedTiles.size());
         if (followRules() && flippedTiles.size() == 0) {
             System.out.println("Illegal move at " + pos + ". No flips");
             return;
@@ -155,7 +154,7 @@ public class Game {
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
         System.out.println("Legal moves: " + legalMoves.length);
-
+        System.out.println("The move " + pos + " has been played");
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints, false, turns));
         noLegalsLastTurn = false;
@@ -263,25 +262,24 @@ public class Game {
     /**
      * Finds all legal moves and returns an array of them :=)
      */
-    public static LegalMove[] getAllLegalMoves(TileColor nextturn, TileColor[][] board) {
+    public static LegalMove[] getAllLegalMoves(TileColor nextturn, TileColor[][] gameBoard) {
         var legalMoves = new ArrayList<LegalMove>();
-        for (int x = 0; x < board.length; x++) {
-            for (int y = 0; y < board[x].length; y++) {
-                if (board[x][y] == null) {
+        for (int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[x].length; y++) {
+                if (gameBoard[x][y] == null) {
                     var pos = new TilePosition(x, y);
-                    int flipped = flippedFromMove(pos, nextturn);
+                    int flipped = flippedFromMove(pos, nextturn, gameBoard);
                     if (flipped > 0) {
                         legalMoves.add(new LegalMove(pos, flipped));
                     }
                 }
-
             }
         }
         return legalMoves.toArray(new LegalMove[0]);
     }
 
-    static int flippedFromMove(TilePosition pos, TileColor color) {
-        return getAllFlipped(pos, color, board).size();
+    static int flippedFromMove(TilePosition pos, TileColor color, TileColor[][] gameBoard) {
+        return getAllFlipped(pos, color, gameBoard).size();
     }
 
     /**

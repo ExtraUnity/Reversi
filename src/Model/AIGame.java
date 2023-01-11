@@ -17,12 +17,9 @@ public class AIGame extends Game {
     @Override
     void handleTileClick(TilePosition pos) {
         super.handleTileClick(pos);
-        System.out.println("IM HERE!");
-        if (followRules() && getNextTurn() == TileColor.BLACK) {
-            System.out.println("AI will make a move now");
+        if (followRules() && getNextTurn() == TileColor.BLACK && !allTilesPlaced()) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
-            System.out.println("AI is done now!");
         }
     }
 
@@ -37,7 +34,6 @@ public class AIGame extends Game {
 
     @Override
     void handleAITurn(LegalMove[] legalMoves) {
-        System.out.println("AI's turn now!");
 
         aiPlayer.updateBoard(board, legalMoves); // updates with the newest board
 
