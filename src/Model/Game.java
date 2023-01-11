@@ -62,7 +62,7 @@ public abstract class Game {
         run_game();
     }
 
-    private void run_game() {
+    protected void run_game() {
         System.out.println(getClass().getSimpleName() + " loop started");
         while (gamestate == GameState.PLAYING) {
             // Game loop
@@ -117,11 +117,13 @@ public abstract class Game {
      * må melde pas, og hvis de må, så udregner den de mulige træk for modstanderen,
      * samt skifter farven.
      * Derefter sender den besked til controlleren om de ting, der skal ændres.
+     * 
+     * @return Den returner hvis der bliver passet
      */
-    void handlePassClick(PassMsg msg) {
+    boolean handlePassClick(PassMsg msg) {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
         if (!ButtonPass.getAvailable()) {
-            return;
+            return false;
         }
         var thiscolor = nextturn;
         nextturn.switchColor();
@@ -141,6 +143,7 @@ public abstract class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints, turns));
         checkWinner(whitePoints, blackPoints);
         noLegalsLastTurn = true;
+        return true;
     }
 
     /**
@@ -148,19 +151,21 @@ public abstract class Game {
      * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
      * andre brikker. Derefter sender den en besked til Controlleren om hvilke
      * brikker der er blevet vendt. Denne funktion er IKKE pure
+     * 
+     * @return Den returner true hvis brikken bliver sat. Ellers returner den false.
      */
-    void handleTileClick(TilePosition pos, TilePressedMsg msg) {
+    boolean handleTileClick(TilePosition pos, TilePressedMsg msg) {
 
         if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
-            return;
+            return false;
         }
 
         var thiscolor = nextturn;
         var flippedTiles = getAllFlipped(pos, thiscolor);
         if (followRules() && flippedTiles.size() == 0) {
             System.out.println("Illegal move at " + pos + ". No flips");
-            return;
+            return false;
         }
 
         flippedTiles.add(pos);
@@ -181,6 +186,7 @@ public abstract class Game {
 
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);
+        return true;
     }
 
     boolean noLegalsLastTurn = false;
