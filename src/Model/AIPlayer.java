@@ -9,7 +9,6 @@ public class AIPlayer {
     private LegalMove[] legalMoves;
     private boolean isMyTurn;
     private TilePosition bestMove;
-    private long timeUsed;
 
     AIPlayer(TileColor[][] gameBoard) {
         this.gameBoard = gameBoard;
@@ -48,7 +47,6 @@ public class AIPlayer {
      */
 
     public TilePosition calculateMultiLayerMove() {
-        timeUsed = System.nanoTime();
         return miniMax(gameBoard, legalMoves, 6, true,
                 legalMoves[0]).position;
     }
@@ -95,49 +93,9 @@ public class AIPlayer {
 
     }
 
-    public TilePosition calculateBestMove(TileColor[][] board) {
-        TilePosition currentBestMove = new TilePosition(0, 0);
-        int bestEvaluation = 0;
-
-        // Check for all legal moves
-        for (int i = 0; i < legalMoves.length; i++) {
-
-            // Place the move on a temporary board
-            TileColor[][] tempBoard = copyBoard(board);
-            var flippedTiles = AIGame.getAllFlipped(legalMoves[i].position,
-                    AIGame.getNextTurn(), tempBoard);
-
-            flippedTiles.add(legalMoves[i].position);
-            for (var t_pos : flippedTiles) {
-                tempBoard[t_pos.x][t_pos.y] = AIGame.getNextTurn();
-            }
-            //////////////////////////////////////
-
-            // Evaluate the position after the current move has been made
-            int currentMoveEvaluation = evaluatePosition(tempBoard);
-            System.out.println("Move: " + legalMoves[i].position + " Evaluation: " +
-                    currentMoveEvaluation);
-            if (i == 0) { // sets the bestEvaluation to the first one checked
-                currentBestMove = legalMoves[i].position;
-                bestEvaluation = currentMoveEvaluation;
-                continue;
-            }
-
-            /*
-             * Checks whether current evaluation is better for AI than bestEvaluation
-             * AI will always be black.
-             * So it's the best move for black.
-             */
-            if (currentMoveEvaluation < bestEvaluation) {
-                currentBestMove = legalMoves[i].position;
-                bestEvaluation = currentMoveEvaluation;
-            }
-
-        }
-        return currentBestMove;
-
-        // Arrays.sort(legalMoves);
-        // return legalMoves[legalMoves.length - 1].position;
+    private TilePosition calculateBestMoveEasy(TileColor[][] board) {
+        Arrays.sort(legalMoves);
+        return legalMoves[legalMoves.length - 1].position;
 
     }
 
