@@ -16,7 +16,7 @@ public class AIGame extends Game {
     void handleTileClick(TilePosition pos) {
         super.handleTileClick(pos);
         if (followRules()) {
-            var legalMoves = getAllLegalMoves(getNextTurn());
+            var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
         }
     }
@@ -25,7 +25,7 @@ public class AIGame extends Game {
     void handlePassClick() {
         super.handlePassClick();
         if (followRules()) {
-            var legalMoves = getAllLegalMoves(getNextTurn());
+            var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
         }
     }
@@ -41,7 +41,7 @@ public class AIGame extends Game {
 
         // TEMPORARY
         try {
-            Thread.sleep(1500);
+            // Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }

@@ -47,11 +47,49 @@ public class AIPlayer {
 
     public TilePosition calculateMultiLayerMove() {
         timeUsed = System.nanoTime();
-        return calculateBestMove();
+        return miniMax(gameBoard, legalMoves, 5, AIGame.getNextTurn(),
+                new LegalMove(new TilePosition(0, 0), 0)).position;
     }
 
-    public TilePosition calculateBestMove() {
-        if (System.nanoTime() - timeUsed > 1_000_000) {
+    public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, TileColor maximizingPlayer,
+            LegalMove madeMove) {
+        if (depth == 0 || legalMoves.length == 0) {
+            madeMove.setEvaluation(evaluatePosition(board));
+            return madeMove;
+        }
+
+        if (maximizingPlayer == TileColor.BLACK) { // wants to minimize evaluation
+            LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // every found evaluation should be
+                                                                                     // better than this
+            for (LegalMove move : legalMoves) {
+                TileColor[][] tempBoard = copyBoard(board);
+                tempBoard[move.position.x][move.position.y] = maximizingPlayer;
+                LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.WHITE, tempBoard), depth - 1,
+                        TileColor.WHITE, move);
+                if (eval.compareTo(minEval) < 0) {
+                    minEval = eval;
+                }
+            }
+            return minEval;
+        }
+
+        LegalMove maxEval = new LegalMove(new TilePosition(0, 0), 0, -1_000_000); // every found evaluation should be
+                                                                                  // better than this
+        for (LegalMove move : legalMoves) {
+            TileColor[][] tempBoard = copyBoard(board);
+            tempBoard[move.position.x][move.position.y] = maximizingPlayer;
+            LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.BLACK, tempBoard), depth - 1,
+                    TileColor.BLACK, move);
+            if (eval.compareTo(maxEval) > 0) {
+                maxEval = eval;
+            }
+        }
+        return maxEval;
+
+    }
+
+    public TilePosition calculateBestMove(TileColor[][] board) {
+        if (System.nanoTime() - timeUsed > 1_000_000) { // Algorithm is allowed to use 1s for calculating.
             return null;
         }
         TilePosition currentBestMove = new TilePosition(0, 0);
@@ -61,7 +99,7 @@ public class AIPlayer {
         for (int i = 0; i < legalMoves.length; i++) {
 
             // Place the move on a temporary board
-            TileColor[][] tempBoard = copyBoard();
+            TileColor[][] tempBoard = copyBoard(board);
             var flippedTiles = AIGame.getAllFlipped(legalMoves[i].position,
                     AIGame.getNextTurn(), tempBoard);
 
@@ -83,6 +121,7 @@ public class AIPlayer {
             /*
              * Checks whether current evaluation is better for AI than bestEvaluation
              * AI will always be black.
+             * So it's the best move for black.
              */
             if (currentMoveEvaluation < bestEvaluation) {
                 currentBestMove = legalMoves[i].position;
@@ -103,11 +142,11 @@ public class AIPlayer {
         return this.bestMove;
     }
 
-    private TileColor[][] copyBoard() {
-        TileColor[][] newBoard = new TileColor[gameBoard.length][gameBoard[0].length];
-        for (int x = 0; x < gameBoard.length; x++) {
-            for (int y = 0; y < gameBoard[x].length; y++) {
-                newBoard[x][y] = gameBoard[x][y];
+    private TileColor[][] copyBoard(TileColor[][] board) {
+        TileColor[][] newBoard = new TileColor[board.length][board[0].length];
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                newBoard[x][y] = board[x][y];
             }
         }
         return newBoard;

@@ -25,7 +25,7 @@ public class Game {
     final GameOptions options;
     GameState gamestate = GameState.PLAYING;
 
-    TileColor[][] board = new TileColor[8][8];
+    static TileColor[][] board = new TileColor[8][8];
 
     Game(GameOptions options) {
         this.options = options;
@@ -109,7 +109,7 @@ public class Game {
         }
         turns++;
         nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves(nextturn);
+        var legalMoves = getAllLegalMoves(nextturn, board);
         System.out.println("Legal moves: " + legalMoves.length);
         // flippedTiles = new ArrayList<TilePosition>();
         int whitePoints = getPoints(TileColor.WHITE);
@@ -150,7 +150,7 @@ public class Game {
 
         turns++;
         nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves(nextturn);
+        var legalMoves = getAllLegalMoves(nextturn, board);
 
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
@@ -263,7 +263,7 @@ public class Game {
     /**
      * Finds all legal moves and returns an array of them :=)
      */
-    public LegalMove[] getAllLegalMoves(TileColor nextturn) {
+    public static LegalMove[] getAllLegalMoves(TileColor nextturn, TileColor[][] board) {
         var legalMoves = new ArrayList<LegalMove>();
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
@@ -280,7 +280,7 @@ public class Game {
         return legalMoves.toArray(new LegalMove[0]);
     }
 
-    int flippedFromMove(TilePosition pos, TileColor color) {
+    static int flippedFromMove(TilePosition pos, TileColor color) {
         return getAllFlipped(pos, color, board).size();
     }
 
