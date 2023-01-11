@@ -12,7 +12,6 @@ public class ButtonMainMenu extends Button{
             setImage(img);
             Gui.stackRoot.getChildren().clear();
             Gui.stackRoot.getChildren().add(Gui.startMenuRoot);
-
         });
     }
         

@@ -1,15 +1,12 @@
 package Controller.Gui;
 
-
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import java.util.ArrayList;
-
 import Server.ServerConn;
-
 
 public class MenuCharacterSelection extends BorderPane{
     FlowPane flowPane = new FlowPane();
@@ -28,20 +25,20 @@ public class MenuCharacterSelection extends BorderPane{
     private ArrayList<ImageView> getCharacterAddress(ServerConn conn){
         ArrayList<ImageView> img = new ArrayList<ImageView>();
         for (PlayerCharacter character : PlayerCharacter.values()) {
-            if(character == PlayerCharacter.Black || character == PlayerCharacter.White) {
+            if(character == PlayerCharacter.Black || character == PlayerCharacter.White || character == PlayerCharacter.Computer) {
                 continue;
             }
             String name = "/Assets/characters/" + character + ".png";
             ImageView image = new ImageView(new Image(name, 0, Gui.fitTileSize()*3, true, false));
+
             image.setOnMouseReleased(e -> {
-                System.out.println("pressed " + character);
                 ServerConn.setLoadedCharacter(character);
                 Gui.setYourCharacter(character);
                 Gui.makeMultiplayerMenu(conn);
             });
             img.add(image);
         }
-        System.out.println(img.toString());
+        
         return img;
     }
 

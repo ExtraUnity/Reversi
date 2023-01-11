@@ -156,17 +156,19 @@ public class Gui extends Application {
     public static PlayerCharacter yourCharacter =  PlayerCharacter.Stalin;  
 
     public static void makeMultiplayerMenu(ServerConn conn) {
+        var displaySelected = new MenuDisplayCharacter(yourCharacter);
         multiplayerMenuRoot = new VBox();
         stackRoot.getChildren().clear();
+        stackRoot.getChildren().add(displaySelected);
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
         var joinButton = new MenuMultiplayer(conn);
         var characterSelect = new MenuCharacterSelection(conn);
-        var displaySelected = new MenuDisplayCharacter(yourCharacter);
+
  
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
-        multiplayerMenuRoot.getChildren().add(displaySelected);
+        multiplayerMenuRoot.setAlignment(Pos.CENTER);
 
     }
 
