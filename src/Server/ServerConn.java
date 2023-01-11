@@ -138,11 +138,6 @@ public class ServerConn {
                 ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
                 int len = buffer.getInt();
                 System.out.println("Received msg len " + len);
-                System.out.println("Received msg len bin ");
-                for (int i = 0; i < msgsizebuffer.length; i++) {
-                    System.out.print(msgsizebuffer[i] + " ");
-                }
-                System.out.println();
 
                 var msg_buffer = new byte[len];
                 socket.getInputStream().read(msg_buffer);
@@ -157,7 +152,8 @@ public class ServerConn {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println("Using incompatible versions of your game :(");
+            System.out.println(
+                    "Using incompatible versions of your game :(\n This is fatal for multiplayer and the socket has exited. Update your game and try again");
             e.printStackTrace();
         }
     }
