@@ -28,6 +28,9 @@ public class MenuCharacterSelection extends BorderPane{
     private ArrayList<ImageView> getCharacterAddress(ServerConn conn){
         ArrayList<ImageView> img = new ArrayList<ImageView>();
         for (PlayerCharacter character : PlayerCharacter.values()) {
+            if(character == PlayerCharacter.Black || character == PlayerCharacter.White) {
+                continue;
+            }
             String name = "/Assets/characters/" + character + ".png";
             ImageView image = new ImageView(new Image(name, 0, Gui.fitTileSize()*3, true, false));
             image.setOnMouseReleased(e -> {

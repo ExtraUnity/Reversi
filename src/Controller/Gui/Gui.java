@@ -151,7 +151,7 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static PlayerCharacter yourCharacter =  PlayerCharacter.Black;  
+    public static PlayerCharacter yourCharacter =  PlayerCharacter.Stalin;  
 
     public static void makeMultiplayerMenu(ServerConn conn) {
         multiplayerMenuRoot = new VBox();
