@@ -15,14 +15,17 @@ public class MultiPlayerGame extends Game {
 
     @Override
     void handlePassClick(PassMsg msg) {
-        if (nextturn != ServerConn.selfColor) {
-            return;
-        }
-        super.handlePassClick(msg);
+
         if (!msg.ignoreNet) {
+            if (nextturn != ServerConn.selfColor) {
+                return;
+            }
+            super.handlePassClick(msg);
             var newmsg = new PassMsg();
             newmsg.ignoreNet = true;
             ServerConn.sendModelMessage(newmsg);
+        } else {
+            super.handlePassClick(msg);
         }
 
     }
