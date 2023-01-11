@@ -64,10 +64,10 @@ public class AIPlayer {
 
     }
 
-    private LegalMove handleDepthSearch(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean maximizingPlayer) {
-        if (maximizingPlayer) {
+    private LegalMove handleDepthSearch(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean aiTurn) {
+        if (aiTurn) {
             LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // every found evaluation should
-                                                                                 // be better than this
+            // be better than this
             for (LegalMove move : legalMoves) {
                 TileColor[][] tempBoard = copyBoard(board);
                 tempBoard[move.position.x][move.position.y] = TileColor.BLACK;
