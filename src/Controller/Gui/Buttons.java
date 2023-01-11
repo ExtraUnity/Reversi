@@ -8,5 +8,6 @@ public enum Buttons {
     Multiplayer,
     Join,
     ExitGame,
+    MainMenu,
     AI;
 }

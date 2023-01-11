@@ -33,6 +33,7 @@ public class MenuMultiplayer extends BorderPane {
         dialogVbox.getChildren().add(key);
         dialogVbox.getChildren().add(text);
         dialogVbox.getChildren().add(new ButtonJoin(conn , text));
+        dialogVbox.getChildren().add(new ButtonMainMenu());
         dialogVbox.getChildren().add(new ButtonExitGame());
 
         dialogVbox.setAlignment(Pos.CENTER);

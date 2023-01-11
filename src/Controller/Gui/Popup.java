@@ -27,11 +27,9 @@ public class Popup extends VBox {
     public Popup(int timeAlive) {
         this.timeAlive = timeAlive;
         ImageView image = new ImageView(new Image("Assets/YourTurn.png", 0, Gui.fitTileSize(), true, false));
-        /*
         image.setOnMouseClicked(e -> {
             close();
         });
-        */
         getChildren().add(image);
         setAlignment(Pos.CENTER);
         setMargin(image, new Insets(Gui.fitTileSize()*2,0,0,0));
