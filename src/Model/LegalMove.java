@@ -28,4 +28,9 @@ public class LegalMove implements Comparable<LegalMove> {
         return this.evaluation - other.evaluation;
         // return this.flipped - other.flipped;
     }
+
+    @Override
+    public String toString() {
+        return position.toString() + "  EVAL: " + evaluation;
+    }
 }
