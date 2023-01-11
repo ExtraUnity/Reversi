@@ -28,7 +28,7 @@ public class MultiPlayerGame extends Game {
             return true;
         } else {
             if (super.handlePassClick(msg)) {
-                Popup.showPopup(new Popup("your turn", 1000));
+                Popup.showPopup(new Popup(1000));
                 return true;
             }
             return false;
@@ -82,7 +82,7 @@ public class MultiPlayerGame extends Game {
         } else {
             if (super.handleTileClick(pos, msg)) {
                 if (followRules() && nextturn == ServerConn.selfColor) {
-                    Popup.showPopup(new Popup("your turn", 1000));
+                    Popup.showPopup(new Popup(1000));
                 }
                 System.out.println(msg + " ignores net and is not being sent");
                 return true;
@@ -94,7 +94,7 @@ public class MultiPlayerGame extends Game {
 
     @Override
     protected void run_game() {
-        Popup.showPopup(new Popup("You're " + ServerConn.selfColor, 2000));
+        Popup.showPopup(new Popup(ServerConn.selfColor, 1500));
         super.run_game();
     }
 }
