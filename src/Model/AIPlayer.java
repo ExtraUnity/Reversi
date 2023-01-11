@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 import Shared.*;
 
@@ -97,11 +97,13 @@ public class AIPlayer {
         return maxEval;
     }
 
-    private TilePosition calculateBestMoveEasy(TileColor[][] board) {
-        Arrays.sort(legalMoves);
-        return legalMoves[legalMoves.length - 1].position;
-
-    }
+    /*
+     * private TilePosition calculateBestMoveEasy(TileColor[][] board) {
+     * Arrays.sort(legalMoves);
+     * return legalMoves[legalMoves.length - 1].position;
+     * 
+     * }
+     */
 
     public TilePosition getBestMove() {
         return this.bestMove;
