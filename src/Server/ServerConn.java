@@ -64,7 +64,14 @@ public class ServerConn {
                                 System.out.println("JOIN FAILED");
                             }
                         }
+                    } catch (SocketException e) {
+                        if (e.getMessage().contains("Socket closed")) {
+                            System.out.println("Serverconn socket closed");
+                        } else {
+                            e.printStackTrace();
+                        }
                     } catch (IOException e) {
+
                         e.printStackTrace();
                         return;
                     }
