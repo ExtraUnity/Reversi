@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+import Model.Model;
+import MsgPass.ModelMsg.MainMenuMsg;
 
 public class ButtonMainMenu extends Button{
 
@@ -12,6 +14,8 @@ public class ButtonMainMenu extends Button{
             setImage(img);
             Gui.stackRoot.getChildren().clear();
             Gui.stackRoot.getChildren().add(Gui.startMenuRoot);
+            System.out.println("Back to MAINMENU");
+            Model.sendGameMsg(new MainMenuMsg());
         });
     }
         

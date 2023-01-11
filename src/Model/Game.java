@@ -10,6 +10,7 @@ import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
+import MsgPass.ModelMsg.MainMenuMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import MsgPass.ModelMsg.PassMsg;
@@ -87,6 +88,8 @@ public abstract class Game {
                 handleRestartBtnPressed((RestartBtnPressedMsg) modelMsg);
             } else if (modelMsg instanceof ResignMsg) {
                 handleResign((ResignMsg) modelMsg);
+            } else if (modelMsg instanceof MainMenuMsg) {
+                handleMainMenuPressed();
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");
@@ -102,6 +105,10 @@ public abstract class Game {
         GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
                 options.startPlayer.switchColor(), PlayerCharacter.White, PlayerCharacter.Black);
         Model.startGame(gameMode, newOptions);
+    }
+
+    void handleMainMenuPressed(){
+        gamestate = GameState.EXITED;
     }
 
     protected static TileColor nextturn = TileColor.BLACK;
