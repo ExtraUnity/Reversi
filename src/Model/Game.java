@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 import Controller.Gui.Gui;
+import Controller.Gui.PlayerCharacter;
 import Controller.Gui.ButtonPass;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
@@ -99,7 +100,7 @@ public abstract class Game {
     void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
         gamestate = GameState.EXITED;
         GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
-                options.startPlayer.switchColor());
+                options.startPlayer.switchColor(), PlayerCharacter.White, PlayerCharacter.Black);
         Model.startGame(gameMode, newOptions);
     }
 

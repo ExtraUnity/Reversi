@@ -8,9 +8,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
+
+import Controller.Gui.PlayerCharacter;
 import Model.GameOptions;
 import Model.Model;
 import Model.Game.GameMode;
+import MsgPass.ModelMsg.CharacterSelectedMsg;
 import MsgPass.ModelMsg.ModelMsg;
 import Shared.TileColor;
 
@@ -21,8 +24,14 @@ public class ServerConn {
     private Thread socketReaderThread;
     public static TileColor selfColor;
     final private Thread connThread;
+    // Hvis der ikke bliver valgt noget bliver man bare til stalin (eller noget)
+    private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
 
     private static ServerConn instance;
+
+    public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
+        instance.selectedCharacter = selectedCharacter;
+    }
 
     public ServerConn() {
         instance = this;
@@ -51,6 +60,19 @@ public class ServerConn {
                                     selfColor = TileColor.WHITE;
                                 }
                                 System.out.println("My color is " + selfColor);
+
+                                sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
+                                // Bagefter læs hvad den anden er
+                                PlayerCharacter otherCharacter = readCharacterMessage();
+                                var whiteCharacter = selfColor == TileColor.WHITE ? selectedCharacter : otherCharacter;
+                                var blackCharacter = selfColor == TileColor.BLACK ? selectedCharacter : otherCharacter;
+
+                                System.out.println("self  character " + selectedCharacter);
+                                System.out.println("other character " + otherCharacter);
+
+                                System.out.println("white character " + whiteCharacter);
+                                System.out.println("black character " + blackCharacter);
+
                                 socketReaderThread = new Thread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -58,7 +80,8 @@ public class ServerConn {
                                     }
                                 });
                                 socketReaderThread.start();
-                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK));
+                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK,
+                                        whiteCharacter, blackCharacter));
                                 return;
                             } else {
                                 System.out.println("JOIN FAILED");
@@ -74,6 +97,12 @@ public class ServerConn {
 
                         e.printStackTrace();
                         return;
+                    } catch (ClassNotFoundException e) {
+                        System.out.println(
+                                "Dette sker hvis modstanderen ikke sender en characterselected besked med det samme");
+
+                        System.out.println("Altså har i nok forskellige versioner af spillet. Opdater");
+                        e.printStackTrace();
                     }
 
                 }
@@ -98,11 +127,6 @@ public class ServerConn {
             totalOut.write(msg_len_bin);
 
             System.out.println("sending msg len " + msg_bin.length);
-            System.out.println("sending msg len bin ");
-            for (int i = 0; i < 4; i++) {
-                System.out.print(totalOut.toByteArray()[i] + " ");
-            }
-            System.out.println();
 
             totalOut.write(msg_bin);
             byte[] bytes = totalOut.toByteArray();
@@ -166,5 +190,22 @@ public class ServerConn {
                 e.printStackTrace();
             }
         }
+    }
+
+
+    //her bestemmes den character man har i multiplayer
+    static PlayerCharacter readCharacterMessage() throws IOException, ClassNotFoundException {
+        var msgsizebuffer = new byte[4];
+        instance.socket.getInputStream().read(msgsizebuffer);
+        ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
+        int len = buffer.getInt();
+        System.out.println("Received msg len " + len);
+
+        var msg_buffer = new byte[len];
+        instance.socket.getInputStream().read(msg_buffer);
+        var byteBufferInputStream = new ByteArrayInputStream(msg_buffer);
+        var objectIn = new ObjectInputStream(byteBufferInputStream);
+        CharacterSelectedMsg msg = (CharacterSelectedMsg) objectIn.readObject();
+        return msg.character;
     }
 }
