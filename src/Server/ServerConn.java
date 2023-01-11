@@ -23,8 +23,13 @@ public class ServerConn {
     private Thread socketReaderThread;
     public static TileColor selfColor;
     final private Thread connThread;
+    private PlayerCharacter selectedCharacter;
 
     private static ServerConn instance;
+
+    public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
+        instance.selectedCharacter = selectedCharacter;
+    }
 
     public ServerConn() {
         instance = this;
@@ -60,7 +65,8 @@ public class ServerConn {
                                     }
                                 });
                                 socketReaderThread.start();
-                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK,PlayerCharacter.Stalin,PlayerCharacter.BarakObama));
+                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK,
+                                        PlayerCharacter.Stalin, PlayerCharacter.BarakObama));
                                 return;
                             } else {
                                 System.out.println("JOIN FAILED");
