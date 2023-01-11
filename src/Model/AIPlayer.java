@@ -58,11 +58,16 @@ public class AIPlayer {
             return madeMove;
         }
 
+        return handleDepthSearch(board, legalMoves, depth, maximizingPlayer);
+
         // IMPLEMENT IF LEGALMOVES == 0
 
-        if (maximizingPlayer) { // wants to minimize evaluation - Black player
+    }
+
+    private LegalMove handleDepthSearch(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean maximizingPlayer) {
+        if (maximizingPlayer) {
             LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // every found evaluation should
-                                                                                     // be better than this
+                                                                                 // be better than this
             for (LegalMove move : legalMoves) {
                 TileColor[][] tempBoard = copyBoard(board);
                 tempBoard[move.position.x][move.position.y] = TileColor.BLACK;
@@ -90,7 +95,6 @@ public class AIPlayer {
             }
         }
         return maxEval;
-
     }
 
     private TilePosition calculateBestMoveEasy(TileColor[][] board) {
