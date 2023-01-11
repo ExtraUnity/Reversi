@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -20,8 +22,13 @@ public class MenuMultiplayer extends BorderPane {
 
         text.setMaxWidth(Gui.fitTileSize()*2);
         text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
+        
 
-        key.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        key.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, 30));
+        key.setStrokeWidth(2);
+        key.setStrokeType(StrokeType.OUTSIDE);
+        key.setStroke(Color.GREY);
+        
     
         dialogVbox.getChildren().add(key);
         dialogVbox.getChildren().add(text);

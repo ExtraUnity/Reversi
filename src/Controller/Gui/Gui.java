@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -152,24 +153,34 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    
+    public static PlayerCharacter selectedCharacter =  PlayerCharacter.Black;
+    //protected static MenuDisplayCharacter displaySelected = new MenuDisplayCharacter(selectedCharacter);    
+
     public static void makeMultiplayerMenu(ServerConn conn) {
         multiplayerMenuRoot = new VBox();
         stackRoot.getChildren().clear();
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
-        stackRoot.setBackground(
-            new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), 
-            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-            new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
-
+ 
         var joinButton = new MenuMultiplayer(conn);
-        var caracterSelect = new MenuCharacterSelection();
-
-        multiplayerMenuRoot.getChildren().add(caracterSelect);
+        var characterSelect = new MenuCharacterSelection(conn);
+        var displaySelected = new MenuDisplayCharacter(selectedCharacter);
+ 
+        multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
-        multiplayerMenuRoot.setAlignment(Pos.CENTER);
+        multiplayerMenuRoot.getChildren().add(displaySelected);
+        //multiplayerMenuRoot.setAlignment(Pos.CENTER);
     }
+    /* 
+    public static void makeMultiplayerMenu() {
+        multiplayerMenuRoot.getChildren().remove(displaySelected);
+        
+        displaySelected = new MenuDisplayCharacter(getSelectedCharacter());
+ 
+        multiplayerMenuRoot.getChildren().add(displaySelected);
+        //multiplayerMenuRoot.setAlignment(Pos.CENTER);
+    }
+    */
 
     /**
      * Sets up everthing that doesn't have to do with the scene.
@@ -203,6 +214,15 @@ public class Gui extends Application {
     public static double getScreenWidth() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getWidth();
+    }
+
+    
+    public static void setSelectedCharacter(PlayerCharacter character){
+        selectedCharacter = character;
+    }
+
+    public static PlayerCharacter getSelectedCharacter(){
+        return selectedCharacter;
     }
 
     public static void close() {
