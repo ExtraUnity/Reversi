@@ -87,7 +87,14 @@ public class ServerConn {
                                 System.out.println("JOIN FAILED");
                             }
                         }
+                    } catch (SocketException e) {
+                        if (e.getMessage().contains("Socket closed")) {
+                            System.out.println("Serverconn socket closed");
+                        } else {
+                            e.printStackTrace();
+                        }
                     } catch (IOException e) {
+
                         e.printStackTrace();
                         return;
                     } catch (ClassNotFoundException e) {
@@ -169,7 +176,8 @@ public class ServerConn {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println("Using incompatible versions of your game :(");
+            System.out.println(
+                    "Using incompatible versions of your game :(\n This is fatal for multiplayer and the socket has exited. Update your game and try again");
             e.printStackTrace();
         }
     }
