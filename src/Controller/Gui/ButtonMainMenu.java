@@ -2,6 +2,7 @@ package Controller.Gui;
 
 import Model.Model;
 import MsgPass.ModelMsg.MainMenuMsg;
+import Server.ServerConn;
 
 public class ButtonMainMenu extends Button{
 
@@ -15,6 +16,7 @@ public class ButtonMainMenu extends Button{
             Gui.stackRoot.getChildren().clear();
             Gui.stackRoot.getChildren().add(Gui.startMenuRoot);
             System.out.println("Back to MAINMENU");
+            ServerConn.shutdown();
             Model.sendGameMsg(new MainMenuMsg());
         });
     }
