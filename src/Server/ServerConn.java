@@ -24,7 +24,8 @@ public class ServerConn {
     private Thread socketReaderThread;
     public static TileColor selfColor;
     final private Thread connThread;
-    // Hvis der ikke bliver valgt noget bliver man bare til stalin (eller noget)
+    
+    // Hvis der ikke bliver valgt noget bliver man bare til stalin
     private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
 
     private static ServerConn instance;

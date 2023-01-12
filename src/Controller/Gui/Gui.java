@@ -110,7 +110,9 @@ public class Gui extends Application {
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
         gameover.getChildren().add(new ButtonRestart());
+        gameover.getChildren().add(new ButtonMainMenu());
         gameover.getChildren().add(new ButtonExitGame());
+        gameover.setSpacing(15);
         stackRoot.getChildren().add(gameover);
     }
 
@@ -125,7 +127,7 @@ public class Gui extends Application {
         stackRoot.getChildren().add(startMenuRoot);
 
         stackRoot.setBackground(
-            new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png"), 
+            new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png",0,fitTileSize()*11,true,false), 
             BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
             new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
 
@@ -151,20 +153,22 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static PlayerCharacter yourCharacter =  PlayerCharacter.Black;  
+    public static PlayerCharacter yourCharacter =  PlayerCharacter.Stalin;  
 
     public static void makeMultiplayerMenu(ServerConn conn) {
+        var displaySelected = new MenuDisplayCharacter(yourCharacter);
         multiplayerMenuRoot = new VBox();
         stackRoot.getChildren().clear();
+        stackRoot.getChildren().add(displaySelected);
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
         var joinButton = new MenuMultiplayer(conn);
         var characterSelect = new MenuCharacterSelection(conn);
-        var displaySelected = new MenuDisplayCharacter(yourCharacter);
+
  
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
-        multiplayerMenuRoot.getChildren().add(displaySelected);
+        multiplayerMenuRoot.setAlignment(Pos.CENTER);
 
     }
 
