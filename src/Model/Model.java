@@ -3,8 +3,10 @@ package Model;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import MsgPass.ControllerMsg.ControllerMsg;
+import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.StartGameMsg;
 import MsgPass.ModelMsg.ModelMsg;
+import Server.ServerConn;
 import MsgPass.ModelMsg.GameStateMsg;
 
 public class Model {
@@ -22,7 +24,8 @@ public class Model {
                     try {
                         var msg = startGamequeue.take();
                         if (msg.exit) {
-                            System.out.println("Model loop exited");
+                            System.out.println("Model loop exited. Sending close controller msg");
+                            sendControllerMsg(new ControllerWindowClosedMsg());
                             break;
                         }
                         System.out.println("Model received start game msg");
@@ -35,7 +38,8 @@ public class Model {
                                 game = new AIGame(msg.gameOptions);
                                 break;
                             case MULTIPLAYER:
-                                throw new UnsupportedOperationException("Not yet implemented");
+                                game = new MultiPlayerGame(msg.gameOptions);
+                                break;
                             default:
                                 throw new UnsupportedOperationException("Invalid gamemode");
                         }
@@ -45,6 +49,7 @@ public class Model {
                         throw new RuntimeException(e);
                     }
                 }
+                ServerConn.shutdown();
             }
         });
         modelMainThread.start();

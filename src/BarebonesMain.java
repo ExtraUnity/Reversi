@@ -1,5 +1,6 @@
 import java.time.Instant;
 import Controller.Controller;
+import Controller.Gui.PlayerCharacter;
 import Model.GameOptions;
 import Model.Model;
 import Model.Game.GameMode;
@@ -18,6 +19,6 @@ public class BarebonesMain {
             startPlayer = TileColor.WHITE;
         }
 
-        Model.startGame(GameMode.AI_GAME, new GameOptions(-1, true, startPlayer));
+        Model.startGame(GameMode.CLASSIC, new GameOptions(-1, true, startPlayer, PlayerCharacter.White, PlayerCharacter.Black));
     }
 }

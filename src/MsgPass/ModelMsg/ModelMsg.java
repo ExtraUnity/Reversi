@@ -1,5 +1,8 @@
 package MsgPass.ModelMsg;
 
-public abstract class ModelMsg {
-    
+import java.io.Serializable;
+
+public abstract class ModelMsg implements Serializable {
+    public boolean ignoreNet = false;
+
 }

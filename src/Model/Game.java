@@ -3,32 +3,38 @@ package Model;
 import java.util.ArrayList;
 
 import Controller.Gui.Gui;
+import Controller.Gui.PlayerCharacter;
 import Controller.Gui.ButtonPass;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
+import MsgPass.ModelMsg.MainMenuMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import MsgPass.ModelMsg.PassMsg;
+import MsgPass.ModelMsg.ResignMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 
-public class Game {
+public abstract class Game {
     public enum GameMode {
         CLASSIC,
         AI_GAME,
         MULTIPLAYER
     }
 
+    final GameMode gameMode;
+
     final GameOptions options;
-    GameState gamestate = GameState.PLAYING;
+    protected GameState gamestate = GameState.PLAYING;
 
     static TileColor[][] board = new TileColor[8][8];
 
-    Game(GameOptions options) {
+    Game(GameOptions options, GameMode gameMode) {
         this.options = options;
+        this.gameMode = gameMode;
         board = new TileColor[8][8];
         nextturn = options.startPlayer;
     }
@@ -42,16 +48,23 @@ public class Game {
                 ready = true;
             }
         }
-
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(3, 3)));
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(3, 4)));
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(4, 4)));
-        Model.sendGameMsg(new TilePressedMsg(new TilePosition(4, 3)));
+        var msg1 = new TilePressedMsg(new TilePosition(3, 3));
+        msg1.ignoreNet = true;
+        Model.sendGameMsg(msg1);
+        var msg2 = new TilePressedMsg(new TilePosition(3, 4));
+        msg2.ignoreNet = true;
+        Model.sendGameMsg(msg2);
+        var msg3 = new TilePressedMsg(new TilePosition(4, 4));
+        msg3.ignoreNet = true;
+        Model.sendGameMsg(msg3);
+        var msg4 = new TilePressedMsg(new TilePosition(4, 3));
+        msg4.ignoreNet = true;
+        Model.sendGameMsg(msg4);
 
         run_game();
     }
 
-    private void run_game() {
+    protected void run_game() {
         System.out.println(getClass().getSimpleName() + " loop started");
         while (gamestate == GameState.PLAYING) {
             // Game loop
@@ -61,10 +74,10 @@ public class Game {
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
                 TilePressedMsg msg = (TilePressedMsg) modelMsg;
-                handleTileClick(msg.pos);
+                handleTileClick(msg.pos, msg);
 
             } else if (modelMsg instanceof PassMsg) {
-                handlePassClick();
+                handlePassClick((PassMsg) modelMsg);
 
             } else if (modelMsg instanceof ModelWindowClosedMsg) {
                 gamestate = GameState.EXITED;
@@ -72,16 +85,34 @@ public class Game {
                 Model.shutdownModel();
 
             } else if (modelMsg instanceof RestartBtnPressedMsg) {
-                gamestate = GameState.EXITED;
-                GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
-                        options.startPlayer.switchColor());
-                Model.startGame(GameMode.CLASSIC, newOptions);
+
+                handleRestartBtnPressed((RestartBtnPressedMsg) modelMsg);
+            } else if (modelMsg instanceof ResignMsg) {
+                handleResign((ResignMsg) modelMsg);
+            } else if (modelMsg instanceof MainMenuMsg) {
+                handleMainMenuPressed();
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
-    private static TileColor nextturn;
+    void handleResign(ResignMsg msg) {
+        var winner = nextturn.switchColor();
+        Model.sendControllerMsg(new WinnerMsg(winner));
+    }
+
+    void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
+        gamestate = GameState.EXITED;
+        GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
+                options.startPlayer.switchColor(), PlayerCharacter.White, PlayerCharacter.Black);
+        Model.startGame(gameMode, newOptions);
+    }
+
+    void handleMainMenuPressed(){
+        gamestate = GameState.EXITED;
+    }
+
+    protected static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
     public boolean followRules() {
@@ -94,12 +125,14 @@ public class Game {
      * må melde pas, og hvis de må, så udregner den de mulige træk for modstanderen,
      * samt skifter farven.
      * Derefter sender den besked til controlleren om de ting, der skal ændres.
+     * 
+     * @return Den returner hvis der bliver passet
      */
-    void handlePassClick() {
+    boolean handlePassClick(PassMsg msg) {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
         if (!ButtonPass.getAvailable()) {
             System.out.println("YOU SHALL NOT PASS!");
-            return;
+            return false;
         }
         var thiscolor = nextturn;
         nextturn.switchColor();
@@ -119,6 +152,7 @@ public class Game {
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, legalMoves, whitePoints, blackPoints, turns));
         checkWinner(whitePoints, blackPoints);
         noLegalsLastTurn = true;
+        return true;
     }
 
     /**
@@ -126,19 +160,21 @@ public class Game {
      * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
      * andre brikker. Derefter sender den en besked til Controlleren om hvilke
      * brikker der er blevet vendt. Denne funktion er IKKE pure
+     * 
+     * @return Den returner true hvis brikken bliver sat. Ellers returner den false.
      */
-    void handleTileClick(TilePosition pos) {
+    boolean handleTileClick(TilePosition pos, TilePressedMsg msg) {
 
         if (isColor(pos.x, pos.y, board) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
-            return;
+            return false;
         }
 
         var thiscolor = nextturn;
         var flippedTiles = getAllFlipped(pos, thiscolor, board);
         if (followRules() && flippedTiles.size() == 0) {
             System.out.println("Illegal move at " + pos + ". No flips");
-            return;
+            return false;
         }
 
         flippedTiles.add(pos);
@@ -159,6 +195,7 @@ public class Game {
                 whitePoints, blackPoints, false, turns));
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);
+        return true;
     }
 
     void handleAITurn(LegalMove[] legalMoves) {

@@ -3,5 +3,11 @@ package Controller.Gui;
 public enum Buttons {
     Pass,
     Restart,
-    Resign;
+    Resign,
+    Classic,
+    Multiplayer,
+    Join,
+    ExitGame,
+    MainMenu,
+    AI;
 }

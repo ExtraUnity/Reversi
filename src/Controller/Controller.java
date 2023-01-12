@@ -101,6 +101,7 @@ public class Controller {
 
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
+                Gui.close();
             } else if (controllerMsg instanceof WinnerMsg) {
                 WinnerMsg msg = (WinnerMsg) controllerMsg;
                 Platform.runLater(new Runnable() {
@@ -115,7 +116,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.buildGui(msg.gameOptions);
+                        Gui.buildGameGui(msg.gameOptions);
                     }
                 });
 
