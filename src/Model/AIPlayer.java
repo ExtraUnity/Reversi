@@ -9,10 +9,12 @@ public class AIPlayer {
     private LegalMove[] legalMoves;
     private boolean isMyTurn;
     private TilePosition bestMove;
+    private int depth;
 
     AIPlayer(TileColor[][] gameBoard) {
         this.gameBoard = gameBoard;
         bestMove = new TilePosition(0, 0);
+        depth = 5;
     }
 
     public TileColor[][] getGameBoard() {
@@ -40,9 +42,8 @@ public class AIPlayer {
         this.legalMoves = legalMoves;
     }
 
-    
     public TilePosition calculateMultiLayerMove() {
-        return miniMax(gameBoard, legalMoves, 6, true,
+        return miniMax(gameBoard, legalMoves, depth, true,
                 legalMoves[0]).position;
     }
 
@@ -158,20 +159,20 @@ public class AIPlayer {
     /**
      * Returns the value of a tile in a given position. The tile is determined by
      * the following grid:
-     * 10 -3 +2 +2 +2 +2 -3 10
+     * 10 -3 +2 +2 +2 +2 -3 +4
      * -3 -4 -1 -1 -1 -1 -4 -3
      * +2 -1 +1 +0 +0 +1 -1 +2
      * +2 -1 +0 +1 +1 +0 -1 +2
      * +2 -1 +0 +1 +1 +0 -1 +2
      * +2 -1 +1 +0 +0 +1 -1 +2
      * -3 -4 -1 -1 -1 -1 -4 -3
-     * 10 -3 +2 +2 +2 +2 -3 10
+     * +4 -3 +2 +2 +2 +2 -3 10
      * 
      * @return
      */
     private static int tileValue(int x, int y) {
         if (isCorner(x, y)) {
-            return 100;
+            return 10;
         }
         if (isMiddleEdge(x, y)) {
             return 2;
