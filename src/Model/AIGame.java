@@ -4,6 +4,8 @@ import MsgPass.ModelMsg.PassMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
+import MsgPass.ModelMsg.ResignMsg;
+import MsgPass.ControllerMsg.WinnerMsg;
 
 public class AIGame extends Game {
     static AIPlayer aiPlayer;
@@ -12,6 +14,14 @@ public class AIGame extends Game {
         super(options, GameMode.AI_GAME);
         aiPlayer = new AIPlayer(board);
         aiPlayer.setMyTurn(options.startPlayer == TileColor.BLACK);
+    }
+
+    @Override
+    void handleResign(ResignMsg msg) {
+        if (getNextTurn() == TileColor.WHITE) {
+            var winner = nextturn.switchColor();
+            Model.sendControllerMsg(new WinnerMsg(winner));
+        }
     }
 
     @Override
