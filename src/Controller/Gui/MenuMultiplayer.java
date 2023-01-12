@@ -60,6 +60,7 @@ public class MenuMultiplayer extends BorderPane {
                 }
             } else {
                 optionBox.getChildren().remove(timerField);
+                ServerConn.setLoadedGameTime(-1);
             }
         });
         optionBox.getChildren().add(checkBox);
