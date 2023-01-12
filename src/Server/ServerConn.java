@@ -27,7 +27,7 @@ public class ServerConn {
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
     private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
-    private int selectedGametime = 90;
+    private int selectedGametime = -1;
 
     private static ServerConn instance;
 
@@ -37,7 +37,6 @@ public class ServerConn {
 
     public static void setLoadedGameTime(int gameTime) {
         instance.selectedGametime = gameTime;
-        System.out.println("Set loaded gametime to " + gameTime);
     }
 
     public ServerConn() {
