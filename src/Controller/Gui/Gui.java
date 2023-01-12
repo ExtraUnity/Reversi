@@ -168,6 +168,8 @@ public class Gui extends Application {
  
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
+
+
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
 
     }

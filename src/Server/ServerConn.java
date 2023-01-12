@@ -37,6 +37,7 @@ public class ServerConn {
 
     public static void setLoadedGameTime(int gameTime) {
         instance.selectedGametime = gameTime;
+        System.out.println("Set loaded gametime to " + gameTime);
     }
 
     public ServerConn() {
