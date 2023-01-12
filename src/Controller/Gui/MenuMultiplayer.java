@@ -1,6 +1,5 @@
 package Controller.Gui;
 
-import java.io.InputStream;
 
 import Server.ServerConn;
 import javafx.beans.value.ChangeListener;
@@ -22,23 +21,38 @@ import javafx.scene.text.Text;
 public class MenuMultiplayer extends BorderPane {
 
     public MenuMultiplayer(ServerConn conn) {
-        VBox menuLayout = new VBox();
+        StackPane MenuBox = new StackPane();
         StackPane IDbox = new StackPane();
-        Image button = new Image("/Assets/Button.png", 0, Gui.fitTileSize(), true, false);
-        ImageView backgroundButton = new ImageView(button);
-        Background backgroundTexture = new Background(new BackgroundImage(button,
-            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT));
-        Text key = new Text("Your id: " + conn.netId);
+        VBox IDboxLayout = new VBox();
+        VBox menuLayout = new VBox();
+        
+        ImageView backgroundButton = new ImageView(new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize()*6, true, false));
+        ImageView backgroundIDbox = new ImageView(new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize()*2, true, false));
+        
+        Background backgroundTexture = new Background(new BackgroundImage(new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize()/2, true, false) ,
+            BackgroundRepeat.NO_REPEAT , BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT , BackgroundSize.DEFAULT));
+
+        Text key = new Text("Your ID: " + conn.netId);
         TextField text = new TextField();
 
         text.setBackground(backgroundTexture);
         text.setMaxWidth(Gui.fitTileSize() * 2);
-        text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
+        text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, Gui.fitTileSize()/4));
+        text.setStyle("-fx-text-inner-color: black;");
 
         var optionBox = new HBox();
-        optionBox.setAlignment(Pos.TOP_CENTER);
-        var checkBox = new CheckBox("Timer");
+        optionBox.setAlignment(Pos.CENTER);
+        optionBox.setSpacing(5);
+
+        var checkBox = new CheckBox();
+        var timer = new Text("Timer");
+        timer.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        timer.setFill(Color.GREY);
+        timer.setStrokeWidth(2);
+        timer.setStrokeType(StrokeType.OUTSIDE);
+        timer.setStroke(Color.BLACK);
         var timerField = new TextField("90");
+
 
         timerField.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -55,7 +69,6 @@ public class MenuMultiplayer extends BorderPane {
                         System.out.println("Failed to parse timer to a number :(" + newText);
                     }
                 }
-
             }
         });
         checkBox.setOnAction((event) -> {
@@ -73,6 +86,7 @@ public class MenuMultiplayer extends BorderPane {
                 ServerConn.setLoadedGameTime(-1);
             }
         });
+        optionBox.getChildren().add(timer);
         optionBox.getChildren().add(checkBox);
 
         key.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, 30));
@@ -81,20 +95,30 @@ public class MenuMultiplayer extends BorderPane {
         key.setStrokeType(StrokeType.OUTSIDE);
         key.setStroke(Color.BLACK);
 
-        IDbox.getChildren().add(backgroundButton);
-        IDbox.getChildren().add(key);
+        MenuBox.getChildren().add(backgroundButton);
+
+        
+        IDboxLayout.getChildren().add(key);
+        IDboxLayout.getChildren().add(text);
+        IDboxLayout.getChildren().add(optionBox);
+        IDboxLayout.setAlignment(Pos.CENTER);
+        IDboxLayout.setSpacing(15);
+
+        IDbox.getChildren().add(backgroundIDbox);
+        IDbox.getChildren().add(IDboxLayout);
 
         menuLayout.getChildren().add(IDbox);
-        menuLayout.getChildren().add(text);
-        menuLayout.getChildren().add(optionBox);
         menuLayout.getChildren().add(new ButtonJoin(conn, text));
         menuLayout.getChildren().add(new ButtonMainMenu());
         menuLayout.getChildren().add(new ButtonExitGame());
 
-
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setSpacing(15);
-        setCenter(menuLayout);
+
+        
+        MenuBox.getChildren().add(menuLayout);
+
+        setCenter(MenuBox);
 
         setMargin(getCenter(), new Insets(64, 0, 0, 0));
     }

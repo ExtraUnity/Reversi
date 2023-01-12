@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 
 public class MenuDisplayCharacter extends BorderPane{
-    VBox borderPane = new VBox();
+    VBox vBox = new VBox();
     InputStream character_src;
     Image character;
 
@@ -20,12 +20,12 @@ public class MenuDisplayCharacter extends BorderPane{
         this.character_src = getClass().getResourceAsStream("/Assets/characters/" + character + "Turn.png");
         this.character = new Image(character_src, Gui.fitTileSize() * 5, 0, true, false);
 
-        borderPane.getChildren().add(new ImageView(this.character));
+        vBox.getChildren().add(new ImageView(this.character));
         
-        setBottom(borderPane);
+        setBottom(vBox);
         setMargin(getBottom(), new Insets(0, 100, 0, 0));
         
-        borderPane.setAlignment(Pos.BOTTOM_RIGHT);
+        vBox.setAlignment(Pos.BOTTOM_RIGHT);
     }
 
 }

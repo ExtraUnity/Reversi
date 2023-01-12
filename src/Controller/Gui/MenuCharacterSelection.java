@@ -32,7 +32,7 @@ public class MenuCharacterSelection extends BorderPane {
         ArrayList<ImageView> img = new ArrayList<ImageView>();
         for (PlayerCharacter character : PlayerCharacter.values()) {
             if (character == PlayerCharacter.Black || character == PlayerCharacter.White
-                    || character == PlayerCharacter.Computer) {
+                    || character == PlayerCharacter.Computer || character == PlayerCharacter.Unknown) {
                 continue;
             }
             InputStream src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
