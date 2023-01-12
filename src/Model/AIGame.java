@@ -9,27 +9,29 @@ public class AIGame extends Game {
     static AIPlayer aiPlayer;
 
     AIGame(GameOptions options) {
-        super(options);
+        super(options, GameMode.AI_GAME);
         aiPlayer = new AIPlayer(board);
         aiPlayer.setMyTurn(options.startPlayer == TileColor.BLACK);
     }
 
     @Override
-    void handleTileClick(TilePosition pos) {
-        super.handleTileClick(pos);
+    boolean handleTileClick(TilePosition pos, TilePressedMsg msg) {
+        boolean superReturn = super.handleTileClick(pos, msg);
         if (followRules() && getNextTurn() == TileColor.BLACK && !allTilesPlaced()) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
         }
+        return superReturn;
     }
 
     @Override
-    void handlePassClick() {
-        super.handlePassClick();
+    boolean handlePassClick(PassMsg msg) {
+        boolean superReturn = super.handlePassClick(msg);
         if (followRules() && getNextTurn() == TileColor.BLACK) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
         }
+        return superReturn;
     }
 
     @Override
