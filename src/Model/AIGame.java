@@ -9,13 +9,11 @@ import MsgPass.ControllerMsg.WinnerMsg;
 
 public class AIGame extends Game {
     static AIPlayer aiPlayer;
-    private static boolean isCalculating;
 
     AIGame(GameOptions options) {
         super(options, GameMode.AI_GAME);
         aiPlayer = new AIPlayer(board);
         aiPlayer.setMyTurn(options.startPlayer == TileColor.BLACK);
-        isCalculating = false;
     }
 
     @Override
@@ -28,9 +26,6 @@ public class AIGame extends Game {
 
     @Override
     boolean handleTileClick(TilePosition pos, TilePressedMsg msg) {
-        if (isCalculating) {
-            return false;
-        }
         boolean superReturn = super.handleTileClick(pos, msg);
         if (followRules() && superReturn && !allTilesPlaced() && getNextTurn() == TileColor.BLACK) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
@@ -41,9 +36,6 @@ public class AIGame extends Game {
 
     @Override
     boolean handlePassClick(PassMsg msg) {
-        if (isCalculating) {
-            return false;
-        }
         boolean superReturn = super.handlePassClick(msg);
         if (followRules() && superReturn && getNextTurn() == TileColor.BLACK) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
@@ -54,7 +46,6 @@ public class AIGame extends Game {
 
     @Override
     void handleAITurn(LegalMove[] legalMoves) {
-        isCalculating = true;
         aiPlayer.updateBoard(board, legalMoves); // updates with the newest board
 
         // TEMPORARY
@@ -68,7 +59,6 @@ public class AIGame extends Game {
         if (legalMoves.length != 0) {
             aiPlayer.setBestMove(); // Algorithm magic
             System.out.println("Best Move is: " + aiPlayer.getBestMove());
-            isCalculating = false;
 
             // we call handleTileClick directly to avoid player being able to intervene with
             // another TilePressedMsg
