@@ -3,6 +3,7 @@ package Controller.Gui;
 import java.io.InputStream;
 
 import Shared.TileColor;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -18,9 +19,9 @@ public class PointCounter extends FlowPane {
         setVgap(10);
         if (color == TileColor.WHITE) {
             white = this;
-
         } else {
             black = this;
+            setAlignment(Pos.TOP_RIGHT);
         }
         this.color = color;
 
