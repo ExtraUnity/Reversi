@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+import java.io.InputStream;
+
 import Server.ServerConn;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -7,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeType;
@@ -18,10 +22,16 @@ import javafx.scene.text.Text;
 public class MenuMultiplayer extends BorderPane {
 
     public MenuMultiplayer(ServerConn conn) {
-        VBox dialogVbox = new VBox();
+        VBox menuLayout = new VBox();
+        StackPane IDbox = new StackPane();
+        Image button = new Image("/Assets/Button.png", 0, Gui.fitTileSize(), true, false);
+        ImageView backgroundButton = new ImageView(button);
+        Background backgroundTexture = new Background(new BackgroundImage(button,
+            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT));
         Text key = new Text("Your id: " + conn.netId);
         TextField text = new TextField();
 
+        text.setBackground(backgroundTexture);
         text.setMaxWidth(Gui.fitTileSize() * 2);
         text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
 
@@ -65,20 +75,25 @@ public class MenuMultiplayer extends BorderPane {
         optionBox.getChildren().add(checkBox);
 
         key.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, 30));
+        key.setFill(Color.GREY);
         key.setStrokeWidth(2);
         key.setStrokeType(StrokeType.OUTSIDE);
-        key.setStroke(Color.GREY);
+        key.setStroke(Color.BLACK);
 
-        dialogVbox.getChildren().add(key);
-        dialogVbox.getChildren().add(text);
-        dialogVbox.getChildren().add(optionBox);
-        dialogVbox.getChildren().add(new ButtonJoin(conn, text));
-        dialogVbox.getChildren().add(new ButtonMainMenu());
-        dialogVbox.getChildren().add(new ButtonExitGame());
+        IDbox.getChildren().add(backgroundButton);
+        IDbox.getChildren().add(key);
 
-        dialogVbox.setAlignment(Pos.CENTER);
-        dialogVbox.setSpacing(15);
-        setCenter(dialogVbox);
+        menuLayout.getChildren().add(IDbox);
+        menuLayout.getChildren().add(text);
+        menuLayout.getChildren().add(optionBox);
+        menuLayout.getChildren().add(new ButtonJoin(conn, text));
+        menuLayout.getChildren().add(new ButtonMainMenu());
+        menuLayout.getChildren().add(new ButtonExitGame());
+
+
+        menuLayout.setAlignment(Pos.CENTER);
+        menuLayout.setSpacing(15);
+        setCenter(menuLayout);
 
         setMargin(getCenter(), new Insets(64, 0, 0, 0));
     }
