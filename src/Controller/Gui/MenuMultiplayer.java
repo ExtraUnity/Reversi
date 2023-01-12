@@ -32,17 +32,17 @@ public class MenuMultiplayer extends BorderPane {
 
         timerField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                    String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    timerField.setText(newValue.replaceAll("[^\\d]", ""));
+            public void changed(ObservableValue<? extends String> ubrugtObservable, String ubrugtGammelText,
+                    String newText) {
+                if (!newText.matches("\\d*")) {
+                    timerField.setText(newText.replaceAll("[^\\d]", ""));
                 } else {
                     // Hvis det kun er tal
                     try {
-                        int newTimerVal = Integer.parseInt(newValue);
+                        int newTimerVal = Integer.parseInt(newText);
                         ServerConn.setLoadedGameTime(newTimerVal);
                     } catch (Exception ex) {
-                        System.out.println("Failed to parse timer to a number :(" + newValue);
+                        System.out.println("Failed to parse timer to a number :(" + newText);
                     }
                 }
 
