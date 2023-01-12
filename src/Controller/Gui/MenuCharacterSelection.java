@@ -24,6 +24,7 @@ public class MenuCharacterSelection extends BorderPane {
             flowPane.getChildren().add(imgList.get(i));
         }
         flowPane.setAlignment(Pos.CENTER);
+        flowPane.setHgap(30);
         setCenter(flowPane);
 
     }
@@ -36,10 +37,10 @@ public class MenuCharacterSelection extends BorderPane {
                 continue;
             }
             InputStream src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
-            this.avatar = new Image(src, 0, Gui.fitTileSize() * 3, true, false);
+            this.avatar = new Image(src, 0, Gui.fitTileSize() * 2.5, true, false);
 
             InputStream src2 = getClass().getResourceAsStream("/Assets/characters/" + character + "Turn.png");
-            this.avatarSelected = new Image(src2, 0, Gui.fitTileSize() * 3, true, false);
+            this.avatarSelected = new Image(src2, 0, Gui.fitTileSize() * 2.5, true, false);
 
             if (character == Gui.yourCharacter) {
                 this.image = new ImageView(avatarSelected);

@@ -25,32 +25,25 @@ public class MenuMultiplayer extends BorderPane {
         StackPane IDbox = new StackPane();
         VBox IDboxLayout = new VBox();
         VBox menuLayout = new VBox();
+        var optionBox = new HBox();
         
-        ImageView backgroundButton = new ImageView(new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize()*6, true, false));
-        ImageView backgroundIDbox = new ImageView(new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize()*2, true, false));
-        
+        ImageView backgroundButton = new ImageView(new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize()*5.7, true, false));
+        ImageView backgroundIDbox = new ImageView(new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize()*2, true, false));   
         Background backgroundTexture = new Background(new BackgroundImage(new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize()/2, true, false) ,
             BackgroundRepeat.NO_REPEAT , BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT , BackgroundSize.DEFAULT));
 
         Text key = new Text("Your ID: " + conn.netId);
-        TextField text = new TextField();
+        setFontStyle(key , 30);
 
+        TextField text = new TextField();
         text.setBackground(backgroundTexture);
         text.setMaxWidth(Gui.fitTileSize() * 2);
         text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, Gui.fitTileSize()/4));
         text.setStyle("-fx-text-inner-color: black;");
 
-        var optionBox = new HBox();
-        optionBox.setAlignment(Pos.CENTER);
-        optionBox.setSpacing(5);
-
         var checkBox = new CheckBox();
         var timer = new Text("Timer");
-        timer.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, 18));
-        timer.setFill(Color.GREY);
-        timer.setStrokeWidth(2);
-        timer.setStrokeType(StrokeType.OUTSIDE);
-        timer.setStroke(Color.BLACK);
+        setFontStyle(timer, 18);
         var timerField = new TextField("90");
 
 
@@ -86,41 +79,36 @@ public class MenuMultiplayer extends BorderPane {
                 ServerConn.setLoadedGameTime(-1);
             }
         });
-        optionBox.getChildren().add(timer);
-        optionBox.getChildren().add(checkBox);
 
-        key.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, 30));
-        key.setFill(Color.GREY);
-        key.setStrokeWidth(2);
-        key.setStrokeType(StrokeType.OUTSIDE);
-        key.setStroke(Color.BLACK);
+    //her bliver hele den går menuboks i multiplayer menuen sammenat.
+        optionBox.getChildren().addAll(timer , checkBox);
+        optionBox.setAlignment(Pos.CENTER);
+        optionBox.setSpacing(5);
 
         MenuBox.getChildren().add(backgroundButton);
 
-        
-        IDboxLayout.getChildren().add(key);
-        IDboxLayout.getChildren().add(text);
-        IDboxLayout.getChildren().add(optionBox);
+        IDboxLayout.getChildren().addAll(key,text,optionBox);
         IDboxLayout.setAlignment(Pos.CENTER);
         IDboxLayout.setSpacing(15);
 
-        IDbox.getChildren().add(backgroundIDbox);
-        IDbox.getChildren().add(IDboxLayout);
+        IDbox.getChildren().addAll(backgroundIDbox , IDboxLayout);
 
-        menuLayout.getChildren().add(IDbox);
-        menuLayout.getChildren().add(new ButtonJoin(conn, text));
-        menuLayout.getChildren().add(new ButtonMainMenu());
-        menuLayout.getChildren().add(new ButtonExitGame());
-
+        menuLayout.getChildren().addAll(IDbox , new ButtonJoin(conn, text) , new ButtonMainMenu() , new ButtonExitGame());
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setSpacing(15);
-
         
         MenuBox.getChildren().add(menuLayout);
 
         setCenter(MenuBox);
-
         setMargin(getCenter(), new Insets(64, 0, 0, 0));
     }
 
+    //sætter stykker tekst til at have samme stil
+    public void setFontStyle(Text text, int i){
+        text.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, i));
+        text.setFill(Color.GREY);
+        text.setStrokeWidth(2);
+        text.setStrokeType(StrokeType.OUTSIDE);
+        text.setStroke(Color.BLACK);
+    }
 }
