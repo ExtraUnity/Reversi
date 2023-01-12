@@ -69,10 +69,11 @@ public class AIGame extends Game {
             aiPlayer.setBestMove(); // Algorithm magic
             System.out.println("Best Move is: " + aiPlayer.getBestMove());
             isCalculating = false;
-            handleTileClick(aiPlayer.getBestMove(), new TilePressedMsg(aiPlayer.getBestMove()));
-            // Model.sendGameMsg(new TilePressedMsg(aiPlayer.getBestMove()));
 
-            //
+            // we call handleTileClick directly to avoid player being able to intervene with
+            // another TilePressedMsg
+            handleTileClick(aiPlayer.getBestMove(), new TilePressedMsg(aiPlayer.getBestMove()));
+
         } else { // then pass
             System.out.println("I should pass...");
             Model.sendGameMsg(new PassMsg());
