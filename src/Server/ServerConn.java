@@ -24,14 +24,20 @@ public class ServerConn {
     private Thread socketReaderThread;
     public static TileColor selfColor;
     final private Thread connThread;
-    
+
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
     private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
+    private int selectedGametime = 90;
 
     private static ServerConn instance;
 
     public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
         instance.selectedCharacter = selectedCharacter;
+    }
+
+    public static void setLoadedGameTime(int gameTime) {
+        instance.selectedGametime = gameTime;
+        System.out.println("Set loaded gametime to " + gameTime);
     }
 
     public ServerConn() {
@@ -61,6 +67,15 @@ public class ServerConn {
                                     selfColor = TileColor.WHITE;
                                 }
                                 System.out.println("My color is " + selfColor);
+                                // Det er den sorte player som hoster. Det betyder at det er den sorte player
+                                // hvis timer options som skal bruges
+                                if (selfColor == TileColor.BLACK) {
+                                    // Send gametime
+                                    sendModelMessage(new GameTimeOptionNetmsg(selectedGametime));
+                                } else {
+                                    // Læs gametime
+                                    selectedGametime = readGametimeMessage();
+                                }
 
                                 sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
                                 // Bagefter læs hvad den anden er
@@ -81,8 +96,9 @@ public class ServerConn {
                                     }
                                 });
                                 socketReaderThread.start();
-                                Model.startGame(GameMode.MULTIPLAYER, new GameOptions(-1, true, TileColor.BLACK,
-                                        whiteCharacter, blackCharacter));
+                                Model.startGame(GameMode.MULTIPLAYER,
+                                        new GameOptions(selectedGametime, true, TileColor.BLACK,
+                                                whiteCharacter, blackCharacter));
                                 return;
                             } else {
                                 System.out.println("JOIN FAILED");
@@ -207,5 +223,20 @@ public class ServerConn {
         var objectIn = new ObjectInputStream(byteBufferInputStream);
         CharacterSelectedMsg msg = (CharacterSelectedMsg) objectIn.readObject();
         return msg.character;
+    }
+
+    static int readGametimeMessage() throws IOException, ClassNotFoundException {
+        var msgsizebuffer = new byte[4];
+        instance.socket.getInputStream().read(msgsizebuffer);
+        ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
+        int len = buffer.getInt();
+        System.out.println("Received msg len " + len);
+
+        var msg_buffer = new byte[len];
+        instance.socket.getInputStream().read(msg_buffer);
+        var byteBufferInputStream = new ByteArrayInputStream(msg_buffer);
+        var objectIn = new ObjectInputStream(byteBufferInputStream);
+        GameTimeOptionNetmsg msg = (GameTimeOptionNetmsg) objectIn.readObject();
+        return msg.gameTime;
     }
 }

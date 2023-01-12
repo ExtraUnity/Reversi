@@ -363,6 +363,7 @@ public abstract class Game {
                     whiteTimer -= 1;
                     if (whiteTimer <= 0) {
                         Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+                        return;
                     } else {
                         Timer.setTime(TileColor.WHITE, whiteTimer);
                     }
@@ -371,6 +372,7 @@ public abstract class Game {
                     blackTimer -= 1;
                     if (blackTimer <= 0) {
                         Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+                        return;
                     } else {
                         Timer.setTime(TileColor.BLACK, blackTimer);
                     }
