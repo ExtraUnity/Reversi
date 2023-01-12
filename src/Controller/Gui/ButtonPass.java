@@ -32,7 +32,6 @@ public class ButtonPass extends ImageView {
         this.src = getClass().getResourceAsStream(src);
         this.img = new Image(src, 0, this.size, true, false);
         setImage(img);
-        System.out.println("Setting image as " + src);
     }
 
     public void setAvailable(boolean available) {

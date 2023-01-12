@@ -35,8 +35,8 @@ public class Model {
                                 game = new ClassicGame(msg.gameOptions);
                                 break;
                             case AI_GAME:
-                                throw new UnsupportedOperationException("Not yet implemented");
-                            // break;
+                                game = new AIGame(msg.gameOptions);
+                                break;
                             case MULTIPLAYER:
                                 game = new MultiPlayerGame(msg.gameOptions);
                                 break;

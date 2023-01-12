@@ -83,7 +83,6 @@ public class Tile extends ImageView {
     public void setTilecolor(TileColor tilecolor) {
         isLegalMove = false;
         this.tilecolor = tilecolor;
-        System.out.println("Settings tile " + position + " to " + tilecolor);
         switch (tilecolor) {
             case WHITE:
                 setImage(getWhiteImage());

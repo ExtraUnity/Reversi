@@ -30,11 +30,12 @@ public abstract class Game {
     final GameOptions options;
     protected GameState gamestate = GameState.PLAYING;
 
-    TileColor[][] board = new TileColor[8][8];
+    static TileColor[][] board = new TileColor[8][8];
 
     Game(GameOptions options, GameMode gameMode) {
         this.options = options;
         this.gameMode = gameMode;
+        board = new TileColor[8][8];
         nextturn = options.startPlayer;
     }
 
@@ -68,7 +69,7 @@ public abstract class Game {
         while (gamestate == GameState.PLAYING) {
             // Game loop
             var modelMsg = Model.readGameMsg();
-            System.out.println("Game Received " + modelMsg.getClass().getName());
+            // System.out.println("Game Received " + modelMsg.getClass().getName());
 
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
@@ -130,18 +131,19 @@ public abstract class Game {
     boolean handlePassClick(PassMsg msg) {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
         if (!ButtonPass.getAvailable()) {
+            System.out.println("YOU SHALL NOT PASS!");
             return false;
         }
         var thiscolor = nextturn;
         nextturn.switchColor();
         TilePosition noTile = new TilePosition(0, 0);
 
-        for (var t_pos : getAllFlipped(noTile, thiscolor)) {
+        for (var t_pos : getAllFlipped(noTile, thiscolor, board)) {
             board[t_pos.x][t_pos.y] = thiscolor;
         }
         turns++;
         nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves(nextturn);
+        var legalMoves = getAllLegalMoves(nextturn, board);
         System.out.println("Legal moves: " + legalMoves.length);
         // flippedTiles = new ArrayList<TilePosition>();
         int whitePoints = getPoints(TileColor.WHITE);
@@ -163,13 +165,13 @@ public abstract class Game {
      */
     boolean handleTileClick(TilePosition pos, TilePressedMsg msg) {
 
-        if (isColor(pos.x, pos.y) && board[pos.x][pos.y] != null) {
+        if (isColor(pos.x, pos.y, board) && board[pos.x][pos.y] != null) {
             System.out.println("Illegal move at " + pos + ". Tile already colored");
             return false;
         }
 
         var thiscolor = nextturn;
-        var flippedTiles = getAllFlipped(pos, thiscolor);
+        var flippedTiles = getAllFlipped(pos, thiscolor, board);
         if (followRules() && flippedTiles.size() == 0) {
             System.out.println("Illegal move at " + pos + ". No flips");
             return false;
@@ -183,17 +185,20 @@ public abstract class Game {
 
         turns++;
         nextturn = nextturn.switchColor();
-        var legalMoves = getAllLegalMoves(nextturn);
+        var legalMoves = getAllLegalMoves(nextturn, board);
 
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
         System.out.println("Legal moves: " + legalMoves.length);
+        System.out.println("The move " + pos + " has been played");
         Model.sendControllerMsg(new UpdateBoardMsg(thiscolor, flippedTiles.toArray(new TilePosition[0]), legalMoves,
                 whitePoints, blackPoints, false, turns));
-
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);
         return true;
+    }
+
+    void handleAITurn(LegalMove[] legalMoves) {
     }
 
     boolean noLegalsLastTurn = false;
@@ -214,11 +219,9 @@ public abstract class Game {
     }
 
     boolean allTilesPlaced() {
-        System.out.println("Checking if all tiles are placed");
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
                 if (board[x][y] == null) {
-                    System.out.println("No disk placed at " + x + "," + y);
                     return false;
                 }
             }
@@ -227,7 +230,7 @@ public abstract class Game {
         return true;
     }
 
-    boolean isColor(int x, int y) {
+    static boolean isColor(int x, int y, TileColor[][] board) {
         return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] != null;
     }
 
@@ -235,13 +238,14 @@ public abstract class Game {
      * Laver en liste af alle de tiles som skal flippes, i den retning som bliver
      * givet af dx og dy. Denne funktion er pure
      */
-    ArrayList<TilePosition> flipable(TilePosition pos, int dx, int dy, TileColor placedColor) {
+    static ArrayList<TilePosition> flipable(TilePosition pos, int dx, int dy, TileColor placedColor,
+            TileColor[][] board) {
         var flipped = new ArrayList<TilePosition>();
         int x = pos.x + dx;
         int y = pos.y + dy;
         boolean flipValid;
         while (true) {
-            if (!isColor(x, y)) {
+            if (!isColor(x, y, board)) {
                 flipValid = false;
                 break;
             }
@@ -255,9 +259,6 @@ public abstract class Game {
             }
         }
         if (flipValid) {
-            for (var flip_pos : flipped) {
-                System.out.println(pos + " dir " + dx + " " + dy + " flipped " + flip_pos);
-            }
             return flipped;
         } else {
             return new ArrayList<>();
@@ -268,18 +269,18 @@ public abstract class Game {
      * Finder alle de tiles som kan vendes ved et givet træk. Denne funktion er
      * pure.
      */
-    ArrayList<TilePosition> getAllFlipped(TilePosition pos, TileColor placedColor) {
+    static ArrayList<TilePosition> getAllFlipped(TilePosition pos, TileColor placedColor, TileColor[][] board) {
         // Flip all above
-        var aboveFlipped = flipable(pos, 0, 1, placedColor);
-        var rightFlipped = flipable(pos, 1, 0, placedColor);
-        var belowFlipped = flipable(pos, 0, -1, placedColor);
-        var leftFlipped = flipable(pos, -1, 0, placedColor);
+        var aboveFlipped = flipable(pos, 0, 1, placedColor, board);
+        var rightFlipped = flipable(pos, 1, 0, placedColor, board);
+        var belowFlipped = flipable(pos, 0, -1, placedColor, board);
+        var leftFlipped = flipable(pos, -1, 0, placedColor, board);
 
-        var topRightFlipped = flipable(pos, 1, -1, placedColor);
-        var botRightFlipped = flipable(pos, 1, 1, placedColor);
+        var topRightFlipped = flipable(pos, 1, -1, placedColor, board);
+        var botRightFlipped = flipable(pos, 1, 1, placedColor, board);
 
-        var topLeftFlipped = flipable(pos, -1, -1, placedColor);
-        var botLeftFlipped = flipable(pos, -1, 1, placedColor);
+        var topLeftFlipped = flipable(pos, -1, -1, placedColor, board);
+        var botLeftFlipped = flipable(pos, -1, 1, placedColor, board);
 
         var allFlipped = new ArrayList<TilePosition>();
         allFlipped.addAll(aboveFlipped);
@@ -298,25 +299,24 @@ public abstract class Game {
     /**
      * Finds all legal moves and returns an array of them :=)
      */
-    public LegalMove[] getAllLegalMoves(TileColor nextturn) {
+    public static LegalMove[] getAllLegalMoves(TileColor nextturn, TileColor[][] gameBoard) {
         var legalMoves = new ArrayList<LegalMove>();
-        for (int x = 0; x < board.length; x++) {
-            for (int y = 0; y < board[x].length; y++) {
-                if (board[x][y] == null) {
+        for (int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[x].length; y++) {
+                if (gameBoard[x][y] == null) {
                     var pos = new TilePosition(x, y);
-                    int flipped = flippedFromMove(pos, nextturn);
+                    int flipped = flippedFromMove(pos, nextturn, gameBoard);
                     if (flipped > 0) {
                         legalMoves.add(new LegalMove(pos, flipped));
                     }
                 }
-
             }
         }
         return legalMoves.toArray(new LegalMove[0]);
     }
 
-    int flippedFromMove(TilePosition pos, TileColor color) {
-        return getAllFlipped(pos, color).size();
+    static int flippedFromMove(TilePosition pos, TileColor color, TileColor[][] gameBoard) {
+        return getAllFlipped(pos, color, gameBoard).size();
     }
 
     /**

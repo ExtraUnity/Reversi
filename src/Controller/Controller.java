@@ -78,7 +78,8 @@ public class Controller {
         while (controller.state == ControllerState.RUNNING) {
 
             ControllerMsg controllerMsg = Model.readControllerMsg();
-            System.out.println("Controller Received " + controllerMsg.getClass().getName());
+            // System.out.println("Controller Received " +
+            // controllerMsg.getClass().getName());
 
             if (controllerMsg instanceof UpdateBoardMsg) {
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
@@ -143,7 +144,6 @@ public class Controller {
         }
         PointCounter.setBlackPoints(msg.blackPoints);
         PointCounter.setWhitePoints(msg.whitePoints);
-        System.out.println("The next player has " + msg.legalMoves.length + " moves");
 
         updateButtonPass(msg.legalMoves.length);
     }
@@ -165,6 +165,5 @@ public class Controller {
             ButtonPass.setAvailable(false);
         }
         ButtonPass.updatePressed();
-        System.out.println("changing pic");
     }
 }
