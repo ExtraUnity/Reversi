@@ -51,7 +51,7 @@ public class Gui extends Application {
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
         centerBox.setTop(new MenuTop(gameOptions));
-        centerBox.setBottom(new MenuBottom());
+        centerBox.setBottom(new MenuBottom(gameOptions));
         gameGuiRoot.setCenter(centerBox);
         makeBoard();
     }

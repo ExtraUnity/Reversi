@@ -19,6 +19,7 @@ public class BarebonesMain {
             startPlayer = TileColor.WHITE;
         }
 
-        Model.startGame(GameMode.CLASSIC, new GameOptions(-1, true, startPlayer, PlayerCharacter.White, PlayerCharacter.Black));
+        Model.startGame(GameMode.CLASSIC,
+                new GameOptions(100, true, startPlayer, PlayerCharacter.White, PlayerCharacter.Black));
     }
 }

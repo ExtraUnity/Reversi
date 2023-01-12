@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Controller.Gui.Gui;
 import Controller.Gui.PlayerCharacter;
+import Controller.Gui.Timer;
 import Controller.Gui.ButtonPass;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
@@ -60,6 +61,12 @@ public abstract class Game {
         msg4.ignoreNet = true;
         Model.sendGameMsg(msg4);
 
+        if (options.gametime > 0) {
+            new Thread(() -> {
+                runTimer(options.gametime);
+            }).start();
+        }
+
         run_game();
     }
 
@@ -107,7 +114,7 @@ public abstract class Game {
         Model.startGame(gameMode, newOptions);
     }
 
-    void handleMainMenuPressed(){
+    void handleMainMenuPressed() {
         gamestate = GameState.EXITED;
     }
 
@@ -342,6 +349,39 @@ public abstract class Game {
         nextturn = color;
     }
 
+    private void runTimer(int gameTime) {
+        try {
+            // Shared memory, dont care. Man skal være meget uheldig for at det her bliver
+            // et problem
+            int whiteTimer = gameTime;
+            int blackTimer = gameTime;
+            while (gamestate == GameState.PLAYING) {
+
+                // 1 sekund
+                Thread.sleep(1000);
+                if (nextturn == TileColor.WHITE) {
+                    whiteTimer -= 1;
+                    if (whiteTimer <= 0) {
+                        Model.sendControllerMsg(new WinnerMsg(TileColor.BLACK));
+                    } else {
+                        Timer.setTime(TileColor.WHITE, whiteTimer);
+                    }
+
+                } else {
+                    blackTimer -= 1;
+                    if (blackTimer <= 0) {
+                        Model.sendControllerMsg(new WinnerMsg(TileColor.WHITE));
+                    } else {
+                        Timer.setTime(TileColor.BLACK, blackTimer);
+                    }
+
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 
 enum GameState {
