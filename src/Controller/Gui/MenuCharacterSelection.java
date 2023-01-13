@@ -16,9 +16,9 @@ public class MenuCharacterSelection extends BorderPane {
     protected Image avatarSelected;
     protected ImageView image;
 
-    public MenuCharacterSelection(ServerConn conn) {
+    public MenuCharacterSelection() {
 
-        ArrayList<ImageView> imgList = getCharacterAddress(conn);
+        ArrayList<ImageView> imgList = getCharacterAddress();
 
         for (int i = 0; i < imgList.size(); i++) {
             flowPane.getChildren().add(imgList.get(i));
@@ -29,7 +29,7 @@ public class MenuCharacterSelection extends BorderPane {
 
     }
 
-    private ArrayList<ImageView> getCharacterAddress(ServerConn conn) {
+    private ArrayList<ImageView> getCharacterAddress() {
         ArrayList<ImageView> img = new ArrayList<ImageView>();
         for (PlayerCharacter character : PlayerCharacter.values()) {
             if (character == PlayerCharacter.Black || character == PlayerCharacter.White
@@ -51,10 +51,12 @@ public class MenuCharacterSelection extends BorderPane {
             image.setOnMouseReleased(e -> {
                 ServerConn.setLoadedCharacter(character);
                 Gui.setYourCharacter(character);
-                Gui.makeMultiplayerMenu(conn);
+                //Gui.makeMultiplayerMenu(conn);
+                Gui.makeMultiplayerMenu();
             });
             img.add(image);
         }
+        System.out.println("Character select er bygget");
         return img;
     }
 

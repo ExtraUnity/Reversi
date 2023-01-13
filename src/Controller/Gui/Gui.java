@@ -155,7 +155,8 @@ public class Gui extends Application {
 
     public static PlayerCharacter yourCharacter =  PlayerCharacter.Stalin;  
 
-    public static void makeMultiplayerMenu(ServerConn conn) {
+    public static void makeMultiplayerMenu() {
+    //public static void makeMultiplayerMenu(ServerConn conn) {
         var displaySelected = new MenuDisplayCharacter(yourCharacter);
         var displayUnknown = new MenuDisplayUnknown();
         multiplayerMenuRoot = new VBox();
@@ -165,13 +166,15 @@ public class Gui extends Application {
         stackRoot.getChildren().add(displayUnknown);
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
-        var joinButton = new MenuMultiplayer(conn);
-        var characterSelect = new MenuCharacterSelection(conn);
+        //var joinButton = new MenuMultiplayer(conn);
+        var characterSelect = new MenuCharacterSelection();
+        var host = new MenuMultiplayerHost();
         
         multiplayerMenuRoot.getChildren().add(characterSelect);
-        multiplayerMenuRoot.getChildren().add(joinButton);
+        multiplayerMenuRoot.getChildren().add(host);
+        //multiplayerMenuRoot.getChildren().add(joinButton);
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
-
+        System.out.println("reached bottom of menu code");
     }
 
     public static void setYourCharacter(PlayerCharacter character){

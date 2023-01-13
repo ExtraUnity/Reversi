@@ -1,6 +1,7 @@
 package Controller.Gui;
 
 
+
 import Server.ServerConn;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,8 +33,10 @@ public class MenuMultiplayer extends BorderPane {
         Background backgroundTexture = new Background(new BackgroundImage(new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize()/2, true, false) ,
             BackgroundRepeat.NO_REPEAT , BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT , BackgroundSize.DEFAULT));
 
+        /*
         Text key = new Text("Your ID: " + conn.netId);
         setFontStyle(key , 30);
+         */
 
         TextField text = new TextField();
         text.setBackground(backgroundTexture);
@@ -41,6 +44,7 @@ public class MenuMultiplayer extends BorderPane {
         text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, Gui.fitTileSize()/4));
         text.setStyle("-fx-text-inner-color: black;");
 
+        /*
         var checkBox = new CheckBox();
         var timer = new Text("Timer");
         setFontStyle(timer, 18);
@@ -79,15 +83,17 @@ public class MenuMultiplayer extends BorderPane {
                 ServerConn.setLoadedGameTime(-1);
             }
         });
+        */
 
     //her bliver hele den går menuboks i multiplayer menuen sammenat.
-        optionBox.getChildren().addAll(timer , checkBox);
+        //optionBox.getChildren().addAll(timer , checkBox);
         optionBox.setAlignment(Pos.CENTER);
         optionBox.setSpacing(5);
 
         MenuBox.getChildren().add(backgroundButton);
 
-        IDboxLayout.getChildren().addAll(key,text,optionBox);
+        //IDboxLayout.getChildren().add(key)
+        IDboxLayout.getChildren().addAll(text,optionBox);
         IDboxLayout.setAlignment(Pos.CENTER);
         IDboxLayout.setSpacing(15);
 
@@ -103,9 +109,11 @@ public class MenuMultiplayer extends BorderPane {
         setMargin(getCenter(), new Insets(64, 0, 0, 0));
     }
 
+
+
     //sætter stykker tekst til at have samme stil
-    public void setFontStyle(Text text, int i){
-        text.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.REGULAR, i));
+    public static void setFontStyle(Text text, int i){
+        text.setFont(Font.font("Lucida Fax", FontWeight.BOLD, FontPosture.REGULAR, i));
         text.setFill(Color.GREY);
         text.setStrokeWidth(2);
         text.setStrokeType(StrokeType.OUTSIDE);
