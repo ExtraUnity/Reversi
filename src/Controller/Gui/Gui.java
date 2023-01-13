@@ -1,13 +1,10 @@
 package Controller.Gui;
 
-import javax.swing.event.MenuKeyListener;
-
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
-import Server.ServerConn;
 import Shared.TileColor;
 import javafx.application.Application;
 import javafx.application.Platform;

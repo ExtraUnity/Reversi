@@ -1,9 +1,6 @@
 package Controller.Gui;
 
-import Server.ServerConn;
-
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
