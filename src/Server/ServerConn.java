@@ -65,6 +65,7 @@ public class ServerConn {
         }
 
         if (id.length() != 6) {
+            shutdown();
             return "Invalid host id. The length MUST be 6";
         }
         try {
