@@ -90,6 +90,7 @@ public class ServerConn {
                 sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
 
                 PlayerCharacter otherCharacter = readCharacterMessage();
+                selfColor = TileColor.WHITE;
 
                 instance.socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
@@ -129,6 +130,8 @@ public class ServerConn {
 
                 // Derefter læs hvæm den anden spiller som
                 var otherCharacter = readCharacterMessage();
+
+                selfColor = TileColor.BLACK;
 
                 socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
