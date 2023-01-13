@@ -17,7 +17,7 @@ public class MenuCharacterSelection extends BorderPane {
     protected Image avatar;
     protected Image avatarSelected;
     protected ImageView image;
-    private AudioClip characterSound;
+    private static AudioClip characterSound;
 
     public MenuCharacterSelection() {
 
@@ -56,6 +56,7 @@ public class MenuCharacterSelection extends BorderPane {
                 ServerConn.setLoadedCharacter(character);
                 Gui.setYourCharacter(character);
                 Gui.updateMultiplayerMenu();
+
             });
             img.add(image);
         }
@@ -64,6 +65,7 @@ public class MenuCharacterSelection extends BorderPane {
     }
 
     private void playCharacterQuote(PlayerCharacter character) {
+        System.out.println(characterSound);
         if (characterSound != null) {
             characterSound.stop();
         }
