@@ -35,8 +35,16 @@ public class Timer extends HBox {
 
                 int minutes = time / 60;
                 int seconds = time % 60;
+                String seconds_str = "" + seconds;
+                if (seconds_str.length() < 2) {
+                    seconds_str = "0" + seconds_str;
+                }
+                String minutes_str = "" + minutes;
+                if (minutes_str.length() < 2) {
+                    minutes_str = "0" + minutes_str;
+                }
 
-                instance.getChildren().set(index, new Label(" " + color + " " + minutes + ":" + seconds + " "));
+                instance.getChildren().set(index, new Label(" " + color + " " + minutes_str + ":" + seconds_str + " "));
             });
 
         } else {
