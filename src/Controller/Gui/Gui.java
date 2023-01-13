@@ -172,6 +172,7 @@ public class Gui extends Application {
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
         multiplayerMenuRoot.setSpacing(15);
     }
+
     
     public static void makeJoinMenu(){
         join = new MenuMultiplayerJoin();
