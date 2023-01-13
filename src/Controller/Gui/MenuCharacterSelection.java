@@ -52,7 +52,7 @@ public class MenuCharacterSelection extends BorderPane {
                 ServerConn.setLoadedCharacter(character);
                 Gui.setYourCharacter(character);
                 //Gui.makeMultiplayerMenu(conn);
-                Gui.makeMultiplayerMenu();
+                //Gui.makeMultiplayerMenu();
             });
             img.add(image);
         }

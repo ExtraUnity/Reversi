@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+import javax.swing.event.MenuKeyListener;
+
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
@@ -168,12 +170,14 @@ public class Gui extends Application {
 
         //var joinButton = new MenuMultiplayer(conn);
         var characterSelect = new MenuCharacterSelection();
-        var host = new MenuMultiplayerHost();
+        var join = new MenuMultiplayerJoin();
         
         multiplayerMenuRoot.getChildren().add(characterSelect);
-        multiplayerMenuRoot.getChildren().add(host);
+        multiplayerMenuRoot.getChildren().add(join);
+
         //multiplayerMenuRoot.getChildren().add(joinButton);
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
+        multiplayerMenuRoot.setSpacing(15);
         System.out.println("reached bottom of menu code");
     }
 
