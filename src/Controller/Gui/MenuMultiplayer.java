@@ -21,18 +21,18 @@ import javafx.scene.text.Text;
 
 public class MenuMultiplayer extends BorderPane {
 
-    public MenuMultiplayer(ServerConn conn) {
+    public MenuMultiplayer() {
         StackPane MenuBox = new StackPane();
         VBox menuLayout = new VBox();
 
         
-        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize()*5.7, true, false));
+        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize()*4.7, true, false));
 
         MenuBox.getChildren().add(backgroundTile);
 
-        menuLayout.getChildren().addAll( new ButtonMainMenu() , new ButtonExitGame());
+        menuLayout.getChildren().addAll(new ButtonHostGame(), new ButtonJoinGame(), new ButtonMainMenu() , new ButtonExitGame());
         menuLayout.setAlignment(Pos.CENTER);
-        menuLayout.setSpacing(15);
+        menuLayout.setSpacing(10);
 
         MenuBox.getChildren().add(menuLayout);
 

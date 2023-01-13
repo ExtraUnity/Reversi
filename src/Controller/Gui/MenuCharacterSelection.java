@@ -51,8 +51,7 @@ public class MenuCharacterSelection extends BorderPane {
             image.setOnMouseReleased(e -> {
                 ServerConn.setLoadedCharacter(character);
                 Gui.setYourCharacter(character);
-                //Gui.makeMultiplayerMenu(conn);
-                //Gui.makeMultiplayerMenu();
+                Gui.updateMultiplayerMenu();
             });
             img.add(image);
         }

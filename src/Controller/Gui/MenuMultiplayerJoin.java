@@ -29,7 +29,7 @@ public class MenuMultiplayerJoin extends BorderPane{
         VBox IDBoxLayout = new VBox();
         
 
-        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize()*4.5, true, false));
+        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize()*5.7, true, false));
         ImageView backgroundIDBoxTile = new ImageView(new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize()*2, true, false));   
         ImageView yourIDLable = new ImageView(new Image("/Assets/menutiles/enterID.png", 0, Gui.fitTileSize()/2, true, false));
         Background backgroundTexture = new Background(new BackgroundImage(new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize()/2, true, false) ,
