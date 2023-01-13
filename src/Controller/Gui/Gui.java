@@ -168,7 +168,7 @@ public class Gui extends Application {
         File musicDirectory = new File(path);
         Media backgroundMusic = new Media(musicDirectory.toURI().toString());
         musicPlayer = new MediaPlayer(backgroundMusic);
-        musicPlayer.setVolume(0.4);
+        musicPlayer.setVolume(0.2);
         musicPlayer.setOnEndOfMedia(new Runnable() {
             public void run() {
                 musicPlayer.seek(Duration.ZERO);

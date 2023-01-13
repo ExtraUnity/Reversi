@@ -5,8 +5,8 @@ public enum PlayerCharacter {
     White,
     Stalin,
     GenghisKhan,
-    MargretThatcher,
+    MargaretThatcher,
     Computer,
     Unknown,
-    BarakObama
+    BarackObama
 }
