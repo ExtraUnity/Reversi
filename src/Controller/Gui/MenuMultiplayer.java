@@ -96,7 +96,7 @@ public class MenuMultiplayer extends BorderPane {
         menuLayout.getChildren().addAll(IDbox , new ButtonJoin(conn, text) , new ButtonMainMenu() , new ButtonExitGame());
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setSpacing(15);
-        
+
         MenuBox.getChildren().add(menuLayout);
 
         setCenter(MenuBox);
