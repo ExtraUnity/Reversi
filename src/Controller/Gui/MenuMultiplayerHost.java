@@ -24,7 +24,7 @@ public class MenuMultiplayerHost extends BorderPane{
         HBox optionTimerBox = makeTimer();
         
 
-        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/mediumTile.png", 0, Gui.fitTileSize()*4, true, false));
+        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize()*5.5, true, false));
         ImageView backgroundIDBoxTile = new ImageView(new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize()*2, true, false));   
         ImageView yourIDLable = new ImageView(new Image("/Assets/menutiles/yourID.png", 0, Gui.fitTileSize()/2, true, false));
         Text key = new Text(ServerConn.hostGame());
