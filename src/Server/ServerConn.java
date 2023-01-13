@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 
 import Controller.Gui.PlayerCharacter;
@@ -19,11 +20,8 @@ import Shared.TileColor;
 
 public class ServerConn {
     private final Socket socket;
-    public final String netId;
     private boolean joined = false;
-    private Thread socketReaderThread;
     public static TileColor selfColor;
-    final private Thread connThread;
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
     private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
@@ -39,94 +37,98 @@ public class ServerConn {
         instance.selectedGametime = gameTime;
     }
 
-    public ServerConn() {
-        instance = this;
-        try {
-            // mig egen ip. Ikke dox mig plz
-            socket = new Socket("77.213.215.246", 4000);
-            netId = Server.getInitId(socket);
-            System.out.println("Received netId " + netId);
-            connThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        while (true) {
-                            var buffer = new byte[1];
-                            socket.getInputStream().read(buffer);
-                            var success = buffer[0] == 1;
-                            System.out.println("JOIN SUCCESS: " + success);
-                            if (success) {
-                                joined = true;
-
-                                var buffer_2 = new byte[1];
-                                socket.getInputStream().read(buffer_2);
-                                if (buffer_2[0] == 0) {
-                                    selfColor = TileColor.BLACK;
-                                } else {
-                                    selfColor = TileColor.WHITE;
-                                }
-                                System.out.println("My color is " + selfColor);
-                                // Det er den sorte player som hoster. Det betyder at det er den sorte player
-                                // hvis timer options som skal bruges
-                                if (selfColor == TileColor.BLACK) {
-                                    // Send gametime
-                                    sendModelMessage(new GameTimeOptionNetmsg(selectedGametime));
-                                } else {
-                                    // Læs gametime
-                                    selectedGametime = readGametimeMessage();
-                                }
-
-                                sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
-                                // Bagefter læs hvad den anden er
-                                PlayerCharacter otherCharacter = readCharacterMessage();
-                                var whiteCharacter = selfColor == TileColor.WHITE ? selectedCharacter : otherCharacter;
-                                var blackCharacter = selfColor == TileColor.BLACK ? selectedCharacter : otherCharacter;
-
-                                System.out.println("self  character " + selectedCharacter);
-                                System.out.println("other character " + otherCharacter);
-
-                                System.out.println("white character " + whiteCharacter);
-                                System.out.println("black character " + blackCharacter);
-
-                                socketReaderThread = new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        socketReaderLoop();
-                                    }
-                                });
-                                socketReaderThread.start();
-                                Model.startGame(GameMode.MULTIPLAYER,
-                                        new GameOptions(selectedGametime, true, TileColor.BLACK,
-                                                whiteCharacter, blackCharacter));
-                                return;
-                            } else {
-                                System.out.println("JOIN FAILED");
-                            }
-                        }
-                    } catch (SocketException e) {
-                        if (e.getMessage().contains("Socket closed")) {
-                            System.out.println("Serverconn socket closed");
-                        } else {
-                            e.printStackTrace();
-                        }
-                    } catch (IOException e) {
-
-                        e.printStackTrace();
-                        return;
-                    } catch (ClassNotFoundException e) {
-                        System.out.println(
-                                "Dette sker hvis modstanderen ikke sender en characterselected besked med det samme");
-
-                        System.out.println("Altså har i nok forskellige versioner af spillet. Opdater");
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-            connThread.start();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public static String hostGame() {
+        if (instance != null) {
+            return "Server connection object already exists. This is a bug. Remember to call shutdown() after the end of a game.";
         }
+        try {
+            instance = new ServerConn();
+            var outStream = instance.socket.getOutputStream();
+            var inStream = instance.socket.getInputStream();
+            // Byte 1 betyder man gerne vil hoste
+            outStream.write(1);
+            byte[] rawid = Server.readJoinId(inStream);
+            instance.hostWaitForConnection();
+            return new String(rawid);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
+    public static String joinGame(String id) {
+        if (instance != null) {
+            return "Server connection object already exists. This is a bug. Remember to call shutdown() after the end of a game.";
+        }
+
+        if (id.length() != 6) {
+            return "Invalid host id. The length MUST be 6";
+        }
+        try {
+            instance = new ServerConn();
+            byte[] idRaw = id.getBytes();
+            var outStream = instance.socket.getOutputStream();
+            var inStream = instance.socket.getInputStream();
+            // Byte 0 betyder man gerne vil joine
+            outStream.write(0);
+            outStream.write(idRaw);
+            int success = inStream.read();
+            if (success == 1) {
+                // Først læs hvad gameTime er
+                int gameTime = readGametimeMessage();
+                PlayerCharacter otherCharacter = readCharacterMessage();
+                Model.startGame(GameMode.MULTIPLAYER,
+                        new GameOptions(gameTime, true, selfColor, instance.selectedCharacter, otherCharacter));
+                instance.socketReaderLoop();
+                return "Joining";
+            } else {
+                return "Unused host id";
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return e.getMessage() + " this happend because of different game versions. Update now!";
+        }
+    }
+
+    private void hostWaitForConnection() {
+        new Thread(() -> {
+            try {
+                var inStream = instance.socket.getInputStream();
+                // Når den modtager en byte betyder det at der er en spiller klar på den anden
+                // side.
+                inStream.read();
+                // Det første der skal ske er at den sender gameTime.
+                sendModelMessage(new GameTimeOptionNetmsg(selectedGametime));
+
+                // Derefter sender den hvilken character der er blevet valgt
+                sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
+
+                // Derefter læs hvæm den anden spiller som
+                var otherCharacter = readCharacterMessage();
+
+                Model.startGame(GameMode.MULTIPLAYER,
+                        new GameOptions(selectedGametime, true, TileColor.BLACK, otherCharacter, selectedCharacter));
+
+                socketReaderLoop();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private ServerConn() throws UnknownHostException, IOException {
+        socket = new Socket("77.213.215.246", 4000);
     }
 
     public static void sendModelMessage(ModelMsg msg) {
@@ -205,6 +207,7 @@ public class ServerConn {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            instance = null;
         }
     }
 
@@ -237,5 +240,10 @@ public class ServerConn {
         var objectIn = new ObjectInputStream(byteBufferInputStream);
         GameTimeOptionNetmsg msg = (GameTimeOptionNetmsg) objectIn.readObject();
         return msg.gameTime;
+    }
+
+    enum ConnMode {
+        Host,
+        Join
     }
 }

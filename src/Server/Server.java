@@ -1,131 +1,135 @@
 package Server;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class Server {
     private static final int PORT = 4000;
-    private static final int POLLING_INTERVAL = 100;
 
-    private static volatile LinkedBlockingQueue<WaitingClient> newConnections = new LinkedBlockingQueue<>();
-
-    /**
-     * Har valgt at bruge et polling interval i stedet for at lave en helt masse
-     * komplikeret threading. Især fordi mutexes i java er ret wack.
-     */
     public static void main(String[] args) {
 
-        // Connection accepting thread
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try (var socket = new ServerSocket(PORT)) {
-                    while (true) {
-                        newConnections.put(new WaitingClient(socket.accept()));
+        try (ServerSocket socket = new ServerSocket(PORT)) {
+            var hosts = new HashMap<byte[], Socket>();
+            while (true) {
+                try {
+                    var clientSocket = socket.accept();
+                    /*
+                     * 1.
+                     * Protocollen er at hvis der bliver sendt en "1" byte, vil clienten gerne
+                     * hoste.
+                     * Hvis der bliver sendt en "0" vil der gerne joine et eksiterende spil.
+                     * 2.
+                     * Hvis den hoster vil serveren sende 6 bytes som er dens id.
+                     * Hvis den vil joine vil den læse 6 bytes som er id'et af den som forbindelsen
+                     * vil joine.
+                     * 3.
+                     * Hvis det lykkes at joine en anden person bliver der sendt et "1" til begger
+                     * parter.
+                     * Hvis den prøver at joine en person som ikke eksisterer vil der blive sendt et
+                     * "0" tilbage.
+                     * 4.
+                     * Efter hver ny forbindelse hvil den loope gennem alle tidligere forbindelser
+                     * for at fjerne de ubrugte.
+                     */
+
+                    // Læs hvilken slags forbindelse der bliver skabt:
+                    var inStream = clientSocket.getInputStream();
+                    var outSteam = clientSocket.getOutputStream();
+
+                    int connectionType = inStream.read();
+                    if (connectionType == 1) {
+                        // Siden den gerne vil hoste. Skal der blive dannet et tilfældigt id. Funktionen
+                        // tager hosts som argument fordi den tjekker for kollisioner
+                        byte[] id = generateId(hosts);
+
+                        // Send id bytesne til clienten og smid den i mappet.
+                        outSteam.write(id);
+                        hosts.put(id, clientSocket);
+
+                    } else if (connectionType == 0) {
+                        // Siden den gerne vil joine har den brug for at læse et id fra streamen.
+                        byte[] id = readJoinId(inStream);
+
+                        // Nu skal den tjekke om der findes en host med dette it id
+                        var host = hosts.remove(id);
+                        if (host == null) {
+                            // Der findes ikke en host med dette. Send "0" byte tilbage
+                            outSteam.write(0);
+                            // Der kan ikke gøres mere. Så dræb forbindelsen
+                            clientSocket.close();
+                        } else {
+                            // Der findes en host med dette navn. Først skal der tjekke om forbindelsen
+                            // stadig er i live.
+                            if (host.isConnected()) {
+                                // Hvis den stadig er frisk. Skriv "1" til dem begge så de ved at der er åbnet
+                                // et spil. Og åben spillet på en ny thread
+                                outSteam.write(1);
+                                host.getOutputStream().write(1);
+                                GameHost game = new GameHost(host, clientSocket);
+                                game.spawn();
+                            } else {
+                                // Hvis den ikke længere er i live. Sig til clienten at det ikke var et validt
+                                // id.
+                                outSteam.write(0);
+                            }
+                        }
+                    } else {
+                        // Hvis den modtager en forkert byte. Er det nok bare en crawler som har fundet
+                        // forbindelsen. Dræb den.
+                        clientSocket.close();
                     }
-                } catch (Exception e) {
+                    // Til sidst skal den bare rengøre og slette all gamle forbindelser.
+                    for (byte[] id : hosts.keySet()) {
+                        var host = hosts.get(id);
+                        if (!host.isConnected()) {
+                            // Hvis den ikke længere er forbundet. Skal den fjernes
+                            hosts.remove(id);
+                        }
+                    }
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
-        }).start();
+        } catch (IOException serverException) {
+            // Det her sker hvis serversocket crasher. Det er meget usandsynligt og serveren
+            // kommer til at lukke hvis det sker.
+            serverException.printStackTrace();
+        }
 
-        var clients = new ArrayList<WaitingClient>();
+    }
 
+    public static byte[] readJoinId(InputStream stream) throws IOException {
+        byte[] id = new byte[6];
+        stream.read(id);
+        return id;
+    }
+
+    private static byte[] generateId(HashMap<byte[], Socket> map) {
+        // Den skal blive ved med at genererer id'er indtil den finder et unikt. Det er
+        // meget usandsynligt at den nogensinde kommer til at lave en kollision
         while (true) {
-            try {
-                Thread.sleep(POLLING_INTERVAL);
-                var client = newConnections.poll();
-                if (client != null) {
-                    client.socket.getOutputStream().write(client.id);
-                    clients.add(client);
-                }
+            int leftLimit = 65; // letter 'A'
+            int rightLimit = 90; // letter 'Z'
+            int targetStringLength = 6;
+            Random random = new Random();
 
-                for (int i = 0; i < clients.size(); i++) {
-                    var poll_client = clients.get(i);
-                    var inStream = poll_client.socket.getInputStream();
-                    if (inStream.available() >= 6) {
-                        System.out.println(poll_client.id_str + " has bytes");
-                        byte[] netIdBytes = new byte[6];
-                        var netIdStr = new String(netIdBytes);
-                        inStream.read(netIdBytes);
-
-                        System.out.println(poll_client.id_str + " read " + new String(netIdBytes));
-
-                        var outStream = poll_client.socket.getOutputStream();
-                        boolean did_find_client = false;
-                        for (int j = 0; j < clients.size(); j++) {
-                            if (i == j) {
-                                continue;
-                            }
-                            var found_client = clients.get(j);
-                            System.out.println("Checking " + found_client.id_str);
-                            if (Arrays.equals(found_client.id, netIdBytes)) {
-                                did_find_client = true;
-                                outStream.write(1);
-                                found_client.socket.getOutputStream().write(1);
-                                outStream.write(1);
-                                found_client.socket.getOutputStream().write(0);
-
-                                clients.remove(poll_client);
-                                clients.remove(found_client);
-                                var gamehost = new GameHost(poll_client, found_client);
-                                gamehost.spawn();
-                                break;
-                            }
-                        }
-                        if (!did_find_client) {
-                            outStream.write(0);
-                            System.out.println(poll_client.id_str + " failed to find " + netIdStr);
-                        }
-                        break;
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            String generatedString = random.ints(leftLimit, rightLimit + 1)
+                    .limit(targetStringLength)
+                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                    .toString();
+            byte[] bytes = generatedString.getBytes();
+            if (map.get(bytes) == null) {
+                return bytes;
+            } else {
+                System.out.println("Wow ok der var collision med id'et " + generatedString);
             }
-
         }
 
-    }
-
-    public static String getInitId(Socket socket) {
-        byte[] id_temp = new byte[6];
-        try {
-            socket.getInputStream().read(id_temp);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return new String(id_temp, Charset.forName("UTF-8"));
-    }
-}
-
-class WaitingClient {
-    final Socket socket;
-    final byte[] id;
-    final String id_str;
-
-    WaitingClient(Socket socket) {
-        this.socket = socket;
-        int leftLimit = 97; // letter 'a'
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 6;
-        Random random = new Random();
-
-        String generatedString = random.ints(leftLimit, rightLimit + 1)
-                .limit(targetStringLength)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-        System.out.println("Generated netId " + generatedString);
-        id = generatedString.getBytes();
-        id_str = generatedString;
     }
 }
 
@@ -133,10 +137,9 @@ class GameHost {
     Socket socket1;
     Socket socket2;
 
-    GameHost(WaitingClient player1, WaitingClient player2) {
-        socket1 = player1.socket;
-        socket2 = player2.socket;
-        System.out.println("Spawned game between " + player1.id_str + " " + player2.id_str);
+    GameHost(Socket player1, Socket player2) {
+        socket1 = player1;
+        socket2 = player2;
     }
 
     void spawn() {

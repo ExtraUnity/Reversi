@@ -5,6 +5,8 @@ import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 import MsgPass.ModelMsg.ResignMsg;
+import MsgPass.ModelMsg.RestartBtnPressedMsg;
+import Controller.Gui.PlayerCharacter;
 import MsgPass.ControllerMsg.WinnerMsg;
 
 public class AIGame extends Game {
@@ -42,6 +44,14 @@ public class AIGame extends Game {
             handleAITurn(legalMoves);
         }
         return superReturn;
+    }
+
+    @Override
+    void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
+         gamestate = GameState.EXITED;
+        GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
+                options.startPlayer.switchColor(), PlayerCharacter.White, PlayerCharacter.Computer);
+        Model.startGame(gameMode, newOptions);
     }
 
     @Override
