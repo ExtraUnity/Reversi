@@ -1,7 +1,6 @@
 package Controller.Gui;
 
 import java.io.File;
-import java.net.URL;
 
 import Controller.Controller;
 import Model.GameOptions;
