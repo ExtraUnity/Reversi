@@ -86,10 +86,14 @@ public class ServerConn {
             if (success == 1) {
                 // Først læs hvad gameTime er
                 int gameTime = readGametimeMessage();
+                // Send character message
+                sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
+
                 PlayerCharacter otherCharacter = readCharacterMessage();
+
+                instance.socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
                         new GameOptions(gameTime, true, selfColor, selectedCharacter, otherCharacter));
-                instance.socketReaderLoop();
                 return "Joining";
             } else {
                 shutdown();
@@ -126,10 +130,10 @@ public class ServerConn {
                 // Derefter læs hvæm den anden spiller som
                 var otherCharacter = readCharacterMessage();
 
+                socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
                         new GameOptions(selectedGametime, true, TileColor.BLACK, otherCharacter, selectedCharacter));
 
-                socketReaderLoop();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -184,31 +188,33 @@ public class ServerConn {
     }
 
     private void socketReaderLoop() {
-        try {
-            while (true) {
-                var msgsizebuffer = new byte[4];
-                socket.getInputStream().read(msgsizebuffer);
-                ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
-                int len = buffer.getInt();
-                System.out.println("Received msg len " + len);
+        new Thread(() -> {
+            try {
+                while (true) {
+                    var msgsizebuffer = new byte[4];
+                    socket.getInputStream().read(msgsizebuffer);
+                    ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
+                    int len = buffer.getInt();
+                    System.out.println("Received msg len " + len);
 
-                var msg_buffer = new byte[len];
-                socket.getInputStream().read(msg_buffer);
-                var byteBufferInputStream = new ByteArrayInputStream(msg_buffer);
-                var objectIn = new ObjectInputStream(byteBufferInputStream);
-                ModelMsg msg = (ModelMsg) objectIn.readObject();
-                System.out.println("Received msg " + msg);
-                Model.sendGameMsg(msg);
+                    var msg_buffer = new byte[len];
+                    socket.getInputStream().read(msg_buffer);
+                    var byteBufferInputStream = new ByteArrayInputStream(msg_buffer);
+                    var objectIn = new ObjectInputStream(byteBufferInputStream);
+                    ModelMsg msg = (ModelMsg) objectIn.readObject();
+                    System.out.println("Received msg " + msg);
+                    Model.sendGameMsg(msg);
+                }
+            } catch (SocketException e) {
+                System.out.println("Socket closed: " + e.getMessage());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                System.out.println(
+                        "Using incompatible versions of your game :(\n This is fatal for multiplayer and the socket has exited. Update your game and try again");
+                e.printStackTrace();
             }
-        } catch (SocketException e) {
-            System.out.println("Socket closed: " + e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println(
-                    "Using incompatible versions of your game :(\n This is fatal for multiplayer and the socket has exited. Update your game and try again");
-            e.printStackTrace();
-        }
+        }).start();
     }
 
     public static void shutdown() {
