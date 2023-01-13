@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-
 import Controller.Gui.Gui;
 import Controller.Gui.PlayerCharacter;
 import Controller.Gui.Timer;
@@ -10,6 +9,8 @@ import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
 import MsgPass.ModelMsg.TilePressedMsg;
+import Server.ServerConn;
+import Server.SynchronizeTimeNetmsg;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.MainMenuMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
@@ -98,6 +99,11 @@ public abstract class Game {
                 handleResign((ResignMsg) modelMsg);
             } else if (modelMsg instanceof MainMenuMsg) {
                 handleMainMenuPressed();
+            } else if (modelMsg instanceof SynchronizeTimeNetmsg) {
+                var timeMsg = (SynchronizeTimeNetmsg) modelMsg;
+                blackTimer = timeMsg.blackTime;
+                whiteTimer = timeMsg.whiteTime;
+                System.out.println("Synchronized time to " + blackTimer + " " + whiteTimer);
             }
         }
         System.out.println(getClass().getSimpleName() + " loop ended");
@@ -350,14 +356,17 @@ public abstract class Game {
         nextturn = color;
     }
 
+    static int whiteTimer = -1;
+    static int blackTimer = -1;
+
     private void runTimer(int gameTime) {
         try {
             // Shared memory, dont care. Man skal være meget uheldig for at det her bliver
             // et problem
-            int whiteTimer = gameTime;
-            int blackTimer = gameTime;
+            whiteTimer = gameTime;
+            blackTimer = gameTime;
+            int timeToNextSynchronize = 5;
             while (gamestate == GameState.PLAYING) {
-
                 // 1 sekund
                 Thread.sleep(1000);
                 if (nextturn == TileColor.WHITE) {
@@ -377,8 +386,13 @@ public abstract class Game {
                     } else {
                         Timer.setTime(TileColor.BLACK, blackTimer);
                     }
-
                 }
+
+                if (ServerConn.isHost && timeToNextSynchronize == 0) {
+                    ServerConn.sendModelMessage(new SynchronizeTimeNetmsg(blackTimer, whiteTimer));
+                    timeToNextSynchronize = 5;
+                }
+                timeToNextSynchronize--;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

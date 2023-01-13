@@ -22,19 +22,20 @@ public class ServerConn {
     private final Socket socket;
     private boolean joined = false;
     public static TileColor selfColor;
+    public static boolean isHost;
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
-    private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
-    private int selectedGametime = -1;
+    private static PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
+    private static int selectedGametime = -1;
 
     private static ServerConn instance;
 
     public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
-        instance.selectedCharacter = selectedCharacter;
+        ServerConn.selectedCharacter = selectedCharacter;
     }
 
     public static void setLoadedGameTime(int gameTime) {
-        instance.selectedGametime = gameTime;
+        selectedGametime = gameTime;
     }
 
     public static String hostGame() {
@@ -47,9 +48,10 @@ public class ServerConn {
             var inStream = instance.socket.getInputStream();
             // Byte 1 betyder man gerne vil hoste
             outStream.write(1);
-            byte[] rawid = Server.readJoinId(inStream);
+            byte[] rawId = Server.readJoinId(inStream);
+
             instance.hostWaitForConnection();
-            return new String(rawid);
+            return new String(rawId);
         } catch (UnknownHostException e) {
             e.printStackTrace();
             return e.getMessage();
@@ -65,36 +67,48 @@ public class ServerConn {
         }
 
         if (id.length() != 6) {
+            shutdown();
             return "Invalid host id. The length MUST be 6";
         }
         try {
             instance = new ServerConn();
-            byte[] idRaw = id.getBytes();
+            byte[] rawId = id.getBytes();
+
             var outStream = instance.socket.getOutputStream();
             var inStream = instance.socket.getInputStream();
             // Byte 0 betyder man gerne vil joine
             outStream.write(0);
-            outStream.write(idRaw);
+            outStream.write(rawId);
             int success = inStream.read();
             if (success == 1) {
                 // Først læs hvad gameTime er
                 int gameTime = readGametimeMessage();
+                // Send character message
+                sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
+
                 PlayerCharacter otherCharacter = readCharacterMessage();
-                Model.startGame(GameMode.MULTIPLAYER,
-                        new GameOptions(gameTime, true, selfColor, instance.selectedCharacter, otherCharacter));
+                selfColor = TileColor.WHITE;
+
+                isHost = false;
                 instance.socketReaderLoop();
+                Model.startGame(GameMode.MULTIPLAYER,
+                        new GameOptions(gameTime, true, TileColor.BLACK, selectedCharacter, otherCharacter));
                 return "Joining";
             } else {
+                shutdown();
                 return "Unused host id";
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage() + " this happend because of different game versions. Update now!";
         }
     }
@@ -115,12 +129,20 @@ public class ServerConn {
                 // Derefter læs hvæm den anden spiller som
                 var otherCharacter = readCharacterMessage();
 
+                selfColor = TileColor.BLACK;
+                isHost = true;
+
+                socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
                         new GameOptions(selectedGametime, true, TileColor.BLACK, otherCharacter, selectedCharacter));
 
-                socketReaderLoop();
             } catch (IOException e) {
-                e.printStackTrace();
+                if (!e.getMessage().contains("Socket closed")) {
+                    e.printStackTrace();
+                } else {
+                    System.out.println("Socket closed");
+                }
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -173,31 +195,33 @@ public class ServerConn {
     }
 
     private void socketReaderLoop() {
-        try {
-            while (true) {
-                var msgsizebuffer = new byte[4];
-                socket.getInputStream().read(msgsizebuffer);
-                ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
-                int len = buffer.getInt();
-                System.out.println("Received msg len " + len);
+        new Thread(() -> {
+            try {
+                while (true) {
+                    var msgsizebuffer = new byte[4];
+                    socket.getInputStream().read(msgsizebuffer);
+                    ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
+                    int len = buffer.getInt();
+                    System.out.println("Received msg len " + len);
 
-                var msg_buffer = new byte[len];
-                socket.getInputStream().read(msg_buffer);
-                var byteBufferInputStream = new ByteArrayInputStream(msg_buffer);
-                var objectIn = new ObjectInputStream(byteBufferInputStream);
-                ModelMsg msg = (ModelMsg) objectIn.readObject();
-                System.out.println("Received msg " + msg);
-                Model.sendGameMsg(msg);
+                    var msg_buffer = new byte[len];
+                    socket.getInputStream().read(msg_buffer);
+                    var byteBufferInputStream = new ByteArrayInputStream(msg_buffer);
+                    var objectIn = new ObjectInputStream(byteBufferInputStream);
+                    ModelMsg msg = (ModelMsg) objectIn.readObject();
+                    System.out.println("Received msg " + msg);
+                    Model.sendGameMsg(msg);
+                }
+            } catch (SocketException e) {
+                System.out.println("Socket closed: " + e.getMessage());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                System.out.println(
+                        "Using incompatible versions of your game :(\n This is fatal for multiplayer and the socket has exited. Update your game and try again");
+                e.printStackTrace();
             }
-        } catch (SocketException e) {
-            System.out.println("Socket closed: " + e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println(
-                    "Using incompatible versions of your game :(\n This is fatal for multiplayer and the socket has exited. Update your game and try again");
-            e.printStackTrace();
-        }
+        }).start();
     }
 
     public static void shutdown() {
@@ -205,7 +229,11 @@ public class ServerConn {
             try {
                 instance.socket.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                if (!e.getMessage().contains("Socket closed")) {
+                    e.printStackTrace();
+                } else {
+                    System.out.println("Socket already closed");
+                }
             }
             instance = null;
         }

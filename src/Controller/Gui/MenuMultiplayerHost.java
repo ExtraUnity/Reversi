@@ -24,7 +24,7 @@ public class MenuMultiplayerHost extends BorderPane{
         HBox optionTimerBox = makeTimer();
         
 
-        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/mediumTile.png", 0, Gui.fitTileSize()*4, true, false));
+        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize()*4.5, true, false));
         ImageView backgroundIDBoxTile = new ImageView(new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize()*2, true, false));   
         ImageView yourIDLable = new ImageView(new Image("/Assets/menutiles/yourID.png", 0, Gui.fitTileSize()/2, true, false));
         Text key = new Text(ServerConn.hostGame());
@@ -37,13 +37,16 @@ public class MenuMultiplayerHost extends BorderPane{
 
         MenuBoxLayout.getChildren().addAll(IDBox,new ButtonMainMenu(), new ButtonExitGame());
         MenuBoxLayout.setAlignment(Pos.CENTER);
-        MenuBoxLayout.setSpacing(15);
+        MenuBoxLayout.setSpacing(10);
 
         IDBox.getChildren().addAll(backgroundIDBoxTile,IDBoxLayout);
         IDBox.setAlignment(Pos.CENTER);
+        IDBoxLayout.setSpacing(5);
 
         IDBoxLayout.getChildren().addAll(yourIDLable,key,optionTimerBox);
         IDBoxLayout.setAlignment(Pos.CENTER);
+
+
 
         setCenter(MenuBox);
         System.out.println("host er bygget");

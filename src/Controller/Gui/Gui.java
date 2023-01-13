@@ -1,6 +1,7 @@
 package Controller.Gui;
 
 import java.io.File;
+import javax.swing.event.MenuKeyListener;
 
 import Controller.Controller;
 import Model.GameOptions;
@@ -187,11 +188,16 @@ public class Gui extends Application {
     }
 
     public static PlayerCharacter yourCharacter = PlayerCharacter.Stalin;
+    public static MenuMultiplayer main;
+    public static MenuMultiplayerJoin join;
+    public static MenuMultiplayerHost host;
+    public static MenuCharacterSelection characterSelect;
+    public static MenuDisplayCharacter displaySelected;
 
     public static void makeMultiplayerMenu() {
-        // public static void makeMultiplayerMenu(ServerConn conn) {
-        var displaySelected = new MenuDisplayCharacter(yourCharacter);
+        displaySelected = new MenuDisplayCharacter(yourCharacter);
         var displayUnknown = new MenuDisplayUnknown();
+        main = new MenuMultiplayer();
         multiplayerMenuRoot = new VBox();
 
         stackRoot.getChildren().clear();
@@ -199,19 +205,37 @@ public class Gui extends Application {
         stackRoot.getChildren().add(displayUnknown);
         stackRoot.getChildren().add(multiplayerMenuRoot);
 
-        // var joinButton = new MenuMultiplayer(conn);
-        var characterSelect = new MenuCharacterSelection();
-        var host = new MenuMultiplayerHost();
-
-        multiplayerMenuRoot.getChildren().add(characterSelect);
-        multiplayerMenuRoot.getChildren().add(host);
-        // multiplayerMenuRoot.getChildren().add(joinButton);
+        multiplayerMenuRoot.getChildren().clear();
+        updateMultiplayerMenu();
+        multiplayerMenuRoot.getChildren().add(main);
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
-        System.out.println("reached bottom of menu code");
+        multiplayerMenuRoot.setSpacing(15);
+
+    }
+
+    public static void makeJoinMenu() {
+        join = new MenuMultiplayerJoin();
+        multiplayerMenuRoot.getChildren().remove(main);
+        multiplayerMenuRoot.getChildren().add(join);
+    }
+
+    public static void makeHostMenu() {
+        host = new MenuMultiplayerHost();
+        multiplayerMenuRoot.getChildren().remove(main);
+        multiplayerMenuRoot.getChildren().add(host);
+
+        stackRoot.getChildren().remove(displaySelected);
     }
 
     public static void setYourCharacter(PlayerCharacter character) {
         yourCharacter = character;
+    }
+
+    public static void updateMultiplayerMenu() {
+        multiplayerMenuRoot.getChildren().remove(characterSelect);
+        characterSelect = new MenuCharacterSelection();
+
+        multiplayerMenuRoot.getChildren().add(0, characterSelect);
     }
 
     /**
