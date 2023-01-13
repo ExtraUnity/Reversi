@@ -209,7 +209,11 @@ public class ServerConn {
             try {
                 instance.socket.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                if (!e.getMessage().contains("Socket closed")) {
+                    e.printStackTrace();
+                } else {
+                    System.out.println("Socket already closed");
+                }
             }
             instance = null;
         }
