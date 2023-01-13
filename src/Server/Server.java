@@ -113,8 +113,8 @@ public class Server {
         // Den skal blive ved med at genererer id'er indtil den finder et unikt. Det er
         // meget usandsynligt at den nogensinde kommer til at lave en kollision
         while (true) {
-            int leftLimit = 97; // letter 'a'
-            int rightLimit = 122; // letter 'z'
+            int leftLimit = 65; // letter 'A'
+            int rightLimit = 90; // letter 'Z'
             int targetStringLength = 6;
             Random random = new Random();
 

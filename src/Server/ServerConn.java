@@ -39,14 +39,16 @@ public class ServerConn {
 
     public static String hostGame() {
         if (instance != null) {
-            return "Server connection object already exists. This is a bug.";
+            return "Server connection object already exists. This is a bug. Remember to call shutdown() after the end of a game.";
         }
         try {
             instance = new ServerConn();
             var outStream = instance.socket.getOutputStream();
             var inStream = instance.socket.getInputStream();
+            // Byte 1 betyder man gerne vil hoste
             outStream.write(1);
             byte[] rawid = Server.readJoinId(inStream);
+            instance.hostWaitForConnection();
             return new String(rawid);
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -55,6 +57,74 @@ public class ServerConn {
             e.printStackTrace();
             return e.getMessage();
         }
+    }
+
+    public static String joinGame(String id) {
+        if (instance != null) {
+            return "Server connection object already exists. This is a bug. Remember to call shutdown() after the end of a game.";
+        }
+
+        if (id.length() != 6) {
+            return "Invalid host id. The length MUST be 6";
+        }
+        try {
+            instance = new ServerConn();
+            byte[] idRaw = id.getBytes();
+            var outStream = instance.socket.getOutputStream();
+            var inStream = instance.socket.getInputStream();
+            // Byte 0 betyder man gerne vil joine
+            outStream.write(0);
+            outStream.write(idRaw);
+            int success = inStream.read();
+            if (success == 1) {
+                // Først læs hvad gameTime er
+                int gameTime = readGametimeMessage();
+                PlayerCharacter otherCharacter = readCharacterMessage();
+                Model.startGame(GameMode.MULTIPLAYER,
+                        new GameOptions(gameTime, true, selfColor, instance.selectedCharacter, otherCharacter));
+                instance.socketReaderLoop();
+                return "Joining";
+            } else {
+                return "Unused host id";
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return e.getMessage() + " this happend because of different game versions. Update now!";
+        }
+    }
+
+    private void hostWaitForConnection() {
+        new Thread(() -> {
+            try {
+                var inStream = instance.socket.getInputStream();
+                // Når den modtager en byte betyder det at der er en spiller klar på den anden
+                // side.
+                inStream.read();
+                // Det første der skal ske er at den sender gameTime.
+                sendModelMessage(new GameTimeOptionNetmsg(selectedGametime));
+
+                // Derefter sender den hvilken character der er blevet valgt
+                sendModelMessage(new CharacterSelectedMsg(selectedCharacter));
+
+                // Derefter læs hvæm den anden spiller som
+                var otherCharacter = readCharacterMessage();
+
+                Model.startGame(GameMode.MULTIPLAYER,
+                        new GameOptions(selectedGametime, true, TileColor.BLACK, otherCharacter, selectedCharacter));
+
+                socketReaderLoop();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     private ServerConn() throws UnknownHostException, IOException {
