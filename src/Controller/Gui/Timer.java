@@ -5,6 +5,7 @@ import Shared.TileColor;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class Timer extends HBox {
@@ -50,8 +51,13 @@ public class Timer extends HBox {
                     minutes_str = "0" + minutes_str;
                 }
 
+                if (time < 20) {
+                    ((Text) instance.getChildren().get(index)).setFill(Color.RED);
+                }
+
                 String finalStr = " " + minutes_str + ":" + seconds_str + " ";
                 ((Text) instance.getChildren().get(index)).setText(finalStr);
+
             });
 
         } else {
