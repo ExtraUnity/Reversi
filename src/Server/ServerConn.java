@@ -94,7 +94,7 @@ public class ServerConn {
 
                 instance.socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
-                        new GameOptions(gameTime, true, selfColor, selectedCharacter, otherCharacter));
+                        new GameOptions(gameTime, true, TileColor.BLACK, selectedCharacter, otherCharacter));
                 return "Joining";
             } else {
                 shutdown();
@@ -138,7 +138,12 @@ public class ServerConn {
                         new GameOptions(selectedGametime, true, TileColor.BLACK, otherCharacter, selectedCharacter));
 
             } catch (IOException e) {
-                e.printStackTrace();
+                if (!e.getMessage().contains("Socket closed")) {
+                    e.printStackTrace();
+                } else {
+                    System.out.println("Socket closed");
+                }
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
