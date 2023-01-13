@@ -48,9 +48,7 @@ public class ServerConn {
             // Byte 1 betyder man gerne vil hoste
             outStream.write(1);
             byte[] rawId = Server.readJoinId(inStream);
-            for (byte b : rawId) {
-                System.out.println(b);
-            }
+
             instance.hostWaitForConnection();
             return new String(rawId);
         } catch (UnknownHostException e) {
@@ -74,9 +72,7 @@ public class ServerConn {
         try {
             instance = new ServerConn();
             byte[] rawId = id.getBytes();
-            for (byte b : rawId) {
-                System.out.println(b);
-            }
+            
             var outStream = instance.socket.getOutputStream();
             var inStream = instance.socket.getInputStream();
             // Byte 0 betyder man gerne vil joine
