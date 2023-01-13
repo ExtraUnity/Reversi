@@ -24,17 +24,17 @@ public class ServerConn {
     public static TileColor selfColor;
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
-    private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
-    private int selectedGametime = -1;
+    private static PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
+    private static int selectedGametime = -1;
 
     private static ServerConn instance;
 
     public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
-        instance.selectedCharacter = selectedCharacter;
+        ServerConn.selectedCharacter = selectedCharacter;
     }
 
     public static void setLoadedGameTime(int gameTime) {
-        instance.selectedGametime = gameTime;
+        selectedGametime = gameTime;
     }
 
     public static String hostGame() {
@@ -81,7 +81,7 @@ public class ServerConn {
                 int gameTime = readGametimeMessage();
                 PlayerCharacter otherCharacter = readCharacterMessage();
                 Model.startGame(GameMode.MULTIPLAYER,
-                        new GameOptions(gameTime, true, selfColor, instance.selectedCharacter, otherCharacter));
+                        new GameOptions(gameTime, true, selfColor, selectedCharacter, otherCharacter));
                 instance.socketReaderLoop();
                 return "Joining";
             } else {
