@@ -67,7 +67,7 @@ public abstract class Game {
                 runTimer(options.gametime);
             }).start();
         }
-
+        Gui.updateMusic("./src/Assets/sounds/music/gameMusic.mp3");
         run_game();
     }
 
@@ -117,6 +117,7 @@ public abstract class Game {
 
     void handleMainMenuPressed() {
         gamestate = GameState.EXITED;
+        Gui.updateMusic("./src/Assets/sounds/music/mainMenuMusic.mp3");
     }
 
     protected static TileColor nextturn = TileColor.BLACK;

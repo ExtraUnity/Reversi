@@ -1,5 +1,8 @@
 package Controller.Gui;
 
+import java.io.File;
+import java.net.URL;
+
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
@@ -16,13 +19,16 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
+import javafx.scene.media.*;
 
 public class Gui extends Application {
 
     static Thread guiMainThread;
+    public static MediaPlayer musicPlayer;
 
     public static void initGui() {
         guiMainThread = new Thread(new Runnable() {
@@ -114,6 +120,7 @@ public class Gui extends Application {
         gameover.getChildren().add(new ButtonExitGame());
         gameover.setSpacing(15);
         stackRoot.getChildren().add(gameover);
+        updateMusic("./src/Assets/sounds/music/winnerMusic.mp3");
     }
 
     @Override
@@ -127,9 +134,10 @@ public class Gui extends Application {
         stackRoot.getChildren().add(startMenuRoot);
 
         stackRoot.setBackground(
-            new Background(new BackgroundImage(new Image("/Assets/BackgroundGame.png",0,fitTileSize()*11,true,false), 
-            BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-            new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
+                new Background(
+                        new BackgroundImage(new Image("/Assets/BackgroundGame.png", 0, fitTileSize() * 11, true, false),
+                                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                                new BackgroundSize(getScreenWidth(), getScreenHeight(), false, false, false, false))));
 
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
@@ -138,22 +146,44 @@ public class Gui extends Application {
 
         stage.show();
         System.out.println("Gui ready to receive gamemode");
+        setMusic("./src/Assets/sounds/music/mainMenuMusic.mp3");
+
         Controller.setGuiInitDone();
     }
 
-   
     public static void makeStartMenu() {
         var gameModeButtons = new MenuMainCenter();
         var exitGameButtons = new MenuMainBottom();
         var title = new Title();
-    
+
         startMenuRoot.getChildren().add(title);
         startMenuRoot.getChildren().add(gameModeButtons);
         startMenuRoot.getChildren().add(exitGameButtons);
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
-    public static PlayerCharacter yourCharacter =  PlayerCharacter.Stalin;  
+    public static void setMusic(String path) {
+        File musicDirectory = new File(path);
+        Media backgroundMusic = new Media(musicDirectory.toURI().toString());
+        musicPlayer = new MediaPlayer(backgroundMusic);
+        musicPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                musicPlayer.seek(Duration.ZERO);
+            }
+        });
+        musicPlayer.play();
+    }
+
+    private static void stopMusic() {
+        musicPlayer.stop();
+    }
+
+    public static void updateMusic(String path) {
+        stopMusic();
+        setMusic(path);
+    }
+
+    public static PlayerCharacter yourCharacter = PlayerCharacter.Stalin;
 
     public static void makeMultiplayerMenu(ServerConn conn) {
         var displaySelected = new MenuDisplayCharacter(yourCharacter);
@@ -165,19 +195,16 @@ public class Gui extends Application {
         var joinButton = new MenuMultiplayer(conn);
         var characterSelect = new MenuCharacterSelection(conn);
 
- 
         multiplayerMenuRoot.getChildren().add(characterSelect);
         multiplayerMenuRoot.getChildren().add(joinButton);
-
 
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
 
     }
 
-    public static void setYourCharacter(PlayerCharacter character){
+    public static void setYourCharacter(PlayerCharacter character) {
         yourCharacter = character;
     }
-
 
     /**
      * Sets up everthing that doesn't have to do with the scene.
@@ -213,8 +240,6 @@ public class Gui extends Application {
         return screenBounds.getWidth();
     }
 
-    
-
     public static void close() {
         Platform.runLater(new Runnable() {
             @Override
@@ -222,6 +247,6 @@ public class Gui extends Application {
                 stage.close();
             }
         });
-        
+
     }
 }
