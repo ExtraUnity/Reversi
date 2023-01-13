@@ -60,7 +60,8 @@ public class MultiPlayerGame extends Game {
             newmsg.ignoreNet = true;
             ServerConn.sendModelMessage(newmsg);
         }
-        super.handleRestartBtnPressed(msg);
+        gamestate = GameState.EXITED;
+        Model.startGame(gameMode, options);
     }
 
     @Override

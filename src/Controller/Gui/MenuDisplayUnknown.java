@@ -7,21 +7,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-
-
-public class MenuDisplayCharacter extends BorderPane{
+public class MenuDisplayUnknown extends BorderPane{
     VBox vBox = new VBox();
     Image character;
 
-    public MenuDisplayCharacter(PlayerCharacter character){
-        this.character = new Image("/Assets/characters/" + character + "Turn.png", Gui.fitTileSize() * 5, 0, true, false);
-
+    public MenuDisplayUnknown(){
+        this.character = new Image("/Assets/characters/Unknown.png", Gui.fitTileSize() * 5, 0, true, false);
         vBox.getChildren().add(new ImageView(this.character));
         
         setBottom(vBox);
-        setMargin(getBottom(), new Insets(0, 100, 0, 0));
+        setMargin(getBottom(), new Insets(0, 0, 0, 100));
         
-        vBox.setAlignment(Pos.BOTTOM_RIGHT);
+        vBox.setAlignment(Pos.BOTTOM_LEFT);
     }
 
 }
