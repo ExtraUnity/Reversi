@@ -24,17 +24,17 @@ public class ServerConn {
     public static TileColor selfColor;
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
-    private PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
-    private int selectedGametime = -1;
+    private static PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
+    private static int selectedGametime = -1;
 
     private static ServerConn instance;
 
     public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
-        instance.selectedCharacter = selectedCharacter;
+        ServerConn.selectedCharacter = selectedCharacter;
     }
 
     public static void setLoadedGameTime(int gameTime) {
-        instance.selectedGametime = gameTime;
+        selectedGametime = gameTime;
     }
 
     public static String hostGame() {
@@ -65,6 +65,7 @@ public class ServerConn {
         }
 
         if (id.length() != 6) {
+            shutdown();
             return "Invalid host id. The length MUST be 6";
         }
         try {
@@ -81,20 +82,24 @@ public class ServerConn {
                 int gameTime = readGametimeMessage();
                 PlayerCharacter otherCharacter = readCharacterMessage();
                 Model.startGame(GameMode.MULTIPLAYER,
-                        new GameOptions(gameTime, true, selfColor, instance.selectedCharacter, otherCharacter));
+                        new GameOptions(gameTime, true, selfColor, selectedCharacter, otherCharacter));
                 instance.socketReaderLoop();
                 return "Joining";
             } else {
+                shutdown();
                 return "Unused host id";
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage() + " this happend because of different game versions. Update now!";
         }
     }
@@ -205,7 +210,11 @@ public class ServerConn {
             try {
                 instance.socket.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                if (!e.getMessage().contains("Socket closed")) {
+                    e.printStackTrace();
+                } else {
+                    System.out.println("Socket already closed");
+                }
             }
             instance = null;
         }

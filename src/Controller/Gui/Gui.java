@@ -185,7 +185,6 @@ public class Gui extends Application {
         yourCharacter = character;
     }
 
-
     /**
      * Sets up everthing that doesn't have to do with the scene.
      * 
