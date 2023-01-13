@@ -85,16 +85,20 @@ public class ServerConn {
                 instance.socketReaderLoop();
                 return "Joining";
             } else {
+                shutdown();
                 return "Unused host id";
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            shutdown();
             return e.getMessage() + " this happend because of different game versions. Update now!";
         }
     }
