@@ -14,7 +14,7 @@ public class Server {
     public static void main(String[] args) {
 
         try (ServerSocket socket = new ServerSocket(PORT)) {
-            var hosts = new HashMap<byte[], Socket>();
+            var hosts = new HashMap<String, Socket>();
             while (true) {
                 try {
                     var clientSocket = socket.accept();
@@ -49,14 +49,14 @@ public class Server {
 
                         // Send id bytesne til clienten og smid den i mappet.
                         outSteam.write(id);
-                        hosts.put(id, clientSocket);
+                        hosts.put(new String(id), clientSocket);
 
                     } else if (connectionType == 0) {
                         // Siden den gerne vil joine har den brug for at læse et id fra streamen.
                         byte[] id = readJoinId(inStream);
 
                         // Nu skal den tjekke om der findes en host med dette it id
-                        var host = hosts.remove(id);
+                        var host = hosts.remove(new String(id));
                         if (host == null) {
                             // Der findes ikke en host med dette. Send "0" byte tilbage
                             outSteam.write(0);
@@ -84,7 +84,7 @@ public class Server {
                         clientSocket.close();
                     }
                     // Til sidst skal den bare rengøre og slette all gamle forbindelser.
-                    for (byte[] id : hosts.keySet()) {
+                    for (String id : hosts.keySet()) {
                         var host = hosts.get(id);
                         if (!host.isConnected()) {
                             // Hvis den ikke længere er forbundet. Skal den fjernes
@@ -109,7 +109,7 @@ public class Server {
         return id;
     }
 
-    private static byte[] generateId(HashMap<byte[], Socket> map) {
+    private static byte[] generateId(HashMap<String, Socket> map) {
         // Den skal blive ved med at genererer id'er indtil den finder et unikt. Det er
         // meget usandsynligt at den nogensinde kommer til at lave en kollision
         while (true) {
@@ -123,7 +123,7 @@ public class Server {
                     .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                     .toString();
             byte[] bytes = generatedString.getBytes();
-            if (map.get(bytes) == null) {
+            if (map.get(new String(bytes)) == null) {
                 return bytes;
             } else {
                 System.out.println("Wow ok der var collision med id'et " + generatedString);
