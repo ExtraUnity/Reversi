@@ -47,9 +47,12 @@ public class ServerConn {
             var inStream = instance.socket.getInputStream();
             // Byte 1 betyder man gerne vil hoste
             outStream.write(1);
-            byte[] rawid = Server.readJoinId(inStream);
+            byte[] rawId = Server.readJoinId(inStream);
+            for (byte b : rawId) {
+                System.out.println(b);
+            }
             instance.hostWaitForConnection();
-            return new String(rawid);
+            return new String(rawId);
         } catch (UnknownHostException e) {
             e.printStackTrace();
             return e.getMessage();
@@ -70,12 +73,15 @@ public class ServerConn {
         }
         try {
             instance = new ServerConn();
-            byte[] idRaw = id.getBytes();
+            byte[] rawId = id.getBytes();
+            for (byte b : rawId) {
+                System.out.println(b);
+            }
             var outStream = instance.socket.getOutputStream();
             var inStream = instance.socket.getInputStream();
             // Byte 0 betyder man gerne vil joine
             outStream.write(0);
-            outStream.write(idRaw);
+            outStream.write(rawId);
             int success = inStream.read();
             if (success == 1) {
                 // Først læs hvad gameTime er
