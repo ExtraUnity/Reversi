@@ -162,10 +162,14 @@ public class Gui extends Application {
         startMenuRoot.setAlignment(Pos.CENTER);
     }
 
+    /**
+     * Loads mp3 from directory and plays on repeat until updated
+     */
     public static void setMusic(String path) {
         File musicDirectory = new File(path);
         Media backgroundMusic = new Media(musicDirectory.toURI().toString());
         musicPlayer = new MediaPlayer(backgroundMusic);
+        musicPlayer.setVolume(0.4);
         musicPlayer.setOnEndOfMedia(new Runnable() {
             public void run() {
                 musicPlayer.seek(Duration.ZERO);
