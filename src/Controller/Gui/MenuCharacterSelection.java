@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-
+import javafx.scene.media.AudioClip;
 import java.io.InputStream;
 import java.util.ArrayList;
 import Server.ServerConn;
@@ -15,6 +15,7 @@ public class MenuCharacterSelection extends BorderPane {
     protected Image avatar;
     protected Image avatarSelected;
     protected ImageView image;
+    private AudioClip characterSound;
 
     public MenuCharacterSelection(ServerConn conn) {
 
@@ -55,6 +56,22 @@ public class MenuCharacterSelection extends BorderPane {
             img.add(image);
         }
         return img;
+    }
+
+    private void playCharacterQuote(PlayerCharacter character) {
+        switch (character) {
+            case BarakObama:
+                break;
+            case GenghisKhan:
+                break;
+            case MargretThatcher:
+                break;
+            case Stalin:
+                break;
+            default:
+                break;
+
+        }
     }
 
 }
