@@ -14,6 +14,9 @@ public class Server {
     public static void main(String[] args) {
 
         try (ServerSocket socket = new ServerSocket(PORT)) {
+            // Her ville jeg bruge en byte[] som key. Men det virker ikke fordi java er et
+            // lortesprog. Fait nok hvis bytes ikke var en primitiv men det er de. Så det er
+            // dumt at man ikke får det samme får man hasher to primitiver med samme værdi!
             var hosts = new HashMap<String, Socket>();
             while (true) {
                 try {
