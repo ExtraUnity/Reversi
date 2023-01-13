@@ -193,24 +193,16 @@ public class Gui extends Application {
     public static MenuMultiplayerHost host;
     public static MenuCharacterSelection characterSelect;
     public static MenuDisplayCharacter displaySelected;
+    public static MenuDisplayUnknown displayUnknown;
 
     public static void makeMultiplayerMenu() {
-        displaySelected = new MenuDisplayCharacter(yourCharacter);
-        var displayUnknown = new MenuDisplayUnknown();
         main = new MenuMultiplayer();
         multiplayerMenuRoot = new VBox();
 
-        stackRoot.getChildren().clear();
-        stackRoot.getChildren().add(displaySelected);
-        stackRoot.getChildren().add(displayUnknown);
-        stackRoot.getChildren().add(multiplayerMenuRoot);
-
-        multiplayerMenuRoot.getChildren().clear();
         updateMultiplayerMenu();
         multiplayerMenuRoot.getChildren().add(main);
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
         multiplayerMenuRoot.setSpacing(15);
-
     }
 
     public static void makeJoinMenu() {
@@ -223,8 +215,6 @@ public class Gui extends Application {
         host = new MenuMultiplayerHost();
         multiplayerMenuRoot.getChildren().remove(main);
         multiplayerMenuRoot.getChildren().add(host);
-
-        stackRoot.getChildren().remove(displaySelected);
     }
 
     public static void setYourCharacter(PlayerCharacter character) {
@@ -232,6 +222,13 @@ public class Gui extends Application {
     }
 
     public static void updateMultiplayerMenu() {
+        displaySelected = new MenuDisplayCharacter(yourCharacter);
+        displayUnknown = new MenuDisplayUnknown();
+        stackRoot.getChildren().clear();
+        stackRoot.getChildren().add(displaySelected);
+        stackRoot.getChildren().add(displayUnknown);
+        stackRoot.getChildren().add(multiplayerMenuRoot);
+
         multiplayerMenuRoot.getChildren().remove(characterSelect);
         characterSelect = new MenuCharacterSelection();
 
