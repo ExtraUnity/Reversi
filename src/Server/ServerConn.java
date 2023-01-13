@@ -22,6 +22,7 @@ public class ServerConn {
     private final Socket socket;
     private boolean joined = false;
     public static TileColor selfColor;
+    public static boolean isHost;
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
     private static PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
@@ -48,9 +49,7 @@ public class ServerConn {
             // Byte 1 betyder man gerne vil hoste
             outStream.write(1);
             byte[] rawId = Server.readJoinId(inStream);
-            for (byte b : rawId) {
-                System.out.println(b);
-            }
+
             instance.hostWaitForConnection();
             return new String(rawId);
         } catch (UnknownHostException e) {
@@ -74,9 +73,7 @@ public class ServerConn {
         try {
             instance = new ServerConn();
             byte[] rawId = id.getBytes();
-            for (byte b : rawId) {
-                System.out.println(b);
-            }
+
             var outStream = instance.socket.getOutputStream();
             var inStream = instance.socket.getInputStream();
             // Byte 0 betyder man gerne vil joine
@@ -92,9 +89,10 @@ public class ServerConn {
                 PlayerCharacter otherCharacter = readCharacterMessage();
                 selfColor = TileColor.WHITE;
 
+                isHost = false;
                 instance.socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
-                        new GameOptions(gameTime, true, selfColor, selectedCharacter, otherCharacter));
+                        new GameOptions(gameTime, true, TileColor.BLACK, selectedCharacter, otherCharacter));
                 return "Joining";
             } else {
                 shutdown();
@@ -132,13 +130,19 @@ public class ServerConn {
                 var otherCharacter = readCharacterMessage();
 
                 selfColor = TileColor.BLACK;
+                isHost = true;
 
                 socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
                         new GameOptions(selectedGametime, true, TileColor.BLACK, otherCharacter, selectedCharacter));
 
             } catch (IOException e) {
-                e.printStackTrace();
+                if (!e.getMessage().contains("Socket closed")) {
+                    e.printStackTrace();
+                } else {
+                    System.out.println("Socket closed");
+                }
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
