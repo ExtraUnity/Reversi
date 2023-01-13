@@ -4,8 +4,8 @@ import Model.GameOptions;
 import Shared.TileColor;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class Timer extends HBox {
     static Timer instance;
@@ -13,8 +13,14 @@ public class Timer extends HBox {
     Timer(GameOptions options) {
         instance = this;
         setAlignment(Pos.TOP_CENTER);
-        getChildren().add(new Label(""));
-        getChildren().add(new Label(""));
+        var text1 = new Text("OBAM;MA");
+        var text2 = new Text("OMNANFJK");
+        MenuMultiplayer.setFontStyle(text1, 30);
+        MenuMultiplayer.setFontStyle(text2, 30);
+
+        getChildren().add(text1);
+        getChildren().add(text2);
+
         setTime(TileColor.WHITE, options.gametime);
         setTime(TileColor.BLACK, options.gametime);
     }
@@ -44,7 +50,8 @@ public class Timer extends HBox {
                     minutes_str = "0" + minutes_str;
                 }
 
-                instance.getChildren().set(index, new Label(" " + color + " " + minutes_str + ":" + seconds_str + " "));
+                String finalStr = " " + minutes_str + ":" + seconds_str + " ";
+                ((Text) instance.getChildren().get(index)).setText(finalStr);
             });
 
         } else {
