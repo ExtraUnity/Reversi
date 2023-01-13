@@ -22,6 +22,7 @@ public class ServerConn {
     private final Socket socket;
     private boolean joined = false;
     public static TileColor selfColor;
+    public static boolean isHost;
 
     // Hvis der ikke bliver valgt noget bliver man bare til stalin
     private static PlayerCharacter selectedCharacter = PlayerCharacter.Stalin;
@@ -72,7 +73,7 @@ public class ServerConn {
         try {
             instance = new ServerConn();
             byte[] rawId = id.getBytes();
-            
+
             var outStream = instance.socket.getOutputStream();
             var inStream = instance.socket.getInputStream();
             // Byte 0 betyder man gerne vil joine
@@ -88,6 +89,7 @@ public class ServerConn {
                 PlayerCharacter otherCharacter = readCharacterMessage();
                 selfColor = TileColor.WHITE;
 
+                isHost = false;
                 instance.socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
                         new GameOptions(gameTime, true, TileColor.BLACK, selectedCharacter, otherCharacter));
@@ -128,6 +130,7 @@ public class ServerConn {
                 var otherCharacter = readCharacterMessage();
 
                 selfColor = TileColor.BLACK;
+                isHost = true;
 
                 socketReaderLoop();
                 Model.startGame(GameMode.MULTIPLAYER,
