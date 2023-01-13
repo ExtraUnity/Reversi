@@ -1,7 +1,6 @@
 package Controller.Gui;
 
 import Server.ServerConn;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 

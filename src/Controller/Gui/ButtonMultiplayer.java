@@ -1,7 +1,5 @@
 package Controller.Gui;
 
-import Server.ServerConn;
-
 public class ButtonMultiplayer extends Button {
 
 
