@@ -7,7 +7,6 @@ import Shared.TileColor;
 
 public class ButtonAI extends Button {
 
-
     public ButtonAI() {
         super(Buttons.AI, 4);
 
@@ -15,9 +14,10 @@ public class ButtonAI extends Button {
             setImage(imgPressed);
         });
         setOnMouseReleased(e -> {
-            Model.startGame(GameMode.AI_GAME, new GameOptions(-1, false, TileColor.WHITE, PlayerCharacter.White,PlayerCharacter.Computer));
+            Model.startGame(GameMode.AI_GAME,
+                    new GameOptions(-1, true, TileColor.WHITE, PlayerCharacter.White, PlayerCharacter.Computer));
             setImage(img);
         });
     }
-    
+
 }

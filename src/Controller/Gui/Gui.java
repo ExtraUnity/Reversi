@@ -47,6 +47,7 @@ public class Gui extends Application {
     static VBox multiplayerMenuRoot;
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
+    static ButtonMute muteButton;
 
     /**
      * Sets the content of the center box to board and top/bottom menu
@@ -101,7 +102,6 @@ public class Gui extends Application {
         makeMenuLeft(gameOptions);
         makeMenuRight(gameOptions);
         makeCenter(gameOptions);
-
         Model.sendGameMsg(new GuiReadyMsg());
     }
 
@@ -116,8 +116,11 @@ public class Gui extends Application {
         gameover.getChildren().add(new ButtonRestart());
         gameover.getChildren().add(new ButtonMainMenu());
         gameover.getChildren().add(new ButtonExitGame());
+
         gameover.setSpacing(15);
         stackRoot.getChildren().add(gameover);
+        stackRoot.getChildren().add(Gui.muteButton);
+        StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
         updateMusic("./src/Assets/sounds/music/winnerMusic.mp3");
     }
 
@@ -139,17 +142,19 @@ public class Gui extends Application {
 
         Scene scene = new Scene(stackRoot);
         stage.setScene(scene);
-
+        muteButton = new ButtonMute();
         makeStartMenu();
 
         stage.show();
         System.out.println("Gui ready to receive gamemode");
-        setMusic("./src/Assets/sounds/music/mainMenuMusic.mp3");
 
         Controller.setGuiInitDone();
     }
 
     public static void makeStartMenu() {
+
+        updateMusic("./src/Assets/sounds/music/mainMenuMusic.mp3");
+
         var gameModeButtons = new MenuMainCenter();
         var exitGameButtons = new MenuMainBottom();
         var title = new Title();
@@ -158,6 +163,7 @@ public class Gui extends Application {
         startMenuRoot.getChildren().add(gameModeButtons);
         startMenuRoot.getChildren().add(exitGameButtons);
         startMenuRoot.setAlignment(Pos.CENTER);
+
     }
 
     /**
@@ -173,16 +179,27 @@ public class Gui extends Application {
                 musicPlayer.seek(Duration.ZERO);
             }
         });
-        musicPlayer.play();
+
     }
 
-    private static void stopMusic() {
-        musicPlayer.stop();
+    static void playMusic() {
+        if (musicPlayer != null) {
+            musicPlayer.play();
+        }
+    }
+
+    static void stopMusic() {
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+        }
     }
 
     public static void updateMusic(String path) {
         stopMusic();
         setMusic(path);
+        if (!muteButton.muted) {
+            playMusic();
+        }
     }
 
     public static PlayerCharacter yourCharacter = PlayerCharacter.Stalin;
