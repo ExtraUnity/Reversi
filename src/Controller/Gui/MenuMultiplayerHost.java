@@ -3,6 +3,7 @@ package Controller.Gui;
 import Server.ServerConn;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -47,6 +48,10 @@ public class MenuMultiplayerHost extends BorderPane {
         IDBoxLayout.setAlignment(Pos.CENTER);
 
         setCenter(MenuBox);
+
+        setBottom(Gui.muteButton);
+        setAlignment(getBottom(), Pos.BOTTOM_LEFT);
+        setMargin(getBottom(), new Insets(173, 0, 0, 0));
         System.out.println("host er bygget");
     }
 
