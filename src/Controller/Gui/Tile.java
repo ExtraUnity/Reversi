@@ -1,11 +1,10 @@
 package Controller.Gui;
 
-import java.io.InputStream;
-
 import Model.Model;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -14,15 +13,14 @@ public class Tile extends ImageView {
     TileColor tilecolor = null;
 
     // init af tiles
-    static private InputStream white_tile_src;
     static private Image white_tile;
-    static private InputStream black_tile_src;
     static private Image black_tile;
-    static private InputStream legal_tile_src;
     static private Image legal_tile;
-    static private InputStream empty_tile_src;
     static private Image empty_tile;
-
+    static private Image switch_to_white;
+    static private Image switch_to_black;
+    // static private InputStream empty_tile_src;
+    // static private Image empty_tile;
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
@@ -34,7 +32,7 @@ public class Tile extends ImageView {
 
     private Image getEmptyImage() {
         if (empty_tile == null) {
-            empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
+            var empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
             empty_tile = new Image(empty_tile_src, Gui.fitTileSize(), 0, true, false);
 
         }
@@ -43,7 +41,7 @@ public class Tile extends ImageView {
 
     private Image getWhiteImage() {
         if (white_tile == null) {
-            white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
+            var white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
             white_tile = new Image(white_tile_src, Gui.fitTileSize(), 0, true, false);
 
         }
@@ -52,7 +50,7 @@ public class Tile extends ImageView {
 
     private Image getBlackImage() {
         if (black_tile == null) {
-            black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.png");
+            var black_tile_src = getClass().getResourceAsStream("/Assets/stoneTileBlack.png");
             black_tile = new Image(black_tile_src, Gui.fitTileSize(), 0, true, false);
         }
         return black_tile;
@@ -60,11 +58,27 @@ public class Tile extends ImageView {
 
     private Image getLegalImage() {
         if (legal_tile == null) {
-            legal_tile_src = getClass().getResourceAsStream("/Assets/stoneTilePossibleMove.png");
+            var legal_tile_src = getClass().getResourceAsStream("/Assets/stoneTilePossibleMove.png");
             legal_tile = new Image(legal_tile_src, Gui.fitTileSize(), 0, true, false);
 
         }
         return legal_tile;
+    }
+
+    private Image getSwitchToWhite() {
+        if (switch_to_white == null) {
+            var switch_to_white_src = getClass().getResourceAsStream("/Assets/stoneTileWhiteToBlack.gif");
+            switch_to_white = new Image(switch_to_white_src, Gui.fitTileSize(), 0, true, false);
+        }
+        return switch_to_white;
+    }
+
+    private Image getSwitchToBlack() {
+        if (switch_to_black == null) {
+            var switch_to_black_src = getClass().getResourceAsStream("/Assets/stoneTileBlackToWhite.gif");
+            switch_to_black = new Image(switch_to_black_src, Gui.fitTileSize(), 0, true, false);
+        }
+        return switch_to_black;
     }
 
     private boolean isLegalMove = false;
@@ -79,6 +93,25 @@ public class Tile extends ImageView {
             isLegalMove = false;
             setImage(getEmptyImage());
         }
+    }
+
+    public void switchTilecolor(TileColor newColor) {
+        if (newColor == TileColor.WHITE)
+            setImage(getSwitchToWhite());
+        else
+            setImage(getSwitchToBlack());
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+                Platform.runLater(() -> {
+                    setTilecolor(newColor);
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
     }
 
     public void setTilecolor(TileColor tilecolor) {
@@ -97,5 +130,5 @@ public class Tile extends ImageView {
 
         }
     }
-    
+
 }

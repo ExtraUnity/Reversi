@@ -14,6 +14,7 @@ import Model.Model;
 import MsgPass.ControllerMsg.ControllerMsg;
 import MsgPass.ControllerMsg.UpdateBoardMsg;
 import MsgPass.ControllerMsg.WinnerMsg;
+import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Platform;
 import MsgPass.ControllerMsg.ControllerWindowClosedMsg;
@@ -136,7 +137,8 @@ public class Controller {
         }
         for (TilePosition position : msg.tilePositions) {
             Tile tile = Gui.getBoard().getTile(position);
-            tile.setTilecolor(msg.color);
+            // tile.setTilecolor(msg.color);
+            tile.switchTilecolor(msg.color);
         }
         for (LegalMove move : msg.legalMoves) {
             Tile tile = Gui.getBoard().getTile(move.position);
