@@ -55,7 +55,6 @@ public class MenuCharacterSelection extends BorderPane {
             });
             img.add(image);
         }
-        System.out.println("Character select er bygget");
         return img;
     }
 
