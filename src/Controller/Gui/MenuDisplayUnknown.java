@@ -12,7 +12,7 @@ public class MenuDisplayUnknown extends BorderPane{
     Image character;
 
     public MenuDisplayUnknown(){
-        this.character = new Image("/Assets/characters/Unknown.png", Gui.fitTileSize() * 5, 0, true, false);
+        this.character = new Image("/Assets/characters/Unknown.png", Gui.fitTileSize() * 4.5, 0, true, false);
         vBox.getChildren().add(new ImageView(this.character));
         
         setBottom(vBox);

@@ -14,7 +14,7 @@ public class MenuDisplayCharacter extends BorderPane{
     Image character;
 
     public MenuDisplayCharacter(PlayerCharacter character){
-        this.character = new Image("/Assets/characters/" + character + "Turn.png", Gui.fitTileSize() * 5, 0, true, false);
+        this.character = new Image("/Assets/characters/" + character + "Turn.png", Gui.fitTileSize() * 4.5, 0, true, false);
 
         vBox.getChildren().add(new ImageView(this.character));
         
