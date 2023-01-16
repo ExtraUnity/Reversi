@@ -158,7 +158,6 @@ public class Gui extends Application {
 
         startMenuRoot.getChildren().add(title);
         startMenuRoot.getChildren().add(gameModeButtons);
-        startMenuRoot.getChildren().add(TileAnimation.makeTimeline());
         startMenuRoot.getChildren().add(exitGameButtons);
         startMenuRoot.setAlignment(Pos.CENTER);
 
