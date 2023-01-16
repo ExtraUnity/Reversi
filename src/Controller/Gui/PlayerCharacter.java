@@ -8,5 +8,6 @@ public enum PlayerCharacter {
     MargretThatcher,
     Computer,
     Unknown,
+    QueenElizabeth,
     BarakObama
 }
