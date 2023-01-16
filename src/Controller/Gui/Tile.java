@@ -103,7 +103,7 @@ public class Tile extends ImageView {
 
         new Thread(() -> {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 Platform.runLater(() -> {
                     setTilecolor(newColor);
                 });
