@@ -67,7 +67,7 @@ public class Tile extends ImageView {
 
     private Image getSwitchToWhite() {
         if (switch_to_white == null) {
-            var switch_to_white_src = getClass().getResourceAsStream("/Assets/stoneTileWhiteToBlack.gif");
+            var switch_to_white_src = getClass().getResourceAsStream("/Assets/stoneTileBlackToWhite.gif");
             switch_to_white = new Image(switch_to_white_src, Gui.fitTileSize(), 0, true, false);
         }
         return switch_to_white;
@@ -75,7 +75,7 @@ public class Tile extends ImageView {
 
     private Image getSwitchToBlack() {
         if (switch_to_black == null) {
-            var switch_to_black_src = getClass().getResourceAsStream("/Assets/stoneTileBlackToWhite.gif");
+            var switch_to_black_src = getClass().getResourceAsStream("/Assets/stoneTileWhiteToBlack.gif");
             switch_to_black = new Image(switch_to_black_src, Gui.fitTileSize(), 0, true, false);
         }
         return switch_to_black;
