@@ -2,7 +2,6 @@ package Controller.Gui;
 
 import java.io.InputStream;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class ButtonMute extends Button {
     boolean muted;
