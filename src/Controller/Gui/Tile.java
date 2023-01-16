@@ -20,8 +20,6 @@ public class Tile extends ImageView {
     static private Image black_tile;
     static private Image legal_tile;
     static private Image empty_tile;
-    // static private InputStream empty_tile_src;
-    // static private Image empty_tile;
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
