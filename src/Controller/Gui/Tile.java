@@ -23,11 +23,10 @@ public class Tile extends ImageView {
     static private InputStream empty_tile_src;
     static private Image empty_tile;
 
-    static private ImageView imageView;
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
-        imageView.setImage(getEmptyImage());
+        setImage(getEmptyImage());
         setOnMouseClicked(e -> {
             Model.sendGameMsg(new TilePressedMsg(position));
         });
