@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+import javax.naming.TimeLimitExceededException;
+
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
