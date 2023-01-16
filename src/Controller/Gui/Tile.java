@@ -105,17 +105,25 @@ public class Tile extends ImageView {
         }
     }
 
+    private volatile int animationIndex = 0;
+
     public void switchTilecolor(TileColor newColor) {
         if (newColor == TileColor.WHITE)
             setImage(getSwitchToWhite());
         else
             setImage(getSwitchToBlack());
 
+        animationIndex += 1;
+        int newAnimationIndex = animationIndex;
+
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
                 Platform.runLater(() -> {
-                    setTilecolor(newColor);
+                    //For at garanterer at ting ikke fucker up
+                    if (animationIndex == newAnimationIndex) {
+                        setTilecolor(newColor);
+                    }
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
