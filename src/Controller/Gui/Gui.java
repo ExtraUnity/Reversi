@@ -95,6 +95,8 @@ public class Gui extends Application {
         stackRoot.getChildren().clear();
         gameGuiRoot.getChildren().clear();
         stackRoot.getChildren().add(gameGuiRoot);
+        removeMuteButton();
+        addMuteButton();
 
         makeMenuLeft(gameOptions);
         makeMenuRight(gameOptions);
@@ -116,8 +118,8 @@ public class Gui extends Application {
 
         gameover.setSpacing(15);
         stackRoot.getChildren().add(gameover);
-        stackRoot.getChildren().add(Gui.muteButton);
-        StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
+        removeMuteButton();
+        addMuteButton();
         updateMusic("/Assets/sounds/music/winnerMusic.mp3");
     }
 
@@ -148,6 +150,15 @@ public class Gui extends Application {
         Controller.setGuiInitDone();
     }
 
+    public static void addMuteButton() {
+        stackRoot.getChildren().add(Gui.muteButton);
+        StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
+    }
+
+    public static void removeMuteButton() {
+        stackRoot.getChildren().remove(Gui.muteButton);
+    }
+
     public static void makeStartMenu() {
 
         updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
@@ -159,6 +170,7 @@ public class Gui extends Application {
         startMenuRoot.getChildren().add(title);
         startMenuRoot.getChildren().add(gameModeButtons);
         startMenuRoot.getChildren().add(exitGameButtons);
+        addMuteButton();
         startMenuRoot.setAlignment(Pos.CENTER);
 
     }
@@ -238,6 +250,8 @@ public class Gui extends Application {
         characterSelect = new MenuCharacterSelection();
 
         multiplayerMenuRoot.getChildren().add(0, characterSelect);
+        removeMuteButton();
+        addMuteButton();
     }
 
     /**

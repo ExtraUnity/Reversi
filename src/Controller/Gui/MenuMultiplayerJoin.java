@@ -1,6 +1,5 @@
 package Controller.Gui;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,53 +19,53 @@ import javafx.scene.text.Text;
 
 public class MenuMultiplayerJoin extends BorderPane {
 
-    public MenuMultiplayerJoin() {
-        StackPane MenuBox = new StackPane();
-        VBox MenuBoxLayout = new VBox();
-        StackPane IDBox = new StackPane();
-        VBox IDBoxLayout = new VBox();
+        public MenuMultiplayerJoin() {
+                StackPane MenuBox = new StackPane();
+                VBox MenuBoxLayout = new VBox();
+                StackPane IDBox = new StackPane();
+                VBox IDBoxLayout = new VBox();
 
-        ImageView backgroundTile = new ImageView(
-                new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize() * 5.7, true, false));
-        ImageView backgroundIDBoxTile = new ImageView(
-                new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize() * 2, true, false));
-        ImageView yourIDLable = new ImageView(
-                new Image("/Assets/menutiles/enterID.png", 0, Gui.fitTileSize() / 2, true, false));
-        Background backgroundTexture = new Background(
-                new BackgroundImage(new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize() / 2, true, false),
-                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT));
+                ImageView backgroundTile = new ImageView(
+                                new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize() * 5.7, true, false));
+                ImageView backgroundIDBoxTile = new ImageView(
+                                new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize() * 2, true, false));
+                ImageView yourIDLable = new ImageView(
+                                new Image("/Assets/menutiles/enterID.png", 0, Gui.fitTileSize() / 2, true, false));
+                Background backgroundTexture = new Background(
+                                new BackgroundImage(
+                                                new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize() / 2,
+                                                                true, false),
+                                                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                                                BackgroundPosition.DEFAULT,
+                                                BackgroundSize.DEFAULT));
 
-        TextField text = new TextField();
-        text.setBackground(backgroundTexture);
-        text.setMaxWidth(Gui.fitTileSize() * 2);
-        text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, Gui.fitTileSize() / 4));
-        text.setStyle("-fx-text-inner-color: black;");
+                TextField text = new TextField();
+                text.setBackground(backgroundTexture);
+                text.setMaxWidth(Gui.fitTileSize() * 2);
+                text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, Gui.fitTileSize() / 4));
+                text.setStyle("-fx-text-inner-color: black;");
 
-        Text errorLabel = new Text("");
-        MenuMultiplayer.setFontStyle(errorLabel, 15);
+                Text errorLabel = new Text("");
+                MenuMultiplayer.setFontStyle(errorLabel, 15);
 
-        MenuBox.getChildren().addAll(backgroundTile, MenuBoxLayout);
-        MenuBox.setAlignment(Pos.CENTER);
+                MenuBox.getChildren().addAll(backgroundTile, MenuBoxLayout);
+                MenuBox.setAlignment(Pos.CENTER);
 
-        MenuBoxLayout.getChildren().addAll(IDBox, new ButtonJoin(text, errorLabel), new ButtonMainMenu(),
-                new ButtonExitGame());
-        MenuBoxLayout.setAlignment(Pos.CENTER);
-        MenuBoxLayout.setSpacing(10);
+                MenuBoxLayout.getChildren().addAll(IDBox, new ButtonJoin(text, errorLabel), new ButtonMainMenu(),
+                                new ButtonExitGame());
+                MenuBoxLayout.setAlignment(Pos.CENTER);
+                MenuBoxLayout.setSpacing(10);
 
-        IDBox.getChildren().addAll(backgroundIDBoxTile, IDBoxLayout);
-        IDBox.setAlignment(Pos.CENTER);
-        IDBoxLayout.setSpacing(5);
+                IDBox.getChildren().addAll(backgroundIDBoxTile, IDBoxLayout);
+                IDBox.setAlignment(Pos.CENTER);
+                IDBoxLayout.setSpacing(5);
 
-        IDBoxLayout.getChildren().addAll(yourIDLable, text, errorLabel);
-        IDBoxLayout.setAlignment(Pos.CENTER);
-        IDBoxLayout.setSpacing(5);
+                IDBoxLayout.getChildren().addAll(yourIDLable, text, errorLabel);
+                IDBoxLayout.setAlignment(Pos.CENTER);
+                IDBoxLayout.setSpacing(5);
 
-        setCenter(MenuBox);
+                setCenter(MenuBox);
 
-        setBottom(Gui.muteButton);
-        setAlignment(getBottom(), Pos.BOTTOM_LEFT);
-        setMargin(getBottom(), new Insets(90, 0, 0, 0));
-        System.out.println("host er bygget");
-    }
+                System.out.println("host er bygget");
+        }
 }

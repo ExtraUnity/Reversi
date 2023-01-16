@@ -32,9 +32,7 @@ public class MenuMultiplayer extends BorderPane {
 
         setCenter(MenuBox);
         setMargin(getCenter(), new Insets(64, 0, 0, 0));
-        setBottom(Gui.muteButton);
-        setAlignment(getBottom(), Pos.BOTTOM_LEFT);
-        setMargin(getBottom(), new Insets(95, 0, 0, 0));
+
     }
 
     // sætter stykker tekst til at have samme stil

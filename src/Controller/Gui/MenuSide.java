@@ -48,8 +48,6 @@ class MenuLeft extends MenuSide {
         }
         setTop(new TurnIndication(gameOptions.playerWhite, gameOptions.startPlayer == TileColor.WHITE));
         setAlignment(getTop(), Pos.TOP_CENTER);
-        setBottom(Gui.muteButton);
-        setAlignment(getBottom(), Pos.BOTTOM_LEFT);
 
     }
 }
