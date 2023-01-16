@@ -134,11 +134,18 @@ public class Controller {
         for (var tile : Gui.getBoard().getAllTiles()) {
             tile.resetLegalMove();
         }
-        for (TilePosition position : msg.tilePositions) {
-            Tile tile = Gui.getBoard().getTile(position);
-            // tile.setTilecolor(msg.color);
+
+        // Den første skal ikke animeres. Men der skal i stedet bare sætted farven.
+        var placed_tile_pos = msg.tilePositions[msg.tilePositions.length - 1];
+        var placed_tile = Gui.getBoard().getTile(placed_tile_pos);
+        placed_tile.setTilecolor(msg.color);
+
+        // Skipper den første, da der ikke skal animeres men i stedet bare sætte farven.
+        for (int i = 0; i < msg.tilePositions.length - 1; i++) {
+            Tile tile = Gui.getBoard().getTile(msg.tilePositions[i]);
             tile.switchTilecolor(msg.color);
         }
+
         for (LegalMove move : msg.legalMoves) {
             Tile tile = Gui.getBoard().getTile(move.position);
             tile.setLegalImage();
