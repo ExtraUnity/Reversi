@@ -1,5 +1,8 @@
 package Controller.Gui;
 
+import java.io.IOException;
+import java.net.URL;
+
 import Model.Model;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
@@ -17,8 +20,6 @@ public class Tile extends ImageView {
     static private Image black_tile;
     static private Image legal_tile;
     static private Image empty_tile;
-    static private Image switch_to_white;
-    static private Image switch_to_black;
     // static private InputStream empty_tile_src;
     // static private Image empty_tile;
 
@@ -65,20 +66,31 @@ public class Tile extends ImageView {
         return legal_tile;
     }
 
+    private static URL whiteToBlack;
+    private static URL blackToWhite;
+
     private Image getSwitchToWhite() {
-        if (switch_to_white == null) {
-            var switch_to_white_src = getClass().getResourceAsStream("/Assets/stoneTileBlackToWhite.gif");
-            switch_to_white = new Image(switch_to_white_src, Gui.fitTileSize(), 0, true, false);
+        if (blackToWhite == null) {
+            blackToWhite = getClass().getResource("/Assets/stoneTileBlackToWhite.gif");
         }
-        return switch_to_white;
+        try {
+            var switch_to_white = new Image(blackToWhite.openStream(), Gui.fitTileSize(), 0, true, false);
+            return switch_to_white;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Image getSwitchToBlack() {
-        if (switch_to_black == null) {
-            var switch_to_black_src = getClass().getResourceAsStream("/Assets/stoneTileWhiteToBlack.gif");
-            switch_to_black = new Image(switch_to_black_src, Gui.fitTileSize(), 0, true, false);
+        if (whiteToBlack == null) {
+            whiteToBlack = getClass().getResource("/Assets/stoneTileWhiteToBlack.gif");
         }
-        return switch_to_black;
+        try {
+            var switch_to_black = new Image(whiteToBlack.openStream(), Gui.fitTileSize(), 0, true, false);
+            return switch_to_black;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean isLegalMove = false;
