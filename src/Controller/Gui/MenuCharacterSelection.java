@@ -7,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.media.AudioClip;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import Server.ServerConn;
@@ -36,7 +35,8 @@ public class MenuCharacterSelection extends BorderPane {
         ArrayList<ImageView> img = new ArrayList<ImageView>();
         for (PlayerCharacter character : PlayerCharacter.values()) {
             if (character == PlayerCharacter.Black || character == PlayerCharacter.White
-                    || character == PlayerCharacter.Computer || character == PlayerCharacter.Unknown || character == PlayerCharacter.UnknownWhite) {
+                    || character == PlayerCharacter.Computer || character == PlayerCharacter.Unknown
+                    || character == PlayerCharacter.UnknownWhite) {
                 continue;
             }
             InputStream src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
@@ -68,9 +68,9 @@ public class MenuCharacterSelection extends BorderPane {
         if (characterSound != null) {
             characterSound.stop();
         }
-        String path = "./src/Assets/sounds/characterQuotes/" + character + ".mp3";
-        File directory = new File(path);
-        characterSound = new AudioClip(directory.toURI().toString());
+        String path = "/Assets/sounds/characterQuotes/" + character + ".mp3";
+
+        characterSound = new AudioClip(getClass().getResource(path).toExternalForm());
         characterSound.play();
     }
 }

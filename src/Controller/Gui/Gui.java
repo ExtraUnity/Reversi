@@ -1,7 +1,5 @@
 package Controller.Gui;
 
-import java.io.File;
-
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
@@ -17,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -121,7 +118,7 @@ public class Gui extends Application {
         stackRoot.getChildren().add(gameover);
         stackRoot.getChildren().add(Gui.muteButton);
         StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
-        updateMusic("./src/Assets/sounds/music/winnerMusic.mp3");
+        updateMusic("/Assets/sounds/music/winnerMusic.mp3");
     }
 
     @Override
@@ -153,7 +150,7 @@ public class Gui extends Application {
 
     public static void makeStartMenu() {
 
-        updateMusic("./src/Assets/sounds/music/mainMenuMusic.mp3");
+        updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
 
         var gameModeButtons = new MenuMainCenter();
         var exitGameButtons = new MenuMainBottom();
@@ -170,15 +167,8 @@ public class Gui extends Application {
      * Loads mp3 from directory and plays on repeat until updated
      */
     public static void setMusic(String path) {
-        File musicDirectory = new File(path);
-        Media backgroundMusic = new Media(musicDirectory.toURI().toString());
-        musicPlayer = new MediaPlayer(backgroundMusic);
-        musicPlayer.setVolume(0.2);
-        musicPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                musicPlayer.seek(Duration.ZERO);
-            }
-        });
+        var player = new MusicPlayer(path);
+        player.play();
 
     }
 
