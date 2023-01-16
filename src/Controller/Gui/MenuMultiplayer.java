@@ -18,12 +18,13 @@ public class MenuMultiplayer extends BorderPane {
         StackPane MenuBox = new StackPane();
         VBox menuLayout = new VBox();
 
-        
-        ImageView backgroundTile = new ImageView(new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize()*4.7, true, false));
+        ImageView backgroundTile = new ImageView(
+                new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize() * 4.7, true, false));
 
         MenuBox.getChildren().add(backgroundTile);
 
-        menuLayout.getChildren().addAll(new ButtonHostGame(), new ButtonJoinGame(), new ButtonMainMenu() , new ButtonExitGame());
+        menuLayout.getChildren().addAll(new ButtonHostGame(), new ButtonJoinGame(), new ButtonMainMenu(),
+                new ButtonExitGame());
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setSpacing(10);
 
@@ -31,12 +32,13 @@ public class MenuMultiplayer extends BorderPane {
 
         setCenter(MenuBox);
         setMargin(getCenter(), new Insets(64, 0, 0, 0));
+        setBottom(Gui.muteButton);
+        setAlignment(getBottom(), Pos.BOTTOM_LEFT);
+        setMargin(getBottom(), new Insets(95, 0, 0, 0));
     }
 
-
-
-    //sætter stykker tekst til at have samme stil
-    public static void setFontStyle(Text text, int i){
+    // sætter stykker tekst til at have samme stil
+    public static void setFontStyle(Text text, int i) {
         text.setFont(Font.font("Lucida Fax", FontWeight.BOLD, FontPosture.REGULAR, i));
         text.setFill(Color.GREY);
         text.setStrokeWidth(2);

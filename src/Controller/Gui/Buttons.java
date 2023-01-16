@@ -11,5 +11,6 @@ public enum Buttons {
     MainMenu,
     HostGame,
     JoinGame,
-    AI;
+    AI,
+    Mute;
 }

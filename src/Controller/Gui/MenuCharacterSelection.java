@@ -5,7 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.media.AudioClip;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import Server.ServerConn;
@@ -15,6 +17,7 @@ public class MenuCharacterSelection extends BorderPane {
     protected Image avatar;
     protected Image avatarSelected;
     protected ImageView image;
+    private static AudioClip characterSound;
 
     public MenuCharacterSelection() {
 
@@ -49,13 +52,25 @@ public class MenuCharacterSelection extends BorderPane {
             }
 
             image.setOnMouseReleased(e -> {
+                playCharacterQuote(character);
                 ServerConn.setLoadedCharacter(character);
                 Gui.setYourCharacter(character);
                 Gui.updateMultiplayerMenu();
+
             });
             img.add(image);
         }
         return img;
     }
 
+    private void playCharacterQuote(PlayerCharacter character) {
+        System.out.println(characterSound);
+        if (characterSound != null) {
+            characterSound.stop();
+        }
+        String path = "./src/Assets/sounds/characterQuotes/" + character + ".mp3";
+        File directory = new File(path);
+        characterSound = new AudioClip(directory.toURI().toString());
+        characterSound.play();
+    }
 }

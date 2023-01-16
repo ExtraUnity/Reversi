@@ -14,10 +14,11 @@ public class ButtonClassic extends Button {
             setImage(imgPressed);
         });
         setOnMouseReleased(e -> {
-            //tilføj eventuelt hvilke avatare der skal vises som en del af game opptions
-            Model.startGame(GameMode.CLASSIC, new GameOptions(-1, false, TileColor.WHITE, PlayerCharacter.White, PlayerCharacter.Black));
+            // tilføj eventuelt hvilke avatare der skal vises som en del af game opptions
+            Model.startGame(GameMode.CLASSIC,
+                    new GameOptions(-1, true, TileColor.WHITE, PlayerCharacter.White, PlayerCharacter.Black));
             setImage(img);
         });
     }
-    
+
 }
