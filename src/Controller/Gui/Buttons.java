@@ -9,5 +9,7 @@ public enum Buttons {
     Join,
     ExitGame,
     MainMenu,
+    HostGame,
+    JoinGame,
     AI;
 }

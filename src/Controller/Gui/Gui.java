@@ -5,7 +5,6 @@ import Model.GameOptions;
 import Model.Model;
 import MsgPass.ModelMsg.GuiReadyMsg;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
-import Server.ServerConn;
 import Shared.TileColor;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -154,30 +153,53 @@ public class Gui extends Application {
     }
 
     public static PlayerCharacter yourCharacter =  PlayerCharacter.Stalin;  
+    public static MenuMultiplayer main;
+    public static MenuMultiplayerJoin join;
+    public static MenuMultiplayerHost host;
+    public static MenuCharacterSelection characterSelect;
+    public static MenuDisplayCharacter displaySelected;
+    public static MenuDisplayUnknown displayUnknown;
 
-    public static void makeMultiplayerMenu(ServerConn conn) {
-        var displaySelected = new MenuDisplayCharacter(yourCharacter);
-        var displayUnknown = new MenuDisplayUnknown();
+    public static void makeMultiplayerMenu() {
+        main = new MenuMultiplayer();
         multiplayerMenuRoot = new VBox();
 
-        stackRoot.getChildren().clear();
-        stackRoot.getChildren().add(displaySelected);
-        stackRoot.getChildren().add(displayUnknown);
-        stackRoot.getChildren().add(multiplayerMenuRoot);
-
-        var joinButton = new MenuMultiplayer(conn);
-        var characterSelect = new MenuCharacterSelection(conn);
-        
-        multiplayerMenuRoot.getChildren().add(characterSelect);
-        multiplayerMenuRoot.getChildren().add(joinButton);
+        updateMultiplayerMenu();
+        multiplayerMenuRoot.getChildren().add(main);
         multiplayerMenuRoot.setAlignment(Pos.CENTER);
+        multiplayerMenuRoot.setSpacing(15);
+    }
 
+    
+    public static void makeJoinMenu(){
+        join = new MenuMultiplayerJoin();
+        multiplayerMenuRoot.getChildren().remove(main);
+        multiplayerMenuRoot.getChildren().add(join);
+    }
+
+    public static void makeHostMenu(){
+        host = new MenuMultiplayerHost();
+        multiplayerMenuRoot.getChildren().remove(main);
+        multiplayerMenuRoot.getChildren().add(host);
     }
 
     public static void setYourCharacter(PlayerCharacter character){
         yourCharacter = character;
     }
 
+    public static void updateMultiplayerMenu() {
+        displaySelected = new MenuDisplayCharacter(yourCharacter);
+        displayUnknown = new MenuDisplayUnknown();
+        stackRoot.getChildren().clear();
+        stackRoot.getChildren().add(displaySelected);
+        stackRoot.getChildren().add(displayUnknown);
+        stackRoot.getChildren().add(multiplayerMenuRoot);
+
+        multiplayerMenuRoot.getChildren().remove(characterSelect);
+        characterSelect = new MenuCharacterSelection();
+       
+        multiplayerMenuRoot.getChildren().add(0, characterSelect);
+    }
 
     /**
      * Sets up everthing that doesn't have to do with the scene.

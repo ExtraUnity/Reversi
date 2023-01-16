@@ -1,7 +1,5 @@
 package Controller.Gui;
 
-import Server.ServerConn;
-
 public class ButtonMultiplayer extends Button {
 
 
@@ -13,9 +11,9 @@ public class ButtonMultiplayer extends Button {
         });
         setOnMouseReleased(e -> {
 
-            ServerConn conn = new ServerConn();
+            //ServerConn conn = new ServerConn();
             setImage(img);
-            Gui.makeMultiplayerMenu(conn);
+            Gui.makeMultiplayerMenu();
 
         });
     }
