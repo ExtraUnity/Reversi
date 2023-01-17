@@ -43,7 +43,7 @@ public class MenuMultiplayerJoin extends BorderPane {
                 text.setBackground(backgroundTexture);
                 text.setMaxWidth(Gui.fitTileSize() * 2);
                 text.setFont(Font.font("verdana", FontWeight.BLACK, FontPosture.REGULAR, Gui.fitTileSize() / 4));
-                text.setStyle("-fx-text-inner-color: black;");
+                text.setStyle("-fx-text-inner-color: white;");
 
                 Text errorLabel = new Text("");
                 MenuMultiplayer.setFontStyle(errorLabel, 15);
