@@ -45,6 +45,7 @@ public class Gui extends Application {
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
     static ButtonMute muteButton;
+    static Board board;
     
     static VBox gameCenter; 
     
@@ -55,7 +56,7 @@ public class Gui extends Application {
         gameCenter = new VBox();
         MenuTop topMenu = new MenuTop(gameOptions);
         MenuBottom bottomMenu = new MenuBottom(gameOptions);
-        Board board = new Board();
+        board = new Board();
         gameCenter.getChildren().add(topMenu);
         gameCenter.getChildren().add(board);
         gameCenter.getChildren().add(bottomMenu);
@@ -74,7 +75,7 @@ public class Gui extends Application {
     }
 
     public static Board getBoard() {
-        return (Board) ((HBox) gameCenter.getChildren().get(1));
+        return board;
     }
 
     public static MenuBottom getMenuBottom() {
