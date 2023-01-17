@@ -79,7 +79,7 @@ public class Gui extends Application {
     }
 
     public static MenuBottom getMenuBottom() {
-        return (MenuBottom) ((BorderPane) gameGuiRoot.getCenter()).getBottom();
+        return (MenuBottom) (gameCenter.getChildren().get(2));
     }
 
     public static void makeBoard() {
