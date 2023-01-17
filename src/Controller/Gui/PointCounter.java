@@ -1,7 +1,5 @@
 package Controller.Gui;
 
-import java.io.InputStream;
-
 import Shared.TileColor;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
