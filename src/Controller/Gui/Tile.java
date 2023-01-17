@@ -19,6 +19,8 @@ public class Tile extends BorderPane {
     // init af tiles
     static private Image legal_tile;
     static private Image empty_tile;
+    static private Image white_tile;
+    static private Image black_tile;
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
@@ -56,6 +58,20 @@ public class Tile extends BorderPane {
         return legal_tile;
     }
 
+    private Image getWhiteImage() {
+        if (white_tile == null) {
+            white_tile = new Image("/Assets/stoneTileWhite.png", Gui.fitTileSize(), 0, true, false);
+        }
+        return white_tile;
+    }
+
+    private Image getBlackImage() {
+        if (black_tile == null) {
+            black_tile = new Image("/Assets/stoneTileBlack.png", Gui.fitTileSize(), 0, true, false);
+        }
+        return black_tile;
+    }
+
     private boolean isLegalMove = false;
 
     public void setLegalImage() {
@@ -71,6 +87,23 @@ public class Tile extends BorderPane {
     }
 
     public void setTilecolor(TileColor tilecolor) {
+        isLegalMove = false;
+        this.tilecolor = tilecolor;
+        switch (tilecolor) {
+            case WHITE:
+                imageView.setImage(getWhiteImage());
+                break;
+            case BLACK:
+                imageView.setImage(getBlackImage());
+                break;
+
+            case default:
+                break;
+
+        }
+    }
+
+    public void switchTilecolor(TileColor tilecolor) {
         isLegalMove = false;
         this.tilecolor = tilecolor;
         switch (tilecolor) {

@@ -64,14 +64,6 @@ public class Gui extends Application {
         gameCenter.setAlignment(Pos.CENTER);
         gameCenter.setSpacing(10);
         gameGuiRoot.setCenter(gameCenter);
-        /* 
-        var centerBox = new BorderPane();
-        centerBox.setPrefWidth(8 * fitTileSize());
-        centerBox.setTop(new MenuTop(gameOptions));
-        centerBox.setBottom(new MenuBottom(gameOptions));
-        gameGuiRoot.setCenter(centerBox);
-         */
-        //makeBoard();
     }
 
     public static Board getBoard() {

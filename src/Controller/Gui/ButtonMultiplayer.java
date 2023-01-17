@@ -11,7 +11,6 @@ public class ButtonMultiplayer extends Button {
         });
         setOnMouseReleased(e -> {
 
-            //ServerConn conn = new ServerConn();
             setImage(img);
             Gui.makeMultiplayerMenu();
 
