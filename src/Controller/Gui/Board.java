@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import Shared.TilePosition;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 public class Board extends GridPane {
 
@@ -21,11 +20,11 @@ public class Board extends GridPane {
         return (Tile) getChildren().get(position.x * 8 + position.y);
     }
 
-    public HBox[] getAllTiles() {
-        var allTiles = new ArrayList<HBox>();
+    public Tile[] getAllTiles() {
+        var allTiles = new ArrayList<Tile>();
         for (var tile : getChildren()) {
-            allTiles.add((HBox)tile);
+            allTiles.add((Tile)tile);
         }
-        return allTiles.toArray(new HBox[0]);
+        return allTiles.toArray(new Tile[0]);
     }
 }

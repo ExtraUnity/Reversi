@@ -38,7 +38,6 @@ public class Tile extends BorderPane {
         stackPane.getChildren().add(imageView);
         stackPane.setAlignment(Pos.CENTER);
 
-        //setAlignment(Pos.CENTER);
         setCenter(stackPane);
     }
 
@@ -51,6 +50,7 @@ public class Tile extends BorderPane {
         return empty_tile;
     }
 
+    /*
     private Image getWhiteImage() {
         if (white_tile == null) {
             var white_tile_src = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
@@ -67,6 +67,7 @@ public class Tile extends BorderPane {
         }
         return black_tile;
     }
+    */
 
     private Image getLegalImage() {
         if (legal_tile == null) {
@@ -153,10 +154,12 @@ public class Tile extends BorderPane {
         this.tilecolor = tilecolor;
         switch (tilecolor) {
             case WHITE:
-                imageView = TileAnimation.makeTimeline();
+                stackPane.getChildren().clear();
+                stackPane.getChildren().add(TileAnimation.flipToWhite());
                 break;
             case BLACK:
-                imageView.setImage(getBlackImage());
+                stackPane.getChildren().clear();
+                stackPane.getChildren().add(TileAnimation.flipToBlack());
                 break;
 
             case default:
