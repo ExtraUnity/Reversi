@@ -1,13 +1,9 @@
 package Controller.Gui;
 
-import java.io.IOException;
-import java.net.URL;
-
 import Model.Model;
 import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-public class Tile extends HBox {
+public class Tile extends BorderPane {
     private StackPane stackPane;
     private ImageView imageView;
     private TilePosition position;
@@ -43,7 +39,7 @@ public class Tile extends HBox {
         stackPane.setAlignment(Pos.CENTER);
 
         //setAlignment(Pos.CENTER);
-        //setCenter(stackPane);
+        setCenter(stackPane);
     }
 
     private Image getEmptyImage() {
