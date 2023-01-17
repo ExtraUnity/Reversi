@@ -23,7 +23,6 @@ public class MenuSide extends BorderPane {
     void updateSize() {
         double windowWidth = Gui.stackRoot.getWidth();
         double width = windowWidth / 2 - 8 * Gui.fitTileSize() / 2;
-        // setFillWidth(true);
         setPrefWidth(width);
     }
 }

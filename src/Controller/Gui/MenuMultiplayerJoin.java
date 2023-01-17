@@ -26,18 +26,17 @@ public class MenuMultiplayerJoin extends BorderPane {
                 VBox IDBoxLayout = new VBox();
 
                 ImageView backgroundTile = new ImageView(
-                                new Image("/Assets/menutiles/bigTile.png", 0, Gui.fitTileSize() * 5.7, true, false));
+                                new Image("/Assets/menutiles/bigTile.png", Gui.fitTileSize() * 4.6, 0, true, false));
                 ImageView backgroundIDBoxTile = new ImageView(
                                 new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize() * 2, true, false));
                 ImageView yourIDLable = new ImageView(
                                 new Image("/Assets/menutiles/enterID.png", 0, Gui.fitTileSize() / 2, true, false));
                 Background backgroundTexture = new Background(
                                 new BackgroundImage(
-                                                new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize() / 2,
-                                                                true, false),
-                                                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                                                BackgroundPosition.DEFAULT,
-                                                BackgroundSize.DEFAULT));
+                                        new Image("/Assets/menutiles/textTile.png", 0, Gui.fitTileSize() / 2, true, false),
+                                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                                        BackgroundPosition.DEFAULT,
+                                        BackgroundSize.DEFAULT));
 
                 TextField text = new TextField();
                 text.setBackground(backgroundTexture);
@@ -65,7 +64,5 @@ public class MenuMultiplayerJoin extends BorderPane {
                 IDBoxLayout.setSpacing(5);
 
                 setCenter(MenuBox);
-
-                System.out.println("host er bygget");
         }
 }

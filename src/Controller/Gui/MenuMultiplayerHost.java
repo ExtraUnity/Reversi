@@ -24,7 +24,7 @@ public class MenuMultiplayerHost extends BorderPane {
         HBox optionTimerBox = makeTimer();
 
         ImageView backgroundTile = new ImageView(
-                new Image("/Assets/menutiles/medium2Tile.png", 0, Gui.fitTileSize() * 4.5, true, false));
+                new Image("/Assets/menutiles/medium2Tile.png",  Gui.fitTileSize() * 4.6, 0, true, false));
         ImageView backgroundIDBoxTile = new ImageView(
                 new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize() * 2, true, false));
         ImageView yourIDLable = new ImageView(
@@ -47,13 +47,10 @@ public class MenuMultiplayerHost extends BorderPane {
         IDBoxLayout.setAlignment(Pos.CENTER);
 
         setCenter(MenuBox);
-
-        System.out.println("host er bygget");
     }
 
     public HBox makeTimer() {
         var optionTimerBox = new HBox();
-        // move the timer making maybe??
         var checkBox = new CheckBox();
         var timer = new Text("Timer");
         MenuMultiplayer.setFontStyle(timer, 18);
@@ -89,8 +86,6 @@ public class MenuMultiplayerHost extends BorderPane {
         optionTimerBox.getChildren().addAll(timer, checkBox);
         optionTimerBox.setAlignment(Pos.CENTER);
         optionTimerBox.setSpacing(10);
-
-        System.out.println("timer");
         return optionTimerBox;
     }
 

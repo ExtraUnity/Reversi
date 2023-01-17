@@ -10,6 +10,7 @@ public class ButtonJoinGame extends Button {
         setOnMouseReleased(e -> {
             Gui.makeJoinMenu();
             setImage(img);
-        });    }
+        });    
+    }
     
 }

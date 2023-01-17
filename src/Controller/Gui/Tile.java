@@ -22,9 +22,7 @@ public class Tile extends StackPane {
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
-
         imageView = new ImageView();
-
         
         imageView.setImage(getEmptyImage());
         imageView.setOnMouseClicked(e -> {
@@ -37,18 +35,14 @@ public class Tile extends StackPane {
 
     private Image getEmptyImage() {
         if (empty_tile == null) {
-            var empty_tile_src = getClass().getResourceAsStream("/Assets/stoneTileEmpty.png");
-            empty_tile = new Image(empty_tile_src, Gui.fitTileSize(), 0, true, false);
-
+            empty_tile = new Image("/Assets/stoneTileEmpty.png", Gui.fitTileSize(), 0, true, false);
         }
         return empty_tile;
     }
 
     private Image getLegalImage() {
         if (legal_tile == null) {
-            var legal_tile_src = getClass().getResourceAsStream("/Assets/stoneTilePossibleMove.png");
-            legal_tile = new Image(legal_tile_src, Gui.fitTileSize(), 0, true, false);
-
+            legal_tile = new Image("/Assets/stoneTilePossibleMove.png", Gui.fitTileSize(), 0, true, false);
         }
         return legal_tile;
     }
@@ -91,10 +85,8 @@ public class Tile extends StackPane {
             case BLACK:
                 imageView.setImage(getBlackImage());
                 break;
-
             case default:
                 break;
-
         }
     }
 
@@ -110,11 +102,9 @@ public class Tile extends StackPane {
                 this.getChildren().clear();
                 this.getChildren().add(TileAnimation.flipToBlack());
                 break;
-
             case default:
                 break;
 
         }
     }
-
 }

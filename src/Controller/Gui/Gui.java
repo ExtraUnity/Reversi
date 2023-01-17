@@ -54,9 +54,9 @@ public class Gui extends Application {
      */
     private static void makeCenter(GameOptions gameOptions) {
         gameCenter = new VBox();
+        board = new Board();
         MenuTop topMenu = new MenuTop(gameOptions);
         MenuBottom bottomMenu = new MenuBottom(gameOptions);
-        board = new Board();
         gameCenter.getChildren().add(topMenu);
         gameCenter.getChildren().add(board);
         gameCenter.getChildren().add(bottomMenu);
@@ -74,19 +74,6 @@ public class Gui extends Application {
         return (MenuBottom) (gameCenter.getChildren().get(2));
     }
 
-    public static void makeBoard() {
-        ((BorderPane) gameGuiRoot.getCenter()).setCenter(new Board());
-    }
-
-    private static void makeMenuLeft(GameOptions gameOptions) {
-        gameGuiRoot.setLeft(new MenuLeft(gameOptions));
-    }
-
-    private static void makeMenuRight(GameOptions gameOptions) {
-        gameGuiRoot.setRight(new MenuRight(gameOptions));
-
-    }
-
     static GameOptions prevGameOptions;
 
     /**
@@ -100,15 +87,18 @@ public class Gui extends Application {
         } else {
             gameOptions = prevGameOptions;
         }
+        MenuLeft left = new MenuLeft(gameOptions);
+        MenuRight right = new MenuRight(gameOptions);
+
         stackRoot.getChildren().clear();
         gameGuiRoot.getChildren().clear();
         stackRoot.getChildren().add(gameGuiRoot);
+        gameGuiRoot.setLeft(left);
+        gameGuiRoot.setRight(right);
         removeMuteButton();
         addMuteButton();
-
-        makeMenuLeft(gameOptions);
-        makeMenuRight(gameOptions);
         makeCenter(gameOptions);
+        
         Model.sendGameMsg(new GuiReadyMsg());
     }
 

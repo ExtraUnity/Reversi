@@ -1,0 +1,3716 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "c:\\Skole\\IntroPro Projekt\\Reversi",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2023-01-06 16:27:43",
+            "filesum": 565,
+            "codesum": 18914,
+            "commentsum": 1319,
+            "blanksum": 2988,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": "bin\\Assets\\BackgroundGame.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\BackgroundWin.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\blackPiece.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\btnAssetSrc.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\Button.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonPass.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonPassGrey.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonPassPressed.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonResign.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonResignPressed.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonRestart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\ButtonRestartPressed.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\Black.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\BlackTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\GenghisKhan.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\GenghisKhanTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\Stalin.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\StalinTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\White.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\characters\\WhiteTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\draw.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\hvidVinder.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\sortVinder.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\sounds\\DiskPlace.mp3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\stoneTileBlack.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\stoneTileEmpty.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\stoneTilePossibleMove.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\stoneTileWhite.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\TurnBlack.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\TurnWhite.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Assets\\whitePiece.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\BarebonesMain.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Controller$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Controller$2.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Controller$3.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Controller$4.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Controller$ControllerState.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Controller.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Board.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Button.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\ButtonPass.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\ButtonResign.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\ButtonRestart.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Buttons.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Gui$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Gui$2.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Gui.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuBottom.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuLeft.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuRight.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuSide$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuSide.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuTop$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\MenuTop.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\PlayerCharacter.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Point.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\PointCounter.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\Tile.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\TopTurnIndication.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\TurnIndication.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Controller\\Gui\\WinnerIndication.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\GameMain.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\ClassicGame.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\Game$GameMode.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\Game.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\GameOptions.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\GameState.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\LegalMove.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\Model$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Model\\Model.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ControllerMsg\\ControllerMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ControllerMsg\\ControllerWindowClosedMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ControllerMsg\\StartGameMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ControllerMsg\\UpdateBoardMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ControllerMsg\\WinnerMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\GameStateMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\GuiReadyMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\ModelMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\ModelWindowClosedMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\PassMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\RestartBtnPressedMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\MsgPass\\ModelMsg\\TilePressedMsg.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Shared\\ButtonPosition.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Shared\\TileColor.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\Shared\\TilePosition.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Iterationer\\Iteration-1.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.lock"
+                },
+                {
+                    "blank": 2,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.log"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.resources\\.projects\\.org.eclipse.egit.core.cmp\\.location",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.resources\\.root\\.indexes\\history.version"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.resources\\.root\\.indexes\\properties.index",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.resources\\.root\\.indexes\\properties.version"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.resources\\.root\\1.tree",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.resources\\.safetable\\org.eclipse.core.resources",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.core.resources.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.jdt.core.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.jdt.launching.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.jdt.ui.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.jsch.core.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.m2e.discovery.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.ui.ide.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.ui.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.ui.workbench.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.urischeme.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 460,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.e4.workbench\\workbench.xmi"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.egit.core\\.org.eclipse.egit.core.cmp\\.project"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.egit.core\\.org.eclipse.egit.core.cmp\\.settings\\org.eclipse.core.resources.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.core\\assumedExternalFilesCache"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.core\\externalFilesCache"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.core\\javaLikeNames.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.core\\nonChainingJarsCache"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.core\\variablesAndContainers.dat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.launching\\.install.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.launching\\libraryInfos.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.ui\\dialog_settings.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.ui\\OpenTypeHistory.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.jdt.ui\\QualifiedTypeNameHistory.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.m2e.logback.configuration\\0.log"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.m2e.logback.configuration\\logback.1.16.3.20211002-1029.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.oomph.setup\\workspace.setup"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.tips.ide\\dialog_settings.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.ui.intro\\dialog_settings.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.ui.intro\\introstate"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\.plugins\\org.eclipse.ui.workbench\\workingsets.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\.metadata\\version.ini"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-console-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-console-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-datetime-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-debug-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-file-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-file-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-file-l2-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-handle-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-heap-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-interlocked-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-localization-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-memory-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-processthreads-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-processthreads-l1-1-1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-profile-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-string-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-synch-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-synch-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-timezone-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-core-util-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-conio-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-convert-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-environment-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-heap-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-locale-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-math-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-multibyte-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-private-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-process-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-runtime-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-stdio-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-string-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-time-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\api-ms-win-crt-utility-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\attach.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\awt.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\dt_shmem.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\dt_socket.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\extnet.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\fontmanager.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\freetype.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\instrument.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\j2gss.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jar.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jarsigner.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\java.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\java.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javac.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javadoc.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-console-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-console-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-datetime-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-debug-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-errorhandling-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-file-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-file-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-file-l2-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-handle-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-heap-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-interlocked-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-libraryloader-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-localization-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-memory-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-namedpipe-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-processenvironment-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-processthreads-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-processthreads-l1-1-1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-profile-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-rtlsupport-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-string-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-synch-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-synch-l1-2-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-sysinfo-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-timezone-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-core-util-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-conio-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-convert-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-environment-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-filesystem-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-heap-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-locale-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-math-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-multibyte-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-private-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-process-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-runtime-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-stdio-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-string-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-time-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\api-ms-win-crt-utility-l1-1-0.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\decora_sse.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\fxplugins.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\glass.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\glib-lite.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\gstreamer-lite.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\javafx_font.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\javafx_iio.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\jfxmedia.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\msvcp140.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\msvcp140_1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\msvcp140_2.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\prism_common.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\prism_d3d.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\prism_sw.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\ucrtbase.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\vcruntime140.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javafx\\vcruntime140_1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javajpeg.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\javaw.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jawt.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jdb.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jdwp.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jimage.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jli.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jrunscript.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jsound.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\jwebserver.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\keytool.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\kinit.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\klist.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\ktab.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\lcms.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\management.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\mlib_image.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\msvcp140.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\net.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\nio.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\prefs.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\rmi.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\rmiregistry.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\serialver.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\server\\jvm.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\splashscreen.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\sspi_bridge.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\syslookup.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\ucrtbase.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\vcruntime140.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\vcruntime140_1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\verify.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\w2k_lsa_auth.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\bin\\zip.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\conf\\logging.properties"
+                },
+                {
+                    "blank": 5,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\conf\\net.properties"
+                },
+                {
+                    "blank": 2,
+                    "code": 28,
+                    "comment": 16,
+                    "filename": "jdk-19+fx-19\\conf\\security\\java.policy"
+                },
+                {
+                    "blank": 19,
+                    "code": 483,
+                    "comment": 14,
+                    "filename": "jdk-19+fx-19\\conf\\security\\java.security"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 2,
+                    "filename": "jdk-19+fx-19\\conf\\security\\policy\\limited\\default_local.policy"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 2,
+                    "filename": "jdk-19+fx-19\\conf\\security\\policy\\limited\\default_US_export.policy"
+                },
+                {
+                    "blank": 3,
+                    "code": 5,
+                    "comment": 5,
+                    "filename": "jdk-19+fx-19\\conf\\security\\policy\\limited\\exempt_local.policy"
+                },
+                {
+                    "blank": 15,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\conf\\security\\policy\\README.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 2,
+                    "filename": "jdk-19+fx-19\\conf\\security\\policy\\unlimited\\default_local.policy"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 2,
+                    "filename": "jdk-19+fx-19\\conf\\security\\policy\\unlimited\\default_US_export.policy"
+                },
+                {
+                    "blank": 0,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\conf\\sound.properties"
+                },
+                {
+                    "blank": 20,
+                    "code": 533,
+                    "comment": 37,
+                    "filename": "jdk-19+fx-19\\include\\classfile_constants.h"
+                },
+                {
+                    "blank": 17,
+                    "code": 61,
+                    "comment": 278,
+                    "filename": "jdk-19+fx-19\\include\\jawt.h"
+                },
+                {
+                    "blank": 51,
+                    "code": 152,
+                    "comment": 73,
+                    "filename": "jdk-19+fx-19\\include\\jdwpTransport.h"
+                },
+                {
+                    "blank": 213,
+                    "code": 1696,
+                    "comment": 90,
+                    "filename": "jdk-19+fx-19\\include\\jni.h"
+                },
+                {
+                    "blank": 443,
+                    "code": 1960,
+                    "comment": 254,
+                    "filename": "jdk-19+fx-19\\include\\jvmti.h"
+                },
+                {
+                    "blank": 13,
+                    "code": 34,
+                    "comment": 68,
+                    "filename": "jdk-19+fx-19\\include\\jvmticmlr.h"
+                },
+                {
+                    "blank": 20,
+                    "code": 36,
+                    "comment": 67,
+                    "filename": "jdk-19+fx-19\\include\\sizecalc.h"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 33,
+                    "filename": "jdk-19+fx-19\\include\\win32\\jawt_md.h"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 25,
+                    "filename": "jdk-19+fx-19\\include\\win32\\jni_md.h"
+                },
+                {
+                    "blank": 8,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\aes.md"
+                },
+                {
+                    "blank": 8,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\asm.md"
+                },
+                {
+                    "blank": 10,
+                    "code": 25,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\c-libutl.md"
+                },
+                {
+                    "blank": 17,
+                    "code": 84,
+                    "comment": 8,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\cldr.md"
+                },
+                {
+                    "blank": 8,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\COPYRIGHT"
+                },
+                {
+                    "blank": 38,
+                    "code": 375,
+                    "comment": 79,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\icu.md"
+                },
+                {
+                    "blank": 14,
+                    "code": 60,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\LICENSE"
+                },
+                {
+                    "blank": 52,
+                    "code": 208,
+                    "comment": 3,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\public_suffix.md"
+                },
+                {
+                    "blank": 15,
+                    "code": 84,
+                    "comment": 9,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\unicode.md"
+                },
+                {
+                    "blank": 7,
+                    "code": 27,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\wepoll.md"
+                },
+                {
+                    "blank": 7,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.base\\zlib.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.compiler\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.compiler\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.datatransfer\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.datatransfer\\LICENSE"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\colorimaging.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\COPYRIGHT"
+                },
+                {
+                    "blank": 44,
+                    "code": 100,
+                    "comment": 31,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\freetype.md"
+                },
+                {
+                    "blank": 8,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\giflib.md"
+                },
+                {
+                    "blank": 15,
+                    "code": 51,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\harfbuzz.md"
+                },
+                {
+                    "blank": 10,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\jpeg.md"
+                },
+                {
+                    "blank": 6,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\lcms.md"
+                },
+                {
+                    "blank": 31,
+                    "code": 110,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\libpng.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\LICENSE"
+                },
+                {
+                    "blank": 7,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.desktop\\mesa3d.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.instrument\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.instrument\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.logging\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.logging\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.management.rmi\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.management.rmi\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.management\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.management\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.naming\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.naming\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.net.http\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.net.http\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.prefs\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.prefs\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.rmi\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.rmi\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.scripting\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.scripting\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.se\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.se\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.security.jgss\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.security.jgss\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.security.sasl\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.security.sasl\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.sql.rowset\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.sql.rowset\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.sql\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.sql\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.transaction.xa\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.transaction.xa\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml.crypto\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml.crypto\\LICENSE"
+                },
+                {
+                    "blank": 36,
+                    "code": 168,
+                    "comment": 3,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml.crypto\\santuario.md"
+                },
+                {
+                    "blank": 34,
+                    "code": 164,
+                    "comment": 2,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\bcel.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\COPYRIGHT"
+                },
+                {
+                    "blank": 14,
+                    "code": 50,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\dom.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\jcup.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\LICENSE"
+                },
+                {
+                    "blank": 37,
+                    "code": 176,
+                    "comment": 5,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\xalan.md"
+                },
+                {
+                    "blank": 34,
+                    "code": 174,
+                    "comment": 4,
+                    "filename": "jdk-19+fx-19\\legal\\java.xml\\xerces.md"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.base\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.base\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.base\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.controls\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.controls\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.controls\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.fxml\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.fxml\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.fxml\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.graphics\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.graphics\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 7,
+                    "code": 27,
+                    "comment": 8,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.graphics\\jpeg_fx.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.graphics\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.graphics\\mesa3d.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\directshow.md"
+                },
+                {
+                    "blank": 59,
+                    "code": 272,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\glib.md"
+                },
+                {
+                    "blank": 57,
+                    "code": 272,
+                    "comment": 1,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\gstreamer.md"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\libffi.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\javafx.media\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.attach\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.attach\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.charsets\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.charsets\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.compiler\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.compiler\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.httpserver\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.httpserver\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.internal.jvmstat\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.internal.jvmstat\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.jartool\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.jartool\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.javadoc\\COPYRIGHT"
+                },
+                {
+                    "blank": 18,
+                    "code": 54,
+                    "comment": 3,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.javadoc\\jquery.md"
+                },
+                {
+                    "blank": 13,
+                    "code": 36,
+                    "comment": 3,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.javadoc\\jqueryUI.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.javadoc\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.jdi\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.jdi\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.jdwp.agent\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.jdwp.agent\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.localedata\\cldr.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.localedata\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.localedata\\LICENSE"
+                },
+                {
+                    "blank": 7,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.localedata\\thaidict.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.naming.dns\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.naming.dns\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.net\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.net\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.unsupported\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.unsupported\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.xml.dom\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.xml.dom\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.zipfs\\COPYRIGHT"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\legal\\jdk.zipfs\\LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 1485,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\classlist"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\ct.sym",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\fontconfig.bfc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 51,
+                    "code": 277,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\fontconfig.properties.src"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\javafx-swt.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\javafx.properties"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\jawt.lib",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\jrt-fs.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\jvm.cfg"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\jvm.lib",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\modules",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 118,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\psfont.properties.ja"
+                },
+                {
+                    "blank": 1,
+                    "code": 95,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\psfontj2d.properties"
+                },
+                {
+                    "blank": 0,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\security\\blocked.certs"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\security\\cacerts",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 31,
+                    "code": 198,
+                    "comment": 15,
+                    "filename": "jdk-19+fx-19\\lib\\security\\default.policy"
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\security\\public_suffix_list.dat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "jdk-19+fx-19\\lib\\tzdb.dat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 506,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\lib\\tzmappings"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "jdk-19+fx-19\\release"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.base\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.base\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.base\\LICENSE"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.controls\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.controls\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.controls\\LICENSE"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.fxml\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.fxml\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.fxml\\LICENSE"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.graphics\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.graphics\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 7,
+                    "code": 27,
+                    "comment": 8,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.graphics\\jpeg_fx.md"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.graphics\\LICENSE"
+                },
+                {
+                    "blank": 7,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.graphics\\mesa3d.md"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\directshow.md"
+                },
+                {
+                    "blank": 59,
+                    "code": 272,
+                    "comment": 1,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\glib.md"
+                },
+                {
+                    "blank": 57,
+                    "code": 272,
+                    "comment": 1,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\gstreamer.md"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\libffi.md"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.media\\LICENSE"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.swing\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.swing\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.swing\\LICENSE"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\ADDITIONAL_LICENSE_INFO"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 2,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\ASSEMBLY_EXCEPTION"
+                },
+                {
+                    "blank": 30,
+                    "code": 328,
+                    "comment": 71,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\icu_web.md"
+                },
+                {
+                    "blank": 8,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\libxml2.md"
+                },
+                {
+                    "blank": 13,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\libxslt.md"
+                },
+                {
+                    "blank": 28,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\LICENSE"
+                },
+                {
+                    "blank": 627,
+                    "code": 3636,
+                    "comment": 13,
+                    "filename": "lib\\javafx-sdk-19\\legal\\javafx.web\\webkit.md"
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx-swt.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.base.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.controls.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.fxml.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.graphics.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.media.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.properties"
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.swing.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\javafx.web.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libavplugin-54.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libavplugin-56.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libavplugin-57.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libavplugin-ffmpeg-56.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libavplugin-ffmpeg-57.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libavplugin-ffmpeg-58.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libdecora_sse.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libfxplugins.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libglass.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libglassgtk2.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libglassgtk3.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libgstreamer-lite.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libjavafx_font.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libjavafx_font_freetype.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libjavafx_font_pango.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libjavafx_iio.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libjfxmedia.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libjfxwebkit.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libprism_common.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libprism_es2.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "lib\\javafx-sdk-19\\lib\\libprism_sw.so",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "filename": "src\\Assets\\BackgroundGame.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\BackgroundWin.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\blackPiece.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\btnAssetSrc.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\Button.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonPass.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonPassGrey.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonPassPressed.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonResign.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonResignPressed.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonRestart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\ButtonRestartPressed.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\Black.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\BlackTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\GenghisKhan.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\GenghisKhanTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\Stalin.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\StalinTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\White.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\characters\\WhiteTurn.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\draw.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\hvidVinder.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\sortVinder.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\sounds\\DiskPlace.mp3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\stoneTileBlack.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\stoneTileEmpty.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\stoneTilePossibleMove.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\stoneTileWhite.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\TurnBlack.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\TurnWhite.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\Assets\\whitePiece.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\BarebonesMain.java"
+                },
+                {
+                    "blank": 22,
+                    "code": 140,
+                    "comment": 7,
+                    "filename": "src\\Controller\\Controller.java"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\Board.java"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\Button.java"
+                },
+                {
+                    "blank": 10,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\ButtonPass.java"
+                },
+                {
+                    "blank": 5,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\ButtonResign.java"
+                },
+                {
+                    "blank": 5,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\ButtonRestart.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\Buttons.java"
+                },
+                {
+                    "blank": 28,
+                    "code": 127,
+                    "comment": 12,
+                    "filename": "src\\Controller\\Gui\\Gui.java"
+                },
+                {
+                    "blank": 6,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\MenuBottom.java"
+                },
+                {
+                    "blank": 8,
+                    "code": 42,
+                    "comment": 1,
+                    "filename": "src\\Controller\\Gui\\MenuSide.java"
+                },
+                {
+                    "blank": 7,
+                    "code": 28,
+                    "comment": 1,
+                    "filename": "src\\Controller\\Gui\\MenuTop.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\PlayerCharacter.java"
+                },
+                {
+                    "blank": 17,
+                    "code": 70,
+                    "comment": 1,
+                    "filename": "src\\Controller\\Gui\\PointCounter.java"
+                },
+                {
+                    "blank": 18,
+                    "code": 81,
+                    "comment": 1,
+                    "filename": "src\\Controller\\Gui\\Tile.java"
+                },
+                {
+                    "blank": 20,
+                    "code": 92,
+                    "comment": 2,
+                    "filename": "src\\Controller\\Gui\\TurnIndication.java"
+                },
+                {
+                    "blank": 6,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src\\Controller\\Gui\\WinnerIndication.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\GameMain.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\Model\\ClassicGame.java"
+                },
+                {
+                    "blank": 47,
+                    "code": 237,
+                    "comment": 32,
+                    "filename": "src\\Model\\Game.java"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\Model\\GameOptions.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\Model\\LegalMove.java"
+                },
+                {
+                    "blank": 12,
+                    "code": 88,
+                    "comment": 0,
+                    "filename": "src\\Model\\Model.java"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ControllerMsg\\ControllerMsg.java"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ControllerMsg\\ControllerWindowClosedMsg.java"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ControllerMsg\\StartGameMsg.java"
+                },
+                {
+                    "blank": 7,
+                    "code": 37,
+                    "comment": 2,
+                    "filename": "src\\MsgPass\\ControllerMsg\\UpdateBoardMsg.java"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ControllerMsg\\WinnerMsg.java"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\GameStateMsg.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\GuiReadyMsg.java"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\ModelMsg.java"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\ModelWindowClosedMsg.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\PassMsg.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\RestartBtnPressedMsg.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\MsgPass\\ModelMsg\\TilePressedMsg.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\Shared\\ButtonPosition.java"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src\\Shared\\TileColor.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\Shared\\TilePosition.java"
+                }
+            ]
+        }
+    ]
+}
