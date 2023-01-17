@@ -8,10 +8,15 @@ import MsgPass.ModelMsg.TilePressedMsg;
 import Shared.TileColor;
 import Shared.TilePosition;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 
-public class Tile extends ImageView {
+public class Tile extends BorderPane {
+    private StackPane stackPane;
+    private ImageView imageView;
     private TilePosition position;
     TileColor tilecolor = null;
 
@@ -23,10 +28,19 @@ public class Tile extends ImageView {
 
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
-        setImage(getEmptyImage());
-        setOnMouseClicked(e -> {
+
+        stackPane = new StackPane();
+        imageView = new ImageView();
+
+        
+        imageView.setImage(getEmptyImage());
+        imageView.setOnMouseClicked(e -> {
             Model.sendGameMsg(new TilePressedMsg(position));
         });
+
+        stackPane.getChildren().add(imageView);
+        stackPane.setAlignment(Pos.CENTER);
+        setCenter(imageView);
     }
 
     private Image getEmptyImage() {
@@ -95,23 +109,25 @@ public class Tile extends ImageView {
 
     public void setLegalImage() {
         isLegalMove = true;
-        setImage(getLegalImage());
+        imageView.setImage(getLegalImage());
     }
 
     public void resetLegalMove() {
         if (isLegalMove) {
             isLegalMove = false;
-            setImage(getEmptyImage());
+            imageView.setImage(getEmptyImage());
         }
     }
 
     private volatile int animationIndex = 0;
 
     public void switchTilecolor(TileColor newColor) {
+        isLegalMove = false;
+        this.tilecolor = newColor;
         if (newColor == TileColor.WHITE)
-            setImage(getSwitchToWhite());
+            imageView.setImage(getSwitchToWhite());
         else
-            setImage(getSwitchToBlack());
+            imageView.setImage(getSwitchToBlack());
 
         animationIndex += 1;
         int newAnimationIndex = animationIndex;
@@ -137,10 +153,10 @@ public class Tile extends ImageView {
         this.tilecolor = tilecolor;
         switch (tilecolor) {
             case WHITE:
-                setImage(getWhiteImage());
+                imageView.setImage(getWhiteImage());
                 break;
             case BLACK:
-                setImage(getBlackImage());
+                imageView.setImage(getBlackImage());
                 break;
 
             case default:

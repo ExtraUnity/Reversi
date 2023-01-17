@@ -135,6 +135,7 @@ public class Controller {
         }
 
         // Den første skal ikke animeres. Men der skal i stedet bare sætted farven.
+        
         var placed_tile_pos = msg.tilePositions[msg.tilePositions.length - 1];
         var placed_tile = Gui.getBoard().getTile(placed_tile_pos);
         placed_tile.setTilecolor(msg.color);

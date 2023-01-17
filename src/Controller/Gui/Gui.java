@@ -45,17 +45,32 @@ public class Gui extends Application {
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
     static ButtonMute muteButton;
-
+    
+    static VBox gameCenter; 
+    
     /**
      * Sets the content of the center box to board and top/bottom menu
      */
     private static void makeCenter(GameOptions gameOptions) {
+        gameCenter = new VBox();
+        MenuTop topMenu = new MenuTop(gameOptions);
+        MenuBottom bottomMenu = new MenuBottom(gameOptions);
+        Board board = new Board();
+        gameCenter.getChildren().add(topMenu);
+        gameCenter.getChildren().add(board);
+        gameCenter.getChildren().add(bottomMenu);
+
+        gameCenter.setAlignment(Pos.CENTER);
+        gameCenter.setSpacing(10);
+        gameGuiRoot.setCenter(gameCenter);
+        /* 
         var centerBox = new BorderPane();
         centerBox.setPrefWidth(8 * fitTileSize());
         centerBox.setTop(new MenuTop(gameOptions));
         centerBox.setBottom(new MenuBottom(gameOptions));
         gameGuiRoot.setCenter(centerBox);
-        makeBoard();
+         */
+        //makeBoard();
     }
 
     public static Board getBoard() {

@@ -14,8 +14,8 @@ public class MenuBottom extends BorderPane {
             setCenter(new Timer(gameOptions));
         }
 
-        setMargin(getLeft(), new Insets(5, 20, 5, 20));
-        setMargin(getRight(), new Insets(5, 20, 5, 20));
+        setMargin(getLeft(), new Insets(0, 20, 0, 20));
+        setMargin(getRight(), new Insets(0, 20, 0, 20));
 
     }
 
