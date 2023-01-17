@@ -55,8 +55,9 @@ public class AIPlayer {
             TileColor[][] tempBoard = copyBoard(board);
             tempBoard[move.position.x][move.position.y] = turn;
 
+            // Get evaluation from one level deeper
             LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.WHITE, tempBoard), depth - 1,
-                    turn.switchColor(), move); // Get evaluation from one level deeper
+                    turn.switchColor(), move);
 
             move.setEvaluation(eval.evaluation);
 

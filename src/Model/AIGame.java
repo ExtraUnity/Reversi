@@ -19,7 +19,7 @@ public class AIGame extends Game {
 
     @Override
     void handleResign(ResignMsg msg) {
-        if (getNextTurn() == TileColor.WHITE) {
+        if (getNextTurn() == TileColor.WHITE) { // Prevent player resigning for AI
             var winner = nextturn.switchColor();
             Model.sendControllerMsg(new WinnerMsg(winner));
         }
@@ -46,7 +46,7 @@ public class AIGame extends Game {
     }
 
     @Override
-    void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
+    void handleRestartBtnPressed(RestartBtnPressedMsg msg) { // Update the correct avatars
         gamestate = GameState.EXITED;
         GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
                 options.startPlayer.switchColor(), PlayerCharacter.White, PlayerCharacter.Computer);
