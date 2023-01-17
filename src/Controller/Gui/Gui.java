@@ -104,7 +104,7 @@ public class Gui extends Application {
         Model.sendGameMsg(new GuiReadyMsg());
     }
 
-    public static void displayWinner(TileColor color) {
+    public static void displayWinner(TileColor color, int blackPoints, int whitePoints) {
         VBox gameover = new VBox();
         gameover.setAlignment(Pos.CENTER);
         gameover.setBackground(
@@ -112,6 +112,7 @@ public class Gui extends Application {
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
+        gameover.getChildren().add(new WinnerPointCounter(blackPoints,whitePoints));
         gameover.getChildren().add(new ButtonRestart());
         gameover.getChildren().add(new ButtonMainMenu());
         gameover.getChildren().add(new ButtonExitGame());
