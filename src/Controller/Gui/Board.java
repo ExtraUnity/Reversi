@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class Board extends BorderPane {
+public class Board extends HBox {
     HBox backPane;
     GridPane gridpane;
 
@@ -22,20 +22,20 @@ public class Board extends BorderPane {
                 gridpane.add(tile, x, y);
             }
         }
-
+        System.out.println(gridpane.toString());
         backPane.getChildren().add(gridpane);
-        setCenter(backPane);
+        //setCenter(backPane);
     }
 
     public Tile getTile(TilePosition position) {
         return (Tile) getChildren().get(position.x * 8 + position.y);
     }
 
-    public Tile[] getAllTiles() {
-        var allTiles = new ArrayList<Tile>();
+    public HBox[] getAllTiles() {
+        var allTiles = new ArrayList<HBox>();
         for (var tile : getChildren()) {
-            allTiles.add((Tile) tile);
+            allTiles.add((HBox)tile);
         }
-        return allTiles.toArray(new Tile[0]);
+        return allTiles.toArray(new HBox[0]);
     }
 }

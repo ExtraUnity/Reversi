@@ -12,9 +12,10 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-public class Tile extends BorderPane {
+public class Tile extends HBox {
     private StackPane stackPane;
     private ImageView imageView;
     private TilePosition position;
@@ -40,7 +41,9 @@ public class Tile extends BorderPane {
 
         stackPane.getChildren().add(imageView);
         stackPane.setAlignment(Pos.CENTER);
-        setCenter(imageView);
+
+        //setAlignment(Pos.CENTER);
+        //setCenter(stackPane);
     }
 
     private Image getEmptyImage() {
@@ -78,6 +81,7 @@ public class Tile extends BorderPane {
         return legal_tile;
     }
 
+    /*
     private static URL whiteToBlack;
     private static URL blackToWhite;
 
@@ -92,7 +96,7 @@ public class Tile extends BorderPane {
             throw new RuntimeException(e);
         }
     }
-
+    
     private Image getSwitchToBlack() {
         if (whiteToBlack == null) {
             whiteToBlack = getClass().getResource("/Assets/stoneTileWhiteToBlack.gif");
@@ -104,7 +108,7 @@ public class Tile extends BorderPane {
             throw new RuntimeException(e);
         }
     }
-
+    */
     private boolean isLegalMove = false;
 
     public void setLegalImage() {
@@ -119,8 +123,8 @@ public class Tile extends BorderPane {
         }
     }
 
-    private volatile int animationIndex = 0;
-
+    //private volatile int animationIndex = 0;
+    /*
     public void switchTilecolor(TileColor newColor) {
         isLegalMove = false;
         this.tilecolor = newColor;
@@ -147,13 +151,13 @@ public class Tile extends BorderPane {
         }).start();
 
     }
-
+    */
     public void setTilecolor(TileColor tilecolor) {
         isLegalMove = false;
         this.tilecolor = tilecolor;
         switch (tilecolor) {
             case WHITE:
-                imageView.setImage(getWhiteImage());
+                imageView = TileAnimation.makeTimeline();
                 break;
             case BLACK:
                 imageView.setImage(getBlackImage());

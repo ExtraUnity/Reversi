@@ -131,7 +131,7 @@ public class Controller {
     private void updateBoard(UpdateBoardMsg msg) {
 
         for (var tile : Gui.getBoard().getAllTiles()) {
-            tile.resetLegalMove();
+            ((Tile) tile).resetLegalMove();
         }
 
         // Den første skal ikke animeres. Men der skal i stedet bare sætted farven.
@@ -143,7 +143,8 @@ public class Controller {
         // Skipper den første, da der ikke skal animeres men i stedet bare sætte farven.
         for (int i = 0; i < msg.tilePositions.length - 1; i++) {
             Tile tile = Gui.getBoard().getTile(msg.tilePositions[i]);
-            tile.switchTilecolor(msg.color);
+            tile.setTilecolor(msg.color);
+            //tile.switchTilecolor(msg.color);
         }
 
         for (LegalMove move : msg.legalMoves) {
