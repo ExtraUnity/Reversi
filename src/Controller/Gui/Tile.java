@@ -10,8 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-public class Tile extends BorderPane {
-    private StackPane stackPane;
+public class Tile extends StackPane {
     private ImageView imageView;
     private TilePosition position;
     TileColor tilecolor = null;
@@ -25,7 +24,6 @@ public class Tile extends BorderPane {
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
 
-        stackPane = new StackPane();
         imageView = new ImageView();
 
         
@@ -34,10 +32,8 @@ public class Tile extends BorderPane {
             Model.sendGameMsg(new TilePressedMsg(position));
         });
 
-        stackPane.getChildren().add(imageView);
-        stackPane.setAlignment(Pos.CENTER);
-
-        setCenter(stackPane);
+        getChildren().add(imageView);
+        setAlignment(Pos.CENTER);
     }
 
     private Image getEmptyImage() {
@@ -108,12 +104,12 @@ public class Tile extends BorderPane {
         this.tilecolor = tilecolor;
         switch (tilecolor) {
             case WHITE:
-                stackPane.getChildren().clear();
-                stackPane.getChildren().add(TileAnimation.flipToWhite());
+                this.getChildren().clear();
+                this.getChildren().add(TileAnimation.flipToWhite());
                 break;
             case BLACK:
-                stackPane.getChildren().clear();
-                stackPane.getChildren().add(TileAnimation.flipToBlack());
+                this.getChildren().clear();
+                this.getChildren().add(TileAnimation.flipToBlack());
                 break;
 
             case default:
