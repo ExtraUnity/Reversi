@@ -146,7 +146,7 @@ public class Controller {
             // Skipper den første, da der ikke skal animeres men i stedet bare sætte farven.
             for (int i = 0; i < msg.tilePositions.length - 1; i++) {
                 Tile tile = Gui.getBoard().getTile(msg.tilePositions[i]);
-                tile.setTilecolor(null);
+                tile.setTilecolor(msg.color);
             }
         }
 
