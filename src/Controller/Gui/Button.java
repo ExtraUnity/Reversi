@@ -8,7 +8,7 @@ public class Button extends ImageView {
     protected Image img;
     protected Image imgPressed;
 
-    public Button(Buttons button, int i) {
+    public Button(Buttons button, double i) {
         InputStream src = getClass().getResourceAsStream("/Assets/Button" + button.name() + ".png");
         this.img = new Image(src, 0, Gui.fitTileSize() * i, true, false);
 

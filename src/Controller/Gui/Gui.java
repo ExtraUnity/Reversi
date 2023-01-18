@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -151,6 +152,7 @@ public class Gui extends Application {
     public static void addMuteButton() {
         stackRoot.getChildren().add(Gui.muteButton);
         StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
+        StackPane.setMargin(Gui.muteButton, new Insets(15,15,15,15));
     }
 
     public static void removeMuteButton() {
@@ -158,16 +160,11 @@ public class Gui extends Application {
     }
 
     public static void makeStartMenu() {
-
         updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
 
-        var gameModeButtons = new MenuMainCenter();
-        var exitGameButtons = new MenuMainBottom();
-        var title = new Title();
+        var mainMenu = new MenuMainCenter();
+        startMenuRoot.getChildren().add(mainMenu);
 
-        startMenuRoot.getChildren().add(title);
-        startMenuRoot.getChildren().add(gameModeButtons);
-        startMenuRoot.getChildren().add(exitGameButtons);
         addMuteButton();
         startMenuRoot.setAlignment(Pos.CENTER);
 
