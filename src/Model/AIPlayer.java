@@ -2,35 +2,18 @@ package Model;
 
 //Hele filen er skrevet af Christan
 
-//import java.util.Arrays;
-
 import Shared.*;
 
-/*
- * Section written by: Christian - s224810
- */
 public class AIPlayer {
     private TileColor[][] gameBoard;
     private LegalMove[] legalMoves;
     private TilePosition bestMove;
-    private int depth;
+    private final int DEPTH;
 
     AIPlayer(TileColor[][] gameBoard) {
         this.gameBoard = gameBoard;
         bestMove = new TilePosition(0, 0);
-        depth = 5;
-    }
-
-    public TileColor[][] getGameBoard() {
-        return this.gameBoard;
-    }
-
-    public void setGameBoard(TileColor[][] gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
-    public void setLegalMoves(LegalMove[] legalMoves) {
-        this.legalMoves = legalMoves;
+        DEPTH = 5;
     }
 
     public void updateBoard(TileColor[][] gameBoard, LegalMove[] legalMoves) {
@@ -38,8 +21,12 @@ public class AIPlayer {
         this.legalMoves = legalMoves;
     }
 
-    public TilePosition calculateMultiLayerMove() {
-        return miniMax(gameBoard, legalMoves, depth, TileColor.BLACK,
+    public void setBestMove() {
+        this.bestMove = calculateMultiLayerMove();
+    }
+
+    private TilePosition calculateMultiLayerMove() {
+        return miniMax(gameBoard, legalMoves, DEPTH, TileColor.BLACK,
                 legalMoves[0]).position;
     }
 
@@ -47,7 +34,7 @@ public class AIPlayer {
      * Calculates the best move in the current position using the minimax algorithm
      *
      */
-    public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, TileColor turn,
+    private LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, TileColor turn,
             LegalMove madeMove) {
         if (depth == 0 || legalMoves.length == 0) { // Reached the desired level or end of game
             madeMove.setEvaluation(evaluatePosition(board));
@@ -80,6 +67,9 @@ public class AIPlayer {
         return this.bestMove;
     }
 
+    /**
+     * copies the given board to avoid having the same location in memory
+     */
     private TileColor[][] copyBoard(TileColor[][] board) {
         TileColor[][] newBoard = new TileColor[board.length][board[0].length];
         for (int x = 0; x < board.length; x++) {
@@ -90,18 +80,14 @@ public class AIPlayer {
         return newBoard;
     }
 
-    public void setBestMove() {
-        this.bestMove = calculateMultiLayerMove();
-    }
-
     /**
-     * Returns a double representing the evaluation of the current game position.
+     * Returns an int representing the evaluation of the current game position.
      * Returns a positive value for white winning and a negative value for black
      * winning.
      * A larger absolute number means a more decisive game.
      * 
      */
-    public int evaluatePosition(TileColor[][] board) {
+    private int evaluatePosition(TileColor[][] board) {
         int whitePoints = 0;
         int blackPoints = 0;
         for (int x = 0; x < board.length; x++) {

@@ -333,7 +333,7 @@ public abstract class Game {
                     var pos = new TilePosition(x, y);
                     int flipped = flippedFromMove(pos, nextturn, gameBoard);
                     if (flipped > 0) {
-                        legalMoves.add(new LegalMove(pos, flipped));
+                        legalMoves.add(new LegalMove(pos));
                     }
                 }
             }

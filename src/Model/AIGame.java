@@ -10,10 +10,6 @@ import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import Controller.Gui.PlayerCharacter;
 import MsgPass.ControllerMsg.WinnerMsg;
 
-/*
- * Section written by: Christian - s224810
- */
-
 public class AIGame extends Game {
     static AIPlayer aiPlayer;
 
@@ -33,6 +29,8 @@ public class AIGame extends Game {
     @Override
     boolean handleTileClick(TilePosition pos, TilePressedMsg msg) {
         boolean superReturn = super.handleTileClick(pos, msg);
+
+        // Handle ai's turn if white just played a move.
         if (followRules() && superReturn && !allTilesPlaced() && getNextTurn() == TileColor.BLACK) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
@@ -43,6 +41,8 @@ public class AIGame extends Game {
     @Override
     boolean handlePassClick(PassMsg msg) {
         boolean superReturn = super.handlePassClick(msg);
+
+        // Handle ai's turn if white just passed.
         if (followRules() && superReturn && getNextTurn() == TileColor.BLACK) {
             var legalMoves = getAllLegalMoves(getNextTurn(), board);
             handleAITurn(legalMoves);
@@ -62,7 +62,7 @@ public class AIGame extends Game {
         aiPlayer.updateBoard(board, legalMoves); // updates ai with the newest board
 
         try {
-            Thread.sleep(1500);
+            Thread.sleep(1500); // 1.5 second buffer to give the illusion of the AI thinking
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }

@@ -1,4 +1,5 @@
 package Controller.Gui;
+
 //Filen er skrevet af Christian
 import Model.Model;
 import MsgPass.ModelMsg.PassMsg;
@@ -28,6 +29,9 @@ public class ButtonPass extends Button {
         setImage(img);
     }
 
+    /**
+     * passes and updates picture if the button is available
+     */
     public void updatePressed() {
         if (this.available) {
             setOnMousePressed(e -> {

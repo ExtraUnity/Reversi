@@ -160,6 +160,9 @@ public class Gui extends Application {
     }
 
     // Skrevet af Christian
+    /**
+     * Positions mute button in the lower left corner of the screen
+     */
     public static void addMuteButton() {
         stackRoot.getChildren().add(Gui.muteButton);
         StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
@@ -184,9 +187,6 @@ public class Gui extends Application {
     }
 
     // Skrevet af Christian
-    /**
-     * Loads mp3 from directory and plays on repeat until updated
-     */
     public static void setMusic(String path) {
         var player = new MusicPlayer(path);
         player.play();
@@ -301,12 +301,14 @@ public class Gui extends Application {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getHeight();
     }
-    //Skrevet af Katinka
+
+    // Skrevet af Katinka
     public static double getScreenWidth() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getWidth();
     }
-    //Skrevet af Katinka
+
+    // Skrevet af Katinka
     public static void close() {
         Platform.runLater(new Runnable() {
             @Override

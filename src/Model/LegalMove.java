@@ -5,18 +5,15 @@ import Shared.TilePosition;
 
 public class LegalMove implements Comparable<LegalMove> {
     public final TilePosition position;
-    public final int flipped;
-    public int evaluation;
+    public int evaluation; // field used for AI board evaluation
 
-    LegalMove(TilePosition position, int flipped) {
+    LegalMove(TilePosition position) {
         this.position = position;
-        this.flipped = flipped;
         evaluation = 0;
     }
 
     LegalMove(TilePosition position, int flipped, int evaluation) {
         this.position = position;
-        this.flipped = flipped;
         this.evaluation = evaluation;
     }
 
@@ -27,7 +24,6 @@ public class LegalMove implements Comparable<LegalMove> {
     @Override
     public int compareTo(LegalMove other) {
         return this.evaluation - other.evaluation;
-        // return this.flipped - other.flipped;
     }
 
     @Override

@@ -1,15 +1,17 @@
 package Controller.Gui;
+
 //Filen er skrevet af Christian
 import Model.GameOptions;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 
 public class MenuBottom extends BorderPane {
+
     MenuBottom(GameOptions gameOptions) {
 
         setLeft(new ButtonPass());
         setRight(new ButtonResign());
-        // Lav kun timeren hvis den skal bruges
+        // Only create timer if used
         if (gameOptions.gametime > 0) {
             setCenter(new Timer(gameOptions));
         }

@@ -1,11 +1,8 @@
 package Controller.Gui;
+
 //Filen er skrevet af Christian
 import java.io.InputStream;
 import javafx.scene.image.Image;
-
-/*
- * Section written by: Christian - s224810
- */
 
 public class ButtonMute extends Button {
     boolean muted;
@@ -13,10 +10,8 @@ public class ButtonMute extends Button {
     public ButtonMute() {
         super(Buttons.Mute, 0.75);
         muted = false;
-        setOnMousePressed(e -> {
-            // setImage(imgPressed);
-        });
-        setOnMouseReleased(e -> {
+
+        setOnMouseReleased(e -> { // switch states when pressed
             var path = "";
             if (muted) {
                 Gui.playMusic();
