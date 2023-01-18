@@ -1,5 +1,5 @@
 package Server;
-
+//Filen er skrevet af Thor
 import MsgPass.ModelMsg.ModelMsg;
 
 public class SynchronizeTimeNetmsg extends ModelMsg {

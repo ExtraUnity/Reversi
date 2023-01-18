@@ -1,5 +1,6 @@
 package Model;
 
+//Filen er skrevet af flere. Se de individuelle metoder
 import java.util.ArrayList;
 import Controller.Gui.Gui;
 import Controller.Gui.PlayerCharacter;
@@ -34,6 +35,7 @@ public abstract class Game {
 
     static TileColor[][] board = new TileColor[8][8];
 
+    // Skrevet af Thor
     Game(GameOptions options, GameMode gameMode) {
         this.options = options;
         this.gameMode = gameMode;
@@ -41,6 +43,7 @@ public abstract class Game {
         nextturn = options.startPlayer;
     }
 
+    // Skrevet af Thor
     void startGame() {
         boolean ready = false;
         while (!ready) {
@@ -72,12 +75,13 @@ public abstract class Game {
         run_game();
     }
 
+    // Metoden blev i starten skrevet af Thor men alle har tilføjet flere
+    // "instanceof" og selv skrevet de tilsvarende handlers
     protected void run_game() {
         System.out.println(getClass().getSimpleName() + " loop started");
         while (gamestate == GameState.PLAYING) {
             // Game loop
             var modelMsg = Model.readGameMsg();
-            // System.out.println("Game Received " + modelMsg.getClass().getName());
 
             // Håndter forskellige typer messages
             if (modelMsg instanceof TilePressedMsg) {
@@ -109,11 +113,13 @@ public abstract class Game {
         System.out.println(getClass().getSimpleName() + " loop ended");
     }
 
+    // Skrevet af Katinka
     void handleResign(ResignMsg msg) {
         var winner = nextturn.switchColor();
         Model.sendControllerMsg(new WinnerMsg(winner));
     }
 
+    // Skrevet af Katinka
     void handleRestartBtnPressed(RestartBtnPressedMsg msg) {
         gamestate = GameState.EXITED;
         GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
@@ -121,11 +127,13 @@ public abstract class Game {
         Model.startGame(gameMode, newOptions);
     }
 
+    // Skrevet af Katinka
     void handleMainMenuPressed() {
         gamestate = GameState.EXITED;
         Gui.updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
     }
 
+    // Dette of followRules() er skrevet af Thor
     protected static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
@@ -133,6 +141,7 @@ public abstract class Game {
         return turns > 3;
     }
 
+    // Metoden er skrevet af Thor
     /**
      * Denne funktion håndterer når pass knappen bliver trykket på. Den tjekker om
      * brugeren
@@ -169,6 +178,7 @@ public abstract class Game {
         return true;
     }
 
+    // Skrevet af Thor og senere opdateret af Christian
     /**
      * Denne funktion bliver kaldt når der bliver sat en brik. Funktionen tjekker om
      * det er et lovligt træk og hvis det er håndterer den alt logikken som vender
@@ -212,11 +222,13 @@ public abstract class Game {
         return true;
     }
 
+    // Skrevet af Christian
     void handleAITurn(LegalMove[] legalMoves) {
     }
 
     boolean noLegalsLastTurn = false;
 
+    // Skrevet af Frederik
     void checkWinner(int whitePoints, int blackPoints) {
         if (noLegalsLastTurn || allTilesPlaced()) {
             // Send gameover beskrev hvor vinderen er den med flest point
@@ -232,6 +244,7 @@ public abstract class Game {
         }
     }
 
+    // Skrevet af Frederik
     boolean allTilesPlaced() {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
@@ -248,6 +261,7 @@ public abstract class Game {
         return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] != null;
     }
 
+    // Skrevet af Thor
     /**
      * Laver en liste af alle de tiles som skal flippes, i den retning som bliver
      * givet af dx og dy. Denne funktion er pure
@@ -279,6 +293,7 @@ public abstract class Game {
         }
     }
 
+    // Skrevet af Thor
     /**
      * Finder alle de tiles som kan vendes ved et givet træk. Denne funktion er
      * pure.
@@ -310,6 +325,7 @@ public abstract class Game {
         return allFlipped;
     }
 
+    // Skrevet af Thor
     /**
      * Finds all legal moves and returns an array of them :=)
      */
@@ -329,10 +345,12 @@ public abstract class Game {
         return legalMoves.toArray(new LegalMove[0]);
     }
 
+    // Skrevet af Thor
     static int flippedFromMove(TilePosition pos, TileColor color, TileColor[][] gameBoard) {
         return getAllFlipped(pos, color, gameBoard).size();
     }
 
+    // Skrevet af Thor
     /**
      * finder hvor mange point en givet farve har. Dette er en pure funktion.
      */
@@ -348,24 +366,31 @@ public abstract class Game {
         return points;
     }
 
+    // Skrevet af Katinka
     public static TileColor getNextTurn() {
         return nextturn;
     }
 
+    // Skrevet af Katinka
     public static void setNextTurn(TileColor color) {
         nextturn = color;
     }
 
+    // Dette og metoden nedenunder er skrevet af Thor
     static int whiteTimer = -1;
     static int blackTimer = -1;
 
     private void runTimer(int gameTime) {
         try {
-            // Shared memory, dont care. Man skal være meget uheldig for at det her bliver
+            // Shared memory, dont care. Man skal være meget (MEGET) uheldig for at det her
+            // bliver
             // et problem
             whiteTimer = gameTime;
             blackTimer = gameTime;
             int timeToNextSynchronize = 5;
+
+            // Det er lidt farligt at referer til denne gamestate uden at bruge en mutex men
+            // se kommentar ovenover.
             while (gamestate == GameState.PLAYING) {
                 // 1 sekund
                 Thread.sleep(1000);

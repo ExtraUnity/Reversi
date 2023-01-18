@@ -1,4 +1,5 @@
 package Model;
+//Filen er skrevet af Thor
 
 public class ClassicGame extends Game {
 

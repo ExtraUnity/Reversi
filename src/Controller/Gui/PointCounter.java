@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Thor
 import Shared.TileColor;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;

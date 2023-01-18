@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Katinka
 import Server.ServerConn;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;

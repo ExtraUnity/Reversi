@@ -1,5 +1,5 @@
 package Shared;
-
+//Filen er skrevet af Thor
 public enum TileColor {
     WHITE,
     BLACK,

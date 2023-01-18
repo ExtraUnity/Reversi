@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Katinka
 public class ButtonHostGame extends Button {
 
     public ButtonHostGame() {

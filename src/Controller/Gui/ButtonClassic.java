@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Katinka
 import Model.GameOptions;
 import Model.Model;
 import Model.Game.GameMode;

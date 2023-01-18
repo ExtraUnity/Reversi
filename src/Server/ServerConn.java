@@ -1,4 +1,5 @@
 package Server;
+//Filen er skrevet af Thor
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

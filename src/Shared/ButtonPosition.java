@@ -1,5 +1,5 @@
 package Shared;
-
+//Filen er skrevet af Thor
 public class ButtonPosition {
     public final double x;
     public final double y;

@@ -1,5 +1,5 @@
 package Shared;
-
+//Filen er skrevet af Thor
 import java.io.Serializable;
 
 public class TilePosition implements Serializable {

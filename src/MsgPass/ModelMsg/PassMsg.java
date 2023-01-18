@@ -1,5 +1,5 @@
 package MsgPass.ModelMsg;
-
+//Filen er skrevet af Christian
 import Shared.TilePosition;
 
 public class PassMsg extends ModelMsg {

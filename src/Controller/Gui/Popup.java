@@ -1,4 +1,5 @@
 package Controller.Gui;
+//Filen er skrevet af Thor
 
 import Shared.TileColor;
 import javafx.application.Platform;
@@ -15,13 +16,14 @@ public class Popup extends VBox {
     public Popup(TileColor color, int timeAlive) {
         this.timeAlive = timeAlive;
         setAlignment(Pos.TOP_CENTER);
-        ImageView image = new ImageView(new Image("Assets/"+ color.name() +".png", 0, Gui.fitTileSize()*3, true, false));
+        ImageView image = new ImageView(
+                new Image("Assets/" + color.name() + ".png", 0, Gui.fitTileSize() * 3, true, false));
         image.setOnMouseClicked(e -> {
             close();
         });
         getChildren().add(image);
         setAlignment(Pos.CENTER);
-        setMargin(image, new Insets(0,0,Gui.fitTileSize()*2,0));
+        setMargin(image, new Insets(0, 0, Gui.fitTileSize() * 2, 0));
     }
 
     public Popup(int timeAlive) {
@@ -32,7 +34,7 @@ public class Popup extends VBox {
         });
         getChildren().add(image);
         setAlignment(Pos.CENTER);
-        setMargin(image, new Insets(Gui.fitTileSize()*2,0,0,0));
+        setMargin(image, new Insets(Gui.fitTileSize() * 2, 0, 0, 0));
 
     }
 

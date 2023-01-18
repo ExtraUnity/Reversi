@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Christian
 import Model.Model;
 import MsgPass.ModelMsg.PassMsg;
 import javafx.scene.image.Image;

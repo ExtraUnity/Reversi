@@ -1,5 +1,5 @@
 package MsgPass.ModelMsg;
-
+//Filen er skrevet af Thor
 import Model.GameOptions;
 import Model.Game.GameMode;
 

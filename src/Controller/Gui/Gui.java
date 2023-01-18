@@ -1,5 +1,6 @@
 package Controller.Gui;
 
+//Filen er skrevet af flere. Se individuelle metoder
 import Controller.Controller;
 import Model.GameOptions;
 import Model.Model;
@@ -23,6 +24,7 @@ import javafx.scene.media.*;
 
 public class Gui extends Application {
 
+    // InitGui og de tilhørende fields er skrevet af Thor
     static Thread guiMainThread;
     public static MediaPlayer musicPlayer;
 
@@ -47,9 +49,10 @@ public class Gui extends Application {
     static BorderPane gameGuiRoot;
     static ButtonMute muteButton;
     static Board board;
-    
-    static VBox gameCenter; 
-    
+
+    static VBox gameCenter;
+
+    // Skrevet af Katinka
     /**
      * Sets the content of the center box to board and top/bottom menu
      */
@@ -67,16 +70,20 @@ public class Gui extends Application {
         gameGuiRoot.setCenter(gameCenter);
     }
 
+    // Skrevet af Katinka
     public static Board getBoard() {
         return board;
     }
 
+    // Skrevet af Katinka
     public static MenuBottom getMenuBottom() {
         return (MenuBottom) (gameCenter.getChildren().get(2));
     }
 
+    // Skrevet af Thor
     static GameOptions prevGameOptions;
 
+    // Skrevet af Frederik
     /**
      * Hvis null bliver passeret som argument ville der blive brugt samme
      * gameOptions som sidste game
@@ -99,10 +106,11 @@ public class Gui extends Application {
         removeMuteButton();
         addMuteButton();
         makeCenter(gameOptions);
-        
+
         Model.sendGameMsg(new GuiReadyMsg());
     }
 
+    // Skrevet af Frederik
     public static void displayWinner(TileColor color, int blackPoints, int whitePoints) {
         VBox gameover = new VBox();
         gameover.setAlignment(Pos.CENTER);
@@ -111,7 +119,7 @@ public class Gui extends Application {
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
-        gameover.getChildren().add(new WinnerPointCounter(blackPoints,whitePoints));
+        gameover.getChildren().add(new WinnerPointCounter(blackPoints, whitePoints));
         gameover.getChildren().add(new ButtonRestart());
         gameover.getChildren().add(new ButtonMainMenu());
         gameover.getChildren().add(new ButtonExitGame());
@@ -123,6 +131,7 @@ public class Gui extends Application {
         updateMusic("/Assets/sounds/music/winnerMusic.mp3");
     }
 
+    // Skrevet af Katinka
     @Override
     public void start(Stage stage) throws Exception {
         setupStageMeta(stage);
@@ -150,16 +159,19 @@ public class Gui extends Application {
         Controller.setGuiInitDone();
     }
 
+    // Skrevet af Christian
     public static void addMuteButton() {
         stackRoot.getChildren().add(Gui.muteButton);
         StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
-        StackPane.setMargin(Gui.muteButton, new Insets(15,15,15,15));
+        StackPane.setMargin(Gui.muteButton, new Insets(15, 15, 15, 15));
     }
 
+    // Skrevet af Christian
     public static void removeMuteButton() {
         stackRoot.getChildren().remove(Gui.muteButton);
     }
 
+    // Skrevet af Katinka
     public static void makeStartMenu() {
         updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
 
@@ -171,6 +183,7 @@ public class Gui extends Application {
 
     }
 
+    // Skrevet af Christian
     /**
      * Loads mp3 from directory and plays on repeat until updated
      */
@@ -180,18 +193,21 @@ public class Gui extends Application {
 
     }
 
+    // Skrevet af Christian
     static void playMusic() {
         if (musicPlayer != null) {
             musicPlayer.play();
         }
     }
 
+    // Skrevet af Christian
     static void stopMusic() {
         if (musicPlayer != null) {
             musicPlayer.stop();
         }
     }
 
+    // Skrevet af Christian
     public static void updateMusic(String path) {
         stopMusic();
         setMusic(path);
@@ -200,6 +216,7 @@ public class Gui extends Application {
         }
     }
 
+    // Skrevet af Katinka
     public static PlayerCharacter yourCharacter = PlayerCharacter.Stalin;
     public static MenuMultiplayer main;
     public static MenuMultiplayerJoin join;
@@ -208,6 +225,7 @@ public class Gui extends Application {
     public static MenuDisplayCharacter displaySelected;
     public static MenuDisplayUnknown displayUnknown;
 
+    // Skrevet af Katinka
     public static void makeMultiplayerMenu() {
         main = new MenuMultiplayer();
         multiplayerMenuRoot = new VBox();
@@ -218,22 +236,26 @@ public class Gui extends Application {
         multiplayerMenuRoot.setSpacing(15);
     }
 
+    // Skrevet af Katinka
     public static void makeJoinMenu() {
         join = new MenuMultiplayerJoin();
         multiplayerMenuRoot.getChildren().remove(main);
         multiplayerMenuRoot.getChildren().add(join);
     }
 
+    // Skrevet af Katinka
     public static void makeHostMenu() {
         host = new MenuMultiplayerHost();
         multiplayerMenuRoot.getChildren().remove(main);
         multiplayerMenuRoot.getChildren().add(host);
     }
 
+    // Skrevet af Katinka
     public static void setYourCharacter(PlayerCharacter character) {
         yourCharacter = character;
     }
 
+    // Skrevet af Katinka
     public static void updateMultiplayerMenu() {
         displaySelected = new MenuDisplayCharacter(yourCharacter);
         displayUnknown = new MenuDisplayUnknown();
@@ -250,10 +272,9 @@ public class Gui extends Application {
         addMuteButton();
     }
 
+    // Skrevet af Thor
     /**
      * Sets up everthing that doesn't have to do with the scene.
-     * 
-     * @param stage
      */
     void setupStageMeta(Stage stage) {
         stage.setTitle("Reversi");
@@ -270,20 +291,22 @@ public class Gui extends Application {
         stage.setMinHeight(400);
     }
 
+    // Skrevet af Katinka
     public static double fitTileSize() {
         return getScreenHeight() / 11;
     }
 
+    // Skrevet af Katinka
     public static double getScreenHeight() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getHeight();
     }
-
+    //Skrevet af Katinka
     public static double getScreenWidth() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         return screenBounds.getWidth();
     }
-
+    //Skrevet af Katinka
     public static void close() {
         Platform.runLater(new Runnable() {
             @Override
@@ -291,6 +314,5 @@ public class Gui extends Application {
                 stage.close();
             }
         });
-
     }
 }

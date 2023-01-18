@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Thor
 import Model.GameOptions;
 import Shared.TileColor;
 import javafx.application.Platform;

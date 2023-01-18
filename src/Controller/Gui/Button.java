@@ -1,5 +1,6 @@
 package Controller.Gui;
 
+//Filen er skrevet af Katinka
 import java.io.InputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skevet af Thor
 import Shared.TileColor;
 import Model.GameOptions;
 import javafx.application.Platform;

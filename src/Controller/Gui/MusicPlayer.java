@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Christian
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;

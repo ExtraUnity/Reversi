@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Christian
 import java.io.InputStream;
 import javafx.scene.image.Image;
 

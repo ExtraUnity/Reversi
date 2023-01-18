@@ -3,6 +3,8 @@ package Model;
 import Controller.Gui.PlayerCharacter;
 import Shared.TileColor;
 
+//Filen er skrevet af Thor
+
 public class GameOptions {
     public final int gametime;
     public final boolean countPoints;

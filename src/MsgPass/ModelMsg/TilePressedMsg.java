@@ -1,5 +1,6 @@
 package MsgPass.ModelMsg;
 
+//Filen er skrevet af Frederik
 import Shared.TilePosition;
 
 public class TilePressedMsg extends ModelMsg {

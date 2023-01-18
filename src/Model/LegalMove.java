@@ -1,4 +1,5 @@
 package Model;
+//Filen er skrevet af Christian
 
 import Shared.TilePosition;
 

@@ -1,3 +1,4 @@
+//Filen er skrevet af Thor
 package Server;
 
 import MsgPass.ModelMsg.ModelMsg;

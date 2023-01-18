@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Frederik
 import java.io.InputStream;
 import Shared.TileColor;
 import javafx.scene.image.Image;

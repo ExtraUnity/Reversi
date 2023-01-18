@@ -1,5 +1,7 @@
 package Model;
 
+//Filen er skrevet af Thor
+
 import Controller.Gui.Popup;
 import MsgPass.ModelMsg.PassMsg;
 import MsgPass.ModelMsg.ResignMsg;

@@ -1,5 +1,7 @@
 package Controller.Gui;
 
+//Filen er skrevet af Thor
+
 import java.util.ArrayList;
 
 import Shared.TilePosition;

@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Katinka
 import Model.Model;
 import MsgPass.ModelMsg.MainMenuMsg;
 import Server.ServerConn;

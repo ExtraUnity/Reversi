@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Katinka
 public class ButtonMultiplayer extends Button {
 
 

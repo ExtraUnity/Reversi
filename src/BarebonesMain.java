@@ -5,7 +5,7 @@ import Model.GameOptions;
 import Model.Model;
 import Model.Game.GameMode;
 import Shared.TileColor;
-
+//Filen er skrevet af Thor
 public class BarebonesMain {
     public static void main(String[] args) {
 

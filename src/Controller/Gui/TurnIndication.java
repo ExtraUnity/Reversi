@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Katinka
 import java.io.InputStream;
 
 import Shared.TileColor;

@@ -1,5 +1,7 @@
 package Model;
 
+//Filen er skrevet af Thor
+
 import java.util.concurrent.LinkedBlockingQueue;
 
 import MsgPass.ControllerMsg.ControllerMsg;

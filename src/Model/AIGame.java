@@ -1,4 +1,5 @@
 package Model;
+//Hele filen er skrevet af Christian
 
 import MsgPass.ModelMsg.PassMsg;
 import MsgPass.ModelMsg.TilePressedMsg;

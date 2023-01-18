@@ -1,5 +1,6 @@
 package Controller;
 
+//Filen er skrevet af flere. Se induviduelle metoder
 import Controller.Gui.Gui;
 import Controller.Gui.PointCounter;
 
@@ -27,6 +28,7 @@ public class Controller {
 
     private static boolean guiInitDone = false;
 
+    // Skrevet af Thor
     private static void waitUntilGuiInitDone() {
         if (guiInitDone) {
             return;
@@ -39,6 +41,7 @@ public class Controller {
         }
     }
 
+    // Skrevet af Thor
     public static void setGuiInitDone() {
         try {
             guiReadyQueue.put(true);
@@ -55,6 +58,7 @@ public class Controller {
     private Controller() {
     }
 
+    // Skrevet af Thor
     public static void initController() {
         if (controller == null) {
             Gui.initGui();
@@ -72,7 +76,9 @@ public class Controller {
 
     }
 
+    // Skrevet af flere, se individuelle dele
     private void run_controller() {
+        // Skrevet af Thor
         System.out.println("Controller loop started");
         int blackPoints = 0;
         int whitePoints = 0;
@@ -82,6 +88,7 @@ public class Controller {
             // System.out.println("Controller Received " +
             // controllerMsg.getClass().getName());
 
+            // Skrevet af Frederik
             if (controllerMsg instanceof UpdateBoardMsg) {
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
                 whitePoints = msg.whitePoints;
@@ -102,9 +109,11 @@ public class Controller {
                     }
                 });
 
+                // Skrevet af Thor
             } else if (controllerMsg instanceof ControllerWindowClosedMsg) {
                 controller.state = ControllerState.CLOSING;
                 Gui.close();
+                // Skrevet af Frederik
             } else if (controllerMsg instanceof WinnerMsg) {
                 WinnerMsg msg = (WinnerMsg) controllerMsg;
                 int blackPointsClone = blackPoints;
@@ -112,12 +121,13 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        
 
                         Gui.displayWinner(msg.winner, blackPointsClone, whitePointsClone);
                     }
                 });
+                // Skrevet af Thor
             } else if (controllerMsg instanceof StartGameMsg) {
+
                 StartGameMsg msg = (StartGameMsg) controllerMsg;
                 waitUntilGuiInitDone();
                 Platform.runLater(new Runnable() {
@@ -131,11 +141,13 @@ public class Controller {
         }
     }
 
+    // Skrevet af Katinka
     private void piecePlaySound() {
         new AudioClip(
                 getClass().getResource("/Assets/sounds/DiskPlace.mp3").toExternalForm()).play();
     }
 
+    // Skrevet af Thor
     private void updateBoard(UpdateBoardMsg msg) {
 
         for (var tile : Gui.getBoard().getAllTiles()) {
@@ -168,6 +180,7 @@ public class Controller {
         updateButtonPass(msg.legalMoves.length);
     }
 
+    // Skrevet af Christian
     /**
      * 
      * @param legalMoves

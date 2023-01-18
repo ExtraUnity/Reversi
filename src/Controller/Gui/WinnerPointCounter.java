@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Frederik
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;

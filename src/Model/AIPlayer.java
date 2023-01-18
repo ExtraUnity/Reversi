@@ -1,5 +1,7 @@
 package Model;
 
+//Hele filen er skrevet af Christan
+
 //import java.util.Arrays;
 
 import Shared.*;

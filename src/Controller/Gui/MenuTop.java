@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Frederik
 import Model.GameOptions;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;

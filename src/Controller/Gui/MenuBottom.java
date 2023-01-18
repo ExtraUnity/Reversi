@@ -1,5 +1,5 @@
 package Controller.Gui;
-
+//Filen er skrevet af Christian
 import Model.GameOptions;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
