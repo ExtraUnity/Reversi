@@ -1,9 +1,10 @@
 package Model;
 
-//import java.util.Arrays;
-
 import Shared.*;
 
+/*
+ * Section written by: Christian - s224810
+ */
 public class AIPlayer {
     private TileColor[][] gameBoard;
     private LegalMove[] legalMoves;

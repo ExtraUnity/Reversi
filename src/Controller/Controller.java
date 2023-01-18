@@ -112,7 +112,6 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        
 
                         Gui.displayWinner(msg.winner, blackPointsClone, whitePointsClone);
                     }
@@ -169,11 +168,9 @@ public class Controller {
     }
 
     /**
-     * 
-     * @param legalMoves
-     *                   Uses the amount of legal moves update the pass button image
-     *                   using the rule:
-     *                   No legal moves -> Pass available
+     * Uses the amount of legal moves update the pass button image
+     * using the rule:
+     * No legal moves -> Pass available
      */
     void updateButtonPass(int legalMoves) {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();

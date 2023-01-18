@@ -6,6 +6,10 @@ import MsgPass.ModelMsg.PassMsg;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/*
+ * Section written by: Christian - s224810
+ */
+
 public class ButtonPass extends ImageView {
     private Image img;
     private InputStream src;
@@ -13,7 +17,7 @@ public class ButtonPass extends ImageView {
     private boolean available;
     private Image imgPressed;
 
-    ButtonPass() {
+    public ButtonPass() {
         this.src = getClass().getResourceAsStream("/Assets/ButtonPassGrey.png");
         this.size = Gui.fitTileSize();
         this.img = new Image(src, 0, size, true, false);
@@ -51,7 +55,7 @@ public class ButtonPass extends ImageView {
                 setImage(img);
                 Model.sendGameMsg(new PassMsg());
             });
-        } else {
+        } else { // Make the button non-interactive
             setOnMousePressed(e -> {
             });
             setOnMouseReleased(e -> {

@@ -112,7 +112,7 @@ public class Gui extends Application {
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         gameover.setPrefSize(getScreenWidth(), getScreenHeight());
         gameover.getChildren().add(new WinnerIndication(color));
-        gameover.getChildren().add(new WinnerPointCounter(blackPoints,whitePoints));
+        gameover.getChildren().add(new WinnerPointCounter(blackPoints, whitePoints));
         gameover.getChildren().add(new ButtonRestart());
         gameover.getChildren().add(new ButtonMainMenu());
         gameover.getChildren().add(new ButtonExitGame());
