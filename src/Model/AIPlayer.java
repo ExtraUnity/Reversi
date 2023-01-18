@@ -7,7 +7,6 @@ import Shared.*;
 public class AIPlayer {
     private TileColor[][] gameBoard;
     private LegalMove[] legalMoves;
-    private boolean isMyTurn;
     private TilePosition bestMove;
     private int depth;
 
@@ -29,21 +28,13 @@ public class AIPlayer {
         this.legalMoves = legalMoves;
     }
 
-    public boolean isMyTurn() {
-        return isMyTurn;
-    }
-
-    public void setMyTurn(boolean state) {
-        isMyTurn = state;
-    }
-
     public void updateBoard(TileColor[][] gameBoard, LegalMove[] legalMoves) {
         this.gameBoard = gameBoard;
         this.legalMoves = legalMoves;
     }
 
     public TilePosition calculateMultiLayerMove() {
-        return miniMax(gameBoard, legalMoves, depth, true,
+        return miniMax(gameBoard, legalMoves, depth, TileColor.BLACK,
                 legalMoves[0]).position;
     }
 
@@ -51,59 +42,34 @@ public class AIPlayer {
      * Calculates the best move in the current position using the minimax algorithm
      *
      */
-    public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean maximizingPlayer,
+    public LegalMove miniMax(TileColor[][] board, LegalMove[] legalMoves, int depth, TileColor turn,
             LegalMove madeMove) {
-        if (depth == 0 || legalMoves.length == 0) {
+        if (depth == 0 || legalMoves.length == 0) { // Reached the desired level or end of game
             madeMove.setEvaluation(evaluatePosition(board));
             return madeMove;
         }
+        LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // worst for black
+        LegalMove maxEval = new LegalMove(new TilePosition(0, 0), 0, -1_000_000); // worst for white
 
-        return handleDepthSearch(board, legalMoves, depth, maximizingPlayer);
-
-        // IMPLEMENT IF LEGALMOVES == 0
-
-    }
-
-    private LegalMove handleDepthSearch(TileColor[][] board, LegalMove[] legalMoves, int depth, boolean aiTurn) {
-        if (aiTurn) {
-            LegalMove minEval = new LegalMove(new TilePosition(0, 0), 0, 1_000_000); // every found evaluation should
-            // be better than this
-            for (LegalMove move : legalMoves) {
-                TileColor[][] tempBoard = copyBoard(board);
-                tempBoard[move.position.x][move.position.y] = TileColor.BLACK;
-                LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.WHITE, tempBoard), depth - 1,
-                        false, move);
-                move.setEvaluation(eval.evaluation);
-                if (move.compareTo(minEval) < 0) {
-                    minEval = move;
-                }
-            }
-            return minEval;
-        }
-
-        // White pieces
-        LegalMove maxEval = new LegalMove(new TilePosition(0, 0), 0, -1_000_000); // every found evaluation should be
-        // better than this
         for (LegalMove move : legalMoves) {
             TileColor[][] tempBoard = copyBoard(board);
-            tempBoard[move.position.x][move.position.y] = TileColor.WHITE;
-            LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.BLACK, tempBoard), depth - 1,
-                    true, move);
+            tempBoard[move.position.x][move.position.y] = turn;
+
+            // Get evaluation from one level deeper
+            LegalMove eval = miniMax(tempBoard, Game.getAllLegalMoves(TileColor.WHITE, tempBoard), depth - 1,
+                    turn.switchColor(), move);
+
             move.setEvaluation(eval.evaluation);
-            if (move.compareTo(maxEval) > 0) {
+
+            if (turn == TileColor.BLACK && move.compareTo(minEval) < 0) { // Black wants low evaluation
+                minEval = move;
+            } else if (turn == TileColor.WHITE && move.compareTo(maxEval) > 0) { // White wants high evaluation
                 maxEval = move;
             }
         }
-        return maxEval;
-    }
 
-    /*
-     * private TilePosition calculateBestMoveEasy(TileColor[][] board) {
-     * Arrays.sort(legalMoves);
-     * return legalMoves[legalMoves.length - 1].position;
-     * 
-     * }
-     */
+        return turn == TileColor.BLACK ? minEval : maxEval;
+    }
 
     public TilePosition getBestMove() {
         return this.bestMove;
@@ -129,7 +95,6 @@ public class AIPlayer {
      * winning.
      * A larger absolute number means a more decisive game.
      * 
-     * @return
      */
     public int evaluatePosition(TileColor[][] board) {
         int whitePoints = 0;
@@ -159,14 +124,14 @@ public class AIPlayer {
     /**
      * Returns the value of a tile in a given position. The tile is determined by
      * the following grid:
-     * 10 -3 +2 +2 +2 +2 -3 +4
+     * 10 -3 +2 +2 +2 +2 -3 10
      * -3 -4 -1 -1 -1 -1 -4 -3
      * +2 -1 +1 +0 +0 +1 -1 +2
      * +2 -1 +0 +1 +1 +0 -1 +2
      * +2 -1 +0 +1 +1 +0 -1 +2
      * +2 -1 +1 +0 +0 +1 -1 +2
      * -3 -4 -1 -1 -1 -1 -4 -3
-     * +4 -3 +2 +2 +2 +2 -3 10
+     * 10 -3 +2 +2 +2 +2 -3 10
      * 
      * @return
      */

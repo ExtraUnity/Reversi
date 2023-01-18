@@ -74,6 +74,8 @@ public class Controller {
 
     private void run_controller() {
         System.out.println("Controller loop started");
+        int blackPoints = 0;
+        int whitePoints = 0;
         while (controller.state == ControllerState.RUNNING) {
 
             ControllerMsg controllerMsg = Model.readControllerMsg();
@@ -82,6 +84,8 @@ public class Controller {
 
             if (controllerMsg instanceof UpdateBoardMsg) {
                 UpdateBoardMsg msg = (UpdateBoardMsg) controllerMsg;
+                whitePoints = msg.whitePoints;
+                blackPoints = msg.blackPoints;
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -103,10 +107,14 @@ public class Controller {
                 Gui.close();
             } else if (controllerMsg instanceof WinnerMsg) {
                 WinnerMsg msg = (WinnerMsg) controllerMsg;
+                int blackPointsClone = blackPoints;
+                int whitePointsClone = whitePoints;
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Gui.displayWinner(msg.winner);
+                        
+
+                        Gui.displayWinner(msg.winner, blackPointsClone, whitePointsClone);
                     }
                 });
             } else if (controllerMsg instanceof StartGameMsg) {
