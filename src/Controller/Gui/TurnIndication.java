@@ -68,9 +68,7 @@ public class TurnIndication extends ImageView {
 }
 
 class TopTurnIndication extends ImageView{
-    private InputStream white_turn_src;
     private Image white_turn;
-    private InputStream black_turn_src;
     private Image black_turn;
 
     private static TopTurnIndication instance;
@@ -98,15 +96,13 @@ class TopTurnIndication extends ImageView{
 
     public Image turnWhite(){
         if (white_turn == null) {
-            white_turn_src = getClass().getResourceAsStream("/Assets/TurnWhite.png");
-            white_turn = new Image(white_turn_src, Gui.fitTileSize() * 4, 0, true, false);
+            white_turn = new Image("/Assets/TurnWhite.png", 0, Gui.fitTileSize(), true, false);
          } 
      return white_turn;
     }
     public Image turnBlack(){
         if (black_turn == null) {
-            black_turn_src = getClass().getResourceAsStream("/Assets/TurnBlack.png");
-            black_turn = new Image(black_turn_src, Gui.fitTileSize() * 4, 0, true, false);
+            black_turn = new Image("/Assets/TurnBlack.png", 0, Gui.fitTileSize(), true, false);
          } 
      return black_turn;
     }

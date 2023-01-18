@@ -7,7 +7,7 @@ public class Title extends ImageView {
     protected Image img;
 
     public Title() {
-        this.img = new Image("/Assets/titleReversi.png", 0, Gui.fitTileSize()*3, true, false);
+        this.img = new Image("/Assets/titleReversi.png", 0, Gui.fitTileSize()*2, true, false);
         setImage(img);
     }
 }

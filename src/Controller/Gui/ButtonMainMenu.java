@@ -16,7 +16,6 @@ public class ButtonMainMenu extends Button {
             Gui.stackRoot.getChildren().clear();
             Gui.stackRoot.getChildren().add(Gui.startMenuRoot);
             Gui.addMuteButton();
-            System.out.println("Back to MAINMENU");
             ServerConn.shutdown();
             Model.sendGameMsg(new MainMenuMsg());
         });

@@ -9,7 +9,6 @@ public class ButtonRestart extends Button {
         super(Buttons.Restart,1);
         setOnMousePressed(e -> {
             setImage(imgPressed);
-
         });
         setOnMouseReleased(e -> {
             Model.sendGameMsg(new RestartBtnPressedMsg());

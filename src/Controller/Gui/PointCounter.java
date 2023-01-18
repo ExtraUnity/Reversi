@@ -1,7 +1,5 @@
 package Controller.Gui;
 
-import java.io.InputStream;
-
 import Shared.TileColor;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -53,9 +51,7 @@ public class PointCounter extends FlowPane {
 
 class Point extends ImageView {
 
-    private static InputStream white_src;
     private static Image white;
-    private static InputStream black_src;
     private static Image black;
 
     Point(TileColor color) {
@@ -71,16 +67,14 @@ class Point extends ImageView {
     // get player
     private Image getWhite() {
         if (white == null) {
-            white_src = getClass().getResourceAsStream("/Assets/whitePiece.png");
-            white = new Image(white_src, Gui.fitTileSize() / 2, 0, true, false);
+            white = new Image("/Assets/whitePiece.png", Gui.fitTileSize() / 2, 0, true, false);
         }
         return white;
     }
 
     private Image getBlack() {
         if (black == null) {
-            black_src = getClass().getResourceAsStream("/Assets/blackPiece.png");
-            black = new Image(black_src, Gui.fitTileSize() / 2, 0, true, false);
+            black = new Image("/Assets/blackPiece.png", Gui.fitTileSize() / 2, 0, true, false);
         }
         return black;
     }

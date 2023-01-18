@@ -9,9 +9,23 @@ import javafx.animation.Timeline;
 
 public class TileAnimation extends ImageView{
 
-    public static ImageView makeTimeline(){
+    public static ImageView flipToBlack(){
         Image image1 = new Image("/Assets/stoneTileWhiteToBlack.gif", Gui.fitTileSize(), 0, true, false);
         Image image2 = new Image("/Assets/stoneTileBlack.png", Gui.fitTileSize(), 0, true, false);
+        ImageView imageView = new ImageView();
+        Timeline timeline = new Timeline(
+            new KeyFrame(Duration.ZERO, new KeyValue(imageView.imageProperty(), image1)),
+            new KeyFrame(Duration.seconds(1), new KeyValue(imageView.imageProperty(), image2))
+        );
+        timeline.setCycleCount(1);
+        timeline.play(); 
+        
+        return imageView;
+    }
+
+    public static ImageView flipToWhite(){
+        Image image1 = new Image("/Assets/stoneTileBlackToWhite.gif", Gui.fitTileSize(), 0, true, false);
+        Image image2 = new Image("/Assets/stoneTileWhite.png", Gui.fitTileSize(), 0, true, false);
         ImageView imageView = new ImageView();
         Timeline timeline = new Timeline(
             new KeyFrame(Duration.ZERO, new KeyValue(imageView.imageProperty(), image1)),
