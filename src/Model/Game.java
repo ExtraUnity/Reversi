@@ -149,7 +149,7 @@ public abstract class Game {
      * samt skifter farven.
      * Derefter sender den besked til controlleren om de ting, der skal ændres.
      * 
-     * @return Den returner hvis der bliver passet
+     * @return Den returner true hvis der bliver passet
      */
     boolean handlePassClick(PassMsg msg) {
         ButtonPass ButtonPass = Gui.getMenuBottom().getButtonPass();
@@ -220,10 +220,6 @@ public abstract class Game {
         noLegalsLastTurn = false;
         checkWinner(whitePoints, blackPoints);
         return true;
-    }
-
-    // Skrevet af Christian
-    void handleAITurn(LegalMove[] legalMoves) {
     }
 
     boolean noLegalsLastTurn = false;

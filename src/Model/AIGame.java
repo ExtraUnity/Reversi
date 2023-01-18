@@ -10,6 +10,10 @@ import MsgPass.ModelMsg.RestartBtnPressedMsg;
 import Controller.Gui.PlayerCharacter;
 import MsgPass.ControllerMsg.WinnerMsg;
 
+/*
+ * Section written by: Christian - s224810
+ */
+
 public class AIGame extends Game {
     static AIPlayer aiPlayer;
 
@@ -54,17 +58,14 @@ public class AIGame extends Game {
         Model.startGame(gameMode, newOptions);
     }
 
-    @Override
     void handleAITurn(LegalMove[] legalMoves) {
-        aiPlayer.updateBoard(board, legalMoves); // updates with the newest board
+        aiPlayer.updateBoard(board, legalMoves); // updates ai with the newest board
 
-        // TEMPORARY
         try {
             Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
-        //
 
         if (legalMoves.length != 0) {
             aiPlayer.setBestMove(); // Algorithm magic

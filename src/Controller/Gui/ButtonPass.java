@@ -8,10 +8,9 @@ public class ButtonPass extends Button {
     private Image buttonGrey;
     private boolean available = false;
 
-
     public ButtonPass() {
         super(Buttons.Pass, 1);
-        this.buttonGrey = new Image("/Assets/ButtonPassGrey.png" , 0 , Gui.fitTileSize() , true , false);
+        this.buttonGrey = new Image("/Assets/ButtonPassGrey.png", 0, Gui.fitTileSize(), true, false);
         updatePressed();
         setImage(buttonGrey);
     }
@@ -28,7 +27,7 @@ public class ButtonPass extends Button {
         this.img = new Image(src, 0, Gui.fitTileSize(), true, false);
         setImage(img);
     }
-    
+
     public void updatePressed() {
         if (this.available) {
             setOnMousePressed(e -> {
@@ -38,7 +37,7 @@ public class ButtonPass extends Button {
                 setImage(img);
                 Model.sendGameMsg(new PassMsg());
             });
-        } else {
+        } else { // Make the button non-interactive
             setOnMousePressed(e -> {
             });
             setOnMouseReleased(e -> {
