@@ -7,7 +7,7 @@ public class ButtonMute extends Button {
     boolean muted;
 
     public ButtonMute() {
-        super(Buttons.Mute, 1);
+        super(Buttons.Mute, 0.75);
         muted = false;
         setOnMousePressed(e -> {
             // setImage(imgPressed);
@@ -22,7 +22,7 @@ public class ButtonMute extends Button {
                 Gui.stopMusic();
             }
             InputStream src = getClass().getResourceAsStream(path);
-            this.img = new Image(src, 0, Gui.fitTileSize() * 1, true, false);
+            this.img = new Image(src, 0, Gui.fitTileSize() * 0.75, true, false);
             setImage(img);
             muted = !muted;
         });

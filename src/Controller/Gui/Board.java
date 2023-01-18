@@ -6,9 +6,8 @@ import Shared.TilePosition;
 import javafx.scene.layout.GridPane;
 
 public class Board extends GridPane {
-    Board() {
-        setWidth(8 * Gui.getScreenWidth() / 11);
-        setHeight(8 * Gui.getScreenHeight() / 11);
+
+    public Board() {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 Tile tile = new Tile(x, y);
@@ -24,7 +23,7 @@ public class Board extends GridPane {
     public Tile[] getAllTiles() {
         var allTiles = new ArrayList<Tile>();
         for (var tile : getChildren()) {
-            allTiles.add((Tile) tile);
+            allTiles.add((Tile)tile);
         }
         return allTiles.toArray(new Tile[0]);
     }

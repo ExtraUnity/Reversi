@@ -1,18 +1,27 @@
 package Controller.Gui;
 
-import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class MenuMainCenter extends BorderPane {
+    HBox gameModeButtons;
+    VBox menuLayout;
+
     public MenuMainCenter() {
+        gameModeButtons = new HBox();
+        menuLayout = new VBox();
 
-        setLeft(new ButtonMultiplayer());
-        setCenter(new ButtonClassic());
-        setRight(new ButtonAI());
+        gameModeButtons.getChildren().addAll(new ButtonMultiplayer(),new ButtonClassic(),new ButtonAI());
+        gameModeButtons.setAlignment(Pos.CENTER);
+        gameModeButtons.setSpacing(Gui.fitTileSize());
 
-        setMargin(getLeft(), new Insets(0, 0, 0, Gui.fitTileSize() * 3));
-        setMargin(getCenter(), new Insets(0, 0, 0, 0));
-        setMargin(getRight(), new Insets(0, Gui.fitTileSize() * 3, 0, 0));
+        menuLayout.getChildren().addAll(new Title(), gameModeButtons, new ButtonExitGame());
+        menuLayout.setAlignment(Pos.CENTER);
+        menuLayout.setSpacing(Gui.fitTileSize()/2);
+
+        setCenter(menuLayout);
 
     }
 }

@@ -1,35 +1,19 @@
 package Controller.Gui;
 
-import java.io.InputStream;
-
 import Model.GameOptions;
-import javafx.application.Platform;
-import javafx.scene.image.Image;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 public class MenuTop extends BorderPane {
-    InputStream turn_src;
-    Image turn;
+    HBox topMenu;
 
     MenuTop(GameOptions gameOptions) {
-        setCenter(new TopTurnIndication(gameOptions.startPlayer));
-        Gui.stackRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
+        topMenu = new HBox();
+        TopTurnIndication turn = new TopTurnIndication(gameOptions.startPlayer);
+        topMenu.getChildren().add(turn);
+        topMenu.setAlignment(Pos.CENTER);
 
-            updateSize();
-        });
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                updateSize();
-            }
-        });
+        setCenter(topMenu);
     }
-
-    void updateSize() {
-        double windowHeight = Gui.stackRoot.getHeight();
-        double height = windowHeight / 2 - (8 * Gui.fitTileSize() / 2);
-        // setFillHeight(true);
-        setPrefHeight(height);
-    }
-
 }

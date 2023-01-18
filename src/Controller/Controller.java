@@ -139,7 +139,7 @@ public class Controller {
     private void updateBoard(UpdateBoardMsg msg) {
 
         for (var tile : Gui.getBoard().getAllTiles()) {
-            tile.resetLegalMove();
+            ((Tile) tile).resetLegalMove();
         }
 
         // Hvis der bliver passet bliver der sendt en updateBoard besked med ingen

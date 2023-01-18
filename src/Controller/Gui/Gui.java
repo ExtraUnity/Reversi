@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -45,38 +46,33 @@ public class Gui extends Application {
     static VBox startMenuRoot;
     static BorderPane gameGuiRoot;
     static ButtonMute muteButton;
-
+    static Board board;
+    
+    static VBox gameCenter; 
+    
     /**
      * Sets the content of the center box to board and top/bottom menu
      */
     private static void makeCenter(GameOptions gameOptions) {
-        var centerBox = new BorderPane();
-        centerBox.setPrefWidth(8 * fitTileSize());
-        centerBox.setTop(new MenuTop(gameOptions));
-        centerBox.setBottom(new MenuBottom(gameOptions));
-        gameGuiRoot.setCenter(centerBox);
-        makeBoard();
+        gameCenter = new VBox();
+        board = new Board();
+        MenuTop topMenu = new MenuTop(gameOptions);
+        MenuBottom bottomMenu = new MenuBottom(gameOptions);
+        gameCenter.getChildren().add(topMenu);
+        gameCenter.getChildren().add(board);
+        gameCenter.getChildren().add(bottomMenu);
+
+        gameCenter.setAlignment(Pos.CENTER);
+        gameCenter.setSpacing(10);
+        gameGuiRoot.setCenter(gameCenter);
     }
 
     public static Board getBoard() {
-        return (Board) ((BorderPane) gameGuiRoot.getCenter()).getCenter();
+        return board;
     }
 
     public static MenuBottom getMenuBottom() {
-        return (MenuBottom) ((BorderPane) gameGuiRoot.getCenter()).getBottom();
-    }
-
-    public static void makeBoard() {
-        ((BorderPane) gameGuiRoot.getCenter()).setCenter(new Board());
-    }
-
-    private static void makeMenuLeft(GameOptions gameOptions) {
-        gameGuiRoot.setLeft(new MenuLeft(gameOptions));
-    }
-
-    private static void makeMenuRight(GameOptions gameOptions) {
-        gameGuiRoot.setRight(new MenuRight(gameOptions));
-
+        return (MenuBottom) (gameCenter.getChildren().get(2));
     }
 
     static GameOptions prevGameOptions;
@@ -92,15 +88,18 @@ public class Gui extends Application {
         } else {
             gameOptions = prevGameOptions;
         }
+        MenuLeft left = new MenuLeft(gameOptions);
+        MenuRight right = new MenuRight(gameOptions);
+
         stackRoot.getChildren().clear();
         gameGuiRoot.getChildren().clear();
         stackRoot.getChildren().add(gameGuiRoot);
+        gameGuiRoot.setLeft(left);
+        gameGuiRoot.setRight(right);
         removeMuteButton();
         addMuteButton();
-
-        makeMenuLeft(gameOptions);
-        makeMenuRight(gameOptions);
         makeCenter(gameOptions);
+        
         Model.sendGameMsg(new GuiReadyMsg());
     }
 
@@ -154,6 +153,7 @@ public class Gui extends Application {
     public static void addMuteButton() {
         stackRoot.getChildren().add(Gui.muteButton);
         StackPane.setAlignment(Gui.muteButton, Pos.BOTTOM_LEFT);
+        StackPane.setMargin(Gui.muteButton, new Insets(15,15,15,15));
     }
 
     public static void removeMuteButton() {
@@ -161,16 +161,11 @@ public class Gui extends Application {
     }
 
     public static void makeStartMenu() {
-
         updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
 
-        var gameModeButtons = new MenuMainCenter();
-        var exitGameButtons = new MenuMainBottom();
-        var title = new Title();
+        var mainMenu = new MenuMainCenter();
+        startMenuRoot.getChildren().add(mainMenu);
 
-        startMenuRoot.getChildren().add(title);
-        startMenuRoot.getChildren().add(gameModeButtons);
-        startMenuRoot.getChildren().add(exitGameButtons);
         addMuteButton();
         startMenuRoot.setAlignment(Pos.CENTER);
 
