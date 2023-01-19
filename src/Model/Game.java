@@ -133,7 +133,7 @@ public abstract class Game {
         Gui.updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
     }
 
-    // Dette of followRules() er skrevet af Thor
+    // Dette og followRules() er skrevet af Thor
     protected static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
