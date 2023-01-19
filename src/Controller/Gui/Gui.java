@@ -293,6 +293,10 @@ public class Gui extends Application {
      */
     void setupStageMeta(Stage stage) {
         stage.setTitle("Reversi");
+
+        var imagesrc = getClass().getResourceAsStream("/Assets/stoneTileWhite.png");
+
+        stage.getIcons().add(new Image(imagesrc));
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
