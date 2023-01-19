@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Join game knap. Beder ServerConn om at tjekke at det korrekte id er intastet i text feltet på Join-menuen
 import Server.ServerConn;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
