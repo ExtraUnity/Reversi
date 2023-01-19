@@ -94,6 +94,8 @@ public class Tile extends StackPane {
             case BLACK:
                 imageView.setImage(getBlackImage());
                 break;
+            case EMPTY:
+                throw new RuntimeException("En tile må ikke sættes til empty.");
         }
     }
 
@@ -110,6 +112,8 @@ public class Tile extends StackPane {
                 this.getChildren().clear();
                 this.getChildren().add(TileAnimation.flipToBlack());
                 break;
+            case EMPTY:
+                throw new RuntimeException("En kan ikke switches hvis den er empty");
         }
     }
 }
