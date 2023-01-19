@@ -166,9 +166,6 @@ class GameHost {
                         if (in1.available() >= 4) {
                             byte[] msgLenBytes = new byte[4];
                             in1.read(msgLenBytes);
-                            for (int i = 0; i < msgLenBytes.length; i++) {
-                                System.out.println(msgLenBytes[i]);
-                            }
                             ByteBuffer buffer = ByteBuffer.wrap(msgLenBytes);
                             int len = buffer.getInt();
                             byte[] message = new byte[len];
@@ -179,9 +176,6 @@ class GameHost {
                         if (in2.available() >= 4) {
                             byte[] msgLenBytes = new byte[4];
                             in2.read(msgLenBytes);
-                            for (int i = 0; i < msgLenBytes.length; i++) {
-                                System.out.println(msgLenBytes[i]);
-                            }
                             ByteBuffer buffer = ByteBuffer.wrap(msgLenBytes);
                             int len = buffer.getInt();
                             byte[] message = new byte[len];
