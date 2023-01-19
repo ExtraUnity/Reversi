@@ -115,20 +115,20 @@ public class AIPlayer {
     /**
      * Returns the value of a tile in a given position. The tile is determined by
      * the following grid:
-     * 10 -3 +2 +2 +2 +2 -3 10
+     * 100 -3 +2 +2 +2 +2 -3 100
      * -3 -4 -1 -1 -1 -1 -4 -3
      * +2 -1 +1 +0 +0 +1 -1 +2
      * +2 -1 +0 +1 +1 +0 -1 +2
      * +2 -1 +0 +1 +1 +0 -1 +2
      * +2 -1 +1 +0 +0 +1 -1 +2
      * -3 -4 -1 -1 -1 -1 -4 -3
-     * 10 -3 +2 +2 +2 +2 -3 10
+     * 100 -3 +2 +2 +2 +2 -3 100
      * 
      * @return
      */
     private static int tileValue(int x, int y) {
         if (isCorner(x, y)) {
-            return 10;
+            return 100;
         }
         if (isMiddleEdge(x, y)) {
             return 2;
