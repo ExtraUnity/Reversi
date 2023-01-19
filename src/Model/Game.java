@@ -159,11 +159,7 @@ public abstract class Game {
         }
         var thiscolor = nextturn;
         nextturn.switchColor();
-        TilePosition noTile = new TilePosition(0, 0);
 
-        for (var t_pos : getAllFlipped(noTile, thiscolor, board)) {
-            board[t_pos.x][t_pos.y] = thiscolor;
-        }
         turns++;
         nextturn = nextturn.switchColor();
         var legalMoves = getAllLegalMoves(nextturn, board);
