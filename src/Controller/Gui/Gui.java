@@ -111,6 +111,7 @@ public class Gui extends Application {
     }
 
     // Skrevet af Frederik
+    /* Viser vinderen af spillet med tilhørende knapper der gør det muligt at genstarte, gå tilbage til main menu og slutte spillet */
     public static void displayWinner(TileColor color, int blackPoints, int whitePoints) {
         VBox gameover = new VBox();
         gameover.setAlignment(Pos.CENTER);

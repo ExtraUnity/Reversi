@@ -114,6 +114,7 @@ public class Controller {
                 controller.state = ControllerState.CLOSING;
                 Gui.close();
                 // Skrevet af Frederik
+                /* tjekker om indkommende besked er winner, hvis den er viser den vinderen samt antal point */
             } else if (controllerMsg instanceof WinnerMsg) {
                 WinnerMsg msg = (WinnerMsg) controllerMsg;
                 int blackPointsClone = blackPoints;

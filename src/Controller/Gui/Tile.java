@@ -22,6 +22,7 @@ public class Tile extends StackPane {
     static private Image black_tile;
 
     // Skrevet af Frederik
+    /* Opsætter hele spilbrættet med de relevante billeder samt funktion til at klikke på enkelte felter */
     public Tile(int x, int y) {
         position = new TilePosition(x, y);
         imageView = new ImageView();

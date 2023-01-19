@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Frederik
+/* Opsætter layout og tilføjer knapper til main menu */
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
