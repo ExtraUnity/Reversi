@@ -15,6 +15,8 @@ public enum TileColor {
                 return BLACK;
             case BLACK:
                 return WHITE;
+            case EMPTY:
+                throw new RuntimeException("En farve kan ikke switch hvis den er empty");
         }
 
         throw new RuntimeException("Litteraly impossible");
