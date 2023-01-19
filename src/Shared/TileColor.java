@@ -1,4 +1,5 @@
 package Shared;
+
 //Filen er skrevet af Thor
 public enum TileColor {
     WHITE,
@@ -11,8 +12,6 @@ public enum TileColor {
                 return BLACK;
             case BLACK:
                 return WHITE;
-            case default:
-                break;
         }
 
         throw new RuntimeException("Litteraly impossible");
