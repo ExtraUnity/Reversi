@@ -1,5 +1,7 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Main Menu knappen, fjerner alle Children fra scenen og beder Gui om at lave hovedmenuen
+//i tilfælde af at man går ud af et multiplayerspil sender den også en ServerConn shutdown besked.
 import Model.Model;
 import MsgPass.ModelMsg.MainMenuMsg;
 import Server.ServerConn;

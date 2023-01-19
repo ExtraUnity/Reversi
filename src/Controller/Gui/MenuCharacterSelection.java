@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Klasse der opstiller avatar-selection modulet som bliver brugt i multiplayer-menuen
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,8 @@ public class MenuCharacterSelection extends BorderPane {
     protected ImageView image;
     private static AudioClip characterSound;
 
+    //i konstruktøren bliver et array af imageViews 
+    //som derefter bliver tilføjet til et flowpane som er avatar-selection menuen
     public MenuCharacterSelection() {
 
         ArrayList<ImageView> imgList = getCharacterAddress();
