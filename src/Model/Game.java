@@ -133,7 +133,7 @@ public abstract class Game {
         Gui.updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
     }
 
-    // Dette of followRules() er skrevet af Thor
+    // Dette og followRules() er skrevet af Thor
     protected static TileColor nextturn = TileColor.BLACK;
     private int turns = 0;
 
@@ -141,7 +141,7 @@ public abstract class Game {
         return turns > 3;
     }
 
-    // Metoden er skrevet af Thor
+    // Metoden er skrevet af Christian
     /**
      * Denne funktion håndterer når pass knappen bliver trykket på. Den tjekker om
      * brugeren
@@ -163,8 +163,7 @@ public abstract class Game {
         turns++;
         nextturn = nextturn.switchColor();
         var legalMoves = getAllLegalMoves(nextturn, board);
-        System.out.println("Legal moves: " + legalMoves.length);
-        // flippedTiles = new ArrayList<TilePosition>();
+
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
 

@@ -1,4 +1,5 @@
 package Controller.Gui;
+
 //Filen er skrevet af Katinka
 import Server.ServerConn;
 import javafx.beans.value.ChangeListener;
@@ -24,7 +25,7 @@ public class MenuMultiplayerHost extends BorderPane {
         HBox optionTimerBox = makeTimer();
 
         ImageView backgroundTile = new ImageView(
-                new Image("/Assets/menutiles/medium2Tile.png",  Gui.fitTileSize() * 4.6, 0, true, false));
+                new Image("/Assets/menutiles/medium2Tile.png", Gui.fitTileSize() * 4.6, 0, true, false));
         ImageView backgroundIDBoxTile = new ImageView(
                 new Image("/Assets/menutiles/smallTile.png", 0, Gui.fitTileSize() * 2, true, false));
         ImageView yourIDLable = new ImageView(
@@ -57,9 +58,13 @@ public class MenuMultiplayerHost extends BorderPane {
         var timerField = new TextField("90");
 
         timerField.textProperty().addListener(new ChangeListener<String>() {
+
             @Override
             public void changed(ObservableValue<? extends String> ubrugtObservable, String ubrugtGammelText,
                     String newText) {
+                // Nogle af de her variabler bliver ikke brugt, men den slags anonym funktion
+                // det er har brug for at de er her.
+
                 if (!newText.matches("\\d*")) {
                     timerField.setText(newText.replaceAll("[^\\d]", ""));
                 } else {

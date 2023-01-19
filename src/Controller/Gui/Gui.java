@@ -76,6 +76,7 @@ public class Gui extends Application {
     }
 
     // Skrevet af Katinka
+    // Får fat i det 3. child på gameCenter, hvilket er den nederste del der indeholder pass-knap og resign-knap
     public static MenuBottom getMenuBottom() {
         return (MenuBottom) (gameCenter.getChildren().get(2));
     }
@@ -130,6 +131,8 @@ public class Gui extends Application {
     }
 
     // Skrevet af Katinka
+    //sætter scenen og stage op, og indstiller baggrund, hvorefter den kalder makeStartMenu
+    //når initiaseringen af Gui er klar sendes en besked om dette.
     @Override
     public void start(Stage stage) throws Exception {
         setupStageMeta(stage);
@@ -184,6 +187,7 @@ public class Gui extends Application {
     }
 
     // Skrevet af Katinka
+    //opstiller start menuen, med musik og korret menu-modul
     public static void makeStartMenu() {
         updateMusic("/Assets/sounds/music/mainMenuMusic.mp3");
 
@@ -225,6 +229,8 @@ public class Gui extends Application {
     }
 
     // Skrevet af Katinka
+    //alle metoderne nedenfor bliver brugt til at opsatere og bygge multiplayer menuen 
+    //både når der skal hostes eller joines
     public static PlayerCharacter yourCharacter = PlayerCharacter.Stalin;
     public static MenuMultiplayer main;
     public static MenuMultiplayerJoin join;
@@ -264,6 +270,7 @@ public class Gui extends Application {
     }
 
     // Skrevet af Katinka
+    //opdatere multiplayer-menu så den viser den korrete avatar når man vælger en avatar.
     public static void updateMultiplayerMenu() {
         displaySelected = new MenuDisplayCharacter(yourCharacter);
         displayUnknown = new MenuDisplayUnknown();
@@ -299,6 +306,9 @@ public class Gui extends Application {
     }
 
     // Skrevet af Katinka
+    //methode til at sætte Tile størrelseen til 1/11 af skærmens højde
+    //bliver brugt til at indstille størrelse af stort set alle assets, 
+    //så spillet har samme størrelses forhold på forskellige skærme.
     public static double fitTileSize() {
         return getScreenHeight() / 11;
     }

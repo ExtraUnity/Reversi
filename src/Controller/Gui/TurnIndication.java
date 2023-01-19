@@ -1,5 +1,7 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//klasseen der viser en playercharacters på gameScreen 
+//og holder styr på at vise det korrekte billede for nåt det er din tur eller modstanderens tur
 import java.io.InputStream;
 
 import Shared.TileColor;
@@ -38,7 +40,7 @@ public class TurnIndication extends ImageView {
         switchTurn();
     }
 
-    // get player
+    // get player (billeder uden outline)
     private Image getPlayer() {
         if (player == null) {
             player_src = getClass().getResourceAsStream("/Assets/characters/" + character + ".png");
@@ -47,7 +49,7 @@ public class TurnIndication extends ImageView {
         return player;
     }
 
-    // get player turn
+    // get player turn (billeder med hvid outline)
     private Image getPlayerTurn() {
         if (playerTurn == null) {
             playerTurn_src = getClass().getResourceAsStream("/Assets/characters/" + character + "Turn.png");
@@ -66,7 +68,7 @@ public class TurnIndication extends ImageView {
         }
     }
 }
-
+//klasse der henter og viser det ImageView i toppen af spillet hvor der står "White Turn" eller "Black Turn"
 class TopTurnIndication extends ImageView{
     private Image white_turn;
     private Image black_turn;

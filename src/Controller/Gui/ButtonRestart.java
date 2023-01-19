@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Spil igen Knap på win-screen, sender en Game besked om at spillet skal starte igen.
 import Model.Model;
 import MsgPass.ModelMsg.RestartBtnPressedMsg;
 

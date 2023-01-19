@@ -1,7 +1,14 @@
 package Shared;
+
 //Filen er skrevet af Thor
 import java.io.Serializable;
 
+/**
+ * Denne klasse er en repræsentation af en position på brættet. Den har en max
+ * og min x,y værdi på 0..8
+ * Den kaster en runtimeexception hvis den bliver givet en værdi som er unden for
+ * det interval.
+ */
 public class TilePosition implements Serializable {
     public final int x;
     public final int y;

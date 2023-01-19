@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Exit knap, Afslutter spillet ved at sende en luk-vinduet-besked og en afslut programmet besked
 import Model.Model;
 import MsgPass.ModelMsg.ModelWindowClosedMsg;
 
