@@ -1,6 +1,7 @@
 package Controller.Gui;
 
 //Filen er skrevet af Katinka
+//klasse der opstiller den går boks med knapper og dit game ID i host-game menu
 import Server.ServerConn;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -50,6 +51,7 @@ public class MenuMultiplayerHost extends BorderPane {
         setCenter(MenuBox);
     }
 
+    //opstiller timer option
     public HBox makeTimer() {
         var optionTimerBox = new HBox();
         var checkBox = new CheckBox();

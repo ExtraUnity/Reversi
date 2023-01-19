@@ -34,6 +34,8 @@ public class MenuCharacterSelection extends BorderPane {
 
     }
 
+    //metode der indlæser avatar assets, den undlader white, black, computer og unknown, 
+    //da disse ikke skal være mulige at vælge som din avatar i multiplayer
     private ArrayList<ImageView> getCharacterAddress() {
         ArrayList<ImageView> img = new ArrayList<ImageView>();
         for (PlayerCharacter character : PlayerCharacter.values()) {
@@ -66,6 +68,7 @@ public class MenuCharacterSelection extends BorderPane {
         return img;
     }
 
+    //afspiller den korretkte quote til hver karakter
     private void playCharacterQuote(PlayerCharacter character) {
         System.out.println(characterSound);
         if (characterSound != null) {

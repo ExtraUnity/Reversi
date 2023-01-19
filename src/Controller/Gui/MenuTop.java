@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Frederik
+/* Opsætter layout for topmenuen i et igangværende spil */
 import Model.GameOptions;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;

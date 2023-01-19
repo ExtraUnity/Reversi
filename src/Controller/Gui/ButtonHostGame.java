@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Host et spil knap, sender en besked til Gui at den skal opdatere og bygge Host-menuen
 public class ButtonHostGame extends Button {
 
     public ButtonHostGame() {
