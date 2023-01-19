@@ -15,8 +15,6 @@ public enum TileColor {
                 return BLACK;
             case BLACK:
                 return WHITE;
-            case default:
-                break;
         }
 
         throw new RuntimeException("Litteraly impossible");

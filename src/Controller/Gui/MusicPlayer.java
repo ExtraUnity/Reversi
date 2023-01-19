@@ -18,7 +18,7 @@ public class MusicPlayer {
     public void play() {
         System.out.println("Loading music path " + PATH);
 
-        var resource = getClass().getResource(PATH).toExternalForm();
+        String resource = getClass().getResource(PATH).toExternalForm();
         Media backgroundMusic = new Media(resource);
         Gui.musicPlayer = new MediaPlayer(backgroundMusic);
         Gui.musicPlayer.setVolume(0.2);

@@ -103,8 +103,7 @@ public class Gui extends Application {
         stackRoot.getChildren().add(gameGuiRoot);
         gameGuiRoot.setLeft(left);
         gameGuiRoot.setRight(right);
-        removeMuteButton();
-        addMuteButton();
+        updateMuteButton();
         makeCenter(gameOptions);
 
         Model.sendGameMsg(new GuiReadyMsg());
@@ -126,8 +125,7 @@ public class Gui extends Application {
 
         gameover.setSpacing(15);
         stackRoot.getChildren().add(gameover);
-        removeMuteButton();
-        addMuteButton();
+        updateMuteButton();
         updateMusic("/Assets/sounds/music/winnerMusic.mp3");
     }
 
@@ -170,8 +168,19 @@ public class Gui extends Application {
     }
 
     // Skrevet af Christian
+    /**
+     * Before adding mute button, we need to remove it if it exists in the list.
+     * Otherwise, StackPane complains about duplicate children.
+     */
     public static void removeMuteButton() {
-        stackRoot.getChildren().remove(Gui.muteButton);
+        if (stackRoot.getChildren().contains(Gui.muteButton)) {
+            stackRoot.getChildren().remove(Gui.muteButton);
+        }
+    }
+
+    public static void updateMuteButton() {
+        removeMuteButton();
+        addMuteButton();
     }
 
     // Skrevet af Katinka
@@ -180,8 +189,7 @@ public class Gui extends Application {
 
         var mainMenu = new MenuMainCenter();
         startMenuRoot.getChildren().add(mainMenu);
-
-        addMuteButton();
+        updateMuteButton();
         startMenuRoot.setAlignment(Pos.CENTER);
 
     }
@@ -268,8 +276,7 @@ public class Gui extends Application {
         characterSelect = new MenuCharacterSelection();
 
         multiplayerMenuRoot.getChildren().add(0, characterSelect);
-        removeMuteButton();
-        addMuteButton();
+        updateMuteButton();
     }
 
     // Skrevet af Thor
