@@ -162,12 +162,6 @@ class GameHost {
                     var in2 = socket2.getInputStream();
                     var out2 = socket2.getOutputStream();
                     while (true) {
-                        // Heartbeat tjekker. Sender 0,0,0,0 som heartbeat
-                        if (new Random().nextInt() % 10 == 0) {
-                            out1.write(new byte[] { 0, 0, 0, 0 });
-                            out2.write(new byte[] { 0, 0, 0, 0 });
-                        }
-
                         Thread.sleep(100);
                         if (in1.available() >= 4) {
                             byte[] msgLenBytes = new byte[4];

@@ -202,10 +202,7 @@ public class ServerConn {
                     socket.getInputStream().read(msgsizebuffer);
                     ByteBuffer buffer = ByteBuffer.wrap(msgsizebuffer);
                     int len = buffer.getInt();
-                    if (len == 0) {
-                        // Længde = 0 er et heartbeat besked. Det kommer intet andet. Ignorer dette
-                        continue;
-                    }
+                    System.out.println("Received msg len " + len);
 
                     var msg_buffer = new byte[len];
                     socket.getInputStream().read(msg_buffer);
