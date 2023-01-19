@@ -137,6 +137,12 @@ public class Server {
     }
 }
 
+/**
+ * Denne klasse håndterer to clienter som er i et spil.
+ * Den bliver vedt med at tjekke om der er < 4 bytes tilgænglig. Lige så snart
+ * der er det vil den læse den indkommende besked og sende det videre til den
+ * anden person
+ */
 class GameHost {
     Socket socket1;
     Socket socket2;

@@ -19,9 +19,11 @@ import MsgPass.ModelMsg.CharacterSelectedMsg;
 import MsgPass.ModelMsg.ModelMsg;
 import Shared.TileColor;
 
+/**
+ * Denne klasse er den som håndterer en clients forbindelse til serveren
+ */
 public class ServerConn {
     private final Socket socket;
-    private boolean joined = false;
     public static TileColor selfColor;
     public static boolean isHost;
 
@@ -31,14 +33,26 @@ public class ServerConn {
 
     private static ServerConn instance;
 
+    /**
+     * Sætter hvilken karakter der bliver valgt når spillet starter. Gør intet efter
+     * spillet er begyndt.
+     */
     public static void setLoadedCharacter(PlayerCharacter selectedCharacter) {
         ServerConn.selectedCharacter = selectedCharacter;
     }
 
+    /**
+     * Sætter tids settings der bliver valgt når spillet starter. Gør intet efter
+     * spillet er begyndt.
+     */
     public static void setLoadedGameTime(int gameTime) {
         selectedGametime = gameTime;
     }
 
+    /**
+     * Hoster et spil. Hvis den fejler returner den fejlbeskeden. Hvis den lykkes
+     * returner den din host-kode.
+     */
     public static String hostGame() {
         if (instance != null) {
             return "Server connection object already exists. This is a bug. Remember to call shutdown() after the end of a game.";
@@ -62,6 +76,9 @@ public class ServerConn {
         }
     }
 
+    /**
+     * Forsøger at joine et spil. Returner en error besked hvis det ikke lykkes.
+     */
     public static String joinGame(String id) {
         if (instance != null) {
             return "Server connection object already exists. This is a bug. Remember to call shutdown() after the end of a game.";
@@ -174,24 +191,6 @@ public class ServerConn {
             instance.socket.getOutputStream().write(bytes);
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void tryJoin(String try_netId) {
-        if (joined) {
-            return;
-        }
-        try {
-            byte[] try_netIdBytes = try_netId.getBytes();
-            if (try_netIdBytes.length != 6) {
-                return;
-            }
-            System.out.println("Trying to join " + try_netId);
-            socket.getOutputStream().write(try_netIdBytes);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
         }
     }
 

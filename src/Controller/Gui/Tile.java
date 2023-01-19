@@ -68,19 +68,22 @@ public class Tile extends StackPane {
     }
 
     private boolean isLegalMove = false;
-    //Skrevet af Frederik
+
+    // Skrevet af Frederik
     public void setLegalImage() {
         isLegalMove = true;
         imageView.setImage(getLegalImage());
     }
-    //Skrevet af Frederik
+
+    // Skrevet af Frederik
     public void resetLegalMove() {
         if (isLegalMove) {
             isLegalMove = false;
             imageView.setImage(getEmptyImage());
         }
     }
-    //Skrevet af Thor
+
+    // Skrevet af Thor
     public void setTilecolor(TileColor tilecolor) {
         isLegalMove = false;
         this.tilecolor = tilecolor;
@@ -91,11 +94,12 @@ public class Tile extends StackPane {
             case BLACK:
                 imageView.setImage(getBlackImage());
                 break;
-            case default:
-                break;
+            case EMPTY:
+                throw new RuntimeException("En tile må ikke sættes til empty.");
         }
     }
-    //Skrevet af Katinka
+
+    // Skrevet af Katinka
     public void switchTilecolor(TileColor tilecolor) {
         isLegalMove = false;
         this.tilecolor = tilecolor;
@@ -108,8 +112,8 @@ public class Tile extends StackPane {
                 this.getChildren().clear();
                 this.getChildren().add(TileAnimation.flipToBlack());
                 break;
-            case default:
-                break;
+            case EMPTY:
+                throw new RuntimeException("En kan ikke switches hvis den er empty");
         }
     }
 }
