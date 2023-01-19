@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Main Menu AI-gamemode Button, sender en GameMode besked med de korrekte gameoptions og playerCharacters når knappen slippes.
 
 import Model.GameOptions;
 import Model.Model;

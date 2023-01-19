@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//Multiplayer knappen på hovendmenuen, beder Gui om at lave multiplayer menu.
 public class ButtonMultiplayer extends Button {
 
 

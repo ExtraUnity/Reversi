@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//klasse der opstiller den grå boks med knapper i midten af multiplayer menu
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
