@@ -159,6 +159,7 @@ public abstract class Game {
         }
         var thiscolor = nextturn;
         nextturn.switchColor();
+
         turns++;
         nextturn = nextturn.switchColor();
         var legalMoves = getAllLegalMoves(nextturn, board);
