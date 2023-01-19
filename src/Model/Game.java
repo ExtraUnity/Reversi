@@ -162,8 +162,7 @@ public abstract class Game {
         turns++;
         nextturn = nextturn.switchColor();
         var legalMoves = getAllLegalMoves(nextturn, board);
-        System.out.println("Legal moves: " + legalMoves.length);
-        // flippedTiles = new ArrayList<TilePosition>();
+
         int whitePoints = getPoints(TileColor.WHITE);
         int blackPoints = getPoints(TileColor.BLACK);
 
