@@ -220,6 +220,7 @@ public abstract class Game {
     boolean noLegalsLastTurn = false;
 
     // Skrevet af Frederik
+    /* Tjekker om en vinder er fundet, dette gøres ved at tjekke om alle brikker er placeret eller ingen spiller har været træk */
     void checkWinner(int whitePoints, int blackPoints) {
         if (noLegalsLastTurn || allTilesPlaced()) {
             // Send gameover beskrev hvor vinderen er den med flest point
@@ -236,6 +237,7 @@ public abstract class Game {
     }
 
     // Skrevet af Frederik
+    /* Tjekker om alle brikker er placeret på spilbrættet */
     boolean allTilesPlaced() {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {

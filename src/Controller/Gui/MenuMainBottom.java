@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//bunden af mainmenu som sætter exit knap og mute-button
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.geometry.Pos;

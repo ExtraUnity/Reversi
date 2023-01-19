@@ -1,5 +1,6 @@
 package Controller.Gui;
 //Filen er skrevet af Frederik
+/* Holder styr på mange point hver spiller har i løbet af spillet og viser det */
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;

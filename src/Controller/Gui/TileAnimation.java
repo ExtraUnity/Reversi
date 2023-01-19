@@ -1,5 +1,7 @@
 package Controller.Gui;
 //Filen er skrevet af Katinka
+//klassen opstiller to timelines for animationen af når en tile flippes
+//hver animation flipper en tile fra hver sin farve til en anden farve
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;

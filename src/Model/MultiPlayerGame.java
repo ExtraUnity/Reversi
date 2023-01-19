@@ -63,7 +63,9 @@ public class MultiPlayerGame extends Game {
             ServerConn.sendModelMessage(newmsg);
         }
         gamestate = GameState.EXITED;
-        Model.startGame(gameMode, options);
+        GameOptions newOptions = new GameOptions(options.gametime, options.countPoints,
+                options.startPlayer.switchColor(), options.playerWhite, options.playerBlack);
+        Model.startGame(gameMode, newOptions);
     }
 
     @Override

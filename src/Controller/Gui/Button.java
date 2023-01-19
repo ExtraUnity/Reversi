@@ -1,6 +1,8 @@
 package Controller.Gui;
 
 //Filen er skrevet af Katinka
+//Button Super-Klassen til alle vores custom buttons, her hentes de Assets der passer til hver button
+//og sætter dem til henholdsvis knappen og knappen når den bliver trykket på.
 import java.io.InputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
