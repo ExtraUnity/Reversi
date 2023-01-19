@@ -36,6 +36,7 @@ public class Tile extends StackPane {
     }
 
     // Skrever af Katinka
+    //alle get...Image metoder indlæser de assets der skal bruges.
     private Image getEmptyImage() {
         if (empty_tile == null) {
             empty_tile = new Image("/Assets/stoneTileEmpty.png", Gui.fitTileSize(), 0, true, false);
@@ -98,8 +99,9 @@ public class Tile extends StackPane {
                 throw new RuntimeException("En tile må ikke sættes til empty.");
         }
     }
-
-    // Skrevet af Katinka
+    //Skrevet af Katinka
+    //Metoden kaldes hver gang der er lavet et træk der skal vende brikken på den Tile, 
+    //hvorefter den bestemmer hvilken frve der skal skiftes til og så afspiller den passende animation.
     public void switchTilecolor(TileColor tilecolor) {
         isLegalMove = false;
         this.tilecolor = tilecolor;
