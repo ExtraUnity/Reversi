@@ -220,7 +220,10 @@ public abstract class Game {
     boolean noLegalsLastTurn = false;
 
     // Skrevet af Frederik
-    /* Tjekker om en vinder er fundet, dette gøres ved at tjekke om alle brikker er placeret eller ingen spiller har været træk */
+    /*
+     * Tjekker om en vinder er fundet, dette gøres ved at tjekke om alle brikker er
+     * placeret eller ingen spiller har været træk
+     */
     void checkWinner(int whitePoints, int blackPoints) {
         if (noLegalsLastTurn || allTilesPlaced()) {
             // Send gameover beskrev hvor vinderen er den med flest point
@@ -264,25 +267,18 @@ public abstract class Game {
         var flipped = new ArrayList<TilePosition>();
         int x = pos.x + dx;
         int y = pos.y + dy;
-        boolean flipValid;
         while (true) {
+            // iscolor tjekker også om koordinaterne er out of bounds.
             if (!isColor(x, y, board)) {
-                flipValid = false;
-                break;
+                return new ArrayList<>();
             }
             if (board[x][y].otherColor(placedColor)) {
                 flipped.add(new TilePosition(x, y));
                 x += dx;
                 y += dy;
             } else {
-                flipValid = true;
-                break;
+                return flipped;
             }
-        }
-        if (flipValid) {
-            return flipped;
-        } else {
-            return new ArrayList<>();
         }
     }
 
