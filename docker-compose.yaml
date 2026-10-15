@@ -2,5 +2,5 @@ services:
   reversi-server:
     build: .
     ports:
-      - "4000:4000"
+      - "4561:4561"
     restart: unless-stopped

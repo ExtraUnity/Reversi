@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Server {
-    private static final int PORT = 4000;
+    private static final int PORT = 4561;
 
     public static void main(String[] args) {
 

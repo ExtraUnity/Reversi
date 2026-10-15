@@ -168,7 +168,7 @@ public class ServerConn {
     }
 
     private ServerConn() throws UnknownHostException, IOException {
-        socket = new Socket("77.213.215.246", 4000);
+        socket = new Socket("jensogkarsten.site", 4561);
     }
 
     public static void sendModelMessage(ModelMsg msg) {
